@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+## For-Lionz12
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+본 프로젝트는 인하대학교 멋쟁이사자처럼 12기를 관리하고 운영하기 위한 웹 사이트를 제작하는 프로젝트입니다.
 
-Currently, two official plugins are available:
+## 👬 팀 소개
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+|                                                              **최주용(FE, 디자인)**                                                              |                                                              **한수현(BE, 디자인)**                                                              |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| <center><img src="https://velog.velcdn.com/images/wuzoo/post/142ca9e2-1b00-4c56-a79c-d751c7f4430b/image.jpeg" width="130" height="130"></center> | <center><img src="https://velog.velcdn.com/images/wuzoo/post/c64ff32f-b709-4d04-bc46-a7370fd167b6/image.jpeg" width="130" height="130"></center> |
+|                                                        [wuzoo](https://github.com/wuzoo)                                                         |                                                     [soozzang](https://github.com/soozzang)                                                      |
 
-## Expanding the ESLint configuration
+## 🔗 기술 스택
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| **category**  |                    **stack**                     |
+| :-----------: | :----------------------------------------------: |
+|    Common     |    `TypeScript`, `npm`, `prettier`, `ESLint`     |
+|   FrontEnd    | `React`, `Vite`, `emotion.js`, `Recoil`, `Axios` |
+|    BackEnd    |             `Spring`, `JPA`, `MySQL`             |
+| Collaboration |                `notion`, `Figma`                 |
 
-- Configure the top-level `parserOptions` property like this:
+## 🎯 기능 목록
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+| **번호** |                 **기능**                  |
+| :------: | :---------------------------------------: |
+|    1.    |                유저 로그인                |
+|    2.    |           과제 전달 및 상세설명           |
+|    3.    |                과제 업로드                |
+|    4.    | 최근 업로드된 과제, 다른 사람의 과제 보기 |
+|    5.    |               공지사항 전달               |
+|    6.    |       유저 본인 소개 및 연락처 공유       |
+|    7.    |       큐앤에이를 통한 질문 및 답변        |
+|    8.    |                마이페이지                 |
