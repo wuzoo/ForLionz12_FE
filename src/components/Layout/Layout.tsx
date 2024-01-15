@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 function Layout() {
   return (
     <>
-      <div>I'm Navigation</div>
+      <h1>navigation</h1>
       <Outlet />
     </>
   );
