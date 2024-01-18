@@ -1,5 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import GlobalStyle from "./GlobalStyle";
+import { GlobalStyle } from "./GlobalStyle";
+import { Global, ThemeProvider } from "@emotion/react";
+import { theme } from "./theme/theme";
+import { RecoilRoot } from "recoil";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -17,30 +20,32 @@ const router = createBrowserRouter([
     errorElement: <p>error</p>,
     children: [
       { index: true, element: <Home /> },
-      { path: "login", element: <Login /> },
       { path: "homework-list", element: <HwList /> },
       { path: "homework-submit", element: <HwSubmit /> },
       { path: "contact", element: <Contact /> },
       {
         path: "notification",
         element: <Notification />,
-        children: [{ path: "/:id" }],
       },
       { path: "profile", element: <Profile /> },
       {
         path: "qna",
         element: <Qna />,
-        children: [{ path: "/upload" }, { path: "/:id" }],
       },
     ],
   },
+  { path: "/login", element: <Login /> },
 ]);
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <RouterProvider router={router} />
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <Global styles={GlobalStyle} />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </RecoilRoot>
     </>
   );
 }
