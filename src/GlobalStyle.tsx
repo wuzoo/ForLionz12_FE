@@ -91,6 +91,7 @@ export const GlobalStyle = css`
     font: inherit;
     vertical-align: baseline;
     font-family: "Inter", sans-serif;
+    box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
   article,
