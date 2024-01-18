@@ -7,10 +7,10 @@ export const theme: Theme = {
     darkpink: "#BF5F69",
     skyblue: "#B2CCE5",
     darkblue: "#4B8FE2",
-    white: "#000000",
+    white: "#ffffff",
 
     lightgray: "#DDDDDD",
     darkgray: "#8E8888",
-    black: "#ffffff",
+    black: "#000000",
   },
 };
