@@ -35,14 +35,10 @@ export const Input = styled.input`
     padding-left: 24px;
     font-size: 18px;
   }
-`;
 
-export const pagelogo = css`
-  position: absolute;
-  width: 400px;
-  left: 20%;
-  top: 15%;
-  z-index: -1000;
+  &:focus {
+    border-color: ${(props) => props.theme.color.darkblue};
+  }
 `;
 
 export const loginbtn = styled.button`

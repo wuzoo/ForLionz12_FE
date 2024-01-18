@@ -1,12 +1,12 @@
 import * as Styled from "./style";
 import Header from "../../components/Header/Header";
-import img from "../../assets/3dicons/login/person.svg";
 import Typo from "../../components/Typo/Typo";
+import PageLogo from "../../components/PageLogo/PageLogo";
 
 function Login() {
   return (
     <>
-      <img css={Styled.pagelogo} src={img} />
+      <PageLogo type="login" left="20%" top="15%" />
       <Header type="login" />
       <div css={Styled.page}>
         <div css={Styled.loginbox}>
