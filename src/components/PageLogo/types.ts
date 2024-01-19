@@ -10,6 +10,10 @@ export interface ILogo {
   left?: string;
   right?: string;
   bottom?: string;
+  padbottom?: string;
+  padleft?: string;
+  padright?: string;
+  padtop?: string;
 }
 
 export interface IPageobj {
