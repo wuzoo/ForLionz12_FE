@@ -1,13 +1,10 @@
-export interface IPageLogo {
+export interface IPageLogo extends ILogo {
   type: string;
-  width?: string;
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
 }
 
-export interface IImg {
+export interface ILogo {
+  pos?: string;
+  heigth?: string;
   width?: string;
   top?: string;
   left?: string;
