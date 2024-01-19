@@ -4,7 +4,8 @@ export interface IPageLogo extends ILogo {
 
 export interface ILogo {
   pos?: string;
-  heigth?: string;
+  height?: string;
+  zindex?: string;
   width?: string;
   top?: string;
   left?: string;
