@@ -3,6 +3,9 @@ import { css } from "@emotion/react";
 export const GlobalStyle = css`
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
+  @import "slick-carousel/slick/slick.css";
+  @import "slick-carousel/slick/slick-theme.css";
+
   html,
   body,
   div,
