@@ -11,4 +11,9 @@ export const Img = styled.img<ILogo>`
   top: ${(props) => props.top || 0};
   right: ${(props) => props.right || 0};
   bottom: ${(props) => props.bottom || 0};
+
+  padding-bottom: ${(props) => props.padbottom || "0"}px;
+  padding-left: ${(props) => props.padleft || "0"}px;
+  padding-top: ${(props) => props.padtop || "0"}px;
+  padding-right: ${(props) => props.padright || "0"}px;
 `;
