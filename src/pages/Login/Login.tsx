@@ -3,19 +3,16 @@ import Header from "../../components/Header/Header";
 import Typo from "../../components/Typo/Typo";
 import PageLogo from "../../components/PageLogo/PageLogo";
 import Button from "../../components/Button/Button";
-import { useRecoilValue } from "recoil";
-import { Text } from "../../recoil/texts";
+import { text } from "../../constants/constant";
 
 function Login() {
-  const { login } = useRecoilValue(Text);
-
   return (
     <>
       <PageLogo type="login" left="20%" top="15%" />
       <Header type="login" />
       <Styled.page>
         <Styled.loginbox>
-          <Styled.welcometext>{login}</Styled.welcometext>
+          <Styled.welcometext>{text.login}</Styled.welcometext>
           <Styled.Input placeholder="아이디를 입력하세요" />
           <Styled.Input placeholder="비밀번호를 입력하세요" />
 
