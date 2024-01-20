@@ -13,4 +13,12 @@ export const theme: Theme = {
     darkgray: "#8E8888",
     black: "#000000",
   },
+
+  weight: {
+    regular: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
+    ultrabold: "800",
+  },
 };

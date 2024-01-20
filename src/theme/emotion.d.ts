@@ -14,5 +14,14 @@ declare module "@emotion/react" {
       white: string;
       black: string;
     };
+
+    weight: {
+      [key: string]: string;
+      medium: string;
+      regular: string;
+      semibold: string;
+      bold: string;
+      ultrabold: string;
+    };
   }
 }
