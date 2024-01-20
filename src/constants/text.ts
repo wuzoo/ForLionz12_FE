@@ -1,4 +1,4 @@
-export const text = {
+export const TEXT = {
   login: "LIKELION\nINHA UNIV 12기와\n함께하기",
   main: "Growl\nTo Growth\nWelcome",
   greeting: "님 반갑습니다",
