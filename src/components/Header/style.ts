@@ -3,11 +3,14 @@ import { IHeader } from "./types";
 
 export const Wrapper = styled.div<IHeader>`
   width: 100%;
-  height: 90px;
+  height: 80px;
   display: flex;
   justify-content: ${(props) => (props.type === "login" ? "center" : "start")};
   align-items: center;
   padding: 0px 40px;
+  position: fixed;
+  top: 0;
+  background-color: ${(props) => props.theme.color.white};
 `;
 
 export const logo = styled.span`
