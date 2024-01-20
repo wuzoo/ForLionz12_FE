@@ -4,11 +4,24 @@ import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { useNavigate } from "react-router-dom";
-import { DateAdaptor, PartAdaptor } from "../../PartAndDate/PartAndDate";
 import { ICard } from "./types";
 
 function Card({ logo, bgcolor, ...props }: ICard) {
   const navigate = useNavigate();
+
+  function getPartAndDate() {
+    return (
+      <p>
+        <Typo color="white" weight="regular">
+          FE
+        </Typo>
+        <Typo color="white">&nbsp;⎸&nbsp;</Typo>
+        <Typo color="white" weight="regular">
+          2023-06-10 18:00:00
+        </Typo>
+      </p>
+    );
+  }
 
   return (
     <Styled.CardWrapper
@@ -33,14 +46,12 @@ function Card({ logo, bgcolor, ...props }: ICard) {
         </Styled.TitleWrapper>
       </Styled.LogoAndTitle>
       <div>
-        <Styled.Alignwrapper
+        {getPartAndDate()}
+        <div
           css={css`
-            margin-bottom: 10px;
+            height: 5px;
           `}
-        >
-          <PartAdaptor fontSize="18px" part={props.part} />
-          <DateAdaptor showdelim={true} date={props.date} fontSize="18px" />
-        </Styled.Alignwrapper>
+        ></div>
         <Button
           onClick={() => {
             navigate("/notification");

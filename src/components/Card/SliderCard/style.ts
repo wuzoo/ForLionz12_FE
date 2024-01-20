@@ -35,8 +35,3 @@ export const LogoAndTitle = styled.div`
 export const TitleWrapper = styled.div`
   text-align: end;
 `;
-
-export const Alignwrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
