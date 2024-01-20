@@ -1,21 +1,7 @@
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "@emotion/styled";
 import { ISlider } from "./types";
-
-const StyledSlider = styled(Slider)`
-  position: relative;
-  width: 100%;
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
-  }
-  .slick-slide div {
-    cursor: pointer;
-  }
-`;
 
 export default function MySlider({
   children,
@@ -32,5 +18,5 @@ export default function MySlider({
     // slidesToScroll: 1,
   };
 
-  return <StyledSlider {...setting}>{children}</StyledSlider>;
+  return <Slider {...setting}>{children}</Slider>;
 }
