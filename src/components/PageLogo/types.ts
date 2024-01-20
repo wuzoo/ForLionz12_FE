@@ -22,13 +22,10 @@ export interface IPageobj {
   submit: string;
   contact: string;
   login: string;
-  book: string;
-  calendar: string;
-  call: string;
-  chats: string;
-  light: string;
   mypageboy: string;
   mypagegirl: string;
   notice: string;
   qna: string;
+  boy: string;
+  girl: string;
 }
