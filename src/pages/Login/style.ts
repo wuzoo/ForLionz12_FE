@@ -4,6 +4,7 @@ export const page = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 `;
 
 export const loginbox = styled.div`
