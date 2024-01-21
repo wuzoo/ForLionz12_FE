@@ -7,8 +7,6 @@ import { ReactNode } from "react";
 import styled from "@emotion/styled";
 
 const StyledSlider = styled(MySlider)`
-  position: relative;
-  width: 100%;
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
