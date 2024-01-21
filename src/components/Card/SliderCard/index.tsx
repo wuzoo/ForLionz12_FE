@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import MainAndSubtitle from "../../MainAndSubtitle";
 import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
@@ -36,13 +35,16 @@ function Card({ logo, bgcolor, ...props }: ICard) {
       ></Styled.Picture>
       <Styled.LogoAndTitle>
         <Styled.TitleWrapper>
-          <MainAndSubtitle
-            main={props.main}
-            sub={props.sub}
-            gap="15"
-            colors={["white", "white"]}
-            fontsizes={["44", "20"]}
-          />
+          <Styled.CardTitle>
+            <Typo weight="700" color="white" fontSize="44">
+              {props.main}
+            </Typo>
+          </Styled.CardTitle>
+          <Styled.CardContent>
+            <Typo color="white" fontSize="20" weight="500">
+              {props.sub}
+            </Typo>
+          </Styled.CardContent>
         </Styled.TitleWrapper>
       </Styled.LogoAndTitle>
       <div>
@@ -56,9 +58,9 @@ function Card({ logo, bgcolor, ...props }: ICard) {
           onClick={() => {
             navigate("/notification");
           }}
-          radius="5"
+          radius="5px"
           width="100%"
-          height="40"
+          height="40px"
           bgcolor="white"
         >
           <Typo color="darkgray">공지 전체 보러 가기</Typo>
