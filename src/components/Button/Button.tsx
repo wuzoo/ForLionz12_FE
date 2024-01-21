@@ -9,13 +9,18 @@ function Button(props: IBtn) {
       {...props}
       onClick={props.onClick}
       css={css`
-        width: ${props.width};
+        width: ${props.width || "60px"};
         background-color: ${props.bgcolor
           ? theme.color[props.bgcolor]
           : theme.color.darkblue};
         color: ${props.color || theme.color.black};
-        border-radius: ${props.radius || "10"}px;
-        height: ${props.height || "30"}px;
+        border-radius: ${props.radius || "10px"};
+        height: ${props.height || "30px"};
+        border-style: solid;
+        border-width: ${props.borderwidth || "0"};
+        border-color: ${props.bordercolor
+          ? theme.color[props.bordercolor]
+          : "none"};
       `}
     >
       {props.children}
