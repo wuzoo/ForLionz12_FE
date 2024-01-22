@@ -6,9 +6,10 @@ export const CardWrapper = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   height: 360px;
-  max-width: 300px;
+  width: 350px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
+  justify-self: center;
 `;
 
 export const Thumnail = styled.div<{ color: string }>`
@@ -26,8 +27,8 @@ export const Img = styled.img`
 
 export const Content = styled.div`
   height: 50%;
+  width: 80%;
   padding: 1rem 0px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,6 +50,6 @@ export const Date = styled.p``;
 
 export const AlignWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 3rem;
 `;

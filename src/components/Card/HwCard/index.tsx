@@ -5,14 +5,24 @@ import * as Styled from "./style";
 import tmp from "../../../assets/icons/github/github.svg";
 import { PART_COLOR } from "../../../constants/partcolor";
 
+const variants = {
+  hover: {
+    scale: 1.03,
+  },
+};
+
 function HwCard({ part }: { part: string }) {
   return (
-    <Styled.CardWrapper>
+    <Styled.CardWrapper variants={variants} whileHover="hover">
       <Styled.Thumnail color="fe">
         <Styled.Img src={tmp} />
       </Styled.Thumnail>
       <Styled.Content>
-        <div>
+        <div
+          css={css`
+            width: 100%;
+          `}
+        >
           <Styled.AlignWrapper>
             <Styled.CardTitle>
               <Typo>api를 만들어보자.</Typo>
