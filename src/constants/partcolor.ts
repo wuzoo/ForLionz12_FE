@@ -2,6 +2,7 @@ export const PART_COLOR: IPartColor = {
   fe: "skyblue",
   be: "pink",
   staff: "yellow",
+  all: "yellow",
 };
 
 interface IPartColor {
@@ -9,4 +10,5 @@ interface IPartColor {
   fe: string;
   be: string;
   staff: string;
+  all: string;
 }
