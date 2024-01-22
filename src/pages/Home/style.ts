@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const banner = styled.div`
   width: 100%;
@@ -16,6 +17,8 @@ export const textwrapper = styled.div`
   gap: 20px;
 `;
 
-export const text = styled.h1`
+export const text = styled(motion.h1)`
   white-space: pre-line;
 `;
+
+export const usergreet = styled(motion.h3)``;
