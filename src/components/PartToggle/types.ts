@@ -1,6 +1,7 @@
 export interface IToggle {
   showfe: () => void;
   showbe: () => void;
-  showstaff: () => void;
+  showother: () => void;
   part: string;
+  flag?: boolean;
 }
