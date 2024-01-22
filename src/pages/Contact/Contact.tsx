@@ -1,7 +1,5 @@
-import MainAndSubtitle from "../../components/MainAndSubtitle";
-import PageLogo from "../../components/PageLogo/PageLogo";
+import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import { TEXT } from "../../constants/text";
 import useSelectedPart from "../../hooks/useSelectedPart";
 import Item from "./components/ContactItem";
 import * as Styled from "./style";
@@ -11,16 +9,7 @@ function Contact() {
 
   return (
     <Styled.Wrapper>
-      <Styled.Banner>
-        <MainAndSubtitle
-          main="Contact"
-          sub={TEXT.contact}
-          fontsizes={["60", "18"]}
-          colors={["black", "darkgray"]}
-          gap="7"
-        />
-        <PageLogo type="contact" pos="relative" width="500" height="500" />
-      </Styled.Banner>
+      <Banner type="contact" logowidth="500" logoheight="500" />
       <Styled.Toggle>
         <PartToggle
           part={part}

@@ -4,13 +4,6 @@ export const Wrapper = styled.div`
   width: 70%;
 `;
 
-export const Banner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10rem;
-`;
-
 export const Items = styled.div`
   display: flex;
   flex-direction: column;
