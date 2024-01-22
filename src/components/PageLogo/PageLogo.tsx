@@ -12,12 +12,12 @@ import { IPageLogo, IPageobj } from "./types";
 
 export default function PageLogo(props: IPageLogo) {
   const pageobj: IPageobj = {
-    submit: submit,
+    assignsubmit: submit,
     contact: contact,
     login: login,
-    mypageboy: mypageboy,
-    mypagegirl: mypagegirl,
-    notice: notice,
+    profileboy: mypageboy,
+    profilegirl: mypagegirl,
+    notification: notice,
     qna: qna,
     boy: boy,
     girl: girl,
