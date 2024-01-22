@@ -4,8 +4,8 @@ export const Container = styled.div`
   margin-top: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-  place-self: center;
 `;
 
 export const ItemWrapper = styled.div`
