@@ -19,12 +19,12 @@ export interface ILogo {
 
 export interface IPageobj {
   [key: string]: string;
-  submit: string;
+  assignsubmit: string;
   contact: string;
   login: string;
-  mypageboy: string;
-  mypagegirl: string;
-  notice: string;
+  profileboy: string;
+  profilegirl: string;
+  notification: string;
   qna: string;
   boy: string;
   girl: string;
