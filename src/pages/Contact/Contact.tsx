@@ -5,7 +5,7 @@ import Item from "./components/ContactItem";
 import * as Styled from "./style";
 
 function Contact() {
-  const [part, feclick, beclick, staffclick] = useSelectedPart();
+  const [part, feclick, beclick, staffclick] = useSelectedPart("part");
 
   return (
     <Styled.Wrapper>
@@ -15,7 +15,7 @@ function Contact() {
           part={part}
           showfe={feclick}
           showbe={beclick}
-          showstaff={staffclick}
+          showother={staffclick}
         />
       </Styled.Toggle>
       <Styled.Items>
