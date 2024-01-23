@@ -6,4 +6,5 @@ export const Title = styled.p`
 
 export const Content = styled.p`
   width: auto;
+  line-height: 1.3;
 `;
