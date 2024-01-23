@@ -22,8 +22,6 @@ export interface IPageobj {
   assignsubmit: string;
   contact: string;
   login: string;
-  profileboy: string;
-  profilegirl: string;
   notification: string;
   qna: string;
   boy: string;

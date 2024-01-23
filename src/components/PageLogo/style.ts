@@ -7,10 +7,10 @@ export const Img = styled.img<ILogo>`
   width: ${(props) => props.width || "300"}px;
   height: ${(props) => props.height || "300"}px;
 
-  left: ${(props) => props.left || 0};
-  top: ${(props) => props.top || 0};
-  right: ${(props) => props.right || 0};
-  bottom: ${(props) => props.bottom || 0};
+  left: ${(props) => props.left || null};
+  top: ${(props) => props.top || null};
+  right: ${(props) => props.right || null};
+  bottom: ${(props) => props.bottom || null};
 
   padding-bottom: ${(props) => props.padbottom || "0"}px;
   padding-left: ${(props) => props.padleft || "0"}px;
