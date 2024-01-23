@@ -30,11 +30,25 @@ export const navcol = styled.div`
   a:nth-child(2) {
     padding-left: 2rem;
   }
+  a {
+    span {
+      position: relative;
+    }
+  }
 `;
 
 export const headerprofile = styled.div<{ show: boolean }>`
   position: absolute;
+  cursor: pointer;
   right: 40px;
-
+  padding: 10px;
   display: ${(props) => !props.show && "none"};
+
+  div {
+    &:hover {
+      box-shadow: 0px 5px 20px ${(props) => props.theme.color.pink};
+      scale: 1.05;
+    }
+    transition: all 0.2s ease-in-out;
+  }
 `;
