@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   grid-template-columns: 1fr 5fr 3fr;
   align-items: center;
   border-radius: 10px;
-  padding: 13px;
+  padding: 18px;
   padding-left: 30px;
   background-color: ${(props) => props.theme.color.superlightgray};
 `;
