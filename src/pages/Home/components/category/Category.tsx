@@ -13,7 +13,7 @@ function Category() {
   return (
     <Styled.Container>
       {colors.map((item, index) => (
-        <Styled.ItemWrapper>
+        <Styled.ItemWrapper key={item[0]}>
           <Styled.Item
             onClick={() => navigate(Destination[nav[index]])}
             css={css`
