@@ -7,12 +7,14 @@ import PartToggle from "../../components/PartToggle/PartToggle";
 import useSelectedPart from "../../hooks/useSelectedPart";
 
 function HwList() {
-  const [part, feclick, beclick, staffclick] = useSelectedPart();
+  const [part, feclick, beclick, staffclick] = useSelectedPart("notice");
   console.log(part);
 
   const tmp = new Array(6).fill(0).map((_, i) => {
     return { part: "fe", id: i + 1 };
   });
+
+  console.log(part);
 
   return (
     <Styled.Wrapper>
@@ -55,7 +57,8 @@ function HwList() {
           part={part}
           showfe={feclick}
           showbe={beclick}
-          showstaff={staffclick}
+          showother={staffclick}
+          flag={true}
         />
       </div>
       <Styled.OtherHWContainer id="scrollArea">
