@@ -63,7 +63,7 @@ function HwList() {
       </div>
       <Styled.OtherHWContainer id="scrollArea">
         {tmp.map((item) => (
-          <HwCard part={item.part.toLowerCase()} />
+          <HwCard key={item.id} part={item.part.toLowerCase()} />
         ))}
       </Styled.OtherHWContainer>
     </Styled.Wrapper>
