@@ -7,7 +7,7 @@ export const TEXT: { [key: string]: string } = {
   assignlist: "나의 과제 목록을 확인하세요",
   assignsubmit:
     "최근 업로드된 다른 아기사자의 과제와 지금까지 업로드된 과제들을 구경할 수 있어요.",
-  qna: "깨달음은 호기심으로부터.",
+  "q&a": "깨달음은 호기심으로부터.",
   profile: "사자들에게 보여질 프로필을 수정할 수 있어요.",
 };
 
