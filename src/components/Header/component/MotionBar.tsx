@@ -14,8 +14,8 @@ function MotionBar() {
         position: absolute;
         bottom: -10px;
         height: 6px;
-        border-radius: 2px;
-        background-color: ${theme.color.darkpink};
+        border-radius: 5px;
+        background-color: ${theme.color.black};
       `}
     ></motion.div>
   );
