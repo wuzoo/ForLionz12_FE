@@ -14,7 +14,7 @@ export default function PageLogo(props: IPageLogo) {
     contact: contact,
     login: login,
     notification: notice,
-    qna: qna,
+    "q&a": qna,
     boy: boy,
     girl: girl,
   };

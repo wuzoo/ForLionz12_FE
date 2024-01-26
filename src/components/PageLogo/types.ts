@@ -23,7 +23,7 @@ export interface IPageobj {
   contact: string;
   login: string;
   notification: string;
-  qna: string;
+  "q&a": string;
   boy: string;
   girl: string;
 }
