@@ -10,10 +10,17 @@ interface IBanner {
 }
 
 function Banner({ type, logowidth, logoheight }: IBanner) {
+  function getMain() {
+    if (type == "q&a") {
+      return "Q&A";
+    }
+    return type[0].toUpperCase() + type.slice(1);
+  }
+
   return (
     <Styled.Container>
       <MainAndSubtitle
-        main={type[0].toUpperCase() + type.slice(1)}
+        main={getMain()}
         sub={TEXT[type]}
         fontsizes={["70", "18"]}
         colors={["black", "darkgray"]}
