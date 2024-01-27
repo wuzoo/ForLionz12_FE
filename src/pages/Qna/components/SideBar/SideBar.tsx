@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import * as Styled from "./style";
 import { CATEGORY_TEXT } from "../constants/text";
 import { theme } from "../../../../theme/theme";
+import useResponsivebar from "../hooks/useResponsivebar";
 
 interface ISideBar {
   setCategory: (e: string) => void;
@@ -9,8 +10,10 @@ interface ISideBar {
 }
 
 function SideBar({ setCategory, currentCategory }: ISideBar) {
+  const ref = useResponsivebar();
+
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper ref={ref}>
       {Object.entries(CATEGORY_TEXT).map((entry) => (
         <Styled.Item
           css={css`
