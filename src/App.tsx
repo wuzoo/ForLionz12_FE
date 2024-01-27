@@ -23,7 +23,12 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      { path: "homework-list", element: <HwList /> },
+      {
+        path: "homework",
+        element: <HwList />,
+        children: [{ path: ":hwid", element: <HwList /> }],
+      },
+
       { path: "homework-submit", element: <HwSubmit /> },
       { path: "contact", element: <Contact /> },
       {
