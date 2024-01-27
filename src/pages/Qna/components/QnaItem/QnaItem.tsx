@@ -7,25 +7,33 @@ import { css } from "@emotion/react";
 interface IItem {
   title: string;
   date: string;
+  name: string;
 }
 
-function QnaItem({ title, date }: IItem) {
+function QnaItem({ title, date, name }: IItem) {
   return (
     <Styled.Container>
       <div
         css={css`
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 30px;
         `}
       >
-        <User url={tmp} size="30" />
-        <Styled.Title>
-          <Typo>{title}</Typo>
-        </Styled.Title>
+        <User url={tmp} size="45" />
+        <div css={css``}>
+          <Styled.Title>
+            <Typo>{title}</Typo>
+          </Styled.Title>
+          <Styled.Writer>
+            <Typo color="darkgray" fontSize="14">
+              {name}
+            </Typo>
+          </Styled.Writer>
+        </div>
       </div>
       <Styled.Date>
-        <Typo color="darkgray" fontSize="16">
+        <Typo color="darkgray" fontSize="14">
           작성일: {date}
         </Typo>
       </Styled.Date>
