@@ -6,6 +6,7 @@ import Typo from "../../components/Typo/Typo";
 import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "./components/QnaItem/QnaItem";
+import { CATEGORY_TEXT } from "./components/constants/text";
 
 function Qna() {
   const [category, setCategory] = useState("all");
@@ -18,27 +19,19 @@ function Qna() {
 
   const tmparr = new Array(20).fill(0).map((_, i) => i + 1);
 
-  const match: { [key: string]: string } = {
-    all: "All",
-    git: "Git & Githubs",
-    fe: "Front-End",
-    be: "Back-End",
-    other: "기타",
-  };
-
   return (
     <Styled.Wrapper>
       <div
         css={css`
-          width: 90%;
+          width: 100%;
         `}
       >
         <Banner type="q&a" logowidth="500" logoheight="500" />
       </div>
-      <SideBar setCategory={setCategory} />
+      <SideBar currentCategory={category} setCategory={setCategory} />
       <Styled.Title>
         <Typo weight="600" fontSize="30">
-          {match[category]}
+          {CATEGORY_TEXT[category]}
         </Typo>
       </Styled.Title>
       <Styled.BoxContainer>
