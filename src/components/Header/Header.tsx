@@ -30,7 +30,7 @@ function Header({ type }: IHeader) {
                 {pathname == "/notification" && <MotionBar />}
               </Typo>
             </Link>
-            <Link to="/homework-list">
+            <Link to="/homework">
               <Typo weight="600">
                 Assignment
                 {pathname == "/homework" && <MotionBar />}
