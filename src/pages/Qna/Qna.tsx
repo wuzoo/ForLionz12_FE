@@ -3,7 +3,7 @@ import Banner from "../../components/Banner/Banner";
 import * as Styled from "./style";
 import SideBar from "./components/SideBar/SideBar";
 import Typo from "../../components/Typo/Typo";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "./components/QnaItem/QnaItem";
 
@@ -11,6 +11,10 @@ function Qna() {
   const [category, setCategory] = useState("all");
 
   const [query, setQuery] = useState<string[]>([]);
+
+  const day = new Date().getTime();
+  const krDay = day + 1000 * 3600 * 9;
+  const str = new Date(krDay).toISOString().slice(0, 19).split("T");
 
   const tmparr = new Array(20).fill(0).map((_, i) => i + 1);
 
@@ -47,7 +51,7 @@ function Qna() {
           <QnaItem
             key={item}
             title="과제 페이지는 우짬?"
-            date={""}
+            date={str[0] + "  " + str[1]}
             name="한수현"
           />
         ))}
