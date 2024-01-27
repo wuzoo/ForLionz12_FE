@@ -16,6 +16,12 @@ export const FullWidthContainer = styled.div`
   z-index: -1;
 `;
 
+export const AlignWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+`;
+
 export const OtherHWContainer = styled.div`
   margin-top: 24px;
   display: grid;
