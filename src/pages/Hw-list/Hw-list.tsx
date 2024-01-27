@@ -5,16 +5,20 @@ import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import useSelectedPart from "../../hooks/useSelectedPart";
+import Hwdetail from "../Hw-detail/Hwdetail";
+import { useMatch, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 function HwList() {
   const [part, feclick, beclick, staffclick] = useSelectedPart("notice");
-  console.log(part);
 
   const tmp = new Array(6).fill(0).map((_, i) => {
     return { part: "fe", id: i + 1 };
   });
 
-  console.log(part);
+  const detailMatch = useMatch("/homework/:hwid");
+
+  const navigate = useNavigate();
 
   return (
     <Styled.Wrapper>
@@ -39,13 +43,7 @@ function HwList() {
         </FullScreenSlider>
       </Styled.FullWidthContainer>
       <Styled.Margin height="460px" />
-      <div
-        css={css`
-          display: flex;
-          justify-content: space-between;
-          align-items: end;
-        `}
-      >
+      <Styled.AlignWrapper>
         <MainAndSubtitle
           main="다른 파트의 과제"
           sub="다른 파트의 과제들을 구경할 수 있어요."
@@ -60,12 +58,21 @@ function HwList() {
           showother={staffclick}
           flag={true}
         />
-      </div>
-      <Styled.OtherHWContainer id="scrollArea">
+      </Styled.AlignWrapper>
+
+      <Styled.OtherHWContainer>
         {tmp.map((item) => (
-          <HwCard key={item.id} part={item.part.toLowerCase()} />
+          <HwCard
+            layoutId={item.id + ""}
+            onClick={() => navigate(`/homework/${item.id}`)}
+            key={item.id}
+            part={item.part.toLowerCase()}
+          />
         ))}
       </Styled.OtherHWContainer>
+      <AnimatePresence>
+        {detailMatch && <Hwdetail clickedId={detailMatch?.params.hwid} />}
+      </AnimatePresence>
     </Styled.Wrapper>
   );
 }
