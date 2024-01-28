@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IHeader } from "./types";
 import * as Styled from "./style";
 import Profile from "../Profile/Profile";
@@ -9,6 +9,8 @@ function Header({ type }: IHeader) {
   const isLoginPage = Boolean(type);
   const navigate = useNavigate();
   // const isAuthenticated = useAuth();
+
+  const { pathname } = useLocation();
 
   const 마이페이지가기 = () => {
     navigate("/profile");
@@ -23,16 +25,36 @@ function Header({ type }: IHeader) {
         {!isLoginPage && (
           <>
             <Link to="/notification">
-              <Typo weight="600">Notification</Typo>
+              <Typo
+                color={pathname === "/notification" ? "darkblue" : "black"}
+                weight="600"
+              >
+                Notification
+              </Typo>
             </Link>
             <Link to="/homework">
-              <Typo weight="600">Assignment</Typo>
+              <Typo
+                color={pathname === "/homework" ? "darkblue" : "black"}
+                weight="600"
+              >
+                Assignment
+              </Typo>
             </Link>
             <Link to="/qna">
-              <Typo weight="600">Q&A</Typo>
+              <Typo
+                color={pathname === "/qna" ? "darkblue" : "black"}
+                weight="600"
+              >
+                Q&A
+              </Typo>
             </Link>
             <Link to="/contact">
-              <Typo weight="600">Contact</Typo>
+              <Typo
+                color={pathname === "/contact" ? "darkblue" : "black"}
+                weight="600"
+              >
+                Contact
+              </Typo>
             </Link>
           </>
         )}
