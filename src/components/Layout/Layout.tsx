@@ -16,7 +16,7 @@ function Layout() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100vw;
+        max-width: 100vw;
         position: relative;
       `}
     >
