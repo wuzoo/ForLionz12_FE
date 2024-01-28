@@ -6,8 +6,8 @@ import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import useSelectedPart from "../../hooks/useSelectedPart";
 import Hwdetail from "../Hw-detail/Hwdetail";
-import { useMatch, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 function HwList() {
   const [part, feclick, beclick, staffclick] = useSelectedPart("notice");
@@ -16,9 +16,7 @@ function HwList() {
     return { part: "fe", id: i + 1 };
   });
 
-  const detailMatch = useMatch("/homework/:hwid");
-
-  const navigate = useNavigate();
+  const [clickedId, setClickedId] = useState(0);
 
   return (
     <Styled.Wrapper>
@@ -64,14 +62,16 @@ function HwList() {
         {tmp.map((item) => (
           <HwCard
             layoutId={item.id + ""}
-            onClick={() => navigate(`/homework/${item.id}`)}
+            onClick={() => setClickedId(item.id)}
             key={item.id}
             part={item.part.toLowerCase()}
           />
         ))}
       </Styled.OtherHWContainer>
       <AnimatePresence>
-        {detailMatch && <Hwdetail clickedId={detailMatch?.params.hwid} />}
+        {clickedId !== 0 && (
+          <Hwdetail setClickedId={setClickedId} clickedId={clickedId} />
+        )}
       </AnimatePresence>
     </Styled.Wrapper>
   );
