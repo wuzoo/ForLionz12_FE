@@ -14,6 +14,13 @@ interface IHwDetail {
 function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
   const navigate = useNavigate();
 
+  const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { target, currentTarget } = e;
+    if (target == currentTarget) {
+      setClickedId(0);
+    }
+  };
+
   const [data, setData] = useState({
     title: "백엔드 추가과제 안내",
     deadline: "2024-03-03 18:00:00",
@@ -28,6 +35,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
   return (
     <>
       <Styled.Overlay
+        onClick={(e) => handleExit(e)}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       ></Styled.Overlay>
