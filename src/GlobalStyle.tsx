@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { theme } from "./theme/theme";
 
 export const GlobalStyle = css`
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
@@ -135,5 +136,12 @@ export const GlobalStyle = css`
   a {
     text-decoration: none;
     color: black;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${theme.color.skyblue};
+    border-radius: 10px;
   }
 `;
