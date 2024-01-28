@@ -21,6 +21,16 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
     }
   };
 
+  useEffect(() => {
+    document.body.style.maxWidth = `${document.body.clientWidth}px`;
+    document.body.style.overflowY = "hidden";
+
+    return () => {
+      document.body.style.maxWidth = "100vw";
+      document.body.style.overflowY = "";
+    };
+  }, [clickedId]);
+
   const [data, setData] = useState({
     title: "백엔드 추가과제 안내",
     deadline: "2024-03-03 18:00:00",
