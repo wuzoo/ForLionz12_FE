@@ -26,7 +26,6 @@ const router = createBrowserRouter([
       {
         path: "homework",
         element: <HwList />,
-        children: [{ path: ":hwid", element: <HwList /> }],
       },
 
       { path: "homework-submit", element: <HwSubmit /> },
