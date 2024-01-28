@@ -11,8 +11,10 @@ interface IBanner {
 
 function Banner({ type, logowidth, logoheight }: IBanner) {
   function getMain() {
-    if (type == "q&a") {
+    if (type === "q&a") {
       return "Q&A";
+    } else if (type === "assignsubmit") {
+      return "Assignment Submit";
     }
     return type[0].toUpperCase() + type.slice(1);
   }
