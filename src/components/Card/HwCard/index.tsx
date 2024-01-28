@@ -3,6 +3,7 @@ import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { PART_COLOR } from "../../../constants/partcolor";
+import { IHwCard } from "./types";
 
 const variants = {
   hover: {
@@ -10,9 +11,14 @@ const variants = {
   },
 };
 
-function HwCard({ part }: { part: string }) {
+function HwCard({ part, onClick, layoutId }: IHwCard) {
   return (
-    <Styled.CardWrapper variants={variants} whileHover="hover">
+    <Styled.CardWrapper
+      layoutId={layoutId}
+      variants={variants}
+      whileHover="hover"
+      onClick={onClick}
+    >
       <Styled.Thumnail color="fe">
         {/* <Styled.Img src={tmp} /> */}
       </Styled.Thumnail>
