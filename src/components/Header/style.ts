@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { IHeader } from "./types";
 
 export const Wrapper = styled.div<IHeader>`
-  width: 100%;
+  width: 100vw;
   height: 80px;
   display: flex;
   justify-content: ${(props) => (props.type === "login" ? "center" : "start")};
