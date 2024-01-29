@@ -13,11 +13,12 @@ export const LeftColumn = styled.div`
   display: flex;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.div`
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   width: 40px;
   height: 40px;
-  position: relative;
-  top: -5px;
 `;
 
 export const TextWrapper = styled.div`
