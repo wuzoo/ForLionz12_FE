@@ -16,6 +16,7 @@ function SideBar({ setCategory, currentCategory }: ISideBar) {
     <Styled.Wrapper ref={ref}>
       {Object.entries(CATEGORY_TEXT).map((entry) => (
         <Styled.Item
+          key={entry[0]}
           css={css`
             background-color: ${currentCategory == entry[0] &&
             theme.color.pink};
