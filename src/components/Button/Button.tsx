@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import * as Styled from "./style";
 import { IBtn } from "./types";
 import { theme } from "../../theme/theme";
+import Typo from "../Typo/Typo";
 
 function Button(props: IBtn) {
   return (
@@ -9,11 +10,10 @@ function Button(props: IBtn) {
       {...props}
       onClick={props.onClick}
       css={css`
-        width: ${props.width || "60px"};
+        width: ${props.width};
         background-color: ${props.bgcolor
           ? theme.color[props.bgcolor]
           : theme.color.darkblue};
-        color: ${props.color || theme.color.black};
         border-radius: ${props.radius || "10px"};
         height: ${props.height || "30px"};
         border-style: solid;
@@ -23,7 +23,7 @@ function Button(props: IBtn) {
           : "none"};
       `}
     >
-      {props.children}
+      <Typo color={props.color || theme.color.black}>{props.children}</Typo>
     </Styled.Btn>
   );
 }
