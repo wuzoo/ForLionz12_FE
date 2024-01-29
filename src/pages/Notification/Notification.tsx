@@ -1,7 +1,7 @@
 import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import useSelectedPart from "../../hooks/useSelectedPart";
-import ListItem from "./components/ListItem";
+import ListItem from "../../components/ListItem/NoticeIndex/ListItem";
 import * as Styled from "./style";
 
 function Notification() {

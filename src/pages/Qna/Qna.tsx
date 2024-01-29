@@ -5,7 +5,7 @@ import SideBar from "./components/SideBar/SideBar";
 import Typo from "../../components/Typo/Typo";
 import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
-import QnaItem from "./components/QnaItem/QnaItem";
+import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
 import { CATEGORY_TEXT } from "./components/constants/text";
 
 function Qna() {

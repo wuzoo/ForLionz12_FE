@@ -1,7 +1,7 @@
 import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import useSelectedPart from "../../hooks/useSelectedPart";
-import Item from "./components/ContactItem";
+import Item from "../../components/ListItem/ContactIndex/ContactItem";
 import * as Styled from "./style";
 
 function Contact() {
