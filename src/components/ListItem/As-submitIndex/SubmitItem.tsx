@@ -12,8 +12,27 @@ import { IItem } from "./types";
 function SubmitItem({ name, date, link }: IItem) {
   const [clicked, setClicked] = useState(false);
 
+  const checkContainerClicked = (e: React.MouseEvent<HTMLElement>) => {
+    if (!clicked) {
+      setClicked((prev) => !prev);
+    } else if (clicked) {
+      // click된 상태라면 link인지 container인지 체크
+      const elem = document.getElementById("link");
+      console.log(elem == e.target);
+      if (elem !== e.target) {
+        setClicked((prev) => !prev);
+      }
+    }
+  };
+
   return (
-    <Styled.Container>
+    <Styled.Container
+      onClick={(e) => checkContainerClicked(e)}
+      variants={variants}
+      initial="initial"
+      animate={clicked ? "click" : undefined}
+      whileHover="hover"
+    >
       <Styled.PrevBar>
         <Styled.ImgAndNameWrapper>
           <User url={tmp} size="45" />
