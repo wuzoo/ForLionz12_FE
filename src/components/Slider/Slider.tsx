@@ -8,14 +8,16 @@ export default function MySlider({
   dots,
   infinite,
   autoplay,
+  slidesToShow,
+  slidesToScroll,
 }: ISlider) {
   const setting: Settings = {
     dots: dots,
     infinite: infinite,
     arrows: false,
     autoplay: autoplay,
-    // slidesToShow: 1,
-    // slidesToScroll: 1,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll,
   };
 
   return <Slider {...setting}>{children}</Slider>;

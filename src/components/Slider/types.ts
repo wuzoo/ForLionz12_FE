@@ -5,4 +5,6 @@ export interface ISlider {
   loop?: boolean;
   dots?: boolean;
   infinite?: boolean;
+  slidesToShow?: number;
+  slidesToScroll?: number;
 }
