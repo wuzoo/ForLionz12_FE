@@ -10,14 +10,16 @@ export default function MySlider({
   autoplay,
   slidesToShow,
   slidesToScroll,
+  initialSlide,
 }: ISlider) {
   const setting: Settings = {
     dots: dots,
     infinite: infinite,
     arrows: false,
     autoplay: autoplay,
-    slidesToShow: slidesToShow,
-    slidesToScroll: slidesToScroll,
+    slidesToShow: slidesToShow || 1,
+    slidesToScroll: slidesToScroll || 1,
+    initialSlide: initialSlide || 0,
   };
 
   return <Slider {...setting}>{children}</Slider>;
