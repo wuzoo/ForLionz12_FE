@@ -22,7 +22,7 @@ export const ColorAndImgofItem = {
 
 export const Destination: IDest = {
   공지사항: "/notification",
-  과제: "/homework-list",
+  과제: "/homework",
   일정: "/schedule",
   연락처: "/contact",
   "Q&A": "/qna",
