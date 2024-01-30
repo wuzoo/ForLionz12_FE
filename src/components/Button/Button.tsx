@@ -23,7 +23,12 @@ function Button(props: IBtn) {
           : "none"};
       `}
     >
-      <Typo color={props.color || theme.color.black}>{props.children}</Typo>
+      <Typo
+        fontSize={props.fontSize || "18"}
+        color={props.color || theme.color.black}
+      >
+        {props.children}
+      </Typo>
     </Styled.Btn>
   );
 }
