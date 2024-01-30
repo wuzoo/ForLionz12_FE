@@ -24,20 +24,20 @@ function Header({ type }: IHeader) {
         </Link>
         {!isLoginPage && (
           <>
-            <Link to="/notification">
-              <Typo
-                color={pathname === "/notification" ? "darkblue" : "black"}
-                weight="600"
-              >
-                Notification
-              </Typo>
-            </Link>
             <Link to="/homework">
               <Typo
                 color={pathname === "/homework" ? "darkblue" : "black"}
                 weight="600"
               >
                 Assignment
+              </Typo>
+            </Link>
+            <Link to="/notification">
+              <Typo
+                color={pathname === "/notification" ? "darkblue" : "black"}
+                weight="600"
+              >
+                Notification
               </Typo>
             </Link>
             <Link to="/qna">
