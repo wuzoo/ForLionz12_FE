@@ -7,4 +7,5 @@ export interface ISlider {
   infinite?: boolean;
   slidesToShow?: number;
   slidesToScroll?: number;
+  initialSlide?: number;
 }
