@@ -13,4 +13,5 @@ export interface IBtnStyle {
   radius?: string;
   borderwidth?: string;
   bordercolor?: string;
+  fontSize?: string;
 }
