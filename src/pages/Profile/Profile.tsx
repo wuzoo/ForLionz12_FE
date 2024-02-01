@@ -6,7 +6,7 @@ import tmp from "../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../theme/theme";
-import ListItem from "./components/ListItem/ListItem";
+import ListItem from "../../components/ListItem/ProfileIndex/index";
 import { useState } from "react";
 
 function Profile() {
