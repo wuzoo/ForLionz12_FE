@@ -1,19 +1,20 @@
 import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import { PART_COLOR } from "../../../constants/partcolor";
+import { SetStateAction } from "react";
 
 interface IToggle {
   text: string;
   part: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  setPart: React.Dispatch<SetStateAction<string>>;
 }
 
-function Toggle({ text, part, onClick }: IToggle) {
+function Toggle({ text, part, setPart }: IToggle) {
   console.log(part);
 
   return (
     <Button
-      onClick={onClick}
+      onClick={() => setPart(text)}
       color={part == text ? PART_COLOR[part] : "black"}
       bordercolor={part == text ? PART_COLOR[part] : "lightgray"}
       width="70px"
