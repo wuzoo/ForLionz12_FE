@@ -37,11 +37,14 @@ function LoginInfoReducer(state: IUserReducerParam, action: IUserAction) {
 function LoginInfoProvider({ children }: { children: ReactNode }) {
   const [state, dispath] = useReducer(LoginInfoReducer, {
     isLoggedIn: false,
-    userId: "",
+    id: "",
     email: "",
     name: "",
     profile: "",
     part: "",
+    introduction: "",
+    githubAddress: "",
+    instagramId: "",
   });
 
   return (
