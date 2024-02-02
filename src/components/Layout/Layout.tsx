@@ -1,28 +1,52 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import { css } from "@emotion/react";
 import { useEffect } from "react";
+import {
+  useLoginInfoDispatch,
+  useLoginInfoState,
+} from "../../context/LoginUser/User";
+import axios from "axios";
+import * as Styled from "./style";
 
 function Layout() {
   const { pathname } = useLocation();
+  const dispatch = useLoginInfoDispatch();
+  const ct = useLoginInfoState();
+  const navigate = useNavigate();
+  const isLoginMatch = pathname === "/login";
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log(ct);
+    onStoreUser();
   }, [pathname]);
 
+  const onStoreUser = async () => {
+    await axios
+      .get("/member/me")
+      .then((res) => {
+        if (res.status === 500) {
+          throw new Error("no token");
+        }
+        const data = res.data;
+        dispatch({
+          type: "LOGIN",
+          data: {
+            ...data,
+          },
+        });
+      })
+      .catch((err) => {
+        navigate("/login");
+        console.log(err);
+      });
+  };
+
   return (
-    <div
-      css={css`
-        margin: 80px 0px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 100vw;
-        position: relative;
-      `}
-    >
-      <Header />
+    <Styled.Layout>
+      <Header type={isLoginMatch ? "login" : ""} />
       <Outlet />
-    </div>
+    </Styled.Layout>
   );
 }
 export default Layout;
