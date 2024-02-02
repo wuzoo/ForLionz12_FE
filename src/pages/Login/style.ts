@@ -47,3 +47,5 @@ export const Input = styled.input`
     outline: none;
   }
 `;
+
+export const Form = styled.form``;
