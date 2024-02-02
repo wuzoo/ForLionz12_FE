@@ -1,13 +1,26 @@
 import Toggle from "./components/Toggle";
 import * as Styled from "./style";
-import { IToggle } from "./types";
+import { useLocation } from "react-router-dom";
+import { SetStateAction } from "react";
 
-function PartToggle({ part, showfe, showbe, showother, flag }: IToggle) {
+interface IToggle {
+  part: string;
+  setPart: React.Dispatch<SetStateAction<string>>;
+}
+
+function PartToggle({ part, setPart }: IToggle) {
+  const state = useLocation();
+
+  let word = "staff";
+  if (state.pathname !== "/contact") {
+    word = "all";
+  }
+
   return (
     <Styled.Wrapper>
-      <Toggle text="fe" onClick={showfe} part={part} />
-      <Toggle text="be" onClick={showbe} part={part} />
-      <Toggle text={flag ? "all" : "staff"} onClick={showother} part={part} />
+      <Toggle text="fe" part={part} setPart={setPart} />
+      <Toggle text="be" part={part} setPart={setPart} />
+      <Toggle text={word} part={part} setPart={setPart} />
     </Styled.Wrapper>
   );
 }
