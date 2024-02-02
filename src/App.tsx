@@ -12,6 +12,7 @@ import Contact from "./pages/Contact/Contact";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import Qna from "./pages/Qna/Qna";
+import { LoginInfoProvider } from "./context/LoginUser/User";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "homework",
@@ -41,17 +46,18 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "/login", element: <Login /> },
 ]);
 
 function App() {
   return (
     <>
       <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <Global styles={GlobalStyle} />
-          <RouterProvider router={router} />
-        </ThemeProvider>
+        <LoginInfoProvider>
+          <ThemeProvider theme={theme}>
+            <Global styles={GlobalStyle} />
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </LoginInfoProvider>
       </RecoilRoot>
     </>
   );
