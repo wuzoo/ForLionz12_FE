@@ -1,45 +1,34 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useEffect } from "react";
-import {
-  useLoginInfoDispatch,
-  useLoginInfoState,
-} from "../../context/LoginUser/User";
 import axios from "axios";
 import * as Styled from "./style";
+import { useLoginInfoState } from "../../context/LoginUser/User";
 
 function Layout() {
   const { pathname } = useLocation();
-  const dispatch = useLoginInfoDispatch();
-  const ct = useLoginInfoState();
   const navigate = useNavigate();
   const isLoginMatch = pathname === "/login";
+  const state = useLoginInfoState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(ct);
-    onStoreUser();
+    console.log(state);
   }, [pathname]);
 
-  const onStoreUser = async () => {
-    await axios
-      .get("/member/me")
-      .then((res) => {
-        if (res.status === 500) {
-          throw new Error("no token");
-        }
-        const data = res.data;
-        dispatch({
-          type: "LOGIN",
-          data: {
-            ...data,
-          },
-        });
-      })
-      .catch((err) => {
-        navigate("/login");
-        console.log(err);
-      });
+  useEffect(() => {
+    checkTmp();
+  }, []);
+
+  const checkTmp = async () => {
+    console.log("reloaded");
+
+    const token = localStorage.getItem("accessToken");
+    console.log(token);
+    if (!token) {
+      navigate("/login");
+    }
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
   return (
