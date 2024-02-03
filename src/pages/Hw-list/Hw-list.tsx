@@ -64,7 +64,7 @@ function HwList() {
           <HwCard
             category={item.category}
             layoutId={item.id + ""}
-            onClick={() => setClickedId((prev) => item.id)}
+            onClick={() => setClickedId(item.id)}
             key={item.id}
             part={item.part.toLowerCase()}
             title={item.title}
