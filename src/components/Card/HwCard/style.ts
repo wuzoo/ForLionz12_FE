@@ -12,7 +12,7 @@ export const CardWrapper = styled(motion.div)`
   justify-self: center;
 `;
 
-export const Thumnail = styled.div<{ color: string }>`
+export const Thumnail = styled.div`
   width: 100%;
   height: 50%;
   background-color: #f3f3f3;
@@ -22,7 +22,7 @@ export const Thumnail = styled.div<{ color: string }>`
 `;
 
 export const Img = styled.img`
-  width: 30%;
+  width: 40%;
 `;
 
 export const Content = styled.div`
