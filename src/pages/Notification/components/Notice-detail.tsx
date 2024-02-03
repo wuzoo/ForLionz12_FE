@@ -23,6 +23,19 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
     };
   }, [clickedId]);
 
+  const { isloading, data, error } = useNoticeById(clickedId);
+
+  console.log(data);
+
+  if (error === "rejected") {
+    throw new Error("axios error");
+  }
+  if (isloading || !data) {
+    return;
+  }
+
+  const { content, title, createdAt, part } = data;
+
   const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
     const { target, currentTarget } = e;
     if (target == currentTarget) {
