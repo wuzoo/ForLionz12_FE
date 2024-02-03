@@ -15,9 +15,6 @@ interface IHwDetail {
 }
 
 function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
-  const { data: iddata, error, isloading } = useGetAssignmentById(clickedId);
-  const navigate = useNavigate();
-
   useEffect(() => {
     document.body.style.maxWidth = `${document.body.clientWidth}px`;
     document.body.style.overflowY = "hidden";
@@ -28,16 +25,17 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
     };
   }, [clickedId]);
 
+  const { isloading, data, error } = useGetAssignmentById(clickedId);
+  const navigate = useNavigate();
+
   if (error === "rejected") {
-    throw new Error("err");
+    throw new Error("axios error");
   }
-  if (!iddata || isloading) {
+  if (isloading || !data) {
     return;
   }
 
-  console.log(iddata);
-
-  const { content, title, createdAt, expireAt, tags, part, id } = iddata;
+  const { content, title, createdAt, expireAt, tags, part, id } = data;
 
   const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
     const { target, currentTarget } = e;
