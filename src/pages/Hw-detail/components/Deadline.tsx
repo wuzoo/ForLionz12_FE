@@ -12,17 +12,24 @@ function Deadline({ expireAt }: DateType) {
   const end = new Date(expireAt);
 
   const gap = end.getTime() - start.getTime();
+
   console.log(gap);
 
   const dayDigit = 1000 * 60 * 60 * 24;
-  const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+  let day = Math.floor(gap / (1000 * 60 * 60 * 24));
 
   const hourDigit = 1000 * 60 * 60;
   const rest = gap - day * dayDigit;
-  const hour = Math.floor(rest / (1000 * 60 * 60));
+  let hour = Math.floor(rest / (1000 * 60 * 60));
 
   const minuteDigit = 1000 * 60;
-  const minute = Math.floor((rest - hour * hourDigit) / minuteDigit);
+  let minute = Math.floor((rest - hour * hourDigit) / minuteDigit);
+
+  if (gap <= 0) {
+    day = 0;
+    hour = 0;
+    minute = 0;
+  }
 
   console.log(day, hour, minute);
 
