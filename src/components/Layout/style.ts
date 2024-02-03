@@ -6,5 +6,6 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 100vw;
+  min-width: 600px;
   position: relative;
 `;
