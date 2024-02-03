@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  width: 70%;
   margin-top: 40px;
 `;
 
@@ -26,7 +27,6 @@ export const OtherHWContainer = styled.div`
   margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
   column-gap: 30px;
   row-gap: 50px;
   width: 100%;
