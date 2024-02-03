@@ -4,6 +4,8 @@ import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { PART_COLOR } from "../../../constants/partcolor";
 import { IHwCard } from "./types";
+import getImgForCategory from "../../../utils/getImgForCategory";
+import { theme } from "../../../theme/theme";
 
 const variants = {
   hover: {
@@ -11,7 +13,14 @@ const variants = {
   },
 };
 
-function HwCard({ part, onClick, layoutId }: IHwCard) {
+function HwCard({
+  category,
+  part,
+  onClick,
+  layoutId,
+  title,
+  createdAt,
+}: IHwCard) {
   return (
     <Styled.CardWrapper
       layoutId={layoutId}
@@ -19,8 +28,8 @@ function HwCard({ part, onClick, layoutId }: IHwCard) {
       whileHover="hover"
       onClick={onClick}
     >
-      <Styled.Thumnail color="fe">
-        {/* <Styled.Img src={tmp} /> */}
+      <Styled.Thumnail>
+        <Styled.Img src={getImgForCategory(category.toLowerCase())} />
       </Styled.Thumnail>
       <Styled.Content>
         <div
@@ -30,19 +39,19 @@ function HwCard({ part, onClick, layoutId }: IHwCard) {
         >
           <Styled.AlignWrapper>
             <Styled.CardTitle>
-              <Typo>api를 만들어보자.</Typo>
+              <Typo>{title}</Typo>
             </Styled.CardTitle>
             <Styled.Badge
               css={css`
-                background-color: ${PART_COLOR[part]};
+                background-color: ${theme.color[PART_COLOR[part]]};
               `}
             >
-              <Typo color="white">FE</Typo>
+              <Typo color="white">{part.toUpperCase()}</Typo>
             </Styled.Badge>
           </Styled.AlignWrapper>
           <Styled.Date>
             <Typo color="darkgray" weight="400" fontSize="12">
-              2023-01-10 18:00:00
+              {createdAt}
             </Typo>
           </Styled.Date>
         </div>
