@@ -4,47 +4,17 @@ import PageLogo from "../../components/PageLogo/PageLogo";
 import Button from "../../components/Button/Button";
 import { TEXT } from "../../constants/text";
 import { css } from "@emotion/react";
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/api/auth/useAuth";
 
 function Login() {
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
-  const navigate = useNavigate();
-
-  const onLogin = async (email: string, password: string) => {
-    const data = {
-      email,
-      password,
-    };
-    await axios
-      .post("/auth/login", data)
-      .then((res) => {
-        const { accessToken } = res.data;
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
-
-        if (res.status === 200) {
-          navigate("/", {
-            state: {
-              isTokenloaded: true,
-            },
-          });
-        }
-        if (res.status === 401) {
-          // showToast()
-        }
-      })
-      .catch((err) => {
-        throw new Error("error");
-      });
-  };
+  const { check } = useAuth();
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onLogin(id, pwd);
+    check(id, pwd);
   };
 
   return (
