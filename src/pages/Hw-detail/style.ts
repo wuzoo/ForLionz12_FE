@@ -58,7 +58,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  max-height: 40vh;
+  min-height: 45vh;
   overflow-y: scroll;
 `;
 
