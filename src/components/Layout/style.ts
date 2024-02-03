@@ -7,5 +7,6 @@ export const Layout = styled.div`
   align-items: center;
   max-width: 100vw;
   min-width: 600px;
+  min-height: 100vh;
   position: relative;
 `;
