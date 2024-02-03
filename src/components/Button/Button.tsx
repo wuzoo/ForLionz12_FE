@@ -8,6 +8,7 @@ function Button(props: IBtn) {
   return (
     <Styled.Btn
       {...props}
+      type={props.type}
       onClick={props.onClick}
       css={css`
         width: ${props.width};
