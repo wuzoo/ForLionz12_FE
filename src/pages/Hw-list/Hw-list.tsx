@@ -4,19 +4,26 @@ import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import useSelectedPart from "../../hooks/useSelectedPart";
 import Hwdetail from "../Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import getFormedDate from "../../utils/getFormedDate";
+import useAllAssignment from "../../hooks/api/assignment/useAllAssignment";
 
 function HwList() {
-  const [part, feclick, beclick, staffclick] = useSelectedPart("notice");
-
-  const tmp = new Array(6).fill(0).map((_, i) => {
-    return { part: "fe", id: i + 1 };
-  });
+  const { data, isloading, error } = useAllAssignment();
 
   const [clickedId, setClickedId] = useState(0);
+  const [selectedPart, setSelectedPart] = useState("fe");
+
+  const filteredData = data?.filter(
+    (item) => item.part === selectedPart.toUpperCase()
+  );
+
+  if (isloading) console.log("로딩 중");
+  if (error === "rejected") {
+    throw new Error("조회 에러");
+  }
 
   return (
     <Styled.Wrapper>
@@ -49,22 +56,19 @@ function HwList() {
           gap="10"
           colors={["black", "darkgray"]}
         />
-        <PartToggle
-          part={part}
-          showfe={feclick}
-          showbe={beclick}
-          showother={staffclick}
-          flag={true}
-        />
+        <PartToggle part={selectedPart} setPart={setSelectedPart} />
       </Styled.AlignWrapper>
 
       <Styled.OtherHWContainer>
-        {tmp.map((item) => (
+        {filteredData?.map((item) => (
           <HwCard
+            category={item.category}
             layoutId={item.id + ""}
-            onClick={() => setClickedId(item.id)}
+            onClick={() => setClickedId((prev) => item.id)}
             key={item.id}
             part={item.part.toLowerCase()}
+            title={item.title}
+            createdAt={getFormedDate(item.createdAt)}
           />
         ))}
       </Styled.OtherHWContainer>
