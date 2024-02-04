@@ -28,6 +28,10 @@ function Profile() {
 
   const [isSubmited, setIsSubmited] = useState(false);
 
+  useEffect(() => {
+    checkAndUpdateState();
+  }, [isSubmited]);
+
   const updateCommet = async () => {
     updateUserInfo("comment", intro);
   };
@@ -39,6 +43,23 @@ function Profile() {
 
     setIsSubmited(true);
     setEdit(false);
+  };
+
+  const checkAndUpdateState = async () => {
+    const response = await axios.get("/member/me");
+
+    const res = response.data.data;
+    console.log(user);
+    console.log(res);
+
+    dispatch({
+      type: "LOGIN",
+      data: {
+        ...res,
+      },
+    });
+
+    setIsSubmited(false);
   };
 
   return (
