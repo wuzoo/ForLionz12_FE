@@ -4,7 +4,7 @@ import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import Hwdetail from "../Hw-detail/Hwdetail";
+import Hwdetail from "./Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
