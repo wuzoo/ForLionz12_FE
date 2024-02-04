@@ -29,7 +29,7 @@ function HwCard({
       onClick={onClick}
     >
       <Styled.Thumnail>
-        <Styled.Img src={getImgForCategory(category.toLowerCase())} />
+        <Styled.Img src={getImgForCategory(category)} />
       </Styled.Thumnail>
       <Styled.Content>
         <div
