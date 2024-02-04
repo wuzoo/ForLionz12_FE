@@ -1,7 +1,17 @@
 import { ReactNode, createContext, useContext, useReducer } from "react";
-import { IUserAction, IUserReducerParam } from "../../types/API";
+import {
+  IUserLoginAction,
+  IUserLogoutAction,
+  IUserReducerParam,
+} from "../../types/API";
 
-type Dispatch = (action: IUserAction) => void;
+type Dispatch = (action: ActionType) => void;
+
+type ActionType = IUserLoginAction | IUserLogoutAction;
+
+interface State extends IUserReducerParam {
+  isLoaded: boolean;
+}
 
 const LoginInfoStateContext = createContext<IUserReducerParam | undefined>(
   undefined
@@ -9,17 +19,19 @@ const LoginInfoStateContext = createContext<IUserReducerParam | undefined>(
 
 const LoginInfoDispatchContext = createContext<Dispatch | undefined>(undefined);
 
-function LoginInfoReducer(state: IUserReducerParam, action: IUserAction) {
+function LoginInfoReducer(state: State, action: ActionType) {
   switch (action.type) {
     case "LOGIN": {
       return {
         ...state,
+        isLoaded: true,
         ...action.data,
       };
     }
     case "LOGOUT": {
       return {
         ...state,
+        isLoaded: true,
         isLoggedIn: false,
         userId: "",
         email: "",
@@ -37,6 +49,7 @@ function LoginInfoReducer(state: IUserReducerParam, action: IUserAction) {
 function LoginInfoProvider({ children }: { children: ReactNode }) {
   const [state, dispath] = useReducer(LoginInfoReducer, {
     isLoggedIn: false,
+    isLoaded: false,
     id: "",
     email: "",
     name: "",
@@ -48,11 +61,11 @@ function LoginInfoProvider({ children }: { children: ReactNode }) {
   });
 
   return (
-    <LoginInfoStateContext.Provider value={state}>
-      <LoginInfoDispatchContext.Provider value={dispath}>
+    <LoginInfoDispatchContext.Provider value={dispath}>
+      <LoginInfoStateContext.Provider value={state}>
         {children}
-      </LoginInfoDispatchContext.Provider>
-    </LoginInfoStateContext.Provider>
+      </LoginInfoStateContext.Provider>
+    </LoginInfoDispatchContext.Provider>
   );
 }
 
