@@ -6,9 +6,11 @@ export const Wrapper = styled.div`
 `;
 
 export const InformBox = styled.div`
-  display: flex;
+  display: grid;
   padding: 20px 0px;
   margin: 20px 0px;
+  grid-template-columns: 1.3fr 3fr;
+  gap: 5px;
 `;
 
 export const ProfilePartWrapper = styled.div`
@@ -16,15 +18,14 @@ export const ProfilePartWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  gap: 20px;
+  gap: 10px;
   border-right: 1px solid ${(props) => props.theme.color.lightgray};
-  min-width: 200px;
 `;
 
 export const AlignWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 `;
 
 export const IntroWrapper = styled.div`
@@ -32,7 +33,6 @@ export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 70%;
 `;
 
 export const UploadBtn = styled.label`
@@ -88,12 +88,13 @@ export const EditingName = styled.input`
   }
 `;
 
-export const EditingIntro = styled.input`
-  font-size: 14px;
+export const EditingIntro = styled.textarea`
+  font-size: 18px;
   font-weight: ${(props) => props.theme.weight.regular};
   color: ${(props) => props.theme.color.darkgray};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.color.lightgray};
+  min-width: 500px;
 
   &:focus {
     outline: none;
@@ -105,4 +106,17 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+
+export const Btn = styled.button`
+  border: none;
+  background-color: transparent;
+
+  p {
+    text-decoration: underline;
+    text-decoration-color: ${(props) => props.theme.color.darkblue};
+    text-underline-offset: 4px;
+    cursor: pointer;
+    text-align: start;
+  }
 `;
