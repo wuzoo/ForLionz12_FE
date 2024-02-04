@@ -25,15 +25,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "login",
-        element: <Login />,
-      },
-      {
         path: "homework",
         element: <HwList />,
       },
 
-      { path: "homework-submit", element: <HwSubmit /> },
+      { path: "homework-submit/:id", element: <HwSubmit /> },
       { path: "contact", element: <Contact /> },
       {
         path: "notification",
@@ -45,6 +41,10 @@ const router = createBrowserRouter([
         element: <Qna />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
