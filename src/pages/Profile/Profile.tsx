@@ -7,20 +7,38 @@ import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../theme/theme";
 import ListItem from "../../components/ListItem/ProfileIndex/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  useLoginInfoDispatch,
+  useLoginInfoState,
+} from "../../context/LoginUser/User";
+import axios from "axios";
+import useUserUpdater from "../../hooks/api/member/useUserUpdater";
 
 function Profile() {
-  const userdata = {
-    name: "최주용",
-    intro: "안녕하세요 저는 최주용입니다. 열심히 해보겠습니닷 !!",
-    // img: ...
-    // github: ...
-    // insta: ...
-  };
+  const user = useLoginInfoState();
+  const dispatch = useLoginInfoDispatch();
+  const { updateUserInfo } = useUserUpdater();
+
+  const [intro, setIntro] = useState(user.introduction);
+  const [pwd, setPwd] = useState("1234");
+  const [gitbub, setGithub] = useState(user.githubAddress);
+  const [insta, setInsta] = useState(user.instagramId);
   const [edit, setEdit] = useState(false);
 
-  const EditHandler = () => {
-    setEdit(true);
+  const [isSubmited, setIsSubmited] = useState(false);
+
+  const updateCommet = async () => {
+    updateUserInfo("comment", intro);
+  };
+
+  const handleIntroSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    updateCommet();
+
+    setIsSubmited(true);
+    setEdit(false);
   };
 
   return (
@@ -32,69 +50,82 @@ function Profile() {
         colors={["black", "darkgray"]}
         gap="5"
       />
-
       <Styled.InformBox>
         <Styled.ProfilePartWrapper>
-          <User size="240" url={tmp} />
-          <Styled.AlignWrapper
+          <User size="220" url={tmp} />
+          <Styled.UploadBtn
             css={css`
-              align-items: center;
+              margin-top: 14px;
+            `}
+            htmlFor="upload"
+          >
+            <Typo color="white" fontSize="18">
+              이미지 업로드
+            </Typo>
+          </Styled.UploadBtn>
+          <Styled.FileInput type="file" id="upload" />
+          <Styled.UploadBtn
+            css={css`
+              background-color: ${theme.color.superlightgray};
             `}
           >
-            <Styled.UploadBtn htmlFor="upload">
-              <Typo color="white" fontSize="18">
-                이미지 업로드
-              </Typo>
-            </Styled.UploadBtn>
-            <Styled.FileInput type="file" id="upload" />
-            <Styled.UploadBtn
-              css={css`
-                background-color: ${theme.color.superlightgray};
-              `}
-            >
-              <Typo weight="600" fontSize="18">
-                이미지 제거
-              </Typo>
-            </Styled.UploadBtn>
-          </Styled.AlignWrapper>
+            <Typo weight="600" fontSize="18">
+              이미지 제거
+            </Typo>
+          </Styled.UploadBtn>
         </Styled.ProfilePartWrapper>
         <Styled.IntroWrapper>
-          <Styled.AlignWrapper
-            css={css`
-              gap: 30px;
-            `}
-          >
+          <Styled.AlignWrapper>
+            <Styled.Name>
+              <Typo fontSize="40" weight="600">
+                {user.name}
+              </Typo>
+            </Styled.Name>
             {!edit ? (
               <>
-                <Styled.Name>
-                  <Typo fontSize="40" weight="600">
-                    최주용
-                  </Typo>
-                </Styled.Name>
                 <Styled.Introduce>
-                  <Typo color="darkgray">
-                    안녕하세요 저는 누구입니다. 안녕하세요 저는 누구입니다.
-                    안녕하세요 저는 누구입니다. 안녕하세요 저는 누구입니다.
-                  </Typo>
+                  <Typo color="darkgray">{user.introduction}</Typo>
                 </Styled.Introduce>
+                <Styled.EditText onClick={() => setEdit(true)}>
+                  <Typo color="darkblue">수정</Typo>
+                </Styled.EditText>
               </>
             ) : (
-              <Styled.Form>
-                <Styled.EditingName value="최주용" />
-                <Styled.EditingIntro value="안녕하세요 저는 누구입니다.안녕하세요 저는 누구입니다.안녕하세요 저는 누구입니다.안녕하세요 저는 누구입니다.안녕하세요 저는 누구입니다. " />
+              <Styled.Form onSubmit={handleIntroSubmit}>
+                <Styled.EditingIntro
+                  onChange={(e) => setIntro(e.target.value)}
+                  value={intro}
+                />
+                <Styled.Btn type="submit">
+                  <p>
+                    <Typo color="darkblue">변경</Typo>
+                  </p>
+                </Styled.Btn>
               </Styled.Form>
             )}
           </Styled.AlignWrapper>
-          <Styled.EditText onClick={EditHandler}>
-            <Typo color="darkblue">수정</Typo>
-          </Styled.EditText>
         </Styled.IntroWrapper>
       </Styled.InformBox>
 
       <Styled.ListItems>
-        <ListItem type="password" />
-        <ListItem type="github" />
-        <ListItem type="insta" />
+        <ListItem
+          setSubmited={setIsSubmited}
+          info={pwd}
+          setInfo={setPwd}
+          type="password"
+        />
+        <ListItem
+          setSubmited={setIsSubmited}
+          info={gitbub}
+          setInfo={setGithub}
+          type="github"
+        />
+        <ListItem
+          setSubmited={setIsSubmited}
+          info={insta}
+          setInfo={setInsta}
+          type="instagram"
+        />
       </Styled.ListItems>
     </Styled.Wrapper>
   );
