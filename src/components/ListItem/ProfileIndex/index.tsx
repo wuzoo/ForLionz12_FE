@@ -1,33 +1,32 @@
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
-import pwd from "../../../assets/icons/password/pwd.png";
-import github from "../../../assets/icons/github/img.svg";
-import insta from "../../../assets/icons/insta/insta.svg";
 import { IItem } from "./types";
 import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
 import { css } from "@emotion/react";
+import { useState } from "react";
+import Button from "../../Button/Button";
+import { theme } from "../../../theme/theme";
+import useUserUpdater from "../../../hooks/api/member/useUserUpdater";
+import getImgForCategory from "../../../utils/getImgForCategory";
 
-function ListItem({ type }: IItem) {
-  const getImgofType = (type: string) => {
-    switch (type) {
-      case "password": {
-        return pwd;
-      }
-      case "github": {
-        return github;
-      }
-      case "insta": {
-        return insta;
-      }
-    }
+function ListItem({ type, info, setInfo, setSubmited }: IItem) {
+  const [edit, setEdit] = useState(false);
+  const { updateUserInfo } = useUserUpdater();
+
+  const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    updateUserInfo(type, info);
+
+    setEdit(false);
+    setSubmited(true);
   };
-
   return (
     <Styled.Container>
       <Styled.LeftColumn>
         <Styled.Icon
           css={css`
-            background-image: url(${getImgofType(type)});
+            background-image: url(${getImgForCategory(type)});
           `}
         />
         <Styled.TextWrapper>
@@ -39,10 +38,29 @@ function ListItem({ type }: IItem) {
           </Typo>
         </Styled.TextWrapper>
       </Styled.LeftColumn>
-      <Styled.Input />
-      <Styled.Edit>
-        <Typo color="darkblue">수정</Typo>
-      </Styled.Edit>
+      <Styled.Form onSubmit={handleInfoSubmit}>
+        {edit ? (
+          <>
+            <Styled.Input
+              css={css`
+                background-color: ${theme.color.superlightgray};
+              `}
+              value={info}
+              onChange={(e) => setInfo(e.target.value)}
+            />
+            <Button width="50px" type="submit" bgcolor="darkblue">
+              <Typo color="white">변경</Typo>
+            </Button>
+          </>
+        ) : (
+          <>
+            <Styled.Input disabled value={info} />
+            <Styled.Edit onClick={() => setEdit(true)}>
+              <Typo color="darkblue">수정</Typo>
+            </Styled.Edit>
+          </>
+        )}
+      </Styled.Form>
     </Styled.Container>
   );
 }
