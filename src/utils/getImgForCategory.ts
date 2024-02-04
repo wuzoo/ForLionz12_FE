@@ -7,6 +7,9 @@ import python from "../assets/icons/python/Python.svg";
 import html from "../assets/icons/html/HTML Logo.svg";
 import git from "../assets/icons/git/github logo.svg";
 import django from "../assets/icons/django/Vector.svg";
+import password from "../assets/icons/password/password.svg";
+import github from "../assets/icons/github/img.svg";
+import instagram from "../assets/icons/insta/insta.svg";
 
 function getImgForCategory(category: string) {
   switch (category) {
@@ -36,6 +39,15 @@ function getImgForCategory(category: string) {
     }
     case "DJANGO": {
       return django;
+    }
+    case "github": {
+      return github;
+    }
+    case "instagram": {
+      return instagram;
+    }
+    case "password": {
+      return password;
     }
   }
 }
