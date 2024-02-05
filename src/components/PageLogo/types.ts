@@ -26,4 +26,5 @@ export interface IPageobj {
   "q&a": string;
   boy: string;
   girl: string;
+  lion: string;
 }
