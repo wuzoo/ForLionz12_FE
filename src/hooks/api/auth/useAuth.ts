@@ -14,7 +14,11 @@ function useAuth() {
         password,
       };
       await axios
-        .post("/auth/login", data)
+        .post("/auth/login", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         .then((res) => {
           console.log(res);
 
@@ -37,10 +41,19 @@ function useAuth() {
           throw new Error(err);
         });
 
-      const response = await axios.get("/member/me");
-
-      const res = response.data.data;
-      console.log(response.data.data);
+      const response = await axios
+        .get("/member/me")
+        .then((res) => {
+          if (res.status === 500) {
+            throw new Error("token 500 error");
+          }
+          return res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      const res = response.data;
+      console.log(response.data);
       dispatch({
         type: "LOGIN",
         data: {
