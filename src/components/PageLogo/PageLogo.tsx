@@ -5,6 +5,7 @@ import boy from "../../assets/3dicons/main/smilebody.svg";
 import girl from "../../assets/3dicons/main/workinggirl.svg";
 import notice from "../../assets/3dicons/notice/people.svg";
 import qna from "../../assets/3dicons/qna/baby.svg";
+import lion from "../../assets/3dicons/main/lion.png";
 import { Img } from "./style";
 import { IPageLogo, IPageobj } from "./types";
 
@@ -17,6 +18,7 @@ export default function PageLogo(props: IPageLogo) {
     "q&a": qna,
     boy: boy,
     girl: girl,
+    lion: lion,
   };
 
   return <Img {...props} src={pageobj[props.type]} />;
