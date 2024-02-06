@@ -5,10 +5,8 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 400px;
   padding-bottom: 36px;
   position: relative;
-  z-index: -10;
 `;
 
 export const Picture = styled.div`
@@ -19,36 +17,50 @@ export const Picture = styled.div`
   background-repeat: no-repeat;
   position: absolute;
   top: 10%;
-  right: 48%;
-  z-index: -1;
+  right: 55%;
 `;
 
 export const LogoAndTitle = styled.div`
-  max-width: 670px;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: end;
-  width: 500px;
+  width: 50%;
 `;
 
 export const TitleWrapper = styled.div`
-  text-align: end;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  z-index: 2;
+  box-sizing: content-box;
+  width: 65%;
 `;
 
-export const CardTitle = styled.p`
-  word-wrap: normal;
+export const Ellipsis = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-decoration-color: white;
+  color: white;
+  text-align: start;
+`;
+
+export const CardTitle = styled(Ellipsis)`
+  -webkit-line-clamp: 1;
   margin-bottom: 6px;
 `;
 
-export const CardContent = styled.p`
-  width: auto;
-  line-height: 1.2;
-  padding-left: 8rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-decoration-color: white;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+export const CardContent = styled(Ellipsis)`
+  -webkit-line-clamp: 3;
+  line-height: 1.3;
+`;
+
+export const AlignWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10;
 `;

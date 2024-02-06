@@ -4,6 +4,7 @@ import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "./types";
+import getFormedDate from "../../../utils/getFormedDate";
 
 function Card({ logo, bgcolor, ...props }: ICard) {
   const navigate = useNavigate();
@@ -12,11 +13,11 @@ function Card({ logo, bgcolor, ...props }: ICard) {
     return (
       <p>
         <Typo color="white" weight="regular">
-          FE
+          {props.part}
         </Typo>
         <Typo color="white">&nbsp;⎸&nbsp;</Typo>
         <Typo color="white" weight="regular">
-          2023-06-10 18:00:00
+          {getFormedDate(props.createdAt)}
         </Typo>
       </p>
     );
@@ -33,31 +34,24 @@ function Card({ logo, bgcolor, ...props }: ICard) {
           background-image: url(${logo});
         `}
       ></Styled.Picture>
-      <Styled.LogoAndTitle>
+      <Styled.LogoAndTitle onClick={() => navigate("/notification")}>
         <Styled.TitleWrapper>
           <Styled.CardTitle>
-            <Typo weight="700" color="white" fontSize="44">
-              {props.main}
+            <Typo weight="700" color="white" fontSize="42">
+              {props.title}
             </Typo>
           </Styled.CardTitle>
           <Styled.CardContent>
-            <Typo color="white" fontSize="20" weight="500">
-              {props.sub}
+            <Typo color="white" fontSize="18" weight="500">
+              {props.content}
             </Typo>
           </Styled.CardContent>
         </Styled.TitleWrapper>
       </Styled.LogoAndTitle>
-      <div>
+      <Styled.AlignWrapper>
         {getPartAndDate()}
-        <div
-          css={css`
-            height: 5px;
-          `}
-        ></div>
         <Button
-          onClick={() => {
-            navigate("/notification");
-          }}
+          onClick={() => navigate("/notification")}
           radius="5px"
           width="100%"
           height="40px"
@@ -65,7 +59,7 @@ function Card({ logo, bgcolor, ...props }: ICard) {
         >
           <Typo color="darkgray">공지 전체 보러 가기</Typo>
         </Button>
-      </div>
+      </Styled.AlignWrapper>
     </Styled.CardWrapper>
   );
 }

@@ -1,8 +1,8 @@
 export interface ICard {
   logo: string;
   bgcolor: string;
-  main: string;
-  sub: string;
+  title: string;
+  content: string;
   part: string;
-  date: string;
+  createdAt: string;
 }
