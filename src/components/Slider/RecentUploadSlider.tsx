@@ -19,11 +19,24 @@ const StyledSlider = styled(MySlider)`
 
 export default function RecentUploadSlider({
   children,
+  cnt,
 }: {
   children: ReactNode;
+  cnt: number;
 }) {
+  const handleCntToShow = () => {
+    if (cnt <= 1) {
+      return 1;
+    } else if (cnt <= 2) {
+      return 1.4;
+    } else if (cnt >= 3) {
+      return 2.4;
+    }
+  };
+
   return (
     <div
+      className="recent_slide"
       css={css`
         width: 100%;
         overflow: hidden;
@@ -33,10 +46,10 @@ export default function RecentUploadSlider({
         dots={false}
         autoplay={true}
         infinite={true}
-        speed={15000}
-        slidesToShow={2.4}
+        slidesToShow={handleCntToShow()}
         slidesToScroll={1}
         initialSlide={-0.4}
+        arrows={false}
       >
         {children}
       </StyledSlider>
