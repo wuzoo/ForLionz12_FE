@@ -8,7 +8,7 @@ export const Left = styled.img`
   left: 5%;
   top: calc(50% - 26px);
   z-index: 10;
-  opacity: 0.5;
+  opacity: 0.3;
 `;
 
 export const Right = styled.img`
@@ -19,5 +19,5 @@ export const Right = styled.img`
   right: 5%;
   cursor: pointer;
   z-index: 10;
-  opacity: 0.5;
+  opacity: 0.3;
 `;
