@@ -4,9 +4,19 @@ import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import { ICard } from "./types";
 
-export default function Card({ name, content, link }: ICard) {
+export default function Card({ name, content, link, cnt }: ICard) {
   const handleLinkClick = () => {
     location.href = link;
+  };
+
+  const handleWidth = () => {
+    if (cnt === 1) {
+      return "100%";
+    } else if (cnt === 2) {
+      return "800px";
+    } else {
+      return "400px";
+    }
   };
 
   return (
@@ -16,7 +26,11 @@ export default function Card({ name, content, link }: ICard) {
           background-image: url(${img});
         `}
       />
-      <Styled.ContentWrapper>
+      <Styled.ContentWrapper
+        css={css`
+          max-width: ${handleWidth()};
+        `}
+      >
         <div>
           <Styled.Name>
             <Typo>{name}의 과제</Typo>
@@ -32,9 +46,8 @@ export default function Card({ name, content, link }: ICard) {
             cursor: pointer;
             padding: 5px;
           `}
-          onClick={handleLinkClick}
         >
-          <Typo color="darkblue" fontSize="16">
+          <Typo onClick={handleLinkClick} color="darkblue" fontSize="16">
             구경하러 가기
           </Typo>
         </div>
