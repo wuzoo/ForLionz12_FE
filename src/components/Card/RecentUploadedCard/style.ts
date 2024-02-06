@@ -1,6 +1,14 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
-export const CardWrapper = styled.div`
+export const variants = {
+  hover: {
+    boxShadow: "0px 2px 8px rgba(250, 182, 173, 0.7)",
+    y: -10,
+  },
+};
+
+export const CardWrapper = styled(motion.div)`
   display: flex;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
@@ -12,6 +20,14 @@ export const CardWrapper = styled.div`
   gap: 10px;
 `;
 
+export const ContentWrapper = styled.div`
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 export const Img = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
@@ -21,6 +37,17 @@ export const Img = styled.div`
   border-radius: 15px;
 `;
 
-export const Name = styled.p``;
+export const Name = styled.p`
+  margin-bottom: 4px;
+`;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  max-width: 60%;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  text-decoration-color: ${(props) => props.theme.color.darkgray};
+  color: gray;
+  -webkit-box-orient: vertical;
+`;
