@@ -14,7 +14,6 @@ export const FullWidthContainer = styled.div`
   left: 0;
   right: 0;
   margin: 0 auto;
-  z-index: -1;
 `;
 
 export const AlignWrapper = styled.div`
