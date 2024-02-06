@@ -11,16 +11,14 @@ interface IToggle {
 function PartToggle({ part, setPart }: IToggle) {
   const state = useLocation();
 
-  let word = "staff";
-  if (state.pathname !== "/contact") {
-    word = "all";
-  }
-
   return (
     <Styled.Wrapper>
+      <Toggle text="all" part={part} setPart={setPart} />
       <Toggle text="fe" part={part} setPart={setPart} />
       <Toggle text="be" part={part} setPart={setPart} />
-      <Toggle text={word} part={part} setPart={setPart} />
+      {state.pathname === "/contact" && (
+        <Toggle text="staff" part={part} setPart={setPart} />
+      )}
     </Styled.Wrapper>
   );
 }
