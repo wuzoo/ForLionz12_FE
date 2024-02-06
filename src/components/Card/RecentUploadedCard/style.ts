@@ -13,7 +13,6 @@ export const CardWrapper = styled(motion.div)`
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   height: 160px;
-  max-width: 400px;
   margin: 0px 8px;
   align-items: center;
   padding: 10px;
@@ -33,6 +32,7 @@ export const Img = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   width: 40%;
+  max-width: 150px;
   height: 95%;
   border-radius: 15px;
 `;
