@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
@@ -9,19 +8,26 @@ import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import useAllAssignment from "../../hooks/api/assignment/useAllAssignment";
+import { theme } from "../../theme/theme";
+import HwSliderCard from "../../components/Card/HwSliderCard";
+import { useLoginInfoState } from "../../context/LoginUser/User";
+import usePartAssignment from "../../hooks/api/assignment/usePartAssignment";
 
 function HwList() {
-  const { data, isloading, error } = useAllAssignment();
-
   const [clickedId, setClickedId] = useState(0);
-  const [selectedPart, setSelectedPart] = useState("fe");
+  const [selectedPart, setSelectedPart] = useState("all");
+
+  const { part } = useLoginInfoState();
+
+  const { data, isloading, error } = useAllAssignment();
+  const { error: myparterror, data: MyAssignments } = usePartAssignment(part);
 
   const filteredData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
   );
 
   if (isloading) console.log("로딩 중");
-  if (error === "rejected") {
+  if (error === "rejected" || myparterror === "rejected") {
     throw new Error("조회 에러");
   }
 
@@ -37,14 +43,17 @@ function HwList() {
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
         <FullScreenSlider>
-          <div
-            css={css`
-              background-color: lightblue;
-              height: 400px;
-            `}
-          >
-            1
-          </div>
+          {MyAssignments?.map((item, index) => (
+            <HwSliderCard
+              onClick={() => setClickedId(item.id)}
+              index={index}
+              title={item.title}
+              content={item.content}
+              bgcolor={theme.color.skyblue}
+              expireAt={item.expireAt}
+              part={item.part}
+            />
+          ))}
         </FullScreenSlider>
       </Styled.FullWidthContainer>
       <Styled.Margin height="460px" />
