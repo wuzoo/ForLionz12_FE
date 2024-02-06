@@ -2,7 +2,6 @@ import { sliderwrapper } from "./style";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MySlider from "./Slider";
-import { Next, Prev } from "./components/Arrow";
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
 
@@ -12,9 +11,7 @@ const StyledSlider = styled(MySlider)`
     opacity: 0;
     display: none;
   }
-  .slick-slide div {
-    cursor: pointer;
-  }
+  position: relative;
 `;
 
 export default function FullScreenSlider({
@@ -24,11 +21,15 @@ export default function FullScreenSlider({
 }) {
   return (
     <div css={sliderwrapper}>
-      <Next />
-      <StyledSlider dots={true} autoplay={true} infinite={true} speed={500}>
+      <StyledSlider
+        arrows={true}
+        dots={true}
+        autoplay={true}
+        infinite={true}
+        speed={500}
+      >
         {children}
       </StyledSlider>
-      <Prev />
     </div>
   );
 }
