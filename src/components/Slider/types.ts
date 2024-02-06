@@ -8,4 +8,6 @@ export interface ISlider {
   slidesToShow?: number;
   slidesToScroll?: number;
   initialSlide?: number;
+  arrows?: boolean;
+  autoplaySpeed?: number;
 }
