@@ -2,16 +2,13 @@ import { css } from "@emotion/react";
 import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
-import { useNavigate } from "react-router-dom";
 import { ICard } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
 import one from "./assets/one.svg";
 import two from "./assets/two.svg";
 import three from "./assets/three.svg";
 
-function HwSliderCard({ bgcolor, ...props }: ICard) {
-  const navigate = useNavigate();
-
+function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
   function getPartAndDate() {
     return (
       <p>
@@ -37,6 +34,7 @@ function HwSliderCard({ bgcolor, ...props }: ICard) {
 
   return (
     <Styled.CardWrapper
+      onClick={onClick}
       css={css`
         background-color: ${bgcolor};
       `}
@@ -46,7 +44,7 @@ function HwSliderCard({ bgcolor, ...props }: ICard) {
           background-image: url(${getImg()});
         `}
       ></Styled.Picture>
-      <Styled.LogoAndTitle onClick={() => navigate("/notification")}>
+      <Styled.LogoAndTitle>
         <Styled.TitleWrapper>
           <Styled.CardTitle>
             <Typo weight="700" color="white" fontSize="42">

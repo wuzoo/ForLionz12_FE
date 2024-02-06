@@ -5,4 +5,5 @@ export interface ICard {
   part: string;
   expireAt: string;
   index: number;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
