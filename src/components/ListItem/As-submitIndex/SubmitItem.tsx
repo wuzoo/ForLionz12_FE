@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { variants } from "./variants";
 import { IItem } from "./types";
+import getFormedDate from "../../../utils/getFormedDate";
 
-function SubmitItem({ name, date, link }: IItem) {
+function SubmitItem({ name, date, link, description }: IItem) {
   const [clicked, setClicked] = useState(false);
 
   const checkContainerClicked = (e: React.MouseEvent<HTMLElement>) => {
@@ -44,16 +45,12 @@ function SubmitItem({ name, date, link }: IItem) {
         </Styled.ImgAndNameWrapper>
         <Styled.Date>
           <Typo color="darkgray" fontSize="14">
-            작성일: {date}
+            작성일: {getFormedDate(date)}
           </Typo>
         </Styled.Date>
       </Styled.PrevBar>
       <div>
-        <Styled.Explain>
-          안녕하세요 저는 최주용입니다. 저는 한수현과 프로젝트 중입니다. 지금은
-          과제 제출 아이템을 만들고 있고 지금 과제 제출 애니메이션을 만들고도
-          있고 뭐뭐뭐머 하고 있긴 합니다. 햐ㅏ하하하
-        </Styled.Explain>
+        <Styled.Explain>{description}</Styled.Explain>
         <Styled.LinkWrapper>
           <Styled.Img src={github} />
           <Link to={link}>

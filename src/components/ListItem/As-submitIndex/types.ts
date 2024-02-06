@@ -3,4 +3,5 @@ export interface IItem {
   date: string;
   name: string;
   link: string;
+  description: string;
 }
