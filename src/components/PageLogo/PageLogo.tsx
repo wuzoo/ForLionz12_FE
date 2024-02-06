@@ -1,8 +1,6 @@
 import submit from "../../assets/3dicons/assubmit/girl.svg";
 import contact from "../../assets/3dicons/contact/people.svg";
 import login from "../../assets/3dicons/login/people.png";
-import boy from "../../assets/3dicons/main/smilebody.svg";
-import girl from "../../assets/3dicons/main/workinggirl.svg";
 import notice from "../../assets/3dicons/notice/people.svg";
 import qna from "../../assets/3dicons/qna/baby.svg";
 import lion from "../../assets/3dicons/main/lion.png";
@@ -16,8 +14,6 @@ export default function PageLogo(props: IPageLogo) {
     login: login,
     notification: notice,
     "q&a": qna,
-    boy: boy,
-    girl: girl,
     lion: lion,
   };
 

@@ -24,7 +24,5 @@ export interface IPageobj {
   login: string;
   notification: string;
   "q&a": string;
-  boy: string;
-  girl: string;
   lion: string;
 }
