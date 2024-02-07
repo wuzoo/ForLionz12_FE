@@ -3,15 +3,21 @@ import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "../../Button/Button";
 import { theme } from "../../../theme/theme";
 import useUserUpdater from "../../../hooks/api/member/useUserUpdater";
 import getImgForCategory from "../../../utils/getImgForCategory";
+import { useLoginInfoState } from "../../../context/LoginUser/User";
 
-function ListItem({ type, info, setInfo, setSubmited }: IItem) {
+export default function PasswordIndex({ type, setSubmited }: IItem) {
   const [edit, setEdit] = useState(false);
   const { updateUserInfo } = useUserUpdater();
+
+  const user = useLoginInfoState();
+  console.log(user);
+
+  const [info, setInfo] = useState("1234");
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,5 +70,3 @@ function ListItem({ type, info, setInfo, setSubmited }: IItem) {
     </Styled.Container>
   );
 }
-
-export default ListItem;
