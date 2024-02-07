@@ -14,6 +14,7 @@ import useSubmittedAssignments from "../../hooks/api/assignment/useSubmitedAssig
 import { ISubmitted } from "../../types/Assignment";
 import { useEffect, useState } from "react";
 import { getMySubmission } from "../../api/assignment";
+import { useLoginInfoState } from "../../context/LoginUser/User";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
@@ -31,6 +32,7 @@ function cmp(a: ISubmitted, b: ISubmitted) {
 function HwSubmit() {
   const { id } = useParams();
   const [data, setData] = useState<ISubmitted>();
+  const user = useLoginInfoState();
 
   if (!id) throw new Error("submit page id no exist");
 
@@ -59,12 +61,11 @@ function HwSubmit() {
     setFormStatus(Boolean(res.data));
   };
 
-  const { data: othersubmitted, reFetch } = useSubmittedAssignments(+id);
+  const { data: submittedData } = useSubmittedAssignments(+id);
   const [formStatus, setFormStatus] = useState(false);
 
   useEffect(() => {
     getMyData();
-    // reFetch();
   }, [formStatus]);
 
   useEffect(() => {
@@ -76,14 +77,15 @@ function HwSubmit() {
   }
 
   const { description, createdAt, assignmentLink } = data;
-  const recentsubmitted = othersubmitted?.concat()?.sort((a, b) => cmp(a, b));
+  const otherData = submittedData?.filter((item) => item.memberId !== +user.id);
+  const recentsubmitted = submittedData?.concat()?.sort((a, b) => cmp(a, b));
 
   return (
     <Styled.Wrapper>
       <Banner type="assignsubmit" logowidth="500" logoheight="500" />
 
       <RecentUploader cnt={recentsubmitted?.length || 0}>
-        {recentsubmitted?.map((item, index) => (
+        {recentsubmitted?.map((item) => (
           <Card
             cnt={recentsubmitted?.length}
             name={item.memberName}
@@ -120,10 +122,10 @@ function HwSubmit() {
             {...fixedProps}
           />
 
-          <CurrentSubmit count={othersubmitted?.length || 0} />
+          <CurrentSubmit count={otherData?.length || 0} />
         </Styled.OtherHwWrapper>
         <Styled.List>
-          {othersubmitted?.map((item) => (
+          {otherData?.map((item) => (
             <SubmitItem
               id={item.memberId}
               link={item.assignmentLink}
