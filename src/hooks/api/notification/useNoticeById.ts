@@ -10,7 +10,7 @@ function useNoticeById(id: number) {
 
   const { isloading, data, error } = state;
 
-  return { isloading, data, error };
+  return { isloading, data, error, reFetch };
 }
 
 export default useNoticeById;

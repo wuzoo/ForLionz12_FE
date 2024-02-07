@@ -12,7 +12,7 @@ function usePartNotification(part: string) {
 
   console.log(state);
 
-  return { isloading, data, error };
+  return { isloading, data, error, reFetch };
 }
 
 export default usePartNotification;
