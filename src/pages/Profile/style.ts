@@ -120,3 +120,9 @@ export const Btn = styled.button`
     text-align: start;
   }
 `;
+
+export const UserProfile = styled.img`
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+`;
