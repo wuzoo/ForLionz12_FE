@@ -4,14 +4,23 @@ import { SUB_TEXT } from "../../../../constants/text";
 import Button from "../../../../components/Button/Button";
 import { fixedProps } from "../../Hw-submit";
 import { css } from "@emotion/react";
+import { useState } from "react";
+import axios from "axios";
+import { IForm } from "../../types";
 
-interface IForm {
-  isSubmitted: boolean;
-}
+function AssignForm({
+  isSubmitted,
+  id,
+  onSubmit,
+  description,
+  assignmentLink,
+}: IForm) {
+  const [explain, setExplain] = useState(description);
+  const [link, setLink] = useState(assignmentLink);
 
-function AssignForm({ isSubmitted }: IForm) {
   return (
     <Styled.AssignForm
+      onSubmit={() => {}}
       css={css`
         display: ${isSubmitted ? "none" : ""};
       `}
@@ -22,14 +31,21 @@ function AssignForm({ isSubmitted }: IForm) {
           sub={SUB_TEXT.hwexplain}
           {...fixedProps}
         />
-        <Styled.ExplainArea />
+        <Styled.ExplainArea
+          value={explain}
+          onChange={(e) => setExplain(e.target.value)}
+        />
         <MainAndSubtitle
           main="과제 링크"
           sub={SUB_TEXT.hwlink}
           {...fixedProps}
         />
-        <Styled.LinkInput as="input" />
-        <Button bgcolor="white" fontSize="18" color="darkblue">
+        <Styled.LinkInput
+          as="input"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+        />
+        <Button type="submit" bgcolor="white" fontSize="18" color="darkblue">
           제출하기
         </Button>
       </Styled.SubmitWrapper>
