@@ -10,8 +10,6 @@ interface IToggle {
 }
 
 function Toggle({ text, part, setPart }: IToggle) {
-  console.log(part);
-
   return (
     <Button
       onClick={() => setPart(text)}
