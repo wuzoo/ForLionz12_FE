@@ -2,10 +2,16 @@ import MainAndSubtitle from "../../../../components/MainAndSubtitle";
 import { SUB_TEXT } from "../../../../constants/text";
 import { fixedProps } from "../../Hw-submit";
 import RecentUploadSlider from "../../../../components/Slider/RecentUploadSlider";
-import Card from "../../../../components/Card/RecentUploadedCard";
 import * as Styled from "./style";
+import { ReactNode } from "react";
 
-function RecentUploader() {
+function RecentUploader({
+  cnt,
+  children,
+}: {
+  cnt: number;
+  children: ReactNode;
+}) {
   return (
     <Styled.TotalWrapper>
       <Styled.ContentWrapper>
@@ -15,14 +21,7 @@ function RecentUploader() {
           {...fixedProps}
         />
         <Styled.SliderWrapper>
-          <RecentUploadSlider>
-            <Card name="최주용" content={"1"} link="https://github.com/wuzoo" />
-            <Card name="최주용" content={"2"} link="https://github.com/wuzoo" />
-            <Card name="최주용" content={"3"} link="https://github.com/wuzoo" />
-            <Card name="최주용" content={"4"} link="https://github.com/wuzoo" />
-            <Card name="최주용" content={"5"} link="https://github.com/wuzoo" />
-            <Card name="최주용" content={"6"} link="https://github.com/wuzoo" />
-          </RecentUploadSlider>
+          <RecentUploadSlider cnt={cnt}>{children}</RecentUploadSlider>
         </Styled.SliderWrapper>
       </Styled.ContentWrapper>
     </Styled.TotalWrapper>
