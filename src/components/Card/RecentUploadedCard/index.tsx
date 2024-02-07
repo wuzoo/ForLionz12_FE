@@ -1,10 +1,15 @@
 import * as Styled from "./style";
-import img from "../../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import { ICard } from "./types";
+import useMemberId from "../../../hooks/api/member/useMemberId";
+import user from "../../../assets/imgs/defaultUser.svg";
 
-export default function Card({ name, content, link, cnt }: ICard) {
+export default function Card({ name, content, link, cnt, uid }: ICard) {
+  const { data } = useMemberId(uid);
+
+  if (!data) return;
+
   const handleLinkClick = () => {
     location.href = link;
   };
@@ -21,11 +26,7 @@ export default function Card({ name, content, link, cnt }: ICard) {
 
   return (
     <Styled.CardWrapper variants={Styled.variants} whileHover="hover">
-      <Styled.Img
-        css={css`
-          background-image: url(${img});
-        `}
-      />
+      <Styled.Img src={data?.imageUrl || user} />
       <Styled.ContentWrapper
         css={css`
           max-width: ${handleWidth()};

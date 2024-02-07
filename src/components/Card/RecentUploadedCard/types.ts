@@ -3,4 +3,5 @@ export interface ICard {
   content: string;
   link: string;
   cnt: number;
+  uid: number;
 }

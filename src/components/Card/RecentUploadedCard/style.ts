@@ -27,14 +27,12 @@ export const ContentWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Img = styled.div`
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+export const Img = styled.img`
   width: 40%;
   max-width: 150px;
   height: 95%;
   border-radius: 15px;
+  object-fit: cover;
 `;
 
 export const Name = styled.p`
