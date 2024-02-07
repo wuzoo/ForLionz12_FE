@@ -144,7 +144,7 @@ export const GlobalStyle = css`
     background: ${theme.color.skyblue};
     border-radius: 10px;
   }
-  .slick-list {
+  .recent_slide .slick-list {
     padding: 20px 0px;
   }
 `;
