@@ -4,28 +4,30 @@ import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../theme/theme";
-import ListItem from "../../components/ListItem/ProfileIndex/index";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   useLoginInfoDispatch,
   useLoginInfoState,
 } from "../../context/LoginUser/User";
 import axios from "axios";
 import useUserUpdater from "../../hooks/api/member/useUserUpdater";
+import User from "../../components/Profile/Profile";
+import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
+import { MemorizedGitIndex } from "../../components/ListItem/ProfileIndex/gitIndex";
+import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
 
 function Profile() {
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
   const { updateUserInfo } = useUserUpdater();
 
+  console.log(user);
+
   const [intro, setIntro] = useState(user.introduction);
-  const [pwd, setPwd] = useState("1234");
-  const [gitbub, setGithub] = useState(user.githubAddress);
-  const [insta, setInsta] = useState(user.instagramId);
   const [edit, setEdit] = useState(false);
 
-  const [isSubmited, setIsSubmited] = useState(false);
   const [file, setFile] = useState<Blob | null>(null);
+  const [isSubmited, setIsSubmited] = useState(false);
   const [url, setUrl] = useState(user.imageUrl);
 
   useLayoutEffect(() => {
@@ -78,6 +80,14 @@ function Profile() {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      dispatch({
+        type: "LOGIN",
+        data: {
+          ...user,
+          imageUrl: URL.createObjectURL(files[0]),
+        },
+      });
     }
   };
 
@@ -92,7 +102,7 @@ function Profile() {
       />
       <Styled.InformBox>
         <Styled.ProfilePartWrapper>
-          <Styled.UserProfile src={url} />
+          <User url={file ? url : user.imageUrl} size="220" />
           <Styled.UploadBtn
             css={css`
               margin-top: 14px;
@@ -153,24 +163,13 @@ function Profile() {
       </Styled.InformBox>
 
       <Styled.ListItems>
-        <ListItem
-          setSubmited={setIsSubmited}
-          info={pwd}
-          setInfo={setPwd}
-          type="password"
-        />
-        <ListItem
-          setSubmited={setIsSubmited}
-          info={gitbub}
-          setInfo={setGithub}
+        <PasswordIndex key="pwd" type="password" setSubmited={setIsSubmited} />
+        <MemorizedGitIndex
+          key="git"
           type="github"
-        />
-        <ListItem
           setSubmited={setIsSubmited}
-          info={insta}
-          setInfo={setInsta}
-          type="instagram"
         />
+        <InstagramIndex key="insta" type="instagram" setSubmited={() => {}} />
       </Styled.ListItems>
     </Styled.Wrapper>
   );
