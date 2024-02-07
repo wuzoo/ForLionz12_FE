@@ -1,5 +1,5 @@
 export interface IProfile {
-  url: string;
+  url: string | null;
   radius?: string;
   size?: string;
 }
