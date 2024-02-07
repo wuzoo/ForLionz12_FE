@@ -14,7 +14,7 @@ function useAuth() {
         password,
       };
       await axios
-        .post("/auth/login", data, {
+        .post(import.meta.env.VITE_AUTH_API, data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -29,6 +29,7 @@ function useAuth() {
           ] = `Bearer ${accessToken}`;
 
           localStorage.setItem("accessToken", accessToken);
+
           console.log(accessToken);
           if (res.status === 200) {
             navigate("/");
@@ -42,7 +43,7 @@ function useAuth() {
         });
 
       const response = await axios
-        .get("/member/me")
+        .get(import.meta.env.VITE_MY_INFO)
         .then((res) => {
           if (res.status === 500) {
             throw new Error("token 500 error");
@@ -53,7 +54,10 @@ function useAuth() {
           console.log(err);
         });
       const res = response.data;
-      console.log(response.data);
+      const { id, part } = res;
+      localStorage.setItem("id", id);
+      localStorage.setItem("part", part);
+
       dispatch({
         type: "LOGIN",
         data: {
