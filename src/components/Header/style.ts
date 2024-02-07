@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { IHeader } from "./types";
 
-export const Wrapper = styled.div<IHeader>`
+export const Wrapper = styled.div<{ type?: string }>`
   width: 100vw;
   height: 80px;
   display: flex;
@@ -44,7 +43,7 @@ export const headerprofile = styled.div<{ show: boolean }>`
   padding: 10px;
   display: ${(props) => !props.show && "none"};
 
-  div {
+  img {
     &:hover {
       box-shadow: 0px 5px 20px ${(props) => props.theme.color.pink};
       scale: 1.05;

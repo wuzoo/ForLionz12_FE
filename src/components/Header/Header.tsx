@@ -1,16 +1,17 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IHeader } from "./types";
 import * as Styled from "./style";
 import Profile from "../Profile/Profile";
-import tmp from "../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../Typo/Typo";
+import { useLoginInfoState } from "../../context/LoginUser/User";
 
 function Header({ type }: IHeader) {
   const isLoginPage = Boolean(type);
   const navigate = useNavigate();
-  // const isAuthenticated = useAuth();
+  const { imageUrl } = useLoginInfoState();
 
   const { pathname } = useLocation();
+  const { id } = useParams();
 
   const 마이페이지가기 = () => {
     navigate("/profile");
@@ -26,7 +27,12 @@ function Header({ type }: IHeader) {
           <>
             <Link to="/homework">
               <Typo
-                color={pathname === "/homework" ? "darkblue" : "black"}
+                color={
+                  pathname === "/homework" ||
+                  pathname === `/homework-submit/${id}`
+                    ? "darkblue"
+                    : "black"
+                }
                 weight="600"
               >
                 Assignment
@@ -63,7 +69,7 @@ function Header({ type }: IHeader) {
         onClick={마이페이지가기}
         show={!isLoginPage ? true : false}
       >
-        <Profile url={tmp} size="50" />
+        <Profile url={imageUrl} size="50" />
       </Styled.headerprofile>
     </Styled.Wrapper>
   );
