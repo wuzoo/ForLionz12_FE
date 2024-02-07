@@ -31,7 +31,7 @@ function AssignForm({
 
     if (description || assignmentLink) {
       await axios
-        .put(`/submission/${+id}`, data, {
+        .put(`${import.meta.env.VITE_SUBMISSION}/${+id}`, data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -41,7 +41,7 @@ function AssignForm({
         });
     } else {
       await axios
-        .post("/submission", data, {
+        .post(import.meta.env.VITE_SUBMISSION, data, {
           headers: {
             "Content-Type": "application/json",
           },
