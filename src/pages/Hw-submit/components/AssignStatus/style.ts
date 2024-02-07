@@ -24,3 +24,18 @@ export const MyTextArea = styled.textarea`
   border-radius: 10px;
   padding: 10px;
 `;
+
+export const LinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 44px;
+    margin-right: 6px;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-color: ${(props) => props.theme.color.darkblue};
+    text-underline-offset: 4px;
+  }
+`;
