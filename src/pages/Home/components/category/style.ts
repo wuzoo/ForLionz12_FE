@@ -23,6 +23,7 @@ export const Item = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Img = styled.img`

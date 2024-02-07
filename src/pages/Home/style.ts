@@ -6,8 +6,6 @@ export const banner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
-  min-height: 400px;
 `;
 
 export const textwrapper = styled.div`
