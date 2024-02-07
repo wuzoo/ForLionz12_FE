@@ -11,7 +11,11 @@ function Notification() {
   const [selectedPart, setSelectedPart] = useState("all");
   const [clickedId, setClickedId] = useState(0);
 
-  const { isloading, error, data } = useAllNotification();
+  const { error, data } = useAllNotification();
+
+  if (error === "rejected") {
+    throw new Error("모든 공지사항 조회 에러");
+  }
 
   const filteredData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
@@ -30,7 +34,6 @@ function Notification() {
           <ListItem
             key={item.id}
             onClick={() => setClickedId(item.id)}
-            id={item.id}
             part={item.part.toLowerCase()}
             title={item.title}
             date={getFormedDate(item.createdAt)}
