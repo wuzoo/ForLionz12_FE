@@ -3,13 +3,13 @@ import { IAssignmentResult } from "../../../types/Assignment";
 import useAsyncData from "../../common/useAsyncData";
 
 function useAllAssignment() {
-  const [data, fetchData] = useAsyncData<IAssignmentResult>(
+  const [state, fetchData] = useAsyncData<IAssignmentResult>(
     getAllAssignment,
     []
   );
 
-  const { isloading, error, data: assignments } = data;
+  const { isloading, error, data } = state;
 
-  return { isloading, error, assignments, fetchData };
+  return { isloading, error, data, fetchData };
 }
 export default useAllAssignment;
