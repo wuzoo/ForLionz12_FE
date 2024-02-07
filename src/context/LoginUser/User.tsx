@@ -38,6 +38,7 @@ function LoginInfoReducer(state: State, action: ActionType) {
         profile: "",
         name: "",
         part: "",
+        imageUrl: "",
       };
     }
     default: {
@@ -58,6 +59,7 @@ function LoginInfoProvider({ children }: { children: ReactNode }) {
     introduction: "",
     githubAddress: "",
     instagramId: "",
+    imageUrl: "",
   });
 
   return (
