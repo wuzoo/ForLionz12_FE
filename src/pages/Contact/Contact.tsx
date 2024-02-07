@@ -1,37 +1,50 @@
 import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import useSelectedPart from "../../hooks/useSelectedPart";
 import Item from "../../components/ListItem/ContactIndex/ContactItem";
 import * as Styled from "./style";
+import { useState } from "react";
+import useAllMember from "../../hooks/api/member/useAllMember";
 
 function Contact() {
-  const [part, feclick, beclick, staffclick] = useSelectedPart("part");
+  const [selectedToggle, setSelectedToggle] = useState("all");
+
+  const { error, data } = useAllMember();
+
+  if (error === "rejected") {
+    throw new Error("contact page error");
+  }
+  if (!data) {
+    return;
+  }
+
+  const filterData = () => {
+    if (selectedToggle === "all") {
+      return data;
+    } else {
+      return data?.filter((item) => item.part === selectedToggle.toUpperCase());
+    }
+  };
+
+  console.log(data);
 
   return (
     <Styled.Wrapper>
       <Banner type="contact" logowidth="500" logoheight="500" />
       <Styled.Toggle>
-        <PartToggle
-          part={part}
-          showfe={feclick}
-          showbe={beclick}
-          showother={staffclick}
-        />
+        <PartToggle part={selectedToggle} setPart={setSelectedToggle} />
       </Styled.Toggle>
       <Styled.Items>
-        <Item
-          name="최주용"
-          part="fe"
-          introduce="안녕하세요 내이름은 최주용이고 나는 진짜로 프론트 엔드의 왕이 될거에요."
-          githuburl="https://github.com/wuzoo"
-        />
-        <Item
-          name="한수현"
-          part="be"
-          introduce="안녕하세요 내이름은 최주용이고 나는 진짜로 프론트 엔드의 왕이 될거에요."
-          githuburl="https://github.com/soozzang"
-          instaid="bn_sj2013"
-        />
+        {filterData()?.map((item) => (
+          <Item
+            key={item.id}
+            file={item.imageUrl}
+            name={item.name}
+            part={item.part}
+            introduce={item.introduction}
+            githuburl={item.githubAddress || undefined}
+            instaid={item.instagramId || undefined}
+          />
+        ))}
       </Styled.Items>
     </Styled.Wrapper>
   );
