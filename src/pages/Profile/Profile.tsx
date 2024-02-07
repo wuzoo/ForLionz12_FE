@@ -1,13 +1,11 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import { TEXT } from "../../constants/text";
 import * as Styled from "./style";
-import User from "../../components/Profile/Profile";
-import tmp from "../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../theme/theme";
 import ListItem from "../../components/ListItem/ProfileIndex/index";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   useLoginInfoDispatch,
   useLoginInfoState,
@@ -27,19 +25,17 @@ function Profile() {
   const [edit, setEdit] = useState(false);
 
   const [isSubmited, setIsSubmited] = useState(false);
+  const [file, setFile] = useState<Blob | null>(null);
+  const [url, setUrl] = useState(user.imageUrl);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     checkAndUpdateState();
   }, [isSubmited]);
-
-  const updateCommet = async () => {
-    updateUserInfo("comment", intro);
-  };
 
   const handleIntroSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    updateCommet();
+    updateUserInfo("comment", intro);
 
     setIsSubmited(true);
     setEdit(false);
@@ -49,8 +45,6 @@ function Profile() {
     const response = await axios.get("/member/me");
 
     const res = response.data.data;
-    console.log(user);
-    console.log(res);
 
     dispatch({
       type: "LOGIN",
@@ -60,6 +54,31 @@ function Profile() {
     });
 
     setIsSubmited(false);
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (files && files.length === 1) {
+      setFile(files[0]);
+      setUrl(URL.createObjectURL(files[0]));
+
+      const ok = window.confirm("프로필 사진을 바꾸시겠습니까?");
+
+      if (!ok) {
+        setFile(null);
+        setUrl(user.imageUrl);
+        return;
+      }
+      const formData = new FormData();
+      formData.append("file", files[0]);
+
+      await axios.post("/member/image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    }
   };
 
   return (
@@ -73,7 +92,7 @@ function Profile() {
       />
       <Styled.InformBox>
         <Styled.ProfilePartWrapper>
-          <User size="220" url={tmp} />
+          <Styled.UserProfile src={url} />
           <Styled.UploadBtn
             css={css`
               margin-top: 14px;
@@ -84,7 +103,12 @@ function Profile() {
               이미지 업로드
             </Typo>
           </Styled.UploadBtn>
-          <Styled.FileInput type="file" id="upload" />
+          <Styled.FileInput
+            onChange={handleFileUpload}
+            accept="image/*"
+            type="file"
+            id="upload"
+          />
           <Styled.UploadBtn
             css={css`
               background-color: ${theme.color.superlightgray};
@@ -112,7 +136,7 @@ function Profile() {
                 </Styled.EditText>
               </>
             ) : (
-              <Styled.Form onSubmit={handleIntroSubmit}>
+              <Styled.Form onSubmit={(e) => handleIntroSubmit(e)}>
                 <Styled.EditingIntro
                   onChange={(e) => setIntro(e.target.value)}
                   value={intro}
