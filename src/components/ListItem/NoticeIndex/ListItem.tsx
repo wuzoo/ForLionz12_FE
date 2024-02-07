@@ -3,20 +3,22 @@ import * as Styled from "./style";
 import { PART_COLOR } from "../../../constants/partcolor";
 import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
+import { variants } from "./variants";
+import { theme } from "../../../theme/theme";
 
-function ListItem({ part, content, date }: IItem) {
+function ListItem({ part, title, date, onClick }: IItem) {
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper onClick={onClick} variants={variants} whileHover="hover">
       <Styled.Badge
         css={css`
-          background-color: ${PART_COLOR[part]};
+          background-color: ${theme.color[PART_COLOR[part]]};
         `}
       >
         <Typo color="white">{part.toUpperCase()}</Typo>
       </Styled.Badge>
       <Styled.Notice>
         <Typo weight="600" fontSize="16">
-          {content}
+          {title}
         </Typo>
       </Styled.Notice>
       <Styled.Date>

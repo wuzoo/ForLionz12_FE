@@ -1,5 +1,8 @@
+import React from "react";
+
 export interface IItem {
   part: string;
-  content: string;
+  title: string;
   date: string;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
