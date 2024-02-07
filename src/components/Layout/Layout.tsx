@@ -33,7 +33,7 @@ function Layout() {
 
   return (
     <Styled.Layout>
-      <Header type={isLoginMatch ? "login" : ""} />
+      <Header profile={state.imageUrl} type={isLoginMatch ? "login" : ""} />
       <Outlet />
     </Styled.Layout>
   );
