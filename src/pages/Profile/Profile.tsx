@@ -44,7 +44,7 @@ function Profile() {
   };
 
   const checkAndUpdateState = async () => {
-    const response = await axios.get("/member/me");
+    const response = await axios.get(import.meta.env.VITE_MY_INFO);
 
     const res = response.data.data;
 
@@ -75,7 +75,7 @@ function Profile() {
       const formData = new FormData();
       formData.append("file", files[0]);
 
-      await axios.post("/member/image", formData, {
+      await axios.post(`${import.meta.env.VITE_MEMBER}/image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
