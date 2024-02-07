@@ -34,8 +34,46 @@ function HwSubmit() {
 
   if (!id) throw new Error("submit page id no exist");
 
+  const getMyData = async () => {
+    const res = await getMySubmission(+id);
+
+    console.log(res.data);
+
+    if (res.data === null) {
+      setData({
+        assignmentId: 0,
+        assignmentLink: "",
+        createdAt: new Date().toISOString(),
+        description: "",
+        id: 0,
+        memberId: 0,
+        memberName: "",
+      });
+    } else {
+      setData(res.data);
+    }
+  };
+  const getStatus = async () => {
+    const res = await getMySubmission(+id);
+
+    setFormStatus(Boolean(res.data));
+  };
+
   const { data: othersubmitted, reFetch } = useSubmittedAssignments(+id);
   const [formStatus, setFormStatus] = useState(false);
+
+  useEffect(() => {
+    getMyData();
+    // reFetch();
+  }, [formStatus]);
+
+  useEffect(() => {
+    getStatus();
+  }, []);
+
+  if (!data) {
+    return;
+  }
 
   const { description, createdAt, assignmentLink } = data;
   const recentsubmitted = othersubmitted?.concat()?.sort((a, b) => cmp(a, b));
