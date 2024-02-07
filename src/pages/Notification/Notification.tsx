@@ -28,6 +28,7 @@ function Notification() {
       <Styled.Items>
         {filteredData?.map((item) => (
           <ListItem
+            key={item.id}
             onClick={() => setClickedId(item.id)}
             id={item.id}
             part={item.part.toLowerCase()}

@@ -45,6 +45,7 @@ function HwList() {
         <FullScreenSlider>
           {MyAssignments?.map((item, index) => (
             <HwSliderCard
+              key={item.id}
               onClick={() => setClickedId(item.id)}
               index={index}
               title={item.title}
