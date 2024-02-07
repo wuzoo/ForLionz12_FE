@@ -32,7 +32,7 @@ function Layout() {
   }, []);
 
   const updateUser = useCallback(async () => {
-    const response = await axios.get("/member/me");
+    const response = await axios.get(import.meta.env.VITE_MY_INFO);
     const data = response.data.data;
 
     dispatch({
