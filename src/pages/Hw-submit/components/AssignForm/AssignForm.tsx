@@ -18,9 +18,44 @@ function AssignForm({
   const [explain, setExplain] = useState(description);
   const [link, setLink] = useState(assignmentLink);
 
+  const handleAssignmentSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    const data = {
+      assignmentId: +id,
+      description: explain,
+      assignmentLink: link,
+    };
+
+    if (description || assignmentLink) {
+      await axios
+        .put(`/submission/${+id}`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .catch((err) => {
+          throw new Error(err);
+        });
+    } else {
+      await axios
+        .post("/submission", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .catch((err) => {
+          throw new Error(err);
+        });
+    }
+
+    onSubmit((prev) => !prev);
+  };
   return (
     <Styled.AssignForm
-      onSubmit={() => {}}
+      onSubmit={handleAssignmentSubmit}
       css={css`
         display: ${isSubmitted ? "none" : ""};
       `}
