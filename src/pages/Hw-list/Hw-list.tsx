@@ -10,14 +10,17 @@ import getFormedDate from "../../utils/getFormedDate";
 import useAllAssignment from "../../hooks/api/assignment/useAllAssignment";
 import { theme } from "../../theme/theme";
 import HwSliderCard from "../../components/Card/HwSliderCard";
-import { useLoginInfoState } from "../../context/LoginUser/User";
 import usePartAssignment from "../../hooks/api/assignment/usePartAssignment";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
   const [selectedPart, setSelectedPart] = useState("all");
 
-  const { part } = useLoginInfoState();
+  const part = localStorage.getItem("part");
+
+  if (!part) {
+    throw new Error("has no part error");
+  }
 
   const { data, isloading, error } = useAllAssignment();
   const { error: myparterror, data: MyAssignments } = usePartAssignment(part);
