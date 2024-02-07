@@ -1,12 +1,12 @@
 import UserImg from "../../Profile/Profile";
 import { IItem } from "./types";
-import img from "../../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor";
 import instaimg from "../../../assets/icons/insta/img.png";
 import githubimg from "../../../assets/icons/github/img.png";
+import { theme } from "../../../theme/theme";
 
 function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
   const goGithub = () => {
@@ -23,12 +23,12 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
 
   return (
     <Styled.Wrapper>
-      <UserImg url={img} />
+      <UserImg url={file || null} />
       <Styled.NameAndPart>
         <Typo weight="600">{name}</Typo>
         <Styled.Badge
           css={css`
-            background-color: ${PART_COLOR[part.toLowerCase()]};
+            background-color: ${theme.color[PART_COLOR[part.toLowerCase()]]};
           `}
         >
           <Typo color="white" weight="600">
@@ -42,8 +42,20 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
         </Typo>
       </Styled.Introduce>
       <Styled.SNSbox>
-        <Styled.Img onClick={goInstagram} src={instaimg} />
-        <Styled.Img onClick={goGithub} src={githubimg} />
+        <Styled.Img
+          css={css`
+            display: ${instaid ? "" : "none"};
+          `}
+          onClick={goInstagram}
+          src={instaimg}
+        />
+        <Styled.Img
+          css={css`
+            display: ${githuburl ? "" : "none"};
+          `}
+          onClick={goGithub}
+          src={githubimg}
+        />
       </Styled.SNSbox>
     </Styled.Wrapper>
   );

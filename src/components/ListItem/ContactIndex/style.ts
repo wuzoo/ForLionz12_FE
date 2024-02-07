@@ -13,9 +13,10 @@ export const Wrapper = styled.div`
 
 export const NameAndPart = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   gap: 20px;
   align-items: center;
+  width: 140px;
 `;
 
 export const Badge = styled.div`
@@ -35,6 +36,7 @@ export const Introduce = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  line-height: 1.2;
 `;
 
 export const SNSbox = styled.div`
