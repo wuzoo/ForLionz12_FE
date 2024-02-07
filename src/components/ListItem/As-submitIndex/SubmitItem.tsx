@@ -1,6 +1,5 @@
-import { User } from "../../Profile/style";
+import User from "../../Profile/Profile";
 import * as Styled from "./style";
-import tmp from "../../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import github from "../../../assets/icons/github/img.png";
@@ -9,9 +8,18 @@ import { useState } from "react";
 import { variants } from "./variants";
 import { IItem } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
+import useMemberId from "../../../hooks/api/member/useMemberId";
 
-function SubmitItem({ name, date, link, description }: IItem) {
+function SubmitItem({ name, date, link, description, id }: IItem) {
   const [clicked, setClicked] = useState(false);
+
+  const { data } = useMemberId(+id);
+
+  if (!data) {
+    return;
+  }
+
+  console.log(data);
 
   const checkContainerClicked = (e: React.MouseEvent<HTMLElement>) => {
     if (!clicked) {
@@ -36,7 +44,7 @@ function SubmitItem({ name, date, link, description }: IItem) {
     >
       <Styled.PrevBar>
         <Styled.ImgAndNameWrapper>
-          <User url={tmp} size="45" />
+          <User url={data?.imageUrl} size="45" />
           <div css={css``}>
             <Styled.Name>
               <Typo>{name}의 과제입니다.</Typo>
