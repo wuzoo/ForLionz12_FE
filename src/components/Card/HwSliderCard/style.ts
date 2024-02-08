@@ -9,13 +9,11 @@ export const CardWrapper = styled.div`
   position: relative;
 `;
 
-export const Picture = styled.div`
+export const Picture = styled.img`
   width: 340px;
   height: 340px;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
   position: absolute;
+  object-fit: contain;
   top: 5%;
   right: 56%;
 `;
