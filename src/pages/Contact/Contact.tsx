@@ -29,7 +29,7 @@ function Contact() {
 
   return (
     <Styled.Wrapper>
-      <Banner type="contact" logowidth="500" logoheight="500" />
+      <Banner type="contact" logowidth="430" logoheight="430" />
       <Styled.Toggle>
         <PartToggle part={selectedToggle} setPart={setSelectedToggle} />
       </Styled.Toggle>
