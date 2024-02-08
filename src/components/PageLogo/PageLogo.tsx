@@ -6,8 +6,17 @@ import qna from "../../assets/3dicons/qna/baby.webp";
 import lion from "../../assets/3dicons/main/lion.webp";
 import { Img } from "./style";
 import { IPageLogo, IPageobj } from "./types";
+import { useLayoutEffect, useRef } from "react";
 
 export default function PageLogo(props: IPageLogo) {
+  const preloadImg = useRef<HTMLImageElement>(null);
+
+  useLayoutEffect(() => {
+    if (preloadImg && preloadImg.current) {
+      preloadImg.current.src = pageobj[props.type];
+    }
+  }, [props.type]);
+
   const pageobj: IPageobj = {
     assignsubmit: submit,
     contact: contact,
@@ -17,5 +26,5 @@ export default function PageLogo(props: IPageLogo) {
     lion: lion,
   };
 
-  return <Img {...props} src={pageobj[props.type]} />;
+  return <Img ref={preloadImg} {...props} />;
 }
