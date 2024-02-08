@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Toggle = styled.div`
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
