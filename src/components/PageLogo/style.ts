@@ -6,6 +6,7 @@ export const Img = styled.img<ILogo>`
   z-index: ${(props) => props.zindex || "-1000"};
   width: ${(props) => props.width || "300"}px;
   height: ${(props) => props.height || "300"}px;
+  object-fit: contain;
 
   left: ${(props) => props.left || null};
   top: ${(props) => props.top || null};
