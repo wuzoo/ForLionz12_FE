@@ -13,7 +13,7 @@ import axios from "axios";
 import useUserUpdater from "../../hooks/api/member/useUserUpdater";
 import User from "../../components/Profile/Profile";
 import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
-import { MemorizedGitIndex } from "../../components/ListItem/ProfileIndex/gitIndex";
+import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
 import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
 
 function Profile() {
@@ -164,11 +164,7 @@ function Profile() {
 
       <Styled.ListItems>
         <PasswordIndex key="pwd" type="password" setSubmited={setIsSubmited} />
-        <MemorizedGitIndex
-          key="git"
-          type="github"
-          setSubmited={setIsSubmited}
-        />
+        <GithubIndex key="git" type="github" setSubmited={setIsSubmited} />
         <InstagramIndex key="insta" type="instagram" setSubmited={() => {}} />
       </Styled.ListItems>
     </Styled.Wrapper>
