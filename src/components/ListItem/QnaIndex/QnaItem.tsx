@@ -1,8 +1,8 @@
 import { User } from "../../Profile/style";
 import * as Styled from "./style";
-import tmp from "../../../assets/imgs/tmpprofile.jpeg";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
+import user from "../../../assets/imgs/defaultUser.svg";
 
 interface IItem {
   title: string;
@@ -20,7 +20,7 @@ function QnaItem({ title, date, name }: IItem) {
           gap: 30px;
         `}
       >
-        <User url={tmp} size="45" />
+        <User url={user} size="45" />
         <div css={css``}>
           <Styled.Title>
             <Typo>{title}</Typo>
