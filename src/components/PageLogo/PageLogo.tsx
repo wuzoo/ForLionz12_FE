@@ -1,9 +1,9 @@
-import submit from "../../assets/3dicons/assubmit/girl.svg";
-import contact from "../../assets/3dicons/contact/people.svg";
-import login from "../../assets/3dicons/login/people.png";
-import notice from "../../assets/3dicons/notice/people.svg";
-import qna from "../../assets/3dicons/qna/baby.svg";
-import lion from "../../assets/3dicons/main/lion.png";
+import submit from "../../assets/3dicons/assubmit/girl.webp";
+import contact from "../../assets/3dicons/contact/people.webp";
+import login from "../../assets/3dicons/login/people.webp";
+import notice from "../../assets/3dicons/notice/people.webp";
+import qna from "../../assets/3dicons/qna/baby.webp";
+import lion from "../../assets/3dicons/main/lion.webp";
 import { Img } from "./style";
 import { IPageLogo, IPageobj } from "./types";
 
