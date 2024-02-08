@@ -11,19 +11,27 @@ import useAllAssignment from "../../hooks/api/assignment/useAllAssignment";
 import { theme } from "../../theme/theme";
 import HwSliderCard from "../../components/Card/HwSliderCard";
 import usePartAssignment from "../../hooks/api/assignment/usePartAssignment";
+import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
+import { css } from "@emotion/react";
+import { useLoginInfoState } from "../../context/LoginUser/User.tsx";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
   const [selectedPart, setSelectedPart] = useState("all");
 
-  const part = localStorage.getItem("part");
+  const { part } = useLoginInfoState();
 
-  if (!part) {
+  const realpart = part !== "STAFF" ? part : "ALL";
+
+  const id = localStorage.getItem("id");
+
+  if (!part || !id) {
     throw new Error("has no part error");
   }
 
   const { data, isloading, error } = useAllAssignment();
-  const { error: myparterror, data: MyAssignments } = usePartAssignment(part);
+  const { error: myparterror, data: MyAssignments } =
+    usePartAssignment(realpart);
 
   const filteredData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
@@ -36,13 +44,22 @@ function HwList() {
 
   return (
     <Styled.Wrapper>
-      <MainAndSubtitle
-        main="My Assignments"
-        sub="나의 과제 목록을 확인하세요"
-        fontsizes={["40", "18"]}
-        gap="10"
-        colors={["black", "darkgray"]}
-      />
+      <div
+        css={css`
+          display: flex;
+          align-items: end;
+          justify-content: space-between;
+        `}
+      >
+        <MainAndSubtitle
+          main="My Assignments"
+          sub="나의 과제 목록을 확인하세요"
+          fontsizes={["40", "18"]}
+          gap="10"
+          colors={["black", "darkgray"]}
+        />
+        <AdminUploadBtn id={id} type="assignment" />
+      </div>
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
         <FullScreenSlider>
