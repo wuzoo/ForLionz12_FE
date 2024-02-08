@@ -10,7 +10,7 @@ import useUserUpdater from "../../../hooks/api/member/useUserUpdater";
 import getImgForCategory from "../../../utils/getImgForCategory";
 import { useLoginInfoState } from "../../../context/LoginUser/User";
 
-function GithubIndex({ type, setSubmited }: IItem) {
+export default function GithubIndex({ type, setSubmited }: IItem) {
   const [edit, setEdit] = useState(false);
   const { updateUserInfo } = useUserUpdater();
 
@@ -69,5 +69,3 @@ function GithubIndex({ type, setSubmited }: IItem) {
     </Styled.Container>
   );
 }
-
-export const MemorizedGitIndex = React.memo(GithubIndex);
