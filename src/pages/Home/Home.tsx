@@ -6,7 +6,7 @@ import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import { TEXT } from "../../constants/text";
 import Card from "../../components/Card/SliderCard";
 import Category from "./components/category/Category";
-import { SliderProps } from "./components/constant/constant";
+import { SliderProps } from "./constant/constant";
 import OnebyoneText from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
 import useAllNotification from "../../hooks/api/notification/useAllNotification";

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import * as Styled from "./style";
-import { ColorAndImgofItem, Destination } from "../constant/constant";
+import { ColorAndImgofItem, Destination } from "../../constant/constant";
 import { useNavigate } from "react-router-dom";
 import Typo from "../../../../components/Typo/Typo";
 
