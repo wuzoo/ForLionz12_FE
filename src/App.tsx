@@ -13,6 +13,8 @@ import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import Qna from "./pages/Qna/Qna";
 import { LoginInfoProvider } from "./context/LoginUser/User";
+import UploadHW from "./pages/Admin/UploadAssignment";
+import UploadNotice from "./pages/Admin/UploadNotification";
 
 const router = createBrowserRouter([
   {
@@ -28,13 +30,16 @@ const router = createBrowserRouter([
         path: "homework",
         element: <HwList />,
       },
-
+      { path: "homework/upload", element: <UploadHW /> },
       { path: "homework-submit/:id", element: <HwSubmit /> },
+
       { path: "contact", element: <Contact /> },
       {
         path: "notification",
         element: <Notification />,
       },
+      { path: "notification/upload", element: <UploadNotice /> },
+
       { path: "profile", element: <Profile /> },
       {
         path: "qna",
