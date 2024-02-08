@@ -6,7 +6,7 @@ import Typo from "../../components/Typo/Typo";
 import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
-import { CATEGORY_TEXT } from "./components/constants/text";
+import { CATEGORY_TEXT } from "./constants/text";
 
 function Qna() {
   const [category, setCategory] = useState("all");
