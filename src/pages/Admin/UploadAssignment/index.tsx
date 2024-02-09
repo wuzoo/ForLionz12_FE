@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainAndSubtitle from "../../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
 import Typo from "../../../components/Typo/Typo";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
 import Toggle from "../components/Toggle/Toggle";
+import useGetAssignmentById from "../../../hooks/api/assignment/useGetAssignmentById";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { initialDate } from "../../../utils/getCurrenty-m-dString";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -14,80 +17,80 @@ const defaultProps = {
   gap: "5",
 };
 
-const initialDate = () => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth() + 1;
-  const day = new Date().getDate();
-
-  const tmpArr = [year, month, day];
-
-  return tmpArr.join("-");
-};
+interface IInputs {
+  title: string;
+  category: string;
+  tag: string;
+  content: string;
+}
 
 function UploadHW() {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState(initialDate());
-  const [part, setPart] = useState("all");
-  const [category, setCate] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [tag, setTag] = useState("");
-  const [content, setContent] = useState("");
-
+  const { state } = useLocation();
   const navigate = useNavigate();
 
-  console.log(getDeadlineTime(date));
+  const { data } = useGetAssignmentById(state?.id);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { register, handleSubmit, reset, getValues } = useForm<IInputs>({});
 
+  const [date, setDate] = useState(initialDate());
+  const [part, setPart] = useState("all");
+  const [tags, setTags] = useState<string[]>([]);
+  const [tag, setTag] = useState("");
+
+  useEffect(() => {
+    if (data) {
+      reset({
+        title: data?.title,
+        content: data?.content,
+        category: data?.category,
+      });
+      setTags([...data?.tags]);
+      setPart(data?.part.toLowerCase());
+    }
+  }, [state?.id, data]);
+
+  const onSubmit: SubmitHandler<IInputs> = async (data) => {
     const expireAt = getDeadlineTime(date);
 
-    console.log(
-      category.toUpperCase(),
-      title,
-      content,
-      part.toUpperCase(),
-      tags,
-      expireAt
-    );
+    const values = getValues();
+    const formData = {
+      ...data,
+      category: values.category.toUpperCase(),
+      part: part.toUpperCase(),
+      tags: [...tags],
+      expireAt,
+    };
 
-    await axios
-      .post(
-        "/assignment",
-        {
-          category: category.toUpperCase(),
-          title,
-          content,
-          part: part.toUpperCase(),
-          tags: [...tags],
-          expireAt,
-        },
-        {
+    try {
+      if (state?.id === undefined) {
+        await axios.post("/assignment", formData, {
           headers: {
             "Content-Type": "application/json",
           },
-        }
-      )
-      .catch((err) => {
-        console.log(err);
-        throw new Error("upload assignment error");
-      });
+        });
+      } else if (typeof state?.id === "string") {
+        await axios.put(`/assignment/${+state?.id}`, formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
+    } catch (err) {
+      throw new Error("upload assignment error");
+    }
 
     navigate("/homework");
   };
 
   return (
-    <Styled.Form onSubmit={handleSubmit}>
+    <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <MainAndSubtitle
           main="Title"
           sub="제목을 입력해주세요."
           {...defaultProps}
         />
-        <Styled.TitleInput
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <Styled.TitleInput {...register("title")} />
       </div>
       <div>
         <MainAndSubtitle
@@ -113,13 +116,13 @@ function UploadHW() {
       <Styled.CategoryContainer>
         <MainAndSubtitle
           main="Category"
-          sub="해당 과제의 메인 카테고리를 지정해주세요. ex) React, Django"
+          sub={
+            "다음 중 하나로 메인 카테고리를 지정해주세요.\nHTML, CSS, Git, JS, React, Django, Python, AWS, Docker"
+          }
           {...defaultProps}
+          gap="8"
         />
-        <Styled.CategoryInput
-          value={category}
-          onChange={(e) => setCate(e.target.value)}
-        />
+        <Styled.CategoryInput {...register("category")} />
       </Styled.CategoryContainer>
       <div>
         <Styled.TagsContainer>
@@ -171,10 +174,7 @@ function UploadHW() {
           sub="과제 내용을 작성해주세요."
           {...defaultProps}
         />
-        <Styled.ContentInput
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+        <Styled.ContentInput {...register("content")} />
       </div>
       <Styled.BtnWrapper>
         <Button
