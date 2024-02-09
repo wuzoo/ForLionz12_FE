@@ -25,14 +25,14 @@ export const ProfilePartWrapper = styled.div`
 export const AlignWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 0px;
 `;
 
 export const IntroWrapper = styled.div`
   padding: 20px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 `;
 
 export const UploadBtn = styled.label`
@@ -49,6 +49,7 @@ export const FileInput = styled.input`
 `;
 
 export const EditText = styled.p`
+  width: 50px;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -94,7 +95,6 @@ export const EditingIntro = styled.textarea`
   color: ${(props) => props.theme.color.darkgray};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.color.lightgray};
-  min-width: 500px;
 
   &:focus {
     outline: none;
@@ -105,19 +105,22 @@ export const EditingIntro = styled.textarea`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  height: 140px;
+  justify-content: space-between;
   gap: 10px;
 `;
 
 export const Btn = styled.button`
+  cursor: pointer;
   border: none;
   background-color: transparent;
-
-  p {
+  width: 50px;
+  padding: 0;
+  text-align: start;
+  span {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.color.darkblue};
     text-underline-offset: 4px;
-    cursor: pointer;
-    text-align: start;
+    text-decoration-color: ${(props) => props.theme.color.darkblue};
   }
 `;
 

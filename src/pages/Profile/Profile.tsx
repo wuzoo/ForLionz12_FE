@@ -137,14 +137,14 @@ function Profile() {
               </Typo>
             </Styled.Name>
             {!edit ? (
-              <>
+              <Styled.Form>
                 <Styled.Introduce>
                   <Typo color="darkgray">{user.introduction}</Typo>
                 </Styled.Introduce>
                 <Styled.EditText onClick={() => setEdit(true)}>
                   <Typo color="darkblue">수정</Typo>
                 </Styled.EditText>
-              </>
+              </Styled.Form>
             ) : (
               <Styled.Form onSubmit={(e) => handleIntroSubmit(e)}>
                 <Styled.EditingIntro
@@ -152,9 +152,7 @@ function Profile() {
                   value={intro}
                 />
                 <Styled.Btn type="submit">
-                  <p>
-                    <Typo color="darkblue">변경</Typo>
-                  </p>
+                  <Typo color="darkblue">변경</Typo>
                 </Styled.Btn>
               </Styled.Form>
             )}
