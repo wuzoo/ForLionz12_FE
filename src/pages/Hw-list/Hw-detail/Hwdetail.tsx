@@ -8,6 +8,8 @@ import Button from "../../../components/Button/Button";
 import useGetAssignmentById from "../../../hooks/api/assignment/useGetAssignmentById";
 import getFormedDate from "../../../utils/getFormedDate";
 import Deadline from "./components/Deadline";
+import { theme } from "../../../theme/theme";
+import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 
 interface IHwDetail {
   clickedId: number;
@@ -26,6 +28,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
   }, [clickedId]);
 
   const { isloading, data, error } = useGetAssignmentById(clickedId);
+  const uid = localStorage.getItem("id");
   const navigate = useNavigate();
 
   if (error === "rejected") {
@@ -64,13 +67,28 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
           `}
         >
           <Styled.MainWrapper>
-            <Typo fontSize="44" weight="600">
-              {title}
-            </Typo>
+            <div
+              css={css`
+                display: flex;
+                align-items: end;
+                gap: 20px;
+              `}
+            >
+              <Typo fontSize="44" weight="600">
+                {title}
+              </Typo>
+              <AdminModifyBtn
+                type="assignment"
+                uid={uid + ""}
+                id={clickedId + ""}
+              />
+            </div>
             <Styled.Wrapper>
               <Styled.Badge
                 css={css`
-                  background-color: ${PART_COLOR[part.toLowerCase()]};
+                  background-color: ${theme.color[
+                    PART_COLOR[part.toLowerCase()]
+                  ]};
                 `}
               >
                 {part.toUpperCase()}
