@@ -14,7 +14,6 @@ import useSubmittedAssignments from "../../hooks/api/assignment/useSubmitedAssig
 import { ISubmitted } from "../../types/Assignment";
 import { useEffect, useState } from "react";
 import { getMySubmission } from "../../api/assignment";
-import { useLoginInfoState } from "../../context/LoginUser/User";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
@@ -31,8 +30,17 @@ function cmp(a: ISubmitted, b: ISubmitted) {
 
 function HwSubmit() {
   const { id } = useParams();
-  const [data, setData] = useState<ISubmitted>();
-  const user = useLoginInfoState();
+  const [data, setData] = useState<ISubmitted>({
+    assignmentId: 0,
+    assignmentLink: "",
+    createdAt: new Date().toISOString(),
+    description: "",
+    id: 0,
+    memberId: 0,
+    memberName: "",
+  });
+
+  const part = localStorage.getItem("part");
 
   if (!id) throw new Error("submit page id no exist");
 
@@ -40,18 +48,7 @@ function HwSubmit() {
     const res = await getMySubmission(+id);
 
     console.log(res.data);
-
-    if (res.data === null) {
-      setData({
-        assignmentId: 0,
-        assignmentLink: "",
-        createdAt: new Date().toISOString(),
-        description: "",
-        id: 0,
-        memberId: 0,
-        memberName: "",
-      });
-    } else {
+    if (res.data) {
       setData(res.data);
     }
   };
@@ -65,19 +62,18 @@ function HwSubmit() {
   const [formStatus, setFormStatus] = useState(false);
 
   useEffect(() => {
-    getMyData();
+    if (part !== "STAFF") {
+      getMyData();
+    }
   }, [formStatus]);
 
   useEffect(() => {
-    getStatus();
+    if (part !== "STAFF") {
+      getStatus();
+    }
   }, []);
 
-  if (!data) {
-    return;
-  }
-
   const { description, createdAt, assignmentLink } = data;
-  const otherData = submittedData?.filter((item) => item.memberId !== +user.id);
   const recentsubmitted = submittedData?.concat()?.sort((a, b) => cmp(a, b));
 
   return (
@@ -117,15 +113,15 @@ function HwSubmit() {
       <div css={Styled.AlignStyle}>
         <Styled.OtherHwWrapper>
           <MainAndSubtitle
-            main="다른 사람의 과제"
+            main="과제 제출 목록"
             sub={SUB_TEXT.hwother}
             {...fixedProps}
           />
 
-          <CurrentSubmit count={otherData?.length || 0} />
+          <CurrentSubmit count={submittedData?.length || 0} />
         </Styled.OtherHwWrapper>
         <Styled.List>
-          {otherData?.map((item) => (
+          {submittedData?.map((item) => (
             <SubmitItem
               id={item.memberId}
               link={item.assignmentLink}
