@@ -25,7 +25,9 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
     <Styled.Wrapper>
       <UserImg url={file || null} />
       <Styled.NameAndPart>
-        <Typo weight="600">{name}</Typo>
+        <Styled.Name>
+          <Typo weight="600">{name}</Typo>
+        </Styled.Name>
         <Styled.Badge
           css={css`
             background-color: ${theme.color[PART_COLOR[part.toLowerCase()]]};
@@ -37,7 +39,7 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
         </Styled.Badge>
       </Styled.NameAndPart>
       <Styled.Introduce>
-        <Typo color="darkgray" weight="600" fontSize="16">
+        <Typo color="darkgray" weight="500" fontSize="16">
           {introduce}
         </Typo>
       </Styled.Introduce>

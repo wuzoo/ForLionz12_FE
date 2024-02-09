@@ -3,24 +3,27 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 5fr 2fr;
+  grid-template-columns: 1fr 2fr 4fr 2fr;
   align-items: center;
-  border: 2px solid ${(props) => props.theme.color.lightgray};
+  border: 1.5px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   padding: 10px;
   padding-left: 30px;
+  gap: 10px;
 `;
+
+export const Name = styled.p``;
 
 export const NameAndPart = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
   align-items: center;
-  width: 140px;
+  width: 200px;
 `;
 
 export const Badge = styled.div`
-  width: 70px;
+  width: 100px;
   height: 30px;
   display: flex;
   justify-content: center;
