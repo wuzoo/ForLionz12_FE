@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainAndSubtitle from "../../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Toggle from "../components/Toggle/Toggle";
+import useNoticeById from "../../../hooks/api/notification/useNoticeById";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -12,50 +14,66 @@ const defaultProps = {
   gap: "5",
 };
 
+interface IInputs {
+  title: string;
+  part: string;
+  content: string;
+}
+
 function UploadNotice() {
-  const [title, setTitle] = useState("");
+  const { register, handleSubmit, reset } = useForm<IInputs>();
+
   const [part, setPart] = useState("all");
-  const [content, setContent] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { state } = useLocation();
+  const { data } = useNoticeById(state?.id);
 
-    await axios
-      .post(
-        "/notification",
-        {
-          title,
-          content,
-          part: part.toUpperCase(),
-        },
-        {
+  useEffect(() => {
+    if (data) {
+      reset({ title: data?.title, content: data?.content });
+      setPart(data?.part.toLowerCase());
+    }
+  }, [state?.id, data]);
+
+  const onSubmit: SubmitHandler<IInputs> = async (data) => {
+    console.log(data);
+
+    const formedData = {
+      ...data,
+      part: part.toUpperCase(),
+    };
+    try {
+      if (state?.id === undefined) {
+        await axios.post("/notification", formedData, {
           headers: {
             "Content-Type": "application/json",
           },
-        }
-      )
-      .catch((err) => {
-        console.log(err);
-        throw new Error("notice upload error");
-      });
+        });
+      } else if (typeof state?.id === "string") {
+        await axios.put(`/notification/${+state?.id}`, formedData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
+    } catch (err) {
+      throw new Error("upload notification error");
+    }
 
     navigate("/notification");
   };
 
   return (
-    <Styled.Form onSubmit={handleSubmit}>
+    <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <MainAndSubtitle
           main="Title"
           sub="제목을 입력해주세요."
           {...defaultProps}
         />
-        <Styled.TitleInput
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <Styled.TitleInput {...register("title")} />
       </div>
 
       <Styled.PartContainer>
@@ -73,10 +91,7 @@ function UploadNotice() {
           sub="과제 내용을 작성해주세요."
           {...defaultProps}
         />
-        <Styled.ContentInput
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+        <Styled.ContentInput {...register("content")} />
       </div>
       <Styled.BtnWrapper>
         <Button
