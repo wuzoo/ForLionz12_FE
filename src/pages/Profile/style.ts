@@ -25,7 +25,7 @@ export const ProfilePartWrapper = styled.div`
 export const AlignWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 10px;
 `;
 
 export const IntroWrapper = styled.div`
