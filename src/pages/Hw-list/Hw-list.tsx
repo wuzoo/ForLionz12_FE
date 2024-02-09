@@ -1,11 +1,14 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
-import HwCard from "../../components/Card/HwCard";
+// import HwCard from "../../components/Card/HwCard";
+const HwCardComponent = React.lazy(
+  () => import("../../components/Card/HwCard")
+);
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import useAllAssignment from "../../hooks/api/assignment/useAllAssignment";
 import { theme } from "../../theme/theme";
@@ -89,19 +92,21 @@ function HwList() {
         <PartToggle part={selectedPart} setPart={setSelectedPart} />
       </Styled.AlignWrapper>
 
-      <Styled.OtherHWContainer>
-        {filteredData?.map((item) => (
-          <HwCard
-            category={item.category}
-            layoutId={item.id + ""}
-            onClick={() => setClickedId(item.id)}
-            key={item.id}
-            part={item.part.toLowerCase()}
-            title={item.title}
-            createdAt={getFormedDate(item.createdAt)}
-          />
-        ))}
-      </Styled.OtherHWContainer>
+      <Suspense fallback={<p>loading...</p>}>
+        <Styled.OtherHWContainer>
+          {filteredData?.map((item) => (
+            <HwCardComponent
+              category={item.category}
+              layoutId={item.id + ""}
+              onClick={() => setClickedId(item.id)}
+              key={item.id}
+              part={item.part.toLowerCase()}
+              title={item.title}
+              createdAt={getFormedDate(item.createdAt)}
+            />
+          ))}
+        </Styled.OtherHWContainer>
+      </Suspense>
       <AnimatePresence>
         {clickedId !== 0 && (
           <Hwdetail setClickedId={setClickedId} clickedId={clickedId} />
