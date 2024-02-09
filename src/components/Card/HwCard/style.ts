@@ -23,6 +23,7 @@ export const Thumnail = styled.div`
 
 export const Img = styled.img`
   width: 40%;
+  object-fit: cover;
 `;
 
 export const Content = styled.div`

@@ -25,7 +25,10 @@ function HwCard({
   const ref = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
-    ref.current?.setAttribute("src", getImgForCategory(category) || "");
+    ref.current?.setAttribute(
+      "src",
+      getImgForCategory(category.toUpperCase()) || ""
+    );
   }, [category]);
 
   return (
