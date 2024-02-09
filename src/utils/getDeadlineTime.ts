@@ -7,7 +7,7 @@ export const getDeadlineTime = (date: string) => {
 
   const day =
     new Date(y, m - 1, d).getTime() +
-    9 * 1000 * 60 * 60 -
+    2 * 9 * 1000 * 60 * 60 -
     1000 * 60 +
     new Date().getTimezoneOffset() * 60 * 1000;
 
