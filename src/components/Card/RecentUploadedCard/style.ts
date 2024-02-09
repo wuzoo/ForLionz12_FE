@@ -25,6 +25,7 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0px 5px;
 `;
 
 export const Img = styled.img`

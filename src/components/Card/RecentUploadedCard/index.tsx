@@ -34,7 +34,9 @@ export default function Card({ name, content, link, cnt, uid }: ICard) {
       >
         <div>
           <Styled.Name>
-            <Typo>{name}의 과제</Typo>
+            <Typo fontSize="24" weight="600">
+              {name}의 과제
+            </Typo>
           </Styled.Name>
           <Styled.Text>
             <Typo color="darkgray" fontSize="14">
@@ -45,10 +47,9 @@ export default function Card({ name, content, link, cnt, uid }: ICard) {
         <div
           css={css`
             cursor: pointer;
-            padding: 5px;
           `}
         >
-          <Typo onClick={handleLinkClick} color="darkblue" fontSize="16">
+          <Typo onClick={handleLinkClick} color="darkblue" fontSize="18">
             구경하러 가기
           </Typo>
         </div>
