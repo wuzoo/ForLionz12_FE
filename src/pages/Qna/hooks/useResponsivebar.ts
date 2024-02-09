@@ -17,7 +17,7 @@ function useResponsivebar() {
       ref.current.style.top = "80px";
     } else {
       ref.current.style.position = "absolute";
-      ref.current.style.left = "0";
+      ref.current.style.left = "3%";
       ref.current.style.top = "70vh";
     }
   };
