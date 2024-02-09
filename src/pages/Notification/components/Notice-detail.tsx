@@ -6,6 +6,7 @@ import { PART_COLOR } from "../../../constants/partcolor";
 import getFormedDate from "../../../utils/getFormedDate";
 import useNoticeById from "../../../hooks/api/notification/useNoticeById";
 import { theme } from "../../../theme/theme";
+import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 
 interface INoticeModal {
   clickedId: number;
@@ -24,8 +25,7 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
   }, [clickedId]);
 
   const { isloading, data, error } = useNoticeById(clickedId);
-
-  console.log(data);
+  const uid = localStorage.getItem("id");
 
   if (error === "rejected") {
     throw new Error("axios error");
@@ -52,9 +52,22 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
       ></Styled.Overlay>
       <Styled.Modal>
         <Styled.MainWrapper>
-          <Typo fontSize="44" weight="600">
-            {title}
-          </Typo>
+          <div
+            css={css`
+              display: flex;
+              align-items: end;
+              gap: 20px;
+            `}
+          >
+            <Typo fontSize="44" weight="600">
+              {title}
+            </Typo>
+            <AdminModifyBtn
+              type="notification"
+              id={clickedId + ""}
+              uid={uid + ""}
+            />
+          </div>
           <Styled.Wrapper>
             <Styled.Badge
               css={css`
