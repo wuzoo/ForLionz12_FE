@@ -18,6 +18,8 @@ function AssignForm({
   const [explain, setExplain] = useState(description);
   const [link, setLink] = useState(assignmentLink);
 
+  const part = localStorage.getItem("part");
+
   const handleAssignmentSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -58,6 +60,7 @@ function AssignForm({
       onSubmit={handleAssignmentSubmit}
       css={css`
         display: ${isSubmitted ? "none" : ""};
+        display: ${part === "STAFF" && "none"};
       `}
     >
       <Styled.SubmitWrapper>
