@@ -7,6 +7,8 @@ import lion from "../../assets/3dicons/main/lion.webp";
 import { Img } from "./style";
 import { IPageLogo, IPageobj } from "./types";
 import { useLayoutEffect, useRef } from "react";
+import * as Styled from "./style";
+import { css } from "@emotion/react";
 
 export default function PageLogo(props: IPageLogo) {
   const preloadImg = useRef<HTMLImageElement>(null);
@@ -26,5 +28,15 @@ export default function PageLogo(props: IPageLogo) {
     lion: lion,
   };
 
-  return <Img ref={preloadImg} {...props} />;
+  return (
+    <Styled.Wrapper
+      css={css`
+        width: ${props.width}px;
+        height: ${props.height}px;
+        aspect-ratio: 1/1;
+      `}
+    >
+      <Img ref={preloadImg} {...props} />
+    </Styled.Wrapper>
+  );
 }
