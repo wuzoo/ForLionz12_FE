@@ -22,9 +22,7 @@
     "react-hook-form": "^7.50.1",
     "react-router-dom": "^6.21.2",
     "react-slick": "^0.29.0",
-    "recoil": "^0.7.7",
-    "slick-carousel": "^1.8.1",
-    "usehooks-ts": "^2.9.5"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.11.0",
