@@ -4,21 +4,11 @@ import login from "../../assets/3dicons/login/people.webp";
 import notice from "../../assets/3dicons/notice/people.webp";
 import qna from "../../assets/3dicons/qna/baby.webp";
 import lion from "../../assets/3dicons/main/lion.webp";
-import { Img } from "./style";
 import { IPageLogo, IPageobj } from "./types";
-import { useLayoutEffect, useRef } from "react";
-import * as Styled from "./style";
+import { useMemo } from "react";
 import { css } from "@emotion/react";
 
 export default function PageLogo(props: IPageLogo) {
-  const preloadImg = useRef<HTMLImageElement>(null);
-
-  useLayoutEffect(() => {
-    if (preloadImg && preloadImg.current) {
-      preloadImg.current.src = pageobj[props.type];
-    }
-  }, [props.type]);
-
   const pageobj: IPageobj = {
     assignsubmit: submit,
     contact: contact,
@@ -28,15 +18,26 @@ export default function PageLogo(props: IPageLogo) {
     lion: lion,
   };
 
-  return (
-    <Styled.Wrapper
-      css={css`
-        width: ${props.width}px;
-        height: ${props.height}px;
-        aspect-ratio: 1/1;
-      `}
-    >
-      <Img ref={preloadImg} {...props} />
-    </Styled.Wrapper>
+  return useMemo(
+    () => (
+      <div
+        css={css`
+          width: ${props.width}px;
+          height: ${props.height}px;
+          aspect-ratio: 1/1;
+        `}
+      >
+        <img
+          css={css`
+            object-fit: contain;
+          `}
+          src={pageobj[props.type]}
+          width="100%"
+          height="100%"
+          {...props}
+        />
+      </div>
+    ),
+    [props.type]
   );
 }
