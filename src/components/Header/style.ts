@@ -10,6 +10,7 @@ export const Wrapper = styled.div<{ type?: string }>`
   position: fixed;
   top: 0;
   background-color: ${(props) => props.theme.color.white};
+  z-index: 100;
 `;
 
 export const logo = styled.span`
