@@ -3,18 +3,8 @@ export interface IPageLogo extends ILogo {
 }
 
 export interface ILogo {
-  pos?: string;
   height?: string;
-  zindex?: string;
   width?: string;
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
-  padbottom?: string;
-  padleft?: string;
-  padright?: string;
-  padtop?: string;
 }
 
 export interface IPageobj {
