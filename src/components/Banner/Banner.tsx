@@ -28,12 +28,7 @@ function Banner({ type, logowidth, logoheight }: IBanner) {
         colors={["black", "darkgray"]}
         gap="7"
       />
-      <PageLogo
-        type={type}
-        width={logowidth}
-        height={logoheight}
-        pos="static"
-      />
+      <PageLogo type={type} width={logowidth} height={logoheight} />
     </Styled.Container>
   );
 }
