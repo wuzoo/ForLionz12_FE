@@ -1,9 +1,8 @@
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
-import PageLogo from "../../components/PageLogo/PageLogo";
+import login from "../../assets/3dicons/login/people.webp";
 import Button from "../../components/Button/Button";
 import { TEXT } from "../../constants/text";
-import { css } from "@emotion/react";
 import { useState } from "react";
 import useAuth from "../../hooks/api/auth/useAuth";
 
@@ -19,18 +18,11 @@ function Login() {
 
   return (
     <>
-      <PageLogo width="350" height="350" type="login" left="22%" top="23%" />
       <Styled.page>
         <Styled.loginbox>
+          <Styled.Img src={login} />
           <Styled.welcometext>{TEXT.login}</Styled.welcometext>
-          <Styled.Form
-            onSubmit={(e) => handleLogin(e)}
-            css={css`
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            `}
-          >
+          <Styled.Form onSubmit={(e) => handleLogin(e)}>
             <Styled.Input
               type="text"
               value={id}

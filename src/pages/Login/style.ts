@@ -7,6 +7,14 @@ export const page = styled.div`
   margin-top: 100px;
 `;
 
+export const Img = styled.img`
+  position: absolute;
+  width: 400px;
+  z-index: -10;
+  left: 20%;
+  top: 20%;
+`;
+
 export const loginbox = styled.div`
   max-width: 60vw;
   max-height: 80vh;
@@ -48,4 +56,8 @@ export const Input = styled.input`
   }
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
