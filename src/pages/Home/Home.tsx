@@ -7,7 +7,7 @@ import { TEXT } from "../../constants/text";
 import Card from "../../components/Card/SliderCard";
 import Category from "./components/category/Category";
 import { SliderProps } from "./constant/constant";
-import OnebyoneText from "./components/onebyonetext/Onebyonetext";
+import { MemorizedOnebyoneText } from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
 import useAllNotification from "../../hooks/api/notification/useAllNotification";
 
@@ -35,7 +35,7 @@ function Home() {
           <Styled.textwrapper>
             <Styled.text>
               <Typo color="black" weight="700" fontSize="50">
-                <OnebyoneText item={str} />
+                <MemorizedOnebyoneText item={str} />
                 &nbsp;
               </Typo>
               <Typo color="darkpink" weight="700" fontSize="50">
@@ -55,7 +55,7 @@ function Home() {
               </Typo>
             </Styled.usergreet>
           </Styled.textwrapper>
-          <PageLogo height="430" width="450" pos="static" type="lion" />
+          <PageLogo height="430" width="450" type="lion" />
         </Styled.banner>
         <FullScreenSlider>
           {noticesData?.map((item, index) => (
