@@ -6,18 +6,23 @@ import Typo from "../../components/Typo/Typo";
 import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
-import { CATEGORY_TEXT } from "./constants/text";
+import useTags from "../../hooks/api/qna/useTags";
+import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import useSelectedData from "../../hooks/api/qna/useSelectedData";
 
 function Qna() {
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState<number>(0);
 
-  const [query, setQuery] = useState<string[]>([]);
+  const { data: tags } = useTags();
+  const navigate = useNavigate();
 
-  const day = new Date().getTime();
-  const krDay = day + 1000 * 3600 * 9;
-  const str = new Date(krDay).toISOString().slice(0, 19).split("T");
+  const title = tags?.find((item) => item.parentTagId === category)?.name;
+  const { childTags, data, query, setQuery } = useSelectedData(category);
 
-  const tmparr = new Array(20).fill(0).map((_, i) => i + 1);
+  if (!tags) {
+    return;
+  }
 
   return (
     <Styled.Wrapper>
@@ -28,24 +33,47 @@ function Qna() {
       >
         <Banner type="q&a" logowidth="500" logoheight="500" />
       </div>
-      <SideBar currentCategory={category} setCategory={setCategory} />
+      <SideBar
+        tags={tags}
+        currentCategory={category}
+        setCategory={setCategory}
+      />
       <Styled.Title>
         <Typo weight="600" fontSize="30">
-          {CATEGORY_TEXT[category]}
+          {title}
         </Typo>
       </Styled.Title>
-      <Styled.BoxContainer>
-        <Checkbox values={query} setClickedValue={setQuery} text="Python" />
-        <Checkbox values={query} setClickedValue={setQuery} text="Diango" />
-        <Checkbox values={query} setClickedValue={setQuery} text="Docker" />
-      </Styled.BoxContainer>
+      <Styled.TagsAndBtnWrapper>
+        <Styled.BoxContainer>
+          {childTags?.map((item) => (
+            <Checkbox
+              key={item.name}
+              id={item.childTagId}
+              values={query}
+              setClickedValue={setQuery}
+              text={item.name}
+            />
+          ))}
+        </Styled.BoxContainer>
+        <Button
+          onClick={() => navigate("upload")}
+          bgcolor="white"
+          color="darkblue"
+        >
+          작성하기
+        </Button>
+      </Styled.TagsAndBtnWrapper>
       <Styled.ItemsContainer>
-        {tmparr.map((item) => (
+        {data?.map((item) => (
           <QnaItem
-            key={item}
-            title="과제 페이지는 우짬?"
-            date={str[0] + "  " + str[1]}
-            name="한수현"
+            key={item.questionId}
+            onClick={() => {
+              navigate(`${item.questionId}`);
+            }}
+            title={item.title}
+            date={item.createdAt}
+            url={item.memberImageUrl}
+            name={item.name}
           />
         ))}
       </Styled.ItemsContainer>
