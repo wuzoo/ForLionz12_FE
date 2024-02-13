@@ -44,7 +44,7 @@ function QuestionUpload() {
   const handleCodeInput = () => {
     const input = document.getElementById("content") as HTMLInputElement;
 
-    input.value += "\n```\ncode\n```\n";
+    input.value += "  \n```\ncode\n```  \n";
     input.focus();
   };
 
@@ -53,6 +53,8 @@ function QuestionUpload() {
       ...data,
       postImageUrls: [...urls],
     };
+
+    console.log(data);
 
     try {
       await axios.post("/question", request, {
@@ -90,7 +92,9 @@ function QuestionUpload() {
     });
 
     const input = document.getElementById("content") as HTMLInputElement;
-    input.value += `\n![](${url})\n`;
+    input.value += "  \n  \n![](" + url + ")  \n  \n";
+
+    input.focus();
   };
 
   return (
