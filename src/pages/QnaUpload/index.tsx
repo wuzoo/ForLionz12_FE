@@ -10,7 +10,6 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
-import ListItem from "../../components/ListItem/CommentIndex";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -164,7 +163,6 @@ function QuestionUpload() {
           업로드
         </Button>
       </Styled.SubmitBtnWrapper>
-      <ListItem />
     </Styled.Wrapper>
   );
 }
