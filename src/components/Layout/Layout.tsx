@@ -1,13 +1,13 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import { useCallback, useEffect } from "react";
 import axios from "axios";
 import * as Styled from "./style";
 import { useLoginInfoDispatch } from "../../context/LoginUser/User";
+import { Cookies } from "react-cookie";
 
 function Layout() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const isLoginMatch = pathname === "/login";
   const dispatch = useLoginInfoDispatch();
 
@@ -23,12 +23,27 @@ function Layout() {
   const checkToken = useCallback(async () => {
     console.log("reloaded");
 
-    const token = localStorage.getItem("accessToken");
+    const cookies = new Cookies();
 
-    if (!token) {
-      navigate("/login");
-    }
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const token = cookies.get("refreshToken");
+
+    const response = await axios({
+      method: "post",
+      url: "/auth/reissue",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `refreshToken=${token}`,
+      },
+    });
+
+    console.log(response.data);
+
+    // const token = localStorage.getItem("accessToken");
+
+    // if (!token) {
+    //   navigate("/login");
+    // }
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
 
   const updateUser = useCallback(async () => {
