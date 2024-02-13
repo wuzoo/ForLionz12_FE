@@ -48,7 +48,24 @@ function QuestionUpload() {
     input.focus();
   };
 
-  const onSubmit: SubmitHandler<IInputs> = async (data) => {};
+  const onSubmit: SubmitHandler<IInputs> = async (data) => {
+    const request = {
+      ...data,
+      postImageUrls: [...urls],
+    };
+
+    try {
+      await axios.post("/question", request, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (err) {
+      throw new Error("upload qna error");
+    }
+
+    navigate("/qna");
+  };
 
   const handleImgUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
