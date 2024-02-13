@@ -1,11 +1,10 @@
 export interface IQna {
-  id: number;
+  questionId: number;
   memberId: number;
   title: string;
   content: string;
   createdAt: string;
   memberImageUrl: string;
-  author: string;
   name: string;
 }
 
