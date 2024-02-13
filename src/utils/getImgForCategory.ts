@@ -8,7 +8,7 @@ import html from "../assets/icons/html/HTML-Logo.webp";
 import git from "../assets/icons/git/github-logo.webp";
 import django from "../assets/icons/django/Vector.webp";
 import password from "../assets/icons/password/password.svg";
-import github from "../assets/icons/github/img.svg";
+import github from "../assets/icons/github/3d.png";
 import instagram from "../assets/icons/insta/insta.svg";
 
 function getImgForCategory(category: string) {
