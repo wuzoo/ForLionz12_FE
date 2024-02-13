@@ -29,3 +29,9 @@ export const getChildTagData = async (query: number[]) => {
 
   return response.data;
 };
+
+export const getQnaDetailById = async (id: number) => {
+  const response = await axios.get(`/question?id=${id}`);
+
+  return response.data;
+};
