@@ -16,6 +16,7 @@ import UploadHW from "./pages/Admin/UploadAssignment";
 import UploadNotice from "./pages/Admin/UploadNotification";
 import QuestionUpload from "./pages/QnaUpload";
 import QnaDetail from "./pages/QnaDetail/Detail";
+import { CookiesProvider } from "react-cookie";
 
 const router = createBrowserRouter([
   {
@@ -65,12 +66,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <LoginInfoProvider>
-        <ThemeProvider theme={theme}>
-          <Global styles={GlobalStyle} />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </LoginInfoProvider>
+      <CookiesProvider>
+        <LoginInfoProvider>
+          <ThemeProvider theme={theme}>
+            <Global styles={GlobalStyle} />
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </LoginInfoProvider>
+      </CookiesProvider>
     </>
   );
 }
