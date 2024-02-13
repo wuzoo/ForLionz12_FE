@@ -1,29 +1,31 @@
 import { css } from "@emotion/react";
 import * as Styled from "./style";
-import { CATEGORY_TEXT } from "../../constants/text";
 import { theme } from "../../../../theme/theme";
 import useResponsivebar from "../../hooks/useResponsivebar";
+import { SetStateAction } from "react";
+import { ParenttagType } from "../../../../types/Qna";
 
 interface ISideBar {
-  setCategory: (e: string) => void;
-  currentCategory: string;
+  setCategory: React.Dispatch<SetStateAction<number>>;
+  currentCategory: number;
+  tags: ParenttagType[];
 }
 
-function SideBar({ setCategory, currentCategory }: ISideBar) {
+function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
   const ref = useResponsivebar();
 
   return (
     <Styled.Wrapper ref={ref}>
-      {Object.entries(CATEGORY_TEXT).map((entry) => (
+      {tags.map((item) => (
         <Styled.Item
-          key={entry[0]}
+          key={item.parentTagId}
           css={css`
-            background-color: ${currentCategory == entry[0] &&
+            background-color: ${currentCategory === item.parentTagId &&
             theme.color.pink};
           `}
-          onClick={() => setCategory(entry[0])}
+          onClick={() => setCategory(item.parentTagId)}
         >
-          {entry[1]}
+          {item.name}
         </Styled.Item>
       ))}
     </Styled.Wrapper>
