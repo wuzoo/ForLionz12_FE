@@ -1,18 +1,20 @@
-import { User } from "../../Profile/style";
+import User from "../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
-import user from "../../../assets/imgs/defaultUser.svg";
+import getFormedDate from "../../../utils/getFormedDate";
 
 interface IItem {
   title: string;
   date: string;
+  url: string;
   name: string;
+  onClick: () => void;
 }
 
-function QnaItem({ title, date, name }: IItem) {
+function QnaItem({ onClick, title, date, url, name }: IItem) {
   return (
-    <Styled.Container>
+    <Styled.Container onClick={onClick}>
       <div
         css={css`
           display: flex;
@@ -20,7 +22,7 @@ function QnaItem({ title, date, name }: IItem) {
           gap: 30px;
         `}
       >
-        <User url={user} size="45" />
+        <User url={url} size="45" />
         <div css={css``}>
           <Styled.Title>
             <Typo>{title}</Typo>
@@ -34,7 +36,7 @@ function QnaItem({ title, date, name }: IItem) {
       </div>
       <Styled.Date>
         <Typo color="darkgray" fontSize="14">
-          작성일: {date}
+          작성일: {getFormedDate(date)}
         </Typo>
       </Styled.Date>
     </Styled.Container>
