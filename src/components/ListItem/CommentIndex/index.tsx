@@ -11,16 +11,34 @@ import Item from "./components/Child";
 import React, { useState } from "react";
 import { IComment } from "./types";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function ListItem({ url, name, createdAt, id, content, part }: IComment) {
   const { data } = useChildComments(id);
   const [isChildClicked, setIsChildClicked] = useState(false);
   const [comment, setComment] = useState("");
 
-  const navigate = useNavigate();
+  const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {};
+    await axios
+      .post(
+        "/childcomment",
+        {
+          content: comment,
+          commentId: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+
+    window.location.reload();
+  };
 
   return (
     <Styled.Wrapper css={css``}>
