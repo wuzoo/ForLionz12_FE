@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginInfoDispatch } from "../../../context/LoginUser/User";
+import { getCookie, removeCookie, setCookie } from "../../../utils/cookie";
 
 function useAuth() {
   const navigate = useNavigate();
@@ -20,17 +21,24 @@ function useAuth() {
           },
         })
         .then((res) => {
-          console.log(res);
+          const { accessToken, refreshToken } = res.data.data;
 
-          const { accessToken } = res.data.data;
+          if (getCookie("myToken")) {
+            removeCookie("myToken");
+          }
+
+          if (refreshToken) {
+            setCookie("myToken", refreshToken, {
+              path: "/",
+              secure: true,
+              sameSite: "none",
+            });
+          }
 
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${accessToken}`;
 
-          localStorage.setItem("accessToken", accessToken);
-
-          console.log(accessToken);
           if (res.status === 200) {
             navigate("/");
           }
@@ -54,6 +62,7 @@ function useAuth() {
           console.log(err);
         });
       const res = response.data;
+
       const { id, part } = res;
       localStorage.setItem("id", id);
       localStorage.setItem("part", part);
