@@ -34,7 +34,12 @@ function QuestionUpload() {
 
   const navigate = useNavigate();
 
-  const getChild = async (e: React.ChangeEvent<HTMLSelectElement>) => {};
+  const getChild = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const response = await getParentTagData(+e.target.value);
+
+    const { childTags } = response.data;
+    setChild(childTags);
+  };
 
   const handleCodeInput = () => {
     const input = document.getElementById("content") as HTMLInputElement;
@@ -45,7 +50,31 @@ function QuestionUpload() {
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {};
 
-  const handleImgUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleImgUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (!files || files.length !== 1) return;
+
+    const response = await axios.post(
+      "/question/image",
+      {
+        file: files[0],
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    const url = response.data.data;
+    setUrls((obj) => {
+      return [...obj, url];
+    });
+
+    const input = document.getElementById("content") as HTMLInputElement;
+    input.value += `\n![](${url})\n`;
+  };
 
   return (
     <Styled.Wrapper onSubmit={handleSubmit(onSubmit)}>
