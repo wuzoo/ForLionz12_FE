@@ -2,7 +2,6 @@ import axios from "axios";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginInfoDispatch } from "../../../context/LoginUser/User";
-import { Cookies } from "react-cookie";
 
 function useAuth() {
   const navigate = useNavigate();
@@ -23,17 +22,7 @@ function useAuth() {
         .then((res) => {
           console.log(res);
 
-          const { accessToken, refreshToken } = res.data.data;
-
-          console.log(refreshToken);
-
-          const cookies = new Cookies();
-
-          cookies.set("myToken", refreshToken, {
-            path: "/",
-            secure: true,
-            sameSite: "none",
-          });
+          const { accessToken } = res.data.data;
 
           axios.defaults.headers.common[
             "Authorization"
