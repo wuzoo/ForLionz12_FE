@@ -5,19 +5,22 @@ import { theme } from "../../../../theme/theme";
 
 interface IBox {
   text: string;
-  setClickedValue: React.Dispatch<React.SetStateAction<Array<string>>>;
-  values: string[];
+  setClickedValue: React.Dispatch<React.SetStateAction<Array<number>>>;
+  values: number[];
+  id: number;
 }
 
-function Checkbox({ text, setClickedValue, values }: IBox) {
+function Checkbox({ text, setClickedValue, id }: IBox) {
   const [clicked, setClicked] = useState(false);
 
-  const AddValue = (e: string) => {
-    const tmp = values.concat();
-    tmp.push(e);
-
-    setClickedValue([...new Set(tmp)]);
+  const AddValue = () => {
     setClicked((prev) => !prev);
+    setClickedValue((obj) => {
+      if (!clicked) {
+        return [...obj, id];
+      }
+      return [...obj.filter((item) => item !== id)];
+    });
   };
 
   return (
@@ -25,7 +28,7 @@ function Checkbox({ text, setClickedValue, values }: IBox) {
       css={css`
         background-color: ${clicked && theme.color.superlightgray};
       `}
-      onClick={() => AddValue(text)}
+      onClick={() => AddValue()}
     >
       {clicked ? "✓" : ""} {text}
     </Styled.Box>
