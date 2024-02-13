@@ -23,3 +23,9 @@ export const CommentInput = styled.textarea`
   margin-top: 10px;
   border: 2px solid ${(props) => props.theme.color.lightgray};
 `;
+
+export const CommentCnt = styled.p`
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+`;
