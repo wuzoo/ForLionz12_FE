@@ -121,6 +121,7 @@ function QnaDetail() {
       >
         {comments?.map((item) => (
           <ListItem
+            last={false}
             type="parent"
             id={item.commentId}
             name={item.name}
