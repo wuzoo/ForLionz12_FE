@@ -2,9 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  border-bottom: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const Info = styled.div`
@@ -25,7 +23,7 @@ export const Date = styled.p``;
 
 export const Comment = styled.p`
   line-height: 1.3;
-  padding-bottom: 20px;
+  padding: 20px 0px;
 `;
 
 export const Child = styled.p`
@@ -40,10 +38,13 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 100%;
+  gap: 20px;
+  width: 80%;
+  padding: 20px 0px;
 `;
 
 export const ChildCommentInput = styled.textarea`
+  width: 100%;
   min-height: 100px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
