@@ -25,7 +25,7 @@ function Layout() {
 
     const cookies = new Cookies();
 
-    const token = cookies.get("myToken");
+    const token = cookies.get("refreshToken");
 
     const response = await axios({
       method: "post",
