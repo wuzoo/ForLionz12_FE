@@ -27,6 +27,8 @@ function Layout() {
 
     const token = cookies.get("refreshToken");
 
+    console.log(token);
+
     const response = await axios({
       method: "post",
       url: "/auth/reissue",
