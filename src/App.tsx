@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
 import { Global, ThemeProvider } from "@emotion/react";
 import { theme } from "./theme/theme";
-import { RecoilRoot } from "recoil";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -15,6 +14,8 @@ import Qna from "./pages/Qna/Qna";
 import { LoginInfoProvider } from "./context/LoginUser/User";
 import UploadHW from "./pages/Admin/UploadAssignment";
 import UploadNotice from "./pages/Admin/UploadNotification";
+import QuestionUpload from "./pages/QnaUpload";
+import QnaDetail from "./pages/QnaDetail/Detail";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
         path: "qna",
         element: <Qna />,
       },
+      {
+        path: "qna/:id",
+        element: <QnaDetail />,
+      },
+      {
+        path: "qna/upload",
+        element: <QuestionUpload />,
+      },
     ],
   },
   {
@@ -56,14 +65,12 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RecoilRoot>
-        <LoginInfoProvider>
-          <ThemeProvider theme={theme}>
-            <Global styles={GlobalStyle} />
-            <RouterProvider router={router} />
-          </ThemeProvider>
-        </LoginInfoProvider>
-      </RecoilRoot>
+      <LoginInfoProvider>
+        <ThemeProvider theme={theme}>
+          <Global styles={GlobalStyle} />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </LoginInfoProvider>
     </>
   );
 }
