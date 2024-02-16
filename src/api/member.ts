@@ -11,3 +11,9 @@ export const getMemberById = async (id: number) => {
 
   return response.data;
 };
+
+export const getMyInfo = async () => {
+  const response = await axios.get(import.meta.env.VITE_MY_INFO);
+
+  return response.data;
+};
