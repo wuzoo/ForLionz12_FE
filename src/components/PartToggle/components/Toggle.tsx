@@ -10,8 +10,10 @@ interface IToggle {
 }
 
 function Toggle({ text, part, setPart }: IToggle) {
+  console.log(part);
   return (
     <Button
+      type="button"
       onClick={() => setPart(text)}
       color={part == text ? PART_COLOR[part] : "black"}
       bordercolor={part == text ? PART_COLOR[part] : "lightgray"}
