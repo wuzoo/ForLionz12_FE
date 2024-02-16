@@ -8,14 +8,17 @@ import Button from "../../Button/Button";
 import { theme } from "../../../theme/theme";
 import useUserUpdater from "../../../hooks/api/member/useUserUpdater";
 import getImgForCategory from "../../../utils/getImgForCategory";
-import { useLoginInfoState } from "../../../context/LoginUser/User";
+import {
+  useLoginInfoDispatch,
+  useLoginInfoState,
+} from "../../../context/LoginUser/User";
 
-export default function PasswordIndex({ type, setSubmited }: IItem) {
+export default function PasswordIndex({ type, onSubmit }: IItem) {
   const [edit, setEdit] = useState(false);
   const { updateUserInfo } = useUserUpdater();
 
   const user = useLoginInfoState();
-  console.log(user);
+  const dispatch = useLoginInfoDispatch();
 
   const [info, setInfo] = useState("1234");
 
@@ -24,8 +27,16 @@ export default function PasswordIndex({ type, setSubmited }: IItem) {
 
     updateUserInfo(type, info);
 
+    dispatch({
+      type: "LOGIN",
+      data: {
+        ...user,
+        // password: info,
+      },
+    });
+
     setEdit(false);
-    setSubmited(true);
+    onSubmit();
   };
   return (
     <Styled.Container>
