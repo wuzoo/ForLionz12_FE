@@ -7,7 +7,6 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import axios from "axios";
 import { IForm } from "../../types";
-import "react-toastify/dist/ReactToastify.css";
 import { error } from "../../../../utils/toast";
 
 function AssignForm({
