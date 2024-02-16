@@ -3,7 +3,7 @@ import { IResponse, IReducerParam, IReducer } from "../../types/API";
 
 function reducer<T>(state: IReducerParam<T>, action: IReducerParam<T>) {
   const { type } = action;
-  console.log(state);
+
   switch (action.type) {
     case "ISLOADING": {
       return {
@@ -25,6 +25,7 @@ function reducer<T>(state: IReducerParam<T>, action: IReducerParam<T>) {
       };
     }
     default: {
+      console.log(state);
       return {
         type,
       };
