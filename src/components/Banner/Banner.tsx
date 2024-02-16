@@ -10,7 +10,7 @@ interface IBanner {
 }
 
 function Banner({ type, logowidth, logoheight }: IBanner) {
-  function getMain() {
+  function getMainText() {
     if (type === "q&a") {
       return "Q&A";
     } else if (type === "assignsubmit") {
@@ -22,7 +22,7 @@ function Banner({ type, logowidth, logoheight }: IBanner) {
   return (
     <Styled.Container>
       <MainAndSubtitle
-        main={getMain()}
+        main={getMainText()}
         sub={TEXT[type]}
         fontsizes={["70", "18"]}
         colors={["black", "darkgray"]}
