@@ -29,3 +29,36 @@ export const CommentCnt = styled.p`
   align-items: center;
   padding-left: 10px;
 `;
+
+export const MarkDownContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px 2%;
+  min-height: 80vh;
+  justify-content: center;
+`;
+
+export const TitleAndInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const CommentsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  padding: 10px 0px;
+`;
+
+export const MDImg = styled.img`
+  max-width: 100%;
+  height: 400px;
+  object-fit: cover;
+`;

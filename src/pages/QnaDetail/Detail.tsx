@@ -5,30 +5,53 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import getFormedDate from "../../utils/getFormedDate";
-import { css } from "@emotion/react";
 import Button from "../../components/Button/Button";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import useCommentsById from "../../hooks/api/comment/useCommentsById";
 import ListItem from "../../components/ListItem/CommentIndex";
+import React, { useState } from "react";
+import axios from "axios";
 
 function QnaDetail() {
   const { id } = useParams();
   if (!id) return;
 
-  const { data: comments } = useCommentsById(+id);
+  const { data: comments, reFetch } = useCommentsById(+id);
   const { data } = useQnaDetail(+id);
+  const [comment, setComment] = useState("");
 
-  if (!data) return;
+  if (!data) {
+    throw new Error("특정 큐앤에이 상세 조회 에러");
+  }
+
+  const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await axios
+      .post(
+        "/comment",
+        {
+          content: comment,
+          questionPostId: +id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+        throw new Error("comment upload error");
+      });
+
+    setComment("");
+    reFetch();
+  };
 
   return (
     <Styled.Wrapper>
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        `}
-      >
+      <Styled.TitleAndInfoWrapper>
         <Styled.Title>
           <Typo fontSize="40" weight="700">
             {data?.title}
@@ -42,14 +65,8 @@ function QnaDetail() {
           </Typo>
         </Styled.NameAndDate>
         <div></div>
-      </div>
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          padding: 20px 2%;
-        `}
-      >
+      </Styled.TitleAndInfoWrapper>
+      <Styled.MarkDownContent>
         <ReactMarkdown
           children={data?.content}
           components={{
@@ -75,48 +92,30 @@ function QnaDetail() {
               );
             },
             img: (props: any) => {
-              return (
-                <img
-                  {...props}
-                  style={{
-                    maxWidth: "100%",
-                    height: "400px",
-                    objectFit: "cover",
-                  }}
-                />
-              );
+              return <Styled.MDImg {...props} />;
             },
           }}
         />
-      </div>
-      <form>
+      </Styled.MarkDownContent>
+      <form onSubmit={handleCommentSubmit}>
         <Styled.CommentCnt>
           <Typo color="darkblue" fontSize="24">
             {comments?.length}&nbsp;
           </Typo>
           <Typo>개의 댓글</Typo>
         </Styled.CommentCnt>
-        <Styled.CommentInput placeholder="댓글을 남겨보세요." />
-        <div
-          css={css`
-            display: flex;
-            justify-content: end;
-            padding: 10px 0px;
-          `}
-        >
+        <Styled.CommentInput
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="댓글을 남겨보세요."
+        />
+        <Styled.BtnWrapper>
           <Button width="100px" color="white">
             댓글 작성
           </Button>
-        </div>
+        </Styled.BtnWrapper>
       </form>
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 20px;
-        `}
-      >
+      <Styled.CommentsContainer>
         {comments?.map((item) => (
           <ListItem
             id={item.commentId}
@@ -127,7 +126,7 @@ function QnaDetail() {
             content={item.content}
           />
         ))}
-      </div>
+      </Styled.CommentsContainer>
     </Styled.Wrapper>
   );
 }
