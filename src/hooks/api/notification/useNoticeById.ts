@@ -2,7 +2,7 @@ import { getNoticeById } from "../../../api/notification";
 import { INotification } from "../../../types/Notification";
 import useAsyncData from "../../common/useAsyncData";
 
-function useNoticeById(id: number) {
+export function useNoticeById(id: number) {
   const [state, reFetch] = useAsyncData<INotification>(
     () => getNoticeById(id),
     [id]
@@ -12,5 +12,3 @@ function useNoticeById(id: number) {
 
   return { isloading, data, error, reFetch };
 }
-
-export default useNoticeById;

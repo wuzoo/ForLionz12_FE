@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLoginInfoDispatch } from "../../../context/LoginUser/User";
 import { getCookie, removeCookie, setCookie } from "../../../utils/cookie";
 
-function useAuth() {
+export function useAuth() {
   const navigate = useNavigate();
   const dispatch = useLoginInfoDispatch();
 
@@ -79,5 +79,3 @@ function useAuth() {
 
   return { check };
 }
-
-export default useAuth;

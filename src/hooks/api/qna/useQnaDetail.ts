@@ -2,7 +2,7 @@ import { getQnaDetailById } from "../../../api/qna";
 import { IQna } from "../../../types/Qna";
 import useAsyncData from "../../common/useAsyncData";
 
-function useQnaDetail(id: number) {
+export function useQnaDetail(id: number) {
   const [state, fetchData] = useAsyncData<IQna>(
     () => getQnaDetailById(id),
     [id]
@@ -12,4 +12,3 @@ function useQnaDetail(id: number) {
 
   return { isloading, error, data, fetchData };
 }
-export default useQnaDetail;

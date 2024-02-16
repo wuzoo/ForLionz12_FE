@@ -2,7 +2,7 @@ import { getAllAssignment } from "../../../api/assignment";
 import { IAssignmentResult } from "../../../types/Assignment";
 import useAsyncData from "../../common/useAsyncData";
 
-function useAllAssignment() {
+export function useAllAssignment() {
   const [state, fetchData] = useAsyncData<IAssignmentResult>(
     getAllAssignment,
     []
@@ -12,4 +12,3 @@ function useAllAssignment() {
 
   return { isloading, error, data, fetchData };
 }
-export default useAllAssignment;

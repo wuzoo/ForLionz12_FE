@@ -6,7 +6,7 @@ import {
 } from "../../../api/qna";
 import { ChildtagType, IQna } from "../../../types/Qna";
 
-function useSelectedData(id: number) {
+export function useSelectedData(id: number) {
   const [data, setData] = useState<IQna[]>();
   const [childTags, setChildTags] = useState<ChildtagType[]>();
 
@@ -43,5 +43,3 @@ function useSelectedData(id: number) {
 
   return { childTags, data, query, setQuery };
 }
-
-export default useSelectedData;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-function useUserUpdater() {
+export function useUserUpdater() {
   const updateUserInfo = async (type: string, value: string) => {
     let data;
     if (type === "password") {
@@ -25,5 +25,3 @@ function useUserUpdater() {
 
   return { updateUserInfo };
 }
-
-export default useUserUpdater;

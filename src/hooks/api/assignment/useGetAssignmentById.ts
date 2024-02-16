@@ -2,7 +2,7 @@ import { getIdAssignment } from "../../../api/assignment";
 import { IAssignment } from "../../../types/Assignment";
 import useAsyncData from "../../common/useAsyncData";
 
-function useGetAssignmentById(AssignmentId: number) {
+export function useGetAssignmentById(AssignmentId: number) {
   const [state, reFetch] = useAsyncData<IAssignment>(
     () => getIdAssignment(AssignmentId),
     [AssignmentId]
@@ -18,5 +18,3 @@ function useGetAssignmentById(AssignmentId: number) {
     reFetch,
   };
 }
-
-export default useGetAssignmentById;

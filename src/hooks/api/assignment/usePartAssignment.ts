@@ -2,7 +2,7 @@ import { getPartAssignment } from "../../../api/assignment";
 import { IAssignmentResult } from "../../../types/Assignment";
 import useAsyncData from "../../common/useAsyncData";
 
-function usePartAssignment(part: string) {
+export function usePartAssignment(part: string) {
   const [state, reFetch] = useAsyncData<IAssignmentResult>(
     () => getPartAssignment(part),
     [part]
@@ -12,5 +12,3 @@ function usePartAssignment(part: string) {
 
   return { isloading, error, data, reFetch };
 }
-
-export default usePartAssignment;

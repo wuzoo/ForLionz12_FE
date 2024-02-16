@@ -2,7 +2,7 @@ import { getMemberById } from "../../../api/member";
 import { IUserInfo } from "../../../types/User";
 import useAsyncData from "../../common/useAsyncData";
 
-function useMemberId(id: number) {
+export function useMemberId(id: number) {
   const [state, reFetch] = useAsyncData<IUserInfo>(
     () => getMemberById(id),
     [id]
@@ -13,5 +13,3 @@ function useMemberId(id: number) {
 
   return { isloading, data, error, reFetch };
 }
-
-export default useMemberId;

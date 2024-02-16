@@ -2,7 +2,7 @@ import { getAllNotification } from "../../../api/notification";
 import { INotificationResult } from "../../../types/Notification";
 import useAsyncData from "../../common/useAsyncData";
 
-function useAllNotification() {
+export function useAllNotification() {
   const [state, reFetch] = useAsyncData<INotificationResult>(
     getAllNotification,
     []
@@ -12,5 +12,3 @@ function useAllNotification() {
 
   return { isloading, data, error, reFetch };
 }
-
-export default useAllNotification;

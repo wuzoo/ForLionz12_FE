@@ -2,7 +2,7 @@ import { getMySubmission } from "../../../api/assignment";
 import { ISubmitted } from "../../../types/Assignment";
 import useAsyncData from "../../common/useAsyncData";
 
-function useOwnSubmission(id: number) {
+export function useOwnSubmission(id: number) {
   const [state, reFetch] = useAsyncData<ISubmitted>(
     () => getMySubmission(id),
     [id]
@@ -30,5 +30,3 @@ function useOwnSubmission(id: number) {
   }
   return { isloading, error, data, reFetch };
 }
-
-export default useOwnSubmission;
