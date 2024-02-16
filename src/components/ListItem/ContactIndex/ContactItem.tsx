@@ -7,8 +7,11 @@ import { PART_COLOR } from "../../../constants/partcolor";
 import instaimg from "../../../assets/icons/insta/img.png";
 import githubimg from "../../../assets/icons/github/img.png";
 import { theme } from "../../../theme/theme";
+import { useState } from "react";
 
 function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
+  const [clicked, setClicked] = useState(false);
+
   const goGithub = () => {
     if (githuburl) {
       window.location.href = githuburl;
@@ -22,9 +25,17 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
   };
 
   return (
-    <Styled.Wrapper>
-      <UserImg url={file || null} />
-      <Styled.NameAndPart>
+    <Styled.Wrapper onClick={() => setClicked((prev) => !prev)}>
+      <UserImg
+        radius={clicked ? "20px" : ""}
+        url={file || null}
+        size={clicked ? "200" : undefined}
+      />
+      <Styled.NameAndPart
+        css={css`
+          flex-direction: ${clicked ? "column" : "row"};
+        `}
+      >
         <Styled.Name>
           <Typo weight="600">{name}</Typo>
         </Styled.Name>
@@ -38,7 +49,11 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
           </Typo>
         </Styled.Badge>
       </Styled.NameAndPart>
-      <Styled.Introduce>
+      <Styled.Introduce
+        css={css`
+          overflow: ${clicked ? "visible" : "hidden"};
+        `}
+      >
         <Typo color="darkgray" weight="500" fontSize="16">
           {introduce}
         </Typo>

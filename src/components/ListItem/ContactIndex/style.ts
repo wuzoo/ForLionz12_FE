@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   padding: 10px;
   padding-left: 30px;
   gap: 10px;
+  cursor: pointer;
 `;
 
 export const Name = styled.p``;
@@ -33,7 +34,6 @@ export const Badge = styled.div`
 
 export const Introduce = styled.p`
   padding: 0px 1rem;
-  overflow: hidden;
   text-overflow: ellipsis;
   text-decoration-color: white;
   display: -webkit-box;
