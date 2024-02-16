@@ -4,7 +4,7 @@ import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../theme/theme";
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import {
   useLoginInfoDispatch,
   useLoginInfoState,
@@ -15,47 +15,36 @@ import User from "../../components/Profile/Profile";
 import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
 import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
 import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
+import useMyInfo from "../../hooks/api/member/useMyInfo";
 
 function Profile() {
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
   const { updateUserInfo } = useUserUpdater();
 
-  console.log(user);
+  const { data: myInfo, reFetch } = useMyInfo();
 
   const [intro, setIntro] = useState(user.introduction);
   const [edit, setEdit] = useState(false);
-
   const [file, setFile] = useState<Blob | null>(null);
-  const [isSubmited, setIsSubmited] = useState(false);
   const [url, setUrl] = useState(user.imageUrl);
 
-  useLayoutEffect(() => {
-    checkAndUpdateState();
-  }, [isSubmited]);
-
-  const handleIntroSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleIntroSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    updateUserInfo("comment", intro);
+    await updateUserInfo("comment", intro || "");
 
-    setIsSubmited(true);
-    setEdit(false);
-  };
-
-  const checkAndUpdateState = async () => {
-    const response = await axios.get(import.meta.env.VITE_MY_INFO);
-
-    const res = response.data.data;
+    reFetch();
 
     dispatch({
       type: "LOGIN",
       data: {
-        ...res,
+        ...user,
+        introduction: intro,
       },
     });
 
-    setIsSubmited(false);
+    setEdit(false);
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,7 +128,7 @@ function Profile() {
             {!edit ? (
               <Styled.Form>
                 <Styled.Introduce>
-                  <Typo color="darkgray">{user.introduction}</Typo>
+                  <Typo color="darkgray">{myInfo?.introduction}</Typo>
                 </Styled.Introduce>
                 <Styled.EditText onClick={() => setEdit(true)}>
                   <Typo color="darkblue">수정</Typo>
@@ -161,9 +150,9 @@ function Profile() {
       </Styled.InformBox>
 
       <Styled.ListItems>
-        <PasswordIndex key="pwd" type="password" setSubmited={setIsSubmited} />
-        <GithubIndex key="git" type="github" setSubmited={setIsSubmited} />
-        <InstagramIndex key="insta" type="instagram" setSubmited={() => {}} />
+        <PasswordIndex key="pwd" type="password" onSubmit={reFetch} />
+        <GithubIndex key="git" type="github" onSubmit={reFetch} />
+        <InstagramIndex key="insta" type="instagram" onSubmit={reFetch} />
       </Styled.ListItems>
     </Styled.Wrapper>
   );
