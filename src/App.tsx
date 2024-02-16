@@ -16,6 +16,8 @@ import UploadHW from "./pages/Admin/UploadAssignment";
 import UploadNotice from "./pages/Admin/UploadNotification";
 import QuestionUpload from "./pages/QnaUpload";
 import QnaDetail from "./pages/QnaDetail/Detail";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +71,12 @@ function App() {
         <ThemeProvider theme={theme}>
           <Global styles={GlobalStyle} />
           <RouterProvider router={router} />
+          <ToastContainer
+            position="bottom-center"
+            limit={1}
+            autoClose={3000}
+            hideProgressBar
+          />
         </ThemeProvider>
       </LoginInfoProvider>
     </>
