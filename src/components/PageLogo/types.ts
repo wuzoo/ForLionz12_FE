@@ -9,10 +9,10 @@ export interface ILogo {
 
 export interface IPageobj {
   [key: string]: string;
-  assignsubmit: string;
-  contact: string;
-  login: string;
-  notification: string;
-  "q&a": string;
-  lion: string;
+  HW_SUBMIT: string;
+  CONTACT: string;
+  LOGIN: string;
+  NOTIFICATION: string;
+  "Q&A": string;
+  LION: string;
 }

@@ -9,13 +9,13 @@ import { useMemo } from "react";
 import { css } from "@emotion/react";
 
 export default function PageLogo(props: IPageLogo) {
-  const pageobj: IPageobj = {
-    assignsubmit: submit,
-    contact: contact,
-    login: login,
-    notification: notice,
-    "q&a": qna,
-    lion: lion,
+  const PAGE_OBJ: IPageobj = {
+    HW_SUBMIT: submit,
+    CONTACT: contact,
+    LOGIN: login,
+    NOTIFICATION: notice,
+    "Q&A": qna,
+    LION: lion,
   };
 
   return useMemo(
@@ -31,7 +31,7 @@ export default function PageLogo(props: IPageLogo) {
           css={css`
             object-fit: contain;
           `}
-          src={pageobj[props.type]}
+          src={PAGE_OBJ[props.type]}
           width="100%"
           height="100%"
           {...props}
