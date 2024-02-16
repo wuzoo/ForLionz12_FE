@@ -13,7 +13,7 @@ import { IComment } from "./types";
 import axios from "axios";
 
 function ListItem({ url, name, createdAt, id, content, part }: IComment) {
-  const { data } = useChildComments(id);
+  const { data, reFetch } = useChildComments(id);
   const [isChildClicked, setIsChildClicked] = useState(false);
   const [comment, setComment] = useState("");
 
@@ -37,7 +37,8 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
         console.log(err);
       });
 
-    window.location.reload();
+    setComment("");
+    reFetch();
   };
 
   return (
