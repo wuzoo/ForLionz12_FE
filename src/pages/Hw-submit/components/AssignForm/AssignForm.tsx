@@ -7,6 +7,8 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import axios from "axios";
 import { IForm } from "../../types";
+import "react-toastify/dist/ReactToastify.css";
+import { error } from "../../../../utils/toast";
 
 function AssignForm({
   isSubmitted,
@@ -31,26 +33,27 @@ function AssignForm({
       assignmentLink: link,
     };
 
-    if (description || assignmentLink) {
-      await axios
-        .put(`${import.meta.env.VITE_SUBMISSION}/${+id}`, data, {
+    if (!link) {
+      error("링크는 필수 사항입니다.");
+      return;
+    }
+
+    try {
+      if (assignmentLink) {
+        await axios.put(`${import.meta.env.VITE_SUBMISSION}/${+id}`, data, {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .catch((err) => {
-          throw new Error(err);
         });
-    } else {
-      await axios
-        .post(import.meta.env.VITE_SUBMISSION, data, {
+      } else {
+        await axios.post(import.meta.env.VITE_SUBMISSION, data, {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .catch((err) => {
-          throw new Error(err);
         });
+      }
+    } catch (err) {
+      throw new Error("과제 제출 에러");
     }
 
     onSubmit((prev) => !prev);
