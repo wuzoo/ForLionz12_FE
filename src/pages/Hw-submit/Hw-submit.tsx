@@ -13,7 +13,7 @@ import Card from "../../components/Card/RecentUploadedCard";
 import useSubmittedAssignments from "../../hooks/api/assignment/useSubmitedAssignments";
 import { ISubmitted } from "../../types/Assignment";
 import { useEffect, useState } from "react";
-import { getMySubmission } from "../../api/assignment";
+import useOwnSubmission from "../../hooks/api/assignment/useOwnSubmission";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
@@ -30,60 +30,36 @@ function cmp(a: ISubmitted, b: ISubmitted) {
 
 function HwSubmit() {
   const { id } = useParams();
-  const [data, setData] = useState<ISubmitted>({
-    assignmentId: 0,
-    assignmentLink: "",
-    createdAt: new Date().toISOString(),
-    description: "",
-    id: 0,
-    memberId: 0,
-    memberName: "",
-  });
 
-  const part = localStorage.getItem("part");
+  if (!id) throw new Error("no assignment id in params");
 
-  if (!id) throw new Error("submit page id no exist");
+  const { data: mySubmission, reFetch: mySubmitUpdate } = useOwnSubmission(+id);
 
-  const getMyData = async () => {
-    const res = await getMySubmission(+id);
-
-    console.log(res.data);
-    if (res.data) {
-      setData(res.data);
-    }
-  };
-  const getStatus = async () => {
-    const res = await getMySubmission(+id);
-
-    setFormStatus(Boolean(res.data));
-  };
-
-  const { data: submittedData } = useSubmittedAssignments(+id);
-  const [formStatus, setFormStatus] = useState(false);
+  const { data: submittedData, reFetch: allSubmitUpate } =
+    useSubmittedAssignments(+id);
+  const [isSubmitted, setFormStatus] = useState<boolean>(
+    Boolean(mySubmission?.memberId !== 0)
+  );
 
   useEffect(() => {
-    if (part !== "STAFF") {
-      getMyData();
+    if (isSubmitted) {
+      mySubmitUpdate();
+      allSubmitUpate();
     }
-  }, [formStatus]);
+  }, [isSubmitted]);
 
-  useEffect(() => {
-    if (part !== "STAFF") {
-      getStatus();
-    }
-  }, []);
+  if (!mySubmission) return;
 
-  const { description, createdAt, assignmentLink } = data;
-  const recentsubmitted = submittedData?.concat()?.sort((a, b) => cmp(a, b));
+  const recentSubmitted = submittedData?.concat()?.sort((a, b) => cmp(a, b));
 
   return (
     <Styled.Wrapper>
       <Banner type="assignsubmit" logowidth="500" logoheight="500" />
 
-      <RecentUploader cnt={recentsubmitted?.length || 0}>
-        {recentsubmitted?.map((item) => (
+      <RecentUploader cnt={recentSubmitted?.length || 0}>
+        {recentSubmitted?.map((item) => (
           <Card
-            cnt={recentsubmitted?.length}
+            cnt={recentSubmitted?.length}
             name={item.memberName}
             uid={item.memberId}
             content={item.description}
@@ -95,18 +71,18 @@ function HwSubmit() {
       <Margin gap="100" />
 
       <AssignForm
-        description={description}
-        assignmentLink={assignmentLink}
+        description={mySubmission?.description}
+        assignmentLink={mySubmission?.assignmentLink}
         id={id}
-        isSubmitted={formStatus}
+        isSubmitted={isSubmitted}
         onSubmit={setFormStatus}
       />
       <AssignStatus
-        link={assignmentLink}
-        description={description}
-        createdAt={createdAt}
+        link={mySubmission?.assignmentLink}
+        description={mySubmission?.description}
+        createdAt={mySubmission?.createdAt}
         id={id}
-        isSubmitted={formStatus}
+        isSubmitted={isSubmitted}
         onModify={setFormStatus}
       />
       <Margin gap="80" />
@@ -123,6 +99,7 @@ function HwSubmit() {
         <Styled.List>
           {submittedData?.map((item) => (
             <SubmitItem
+              key={item.id}
               id={item.memberId}
               link={item.assignmentLink}
               name={item.memberName}
