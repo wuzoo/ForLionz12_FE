@@ -68,7 +68,7 @@ function AssignForm({
       <Styled.SubmitWrapper>
         <MainAndSubtitle
           main="과제 설명을 작성해주세요."
-          sub={SUB_TEXT.hwexplain}
+          sub={SUB_TEXT.HW_EXPLAIN}
           {...fixedProps}
         />
         <Styled.ExplainArea
@@ -77,7 +77,7 @@ function AssignForm({
         />
         <MainAndSubtitle
           main="과제 링크"
-          sub={SUB_TEXT.hwlink}
+          sub={SUB_TEXT.HW_LINK}
           {...fixedProps}
         />
         <Styled.LinkInput

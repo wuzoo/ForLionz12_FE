@@ -84,7 +84,7 @@ function Profile() {
     <Styled.Wrapper>
       <MainAndSubtitle
         main="Your Profile"
-        sub={TEXT.profile}
+        sub={TEXT.PROFILE}
         fontsizes={["40", "18"]}
         colors={["black", "darkgray"]}
         gap="5"

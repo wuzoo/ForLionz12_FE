@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { SUB_TEXT } from "../../constants/text";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -101,17 +102,13 @@ function QuestionUpload() {
       <div>
         <MainAndSubtitle
           main="Title"
-          sub="제목을 입력해주세요."
+          sub={SUB_TEXT.QNA_TITLE}
           {...defaultProps}
         />
         <Styled.TitleInput {...register("title")} />
       </div>
       <div>
-        <MainAndSubtitle
-          main="Tag"
-          sub="질문 내용에 해당하는 태그를 선택해주세요."
-          {...defaultProps}
-        />
+        <MainAndSubtitle main="Tag" sub={SUB_TEXT.QNA_TAGS} {...defaultProps} />
         <Styled.HorizonWrapper>
           <Styled.SelectTag onChange={getChild}>
             {tags?.map((item) => (
@@ -131,7 +128,7 @@ function QuestionUpload() {
           <Styled.ContentTitleAndBtnWrapper>
             <MainAndSubtitle
               main="Content"
-              sub="궁금한 점을 자세히 알려주세요."
+              sub={SUB_TEXT.QNA_CONTENT}
               {...defaultProps}
             />
 

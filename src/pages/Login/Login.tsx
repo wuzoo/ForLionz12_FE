@@ -21,7 +21,7 @@ function Login() {
       <Styled.page>
         <Styled.loginbox>
           <Styled.Img src={login} />
-          <Styled.welcometext>{TEXT.login}</Styled.welcometext>
+          <Styled.welcometext>{TEXT.LOGIN}</Styled.welcometext>
           <Styled.Form onSubmit={(e) => handleLogin(e)}>
             <Styled.Input
               type="text"

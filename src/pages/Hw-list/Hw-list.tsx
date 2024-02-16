@@ -13,6 +13,7 @@ import HwSliderCard from "../../components/Card/HwSliderCard";
 import usePartAssignment from "../../hooks/api/assignment/usePartAssignment";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
+import { SUB_TEXT, TEXT } from "../../constants/text.ts";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
@@ -50,7 +51,7 @@ function HwList() {
       >
         <MainAndSubtitle
           main="My Assignments"
-          sub="나의 과제 목록을 확인하세요"
+          sub={TEXT.HW_LIST}
           fontsizes={["40", "18"]}
           gap="10"
           colors={["black", "darkgray"]}
@@ -78,7 +79,7 @@ function HwList() {
       <Styled.AlignWrapper>
         <MainAndSubtitle
           main="다른 파트의 과제"
-          sub="다른 파트의 과제들을 구경할 수 있어요."
+          sub={SUB_TEXT.HW_OTHER_PART}
           fontsizes={["37", "18"]}
           gap="10"
           colors={["black", "darkgray"]}

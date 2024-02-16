@@ -54,7 +54,7 @@ function HwSubmit() {
 
   return (
     <Styled.Wrapper>
-      <Banner type="assignsubmit" logowidth="500" logoheight="500" />
+      <Banner type="HW_SUBMIT" logowidth="500" logoheight="500" />
 
       <RecentUploader cnt={recentSubmitted?.length || 0}>
         {recentSubmitted?.map((item) => (
@@ -90,7 +90,7 @@ function HwSubmit() {
         <Styled.OtherHwWrapper>
           <MainAndSubtitle
             main="과제 제출 목록"
-            sub={SUB_TEXT.hwother}
+            sub={SUB_TEXT.HW_OTHER}
             {...fixedProps}
           />
 

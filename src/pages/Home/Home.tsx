@@ -32,7 +32,7 @@ function Home() {
           <Styled.textwrapper>
             <Styled.text>
               <Typo color="black" weight="700" fontSize="50">
-                <MemorizedOnebyoneText item={TEXT.main.split("")} />
+                <MemorizedOnebyoneText item={TEXT.HOME_MAIN_TEXT.split("")} />
                 &nbsp;
               </Typo>
               <Typo color="darkpink" weight="700" fontSize="50">
@@ -48,11 +48,11 @@ function Home() {
                 {part} {name}&nbsp;
               </Typo>
               <Typo color="black" fontSize="24" weight="600">
-                {TEXT.greeting}
+                {TEXT.HOME_GREETING}
               </Typo>
             </Styled.usergreet>
           </Styled.textwrapper>
-          <PageLogo height="430" width="450" type="lion" />
+          <PageLogo height="430" width="450" type="LION" />
         </Styled.banner>
         <FullScreenSlider>
           {noticesData?.map((item, index) => (

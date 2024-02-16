@@ -17,7 +17,7 @@ function RecentUploader({
       <Styled.ContentWrapper>
         <MainAndSubtitle
           main="최근 업로드된 과제"
-          sub={SUB_TEXT.recentupload}
+          sub={SUB_TEXT.HW_RECENT_UPLOAD}
           {...fixedProps}
         />
         <Styled.SliderWrapper>

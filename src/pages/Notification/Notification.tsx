@@ -31,7 +31,7 @@ function Notification() {
 
   return (
     <Styled.Wrapper>
-      <Banner type="notification" logowidth="400" logoheight="400" />
+      <Banner type="NOTIFICATION" logowidth="400" logoheight="400" />
 
       <div
         css={css`
