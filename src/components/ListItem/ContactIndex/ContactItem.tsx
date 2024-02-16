@@ -25,7 +25,12 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
   };
 
   return (
-    <Styled.Wrapper onClick={() => setClicked((prev) => !prev)}>
+    <Styled.Wrapper
+      css={css`
+        padding: ${clicked ? "30px" : ""};
+      `}
+      onClick={() => setClicked((prev) => !prev)}
+    >
       <UserImg
         radius={clicked ? "20px" : ""}
         url={file || null}
@@ -37,7 +42,9 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
         `}
       >
         <Styled.Name>
-          <Typo weight="600">{name}</Typo>
+          <Typo fontSize={clicked ? "24" : ""} weight="600">
+            {name}
+          </Typo>
         </Styled.Name>
         <Styled.Badge
           css={css`
@@ -52,6 +59,7 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
       <Styled.Introduce
         css={css`
           overflow: ${clicked ? "visible" : "hidden"};
+          display: ${clicked ? "" : "-webkit-box"};
         `}
       >
         <Typo color="darkgray" weight="500" fontSize="16">

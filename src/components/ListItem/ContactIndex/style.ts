@@ -36,7 +36,6 @@ export const Introduce = styled.p`
   padding: 0px 1rem;
   text-overflow: ellipsis;
   text-decoration-color: white;
-  display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   line-height: 1.2;
