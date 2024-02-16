@@ -6,6 +6,7 @@ export const GlobalStyle = css`
 
   @import "slick-carousel/slick/slick.css";
   @import "slick-carousel/slick/slick-theme.css";
+  @import "react-toastify/dist/ReactToastify.css";
 
   html,
   body,
@@ -146,5 +147,10 @@ export const GlobalStyle = css`
   }
   .recent_slide .slick-list {
     padding: 20px 0px;
+  }
+  .Toastify__toast-body div {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18;
   }
 `;
