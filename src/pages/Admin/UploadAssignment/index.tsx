@@ -6,10 +6,11 @@ import Typo from "../../../components/Typo/Typo";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
-import Toggle from "../components/Toggle/Toggle";
 import useGetAssignmentById from "../../../hooks/api/assignment/useGetAssignmentById";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { initialDate } from "../../../utils/getCurrenty-m-dString";
+import PartToggle from "../../../components/PartToggle/PartToggle";
+import { TEXT, TITLE } from "./constant/text";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -36,6 +37,18 @@ function UploadHW() {
   const [part, setPart] = useState("all");
   const [tags, setTags] = useState<string[]>([]);
   const [tag, setTag] = useState("");
+
+  const AddTag = () => {
+    setTags((obj) => {
+      return [...obj, tag];
+    });
+    setTag("");
+  };
+
+  const DeleteTag = () => {
+    setTags([]);
+    setTag("");
+  };
 
   useEffect(() => {
     if (data) {
@@ -86,39 +99,34 @@ function UploadHW() {
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <MainAndSubtitle
-          main="Title"
-          sub="제목을 입력해주세요."
+          main={TITLE["title"]}
+          sub={TEXT["title"]}
           {...defaultProps}
         />
         <Styled.TitleInput {...register("title")} />
       </div>
       <div>
         <MainAndSubtitle
-          main="Deadline"
-          sub="과제 마감일을 설정해주세요"
+          main={TITLE["deadline"]}
+          sub={TEXT["deadline"]}
           {...defaultProps}
         />
         <Styled.DateInput
           value={date}
           onChange={(e) => setDate(e.target.value)}
           type="date"
-          placeholder="날짜 선택"
         />
       </div>
       <Styled.PartContainer>
         <MainAndSubtitle main="Part" sub="ALL/FE/BE" {...defaultProps} />
         <Styled.HorizontalAlignWrapper>
-          <Toggle text="all" part={part} setPart={setPart} />
-          <Toggle text="fe" part={part} setPart={setPart} />
-          <Toggle text="be" part={part} setPart={setPart} />
+          <PartToggle part={part} setPart={setPart} />
         </Styled.HorizontalAlignWrapper>
       </Styled.PartContainer>
       <Styled.CategoryContainer>
         <MainAndSubtitle
-          main="Category"
-          sub={
-            "다음 중 하나로 메인 카테고리를 지정해주세요.\nHTML, CSS, Git, JS, React, Django, Python, AWS, Docker"
-          }
+          main={TITLE["category"]}
+          sub={TEXT["category"]}
           {...defaultProps}
           gap="8"
         />
@@ -128,8 +136,8 @@ function UploadHW() {
         <Styled.TagsContainer>
           <Styled.TitleAndTagWrapper>
             <MainAndSubtitle
-              main="Tags"
-              sub="과제 내용에 대한 태그를 작성해주세요."
+              main={TITLE["tag"]}
+              sub={TEXT["tag"]}
               {...defaultProps}
             />
             <Styled.HorizontalAlignWrapper>
@@ -141,22 +149,10 @@ function UploadHW() {
             </Styled.HorizontalAlignWrapper>
           </Styled.TitleAndTagWrapper>
           <Styled.HorizontalAlignWrapper>
-            <Styled.Btn
-              onClick={() => {
-                setTags((obj) => {
-                  return [...obj, tag];
-                });
-                setTag("");
-              }}
-            >
+            <Styled.Btn onClick={AddTag}>
               <Typo color="darkblue">생성</Typo>
             </Styled.Btn>
-            <Styled.Btn
-              onClick={() => {
-                setTags([]);
-                setTag("");
-              }}
-            >
+            <Styled.Btn onClick={DeleteTag}>
               <Typo color="darkblue">삭제</Typo>
             </Styled.Btn>
           </Styled.HorizontalAlignWrapper>
@@ -170,8 +166,8 @@ function UploadHW() {
       </div>
       <div>
         <MainAndSubtitle
-          main="Content"
-          sub="과제 내용을 작성해주세요."
+          main={TITLE["content"]}
+          sub={TEXT["content"]}
           {...defaultProps}
         />
         <Styled.ContentInput {...register("content")} />
