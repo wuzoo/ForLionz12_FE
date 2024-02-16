@@ -17,11 +17,14 @@ function QnaDetail() {
   if (!id) return;
 
   const { data: comments, reFetch } = useCommentsById(+id);
-  const { data } = useQnaDetail(+id);
+  const { data, error } = useQnaDetail(+id);
   const [comment, setComment] = useState("");
 
+  if (error === "rejected") {
+    throw new Error("큐앤에이 상세 조회 에러");
+  }
   if (!data) {
-    throw new Error("특정 큐앤에이 상세 조회 에러");
+    return;
   }
 
   const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
