@@ -1,9 +1,6 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
-// const HwCardComponent = React.lazy(
-//   () => import("../../components/Card/HwCard")
-// );
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/Hwdetail";
@@ -16,32 +13,29 @@ import HwSliderCard from "../../components/Card/HwSliderCard";
 import usePartAssignment from "../../hooks/api/assignment/usePartAssignment";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
-import { useLoginInfoState } from "../../context/LoginUser/User.tsx";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
   const [selectedPart, setSelectedPart] = useState("all");
 
-  const { part } = useLoginInfoState();
-
-  const realpart = part !== "STAFF" ? part : "ALL";
-
+  const part = localStorage.getItem("part");
   const id = localStorage.getItem("id");
 
   if (!part || !id) {
-    throw new Error("has no part error");
+    throw new Error("has no localstorage value");
   }
 
-  const { data, isloading, error } = useAllAssignment();
-  const { error: myparterror, data: MyAssignments } =
-    usePartAssignment(realpart);
+  const ifStaff_partAll = part !== "STAFF" ? part : "ALL";
 
-  const filteredData = data?.filter(
+  const { data, error } = useAllAssignment();
+  const { error: myPartError, data: myAssignments } =
+    usePartAssignment(ifStaff_partAll);
+
+  const filteredPartData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
   );
 
-  if (isloading) console.log("로딩 중");
-  if (error === "rejected" || myparterror === "rejected") {
+  if (error === "rejected" || myPartError === "rejected") {
     throw new Error("조회 에러");
   }
 
@@ -66,7 +60,7 @@ function HwList() {
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
         <FullScreenSlider>
-          {MyAssignments?.map((item, index) => (
+          {myAssignments?.map((item, index) => (
             <HwSliderCard
               key={item.id}
               onClick={() => setClickedId(item.id)}
@@ -94,7 +88,7 @@ function HwList() {
 
       <Styled.OtherHWContainer>
         <Suspense fallback={<p>loading...</p>}>
-          {filteredData?.map((item) => (
+          {filteredPartData?.map((item) => (
             <HwCard
               category={item.category}
               layoutId={item.id + ""}
