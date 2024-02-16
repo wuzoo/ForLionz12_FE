@@ -5,7 +5,7 @@ import * as Styled from "./style";
 import { useState } from "react";
 import useAllNotification from "../../hooks/api/notification/useAllNotification";
 import getFormedDate from "../../utils/getFormedDate";
-import NoticeDetail from "./Notice-detail/detail.tsx";
+import NoticeDetail from "./Notice-detail/Detail.tsx";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
 
