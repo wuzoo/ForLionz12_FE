@@ -4,9 +4,10 @@ import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Toggle from "../components/Toggle/Toggle";
 import useNoticeById from "../../../hooks/api/notification/useNoticeById";
 import { useForm, SubmitHandler } from "react-hook-form";
+import PartToggle from "../../../components/PartToggle/PartToggle";
+import { TEXT, TITLE } from "./constant/text";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -46,17 +47,21 @@ function UploadNotice() {
     };
     try {
       if (state?.id === undefined) {
-        await axios.post("/notification", formedData, {
+        await axios.post(import.meta.env.VITE_NOTIFICATION, formedData, {
           headers: {
             "Content-Type": "application/json",
           },
         });
       } else if (typeof state?.id === "string") {
-        await axios.put(`/notification/${+state?.id}`, formedData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        await axios.put(
+          `${import.meta.env.VITE_NOTIFICATION}/${+state?.id}`,
+          formedData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
       }
     } catch (err) {
       throw new Error("upload notification error");
@@ -69,26 +74,28 @@ function UploadNotice() {
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <MainAndSubtitle
-          main="Title"
-          sub="제목을 입력해주세요."
+          main={TITLE["title"]}
+          sub={TEXT["title"]}
           {...defaultProps}
         />
         <Styled.TitleInput {...register("title")} />
       </div>
 
       <Styled.PartContainer>
-        <MainAndSubtitle main="Part" sub="ALL/FE/BE" {...defaultProps} />
+        <MainAndSubtitle
+          main={TITLE["part"]}
+          sub={TEXT["part"]}
+          {...defaultProps}
+        />
         <Styled.HorizontalAlignWrapper>
-          <Toggle text="all" part={part} setPart={setPart} />
-          <Toggle text="fe" part={part} setPart={setPart} />
-          <Toggle text="be" part={part} setPart={setPart} />
+          <PartToggle part={part} setPart={setPart} />
         </Styled.HorizontalAlignWrapper>
       </Styled.PartContainer>
 
       <div>
         <MainAndSubtitle
-          main="Content"
-          sub="과제 내용을 작성해주세요."
+          main={TITLE["content"]}
+          sub={TEXT["content"]}
           {...defaultProps}
         />
         <Styled.ContentInput {...register("content")} />
