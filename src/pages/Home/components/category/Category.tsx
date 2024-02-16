@@ -6,7 +6,7 @@ import Typo from "../../../../components/Typo/Typo";
 
 function Category() {
   const colors = Array.from(Object.values(ColorAndImgofItem));
-  const nav = ["공지사항", "과제", "일정", "연락처", "Q&A"];
+  const nav = ["공지사항", "과제", "연락처", "Q&A"];
 
   const navigate = useNavigate();
 
