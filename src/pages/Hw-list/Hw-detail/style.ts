@@ -5,10 +5,11 @@ export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  z-index: 11;
 `;
 
 export const Modal = styled(motion.div)`
@@ -24,7 +25,7 @@ export const Modal = styled(motion.div)`
   right: 0;
   margin: auto auto;
   padding: 80px;
-
+  z-index: 12;
   display: flex;
   flex-direction: column;
 `;
