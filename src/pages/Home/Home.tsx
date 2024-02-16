@@ -13,16 +13,13 @@ import useAllNotification from "../../hooks/api/notification/useAllNotification"
 
 function Home() {
   const userCt = useLoginInfoState();
-
-  const { isloading, data: noticesData } = useAllNotification();
-  console.log(noticesData);
-
-  if (isloading) {
-    return <p>loading.....</p>;
-  }
   const { part, name } = userCt;
 
-  const str = Array.from(TEXT.main);
+  const { data: noticesData, error } = useAllNotification();
+
+  if (error === "rejected") {
+    throw new Error("모든 공지사항 조회 에러");
+  }
 
   return (
     <div
@@ -35,7 +32,7 @@ function Home() {
           <Styled.textwrapper>
             <Styled.text>
               <Typo color="black" weight="700" fontSize="50">
-                <MemorizedOnebyoneText item={str} />
+                <MemorizedOnebyoneText item={TEXT.main.split("")} />
                 &nbsp;
               </Typo>
               <Typo color="darkpink" weight="700" fontSize="50">
