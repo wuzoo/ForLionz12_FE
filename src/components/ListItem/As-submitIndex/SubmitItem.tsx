@@ -8,7 +8,7 @@ import { useState } from "react";
 import { variants } from "./variants";
 import { IItem } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
-import useMemberId from "../../../hooks/api/member/useMemberId";
+import { useMemberId } from "../../../hooks";
 
 function SubmitItem({ name, date, link, description, id }: IItem) {
   const [clicked, setClicked] = useState(false);

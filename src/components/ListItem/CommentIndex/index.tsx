@@ -4,7 +4,7 @@ import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import chat from "./assets/chat.svg";
 import getFormedDate from "../../../utils/getFormedDate";
-import useChildComments from "../../../hooks/api/comment/useChildComments";
+import { useChildComments } from "../../../hooks";
 import { css } from "@emotion/react";
 import Button from "../../Button/Button";
 import Item from "./components/Child";
