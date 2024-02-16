@@ -20,19 +20,11 @@ function Layout() {
   }, []);
 
   const checkToken = useCallback(async () => {
-    console.log(getCookie("myToken"));
-
     const response = await axios({
       method: "post",
-      url: `/auth/reissue`,
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: `refreshToken=${getCookie("myToken")}`,
-      },
+      url: `/auth/reissue?refreshToken=${getCookie("myToken")}`,
     });
     const { accessToken } = response.data.data;
-
-    console.log(accessToken);
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
