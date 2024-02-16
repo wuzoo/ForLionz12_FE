@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import useQnaDetail from "../../hooks/api/qna/useQnaDetail";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as Styled from "./style";
@@ -7,7 +6,7 @@ import Typo from "../../components/Typo/Typo";
 import getFormedDate from "../../utils/getFormedDate";
 import Button from "../../components/Button/Button";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import useCommentsById from "../../hooks/api/comment/useCommentsById";
+import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";
 import React, { useState } from "react";
 import axios from "axios";

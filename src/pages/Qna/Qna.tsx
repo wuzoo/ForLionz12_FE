@@ -6,10 +6,9 @@ import Typo from "../../components/Typo/Typo";
 import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
-import useTags from "../../hooks/api/qna/useTags";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
-import useSelectedData from "../../hooks/api/qna/useSelectedData";
+import { useSelectedData, useTags } from "../../hooks";
 
 function Qna() {
   const [category, setCategory] = useState<number>(0);

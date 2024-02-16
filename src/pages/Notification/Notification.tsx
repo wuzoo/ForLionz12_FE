@@ -3,7 +3,7 @@ import PartToggle from "../../components/PartToggle/PartToggle";
 import ListItem from "../../components/ListItem/NoticeIndex/ListItem";
 import * as Styled from "./style";
 import { useState } from "react";
-import useAllNotification from "../../hooks/api/notification/useAllNotification";
+import { useAllNotification } from "../../hooks";
 import getFormedDate from "../../utils/getFormedDate";
 import NoticeDetail from "./Notice-detail/Detail.tsx";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";

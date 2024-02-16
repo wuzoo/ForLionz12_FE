@@ -3,7 +3,7 @@ import PartToggle from "../../components/PartToggle/PartToggle";
 import Item from "../../components/ListItem/ContactIndex/ContactItem";
 import * as Styled from "./style";
 import { useState } from "react";
-import useAllMember from "../../hooks/api/member/useAllMember";
+import { useAllMember } from "../../hooks";
 
 function Contact() {
   const [selectedToggle, setSelectedToggle] = useState("all");

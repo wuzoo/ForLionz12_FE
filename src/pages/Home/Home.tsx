@@ -9,7 +9,7 @@ import Category from "./components/category/Category";
 import { SliderProps } from "./constant/constant";
 import { MemorizedOnebyoneText } from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
-import useAllNotification from "../../hooks/api/notification/useAllNotification";
+import { useAllNotification } from "../../hooks";
 
 function Home() {
   const userCt = useLoginInfoState();

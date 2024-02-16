@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor";
 import Button from "../../../components/Button/Button";
-import useGetAssignmentById from "../../../hooks/api/assignment/useGetAssignmentById";
+import { useGetAssignmentById } from "../../../hooks";
 import getFormedDate from "../../../utils/getFormedDate";
 import Deadline from "./components/Deadline";
 import { theme } from "../../../theme/theme";

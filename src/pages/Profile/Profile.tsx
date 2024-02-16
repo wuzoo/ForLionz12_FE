@@ -10,12 +10,11 @@ import {
   useLoginInfoState,
 } from "../../context/LoginUser/User";
 import axios from "axios";
-import useUserUpdater from "../../hooks/api/member/useUserUpdater";
 import User from "../../components/Profile/Profile";
 import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
 import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
 import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
-import useMyInfo from "../../hooks/api/member/useMyInfo";
+import { useMyInfo, useUserUpdater } from "../../hooks";
 
 function Profile() {
   const user = useLoginInfoState();

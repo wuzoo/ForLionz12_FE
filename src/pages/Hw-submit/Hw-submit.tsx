@@ -10,10 +10,9 @@ import AssignForm from "./components/AssignForm/AssignForm";
 import RecentUploader from "./components/RecentUploader/RecentUploader";
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card/RecentUploadedCard";
-import useSubmittedAssignments from "../../hooks/api/assignment/useSubmitedAssignments";
 import { ISubmitted } from "../../types/Assignment";
 import { useEffect, useState } from "react";
-import useOwnSubmission from "../../hooks/api/assignment/useOwnSubmission";
+import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],

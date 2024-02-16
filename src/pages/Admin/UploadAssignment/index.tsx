@@ -6,7 +6,7 @@ import Typo from "../../../components/Typo/Typo";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
-import useGetAssignmentById from "../../../hooks/api/assignment/useGetAssignmentById";
+import { useGetAssignmentById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { initialDate } from "../../../utils/getCurrenty-m-dString";
 import PartToggle from "../../../components/PartToggle/PartToggle";

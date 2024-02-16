@@ -4,7 +4,7 @@ import login from "../../assets/3dicons/login/people.webp";
 import Button from "../../components/Button/Button";
 import { TEXT } from "../../constants/text";
 import { useState } from "react";
-import useAuth from "../../hooks/api/auth/useAuth";
+import { useAuth } from "../../hooks";
 
 function Login() {
   const [id, setId] = useState("");

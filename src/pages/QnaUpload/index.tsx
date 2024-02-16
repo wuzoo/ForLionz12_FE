@@ -1,7 +1,7 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import { useState } from "react";
-import useTags from "../../hooks/api/qna/useTags";
+import { useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
 import { ChildtagType } from "../../types/Qna";
 import code from "./assets/code.svg";

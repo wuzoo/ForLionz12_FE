@@ -4,7 +4,7 @@ import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import useNoticeById from "../../../hooks/api/notification/useNoticeById";
+import { useNoticeById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
