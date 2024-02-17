@@ -36,7 +36,7 @@ function QuestionUpload() {
   const { state } = useLocation();
 
   const { data: tags } = useTags();
-  const { data } = useQnaDetail(state?.id);
+  const { data } = useQnaDetail(state?.id || 0);
 
   useEffect(() => {
     if (data) {
@@ -66,9 +66,11 @@ function QuestionUpload() {
       postImageUrls: [...urls],
     };
 
+    let postId: number = 0;
+
     try {
       if (state?.id) {
-        await axios
+        const response = await axios
           .put(`${import.meta.env.VITE_QUESTION}/${state?.id}`, request, {
             headers: {
               "Content-Type": "application/json",
@@ -78,20 +80,39 @@ function QuestionUpload() {
             if (res.status === 200) {
               navigate(`/qna/${state?.id}`);
             }
+            return res.data;
           });
+
+        postId = response.data.id;
       } else {
-        await axios
+        const response = await axios
           .post(import.meta.env.VITE_QUESTION, request, {
             headers: {
               "Content-Type": "application/json",
             },
           })
-          .then((res) => {
-            if (res.status === 200) {
-              navigate("/qna");
-            }
-          });
+          .then((res) => res.data);
+
+        postId = response.data.id;
       }
+      await axios
+        .post(
+          import.meta.env.VITE_TAG_MAP,
+          {
+            questionPostId: postId,
+            childTagId: query,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          if (res.status === 204) {
+            navigate("/qna");
+          }
+        });
     } catch (err) {
       throw new Error(ERROR.QNA_UPLOAD);
     }
@@ -163,7 +184,6 @@ function QuestionUpload() {
           </Styled.CheckBoxWrapper>
         </Styled.HorizonWrapper>
       </div>
-
       <div>
         <Styled.ContentTitleWrapper>
           <Styled.ContentTitleAndBtnWrapper>
