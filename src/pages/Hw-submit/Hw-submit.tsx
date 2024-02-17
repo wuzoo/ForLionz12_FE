@@ -13,6 +13,7 @@ import Card from "../../components/Card/RecentUploadedCard";
 import { ISubmitted } from "../../types";
 import { useEffect, useState } from "react";
 import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
+import { ERROR } from "../../constants/message";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
@@ -30,7 +31,7 @@ function cmp(a: ISubmitted, b: ISubmitted) {
 function HwSubmit() {
   const { id } = useParams();
 
-  if (!id) throw new Error("no assignment id in params");
+  if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
 
   const { data: mySubmission, reFetch: mySubmitUpdate } = useOwnSubmission(+id);
 

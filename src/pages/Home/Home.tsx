@@ -10,6 +10,7 @@ import { SliderProps } from "./constant/constant";
 import { MemorizedOnebyoneText } from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
 import { useAllNotification } from "../../hooks";
+import { ERROR } from "../../constants/message";
 
 function Home() {
   const userCt = useLoginInfoState();
@@ -18,7 +19,7 @@ function Home() {
   const { data: noticesData, error } = useAllNotification();
 
   if (error === "rejected") {
-    throw new Error("모든 공지사항 조회 에러");
+    throw new Error(ERROR.ALL_NOTICE);
   }
 
   return (

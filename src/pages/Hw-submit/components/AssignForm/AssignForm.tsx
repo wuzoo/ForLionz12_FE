@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { IForm } from "../../types";
 import { error } from "../../../../utils/toast";
+import { ERROR } from "../../../../constants/message";
 
 function AssignForm({
   isSubmitted,
@@ -33,7 +34,7 @@ function AssignForm({
     };
 
     if (!link) {
-      error("링크는 필수 사항입니다.");
+      error(ERROR.NO_LINK_ASSIGNMENT);
       return;
     }
 
@@ -52,7 +53,7 @@ function AssignForm({
         });
       }
     } catch (err) {
-      throw new Error("과제 제출 에러");
+      throw new Error(ERROR.CANT_SUBMIT_ASSIGNMENT);
     }
 
     onSubmit((prev) => !prev);

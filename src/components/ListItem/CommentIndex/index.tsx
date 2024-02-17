@@ -10,6 +10,7 @@ import Item from "./components/Child";
 import React, { useState } from "react";
 import { IComment } from "./types";
 import axios from "axios";
+import { ERROR } from "../../../constants/message";
 
 function ListItem({ url, name, createdAt, id, content, part }: IComment) {
   const { data, reFetch } = useChildComments(id);
@@ -34,6 +35,7 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
       )
       .catch((err) => {
         console.log(err);
+        throw new Error(ERROR.COMMENT_UPLOAD);
       });
 
     setComment("");

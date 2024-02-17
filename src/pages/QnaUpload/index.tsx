@@ -12,6 +12,7 @@ import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SUB_TEXT } from "../../constants/text";
 import Checkbox from "../Qna/components/Checkbox/Checkbox";
+import { ERROR } from "../../constants/message";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -92,7 +93,7 @@ function QuestionUpload() {
           });
       }
     } catch (err) {
-      throw new Error("upload qna error");
+      throw new Error(ERROR.QNA_UPLOAD);
     }
   };
 
@@ -101,17 +102,22 @@ function QuestionUpload() {
 
     if (!files || files.length !== 1) return;
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_QUESTION}/image`,
-      {
-        file: files[0],
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
+    const response = await axios
+      .post(
+        `${import.meta.env.VITE_QUESTION}/image`,
+        {
+          file: files[0],
         },
-      }
-    );
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+        throw new Error(ERROR.FILE_UPLOAD);
+      });
 
     const url = response.data.data;
     setUrls((obj) => {

@@ -7,6 +7,7 @@ import getFormedDate from "../../../utils/getFormedDate.ts";
 import { useNoticeById } from "../../../hooks/index.ts";
 import { theme } from "../../../theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx/index.tsx";
+import { ERROR } from "../../../constants/message.ts";
 
 interface INoticeModal {
   clickedId: number;
@@ -24,13 +25,13 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
     };
   }, [clickedId]);
 
-  const { isloading, data, error } = useNoticeById(clickedId);
+  const { data, error } = useNoticeById(clickedId);
   const uid = localStorage.getItem("id");
 
   if (error === "rejected") {
-    throw new Error("axios error");
+    throw new Error(ERROR.ID_NOTIFICATION);
   }
-  if (isloading || !data) {
+  if (!data) {
     return;
   }
 

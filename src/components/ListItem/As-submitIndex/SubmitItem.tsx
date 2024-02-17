@@ -9,17 +9,15 @@ import { variants } from "./variants";
 import { IItem } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
 import { useMemberId } from "../../../hooks";
+import { ERROR } from "../../../constants/message";
 
 function SubmitItem({ name, date, link, description, id }: IItem) {
   const [clicked, setClicked] = useState(false);
 
-  const { data } = useMemberId(+id);
+  const { data, error } = useMemberId(+id);
 
-  if (!data) {
-    return;
-  }
-
-  console.log(data);
+  if (error === "rejected") throw new Error(ERROR.ID_MEMBER);
+  if (!data) return;
 
   const checkContainerClicked = (e: React.MouseEvent<HTMLElement>) => {
     if (!clicked) {

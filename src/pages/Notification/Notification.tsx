@@ -8,6 +8,7 @@ import getFormedDate from "../../utils/getFormedDate";
 import NoticeDetail from "./Notice-detail/Detail.tsx";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
+import { ERROR } from "../../constants/message.ts";
 
 function Notification() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -17,17 +18,12 @@ function Notification() {
 
   const id = localStorage.getItem("id");
 
-  if (!id) throw new Error("has no id");
-
-  if (error === "rejected") {
-    throw new Error("모든 공지사항 조회 에러");
-  }
+  if (!id) throw new Error(ERROR.NO_ID);
+  if (error === "rejected") throw new Error(ERROR.ALL_NOTICE);
 
   const filteredData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
   );
-
-  console.log(data);
 
   return (
     <Styled.Wrapper>

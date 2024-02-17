@@ -10,6 +10,7 @@ import getFormedDate from "../../../utils/getFormedDate";
 import Deadline from "./components/Deadline";
 import { theme } from "../../../theme/theme";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
+import { ERROR } from "../../../constants/message.ts";
 
 interface IHwDetail {
   clickedId: number;
@@ -27,16 +28,12 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
     };
   }, [clickedId]);
 
-  const { isloading, data, error } = useGetAssignmentById(clickedId);
+  const { data, error } = useGetAssignmentById(clickedId);
   const uid = localStorage.getItem("id");
   const navigate = useNavigate();
 
-  if (error === "rejected") {
-    throw new Error("axios error");
-  }
-  if (isloading || !data) {
-    return;
-  }
+  if (error === "rejected") throw new Error(ERROR.ID_ASSIGNMENT);
+  if (!data) return;
 
   const { content, title, createdAt, expireAt, tags, part, id } = data;
 

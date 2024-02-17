@@ -11,6 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { initialDate } from "../../../utils/getCurrenty-m-dString";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
+import { ERROR } from "../../../constants/message";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -93,7 +94,7 @@ function UploadHW() {
         );
       }
     } catch (err) {
-      throw new Error("upload assignment error");
+      throw new Error(ERROR.ASSIGNMENT_UPLOAD);
     }
 
     navigate("/homework");

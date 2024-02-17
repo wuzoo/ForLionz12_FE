@@ -15,6 +15,7 @@ import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
 import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
 import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
 import { useMyInfo, useUserUpdater } from "../../hooks";
+import { ERROR } from "../../constants/message";
 
 function Profile() {
   const user = useLoginInfoState();
@@ -63,11 +64,16 @@ function Profile() {
       const formData = new FormData();
       formData.append("file", files[0]);
 
-      await axios.post(`${import.meta.env.VITE_MEMBER}/image`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios
+        .post(`${import.meta.env.VITE_MEMBER}/image`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .catch((err) => {
+          console.log(err);
+          throw new Error(ERROR.FILE_UPLOAD);
+        });
 
       dispatch({
         type: "LOGIN",

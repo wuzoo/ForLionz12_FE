@@ -4,6 +4,7 @@ import Item from "../../components/ListItem/ContactIndex/ContactItem";
 import * as Styled from "./style";
 import { useState } from "react";
 import { useAllMember } from "../../hooks";
+import { ERROR } from "../../constants/message";
 
 function Contact() {
   const [selectedToggle, setSelectedToggle] = useState("all");
@@ -11,7 +12,7 @@ function Contact() {
   const { error, data } = useAllMember();
 
   if (error === "rejected") {
-    throw new Error("contact page error");
+    throw new Error(ERROR.ALL_MEMBER);
   }
   if (!data) {
     return;
@@ -24,8 +25,6 @@ function Contact() {
       return data?.filter((item) => item.part === selectedToggle.toUpperCase());
     }
   };
-
-  console.log(data);
 
   return (
     <Styled.Wrapper>

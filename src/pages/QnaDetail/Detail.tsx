@@ -11,13 +11,14 @@ import ListItem from "../../components/ListItem/CommentIndex";
 import React, { useState } from "react";
 import axios from "axios";
 import { css } from "@emotion/react";
+import { ERROR } from "../../constants/message";
 
 function QnaDetail() {
   const { id } = useParams();
   const uid = localStorage.getItem("id");
 
-  if (!id) throw new Error("page has no id param");
-  if (!uid) throw new Error("has no localstorage id");
+  if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
+  if (!uid) throw new Error(ERROR.NO_ID);
 
   const { data: comments, reFetch } = useCommentsById(+id);
   const { data, error } = useQnaDetail(+id);
@@ -26,7 +27,7 @@ function QnaDetail() {
 
   const isMyQna = +uid === data?.memberId;
 
-  if (error === "rejected") throw new Error("큐앤에이 상세 조회 에러");
+  if (error === "rejected") throw new Error(ERROR.ID_QNA);
   if (!data) return;
 
   const handleDelete = async () => {
@@ -43,7 +44,7 @@ function QnaDetail() {
       })
       .catch((err) => {
         console.log(err);
-        throw new Error("큐앤에이 삭제 에러");
+        throw new Error(ERROR.DELETE_QNA);
       });
   };
 
@@ -73,7 +74,7 @@ function QnaDetail() {
       )
       .catch((err) => {
         console.log(err);
-        throw new Error("comment upload error");
+        throw new Error(ERROR.COMMENT_UPLOAD);
       });
 
     setComment("");

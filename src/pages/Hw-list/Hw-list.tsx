@@ -13,6 +13,7 @@ import HwSliderCard from "../../components/Card/HwSliderCard";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
 import { SUB_TEXT, TEXT } from "../../constants/text.ts";
+import { ERROR } from "../../constants/message.ts";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
@@ -21,9 +22,8 @@ function HwList() {
   const part = localStorage.getItem("part");
   const id = localStorage.getItem("id");
 
-  if (!part || !id) {
-    throw new Error("has no localstorage value");
-  }
+  if (!part) throw new Error(ERROR.NO_PART);
+  if (!id) throw new Error(ERROR.NO_ID);
 
   const ifStaff_partAll = part !== "STAFF" ? part : "ALL";
 
@@ -35,9 +35,8 @@ function HwList() {
     (item) => item.part === selectedPart.toUpperCase()
   );
 
-  if (error === "rejected" || myPartError === "rejected") {
-    throw new Error("조회 에러");
-  }
+  if (error === "rejected") throw new Error(ERROR.ALL_ASSIGNMENT);
+  if (myPartError === "rejected") throw new Error(ERROR.PART_ASSIGNMENT);
 
   return (
     <Styled.Wrapper>

@@ -8,6 +8,7 @@ import { useNoticeById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
+import { ERROR } from "../../../constants/message";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -64,7 +65,7 @@ function UploadNotice() {
         );
       }
     } catch (err) {
-      throw new Error("upload notification error");
+      throw new Error(ERROR.NOTIFICATION_UPLOAD);
     }
 
     navigate("/notification");

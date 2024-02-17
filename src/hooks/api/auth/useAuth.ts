@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLoginInfoDispatch } from "../../../context/LoginUser/User";
 import { getCookie, removeCookie, setCookie } from "../../../utils/cookie";
 import { error } from "../../../utils/toast";
+import { ERROR } from "../../../constants/message";
 
 export function useAuth() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ export function useAuth() {
         })
         .catch((err) => {
           if (err.response.status === 401) {
-            error("올바른 유저 정보가 아니에요.");
+            error(ERROR.NO_AUTH);
           }
         });
 
@@ -61,7 +62,7 @@ export function useAuth() {
         })
         .catch((err) => {
           if (err.response.status === 500) {
-            error("유저 정보를 불러오는데 문제가 생겼어요.");
+            error(ERROR.CODE500);
           }
         });
       const res = response.data;
