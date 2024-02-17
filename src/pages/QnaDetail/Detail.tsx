@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as Styled from "./style";
@@ -10,21 +10,50 @@ import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";
 import React, { useState } from "react";
 import axios from "axios";
+import { css } from "@emotion/react";
 
 function QnaDetail() {
   const { id } = useParams();
-  if (!id) return;
+  const uid = localStorage.getItem("id");
+
+  if (!id) throw new Error("page has no id param");
+  if (!uid) throw new Error("has no localstorage id");
 
   const { data: comments, reFetch } = useCommentsById(+id);
   const { data, error } = useQnaDetail(+id);
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
 
-  if (error === "rejected") {
-    throw new Error("큐앤에이 상세 조회 에러");
-  }
-  if (!data) {
-    return;
-  }
+  const isMyQna = +uid === data?.memberId;
+
+  if (error === "rejected") throw new Error("큐앤에이 상세 조회 에러");
+  if (!data) return;
+
+  const handleDelete = async () => {
+    const ok = window.confirm("삭제하시겠습니까 ?");
+
+    if (!ok) return;
+
+    await axios
+      .delete(`/question/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/qna");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new Error("큐앤에이 삭제 에러");
+      });
+  };
+
+  const handleEdit = () => {
+    navigate("/qna/upload", {
+      state: {
+        id,
+      },
+    });
+  };
 
   const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,11 +83,25 @@ function QnaDetail() {
   return (
     <Styled.Wrapper>
       <Styled.TitleAndInfoWrapper>
-        <Styled.Title>
-          <Typo fontSize="40" weight="700">
-            {data?.title}
-          </Typo>
-        </Styled.Title>
+        <Styled.TitleAndBtnWrapper>
+          <Styled.Title>
+            <Typo fontSize="40" weight="700">
+              {data?.title}
+            </Typo>
+          </Styled.Title>
+          <Styled.EditDeleteBtnWrapper
+            css={css`
+              display: ${isMyQna ? "flex" : "none"};
+            `}
+          >
+            <Button bgcolor="white" color="darkblue" onClick={handleEdit}>
+              수정
+            </Button>
+            <Button bgcolor="white" color="darkblue" onClick={handleDelete}>
+              삭제
+            </Button>
+          </Styled.EditDeleteBtnWrapper>
+        </Styled.TitleAndBtnWrapper>
 
         <Styled.NameAndDate>
           <Typo>{data?.name}</Typo>
@@ -88,8 +131,7 @@ function QnaDetail() {
             p: (props: any) => {
               return (
                 <>
-                  <p>{props.children}</p>
-                  <br />
+                  <Styled.MDParagraph>{props.children}</Styled.MDParagraph>
                 </>
               );
             },
@@ -120,6 +162,7 @@ function QnaDetail() {
       <Styled.CommentsContainer>
         {comments?.map((item) => (
           <ListItem
+            key={item.commentId}
             id={item.commentId}
             name={item.name}
             url={item.memberImageUrl}

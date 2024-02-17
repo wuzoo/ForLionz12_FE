@@ -7,6 +7,27 @@ export const Wrapper = styled.div`
 
 export const Title = styled.p``;
 
+export const TitleAndInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const TitleAndBtnWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  gap: 20px;
+`;
+
+export const EditDeleteBtnWrapper = styled.div`
+  gap: 8px;
+  button {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: ${(props) => props.theme.color.darkblue};
+  }
+`;
+
 export const NameAndDate = styled.p`
   display: flex;
   align-items: center;
@@ -33,15 +54,9 @@ export const CommentCnt = styled.p`
 export const MarkDownContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 2%;
-  min-height: 80vh;
+  padding: 20px 2% 5% 2%;
+  min-height: 60vh;
   justify-content: center;
-`;
-
-export const TitleAndInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 `;
 
 export const CommentsContainer = styled.div`
@@ -61,4 +76,8 @@ export const MDImg = styled.img`
   max-width: 100%;
   height: 400px;
   object-fit: cover;
+`;
+
+export const MDParagraph = styled.p`
+  line-height: 1.3;
 `;
