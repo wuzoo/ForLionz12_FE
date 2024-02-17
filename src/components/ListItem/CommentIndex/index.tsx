@@ -79,6 +79,7 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
       >
         {data?.map((item) => (
           <Item
+            key={item.commentId}
             name={item.name}
             part={item.part}
             createdAt={item.createdAt}
