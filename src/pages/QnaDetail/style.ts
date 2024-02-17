@@ -15,6 +15,11 @@ export const TitleAndBtnWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "end", 20)}
 `;
 
+export const TagWrapper = styled.div`
+  margin-top: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
+`;
+
 export const EditDeleteBtnWrapper = styled.div`
   gap: 8px;
   button {
@@ -59,12 +64,8 @@ export const BtnWrapper = styled.div`
   padding: 10px 0px;
 `;
 
-export const MDImg = styled.img`
-  max-width: 100%;
-  height: 400px;
-  object-fit: cover;
-`;
-
-export const MDParagraph = styled.p`
-  line-height: 1.3;
+export const Tag = styled.p`
+  padding: 6px 15px;
+  border-radius: 10px;
+  background-color: ${(props) => props.theme.color.superlightgray};
 `;

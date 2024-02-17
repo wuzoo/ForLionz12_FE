@@ -1,17 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import getFormedDate from "../../utils/getFormedDate";
 import Button from "../../components/Button/Button";
-import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";
 import React, { useState } from "react";
 import axios from "axios";
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message";
+import Markdown from "./components/Markdown";
 
 function QnaDetail() {
   const { id } = useParams();
@@ -24,6 +22,8 @@ function QnaDetail() {
   const { data, error } = useQnaDetail(+id);
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
+
+  console.log(data);
 
   const isMyQna = +uid === data?.memberId;
 
@@ -103,44 +103,20 @@ function QnaDetail() {
             </Button>
           </Styled.EditDeleteBtnWrapper>
         </Styled.TitleAndBtnWrapper>
-
         <Styled.NameAndDate>
           <Typo>{data?.name}</Typo>
           <Typo fontSize="14" color="darkgray">
             작성일: {getFormedDate(data?.createdAt)}
           </Typo>
         </Styled.NameAndDate>
-        <div></div>
+        <Styled.TagWrapper>
+          {data?.childTags.map((tag) => (
+            <Styled.Tag>{tag}</Styled.Tag>
+          ))}
+        </Styled.TagWrapper>
       </Styled.TitleAndInfoWrapper>
       <Styled.MarkDownContent>
-        <ReactMarkdown
-          children={data?.content}
-          components={{
-            code: (props: any) => {
-              const match = /language-(\w+)/.exec(props.className || "");
-              return (
-                <SyntaxHighlighter
-                  children={String(props.children).replace(/\n$/, "")}
-                  style={oneDark}
-                  language={match && match[1]}
-                  PreTag="div"
-                  showLineNumbers={true}
-                  {...props}
-                />
-              );
-            },
-            p: (props: any) => {
-              return (
-                <>
-                  <Styled.MDParagraph>{props.children}</Styled.MDParagraph>
-                </>
-              );
-            },
-            img: (props: any) => {
-              return <Styled.MDImg {...props} />;
-            },
-          }}
-        />
+        <Markdown>{data?.content}</Markdown>
       </Styled.MarkDownContent>
       <form onSubmit={handleCommentSubmit}>
         <Styled.CommentCnt>
