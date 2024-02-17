@@ -1,13 +1,13 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
-import { useState } from "react";
-import { useTags } from "../../hooks";
+import { useEffect, useState } from "react";
+import { useQnaDetail, useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
 import { ChildtagType } from "../../types";
 import code from "./assets/code.svg";
 import img from "./assets/img.svg";
 import Button from "../../components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SUB_TEXT } from "../../constants/text";
@@ -29,12 +29,19 @@ function QuestionUpload() {
   const [child, setChild] = useState<ChildtagType[]>();
   const [urls, setUrls] = useState<string[]>([]);
   const [query, setQuery] = useState<number[]>([]);
+  const { register, handleSubmit, reset } = useForm<IInputs>();
 
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<IInputs>();
-  const { data: tags } = useTags();
+  const { state } = useLocation();
 
-  console.log(query);
+  const { data: tags } = useTags();
+  const { data } = useQnaDetail(state?.id);
+
+  useEffect(() => {
+    if (data) {
+      reset({ title: data?.title, content: data?.content });
+    }
+  }, [state?.id, data]);
 
   const getChild = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const response = await getParentTagData(+e.target.value);
@@ -59,16 +66,34 @@ function QuestionUpload() {
     };
 
     try {
-      await axios.post("/question", request, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      if (state?.id) {
+        await axios
+          .put(`/question/${state?.id}`, request, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              navigate(`/qna/${state?.id}`);
+            }
+          });
+      } else {
+        await axios
+          .post("/question", request, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              navigate("/qna");
+            }
+          });
+      }
     } catch (err) {
       throw new Error("upload qna error");
     }
-
-    navigate("/qna");
   };
 
   const handleImgUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {

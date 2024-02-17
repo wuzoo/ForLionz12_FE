@@ -28,7 +28,10 @@ export const Img = styled.img`
 
 export const SelectTag = styled.select`
   font-size: 18px;
-  margin-top: 10px;
+  border: 1px solid ${(props) => props.theme.color.lightgray};
+  padding: 5px;
+  border-radius: 6px;
+
   option {
     color: ${(props) => props.theme.color.darkblue};
   }
