@@ -33,7 +33,7 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
     >
       <UserImg
         radius={clicked ? "20px" : ""}
-        url={file || null}
+        url={file}
         size={clicked ? "200" : undefined}
       />
       <Styled.NameAndPart
