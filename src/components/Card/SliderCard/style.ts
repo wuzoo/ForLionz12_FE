@@ -6,15 +6,12 @@ export const CardWrapper = styled.div`
   position: relative;
 `;
 
-export const Picture = styled.div`
-  width: 340px;
-  height: 340px;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
+export const Picture = styled.img`
+  height: 80%;
   position: absolute;
+  object-fit: cover;
   top: 10%;
-  right: 55%;
+  right: 57%;
 `;
 
 export const LogoAndTitle = styled.div`

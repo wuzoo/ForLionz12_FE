@@ -29,11 +29,7 @@ function Card({ logo, bgcolor, ...props }: ICard) {
         background-color: ${bgcolor};
       `}
     >
-      <Styled.Picture
-        css={css`
-          background-image: url(${logo});
-        `}
-      ></Styled.Picture>
+      <Styled.Picture src={logo} />
       <Styled.LogoAndTitle onClick={() => navigate("/notification")}>
         <Styled.TitleWrapper>
           <Styled.CardTitle>
