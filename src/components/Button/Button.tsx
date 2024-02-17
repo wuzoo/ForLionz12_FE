@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import * as Styled from "./style";
 import { IBtn } from "./types";
-import { theme } from "../../theme/theme";
+import { theme } from "../../styles/theme/theme";
 import Typo from "../Typo/Typo";
 
 function Button(props: IBtn) {

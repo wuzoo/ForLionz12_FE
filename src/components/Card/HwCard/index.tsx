@@ -5,7 +5,7 @@ import * as Styled from "./style";
 import { PART_COLOR } from "../../../constants/partcolor";
 import { IHwCard } from "./types";
 import getImgForCategory from "../../../utils/getImgForCategory";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 import { useLayoutEffect, useRef } from "react";
 
 const variants = {

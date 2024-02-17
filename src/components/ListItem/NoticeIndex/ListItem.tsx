@@ -4,7 +4,7 @@ import { PART_COLOR } from "../../../constants/partcolor";
 import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { variants } from "./variants";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 
 function ListItem({ part, title, date, onClick }: IItem) {
   return (

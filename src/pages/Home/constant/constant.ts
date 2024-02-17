@@ -1,4 +1,4 @@
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 import one from "../assets/1.png";
 import two from "../assets/2.png";
 import three from "../assets/4.png";

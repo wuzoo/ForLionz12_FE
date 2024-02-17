@@ -8,7 +8,7 @@ import Button from "../../../components/Button/Button";
 import { useGetAssignmentById } from "../../../hooks";
 import getFormedDate from "../../../utils/getFormedDate";
 import Deadline from "./components/Deadline";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 import { ERROR } from "../../../constants/message.ts";
 

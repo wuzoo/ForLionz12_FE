@@ -3,7 +3,7 @@ import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import getFormedDate from "../../../utils/getFormedDate";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 
 interface IItem {
   title: string;

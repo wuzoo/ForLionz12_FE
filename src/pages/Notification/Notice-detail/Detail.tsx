@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor.ts";
 import getFormedDate from "../../../utils/getFormedDate.ts";
 import { useNoticeById } from "../../../hooks/index.ts";
-import { theme } from "../../../theme/theme.ts";
+import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx/index.tsx";
 import { ERROR } from "../../../constants/message.ts";
 

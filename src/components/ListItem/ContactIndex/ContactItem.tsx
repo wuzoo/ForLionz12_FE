@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor";
 import instaimg from "../../../assets/icons/insta/img.png";
 import githubimg from "../../../assets/icons/github/img.png";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 import { useState } from "react";
 
 function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {

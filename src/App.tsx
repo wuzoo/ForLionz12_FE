@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GlobalStyle } from "./GlobalStyle";
+import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global, ThemeProvider } from "@emotion/react";
-import { theme } from "./theme/theme";
+import { theme } from "./styles/theme/theme";
 import Layout from "./layout/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";

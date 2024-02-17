@@ -3,7 +3,7 @@ import { TEXT } from "../../constants/text";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
-import { theme } from "../../theme/theme";
+import { theme } from "../../styles/theme/theme";
 import { useState } from "react";
 import {
   useLoginInfoDispatch,

@@ -5,7 +5,7 @@ import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import Button from "../../Button/Button";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 import { useUserUpdater } from "../../../hooks";
 import getImgForCategory from "../../../utils/getImgForCategory";
 import {

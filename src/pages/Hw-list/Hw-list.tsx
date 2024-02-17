@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { Suspense, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
-import { theme } from "../../theme/theme";
+import { theme } from "../../styles/theme/theme.ts";
 import HwSliderCard from "../../components/Card/HwSliderCard";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";

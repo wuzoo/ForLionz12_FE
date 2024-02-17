@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Styled from "./style";
 import { css } from "@emotion/react";
-import { theme } from "../../../../theme/theme";
+import { theme } from "../../../../styles/theme/theme";
 
 interface IBox {
   text: string;

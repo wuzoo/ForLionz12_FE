@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
-import { theme } from "../../../theme/theme";
+import { theme } from "../../../styles/theme/theme";
 
 interface IBtn {
   type: string;

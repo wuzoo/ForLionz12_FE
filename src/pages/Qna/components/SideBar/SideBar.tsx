@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import * as Styled from "./style";
-import { theme } from "../../../../theme/theme";
+import { theme } from "../../../../styles/theme/theme";
 import useResponsivebar from "../../hooks/useResponsivebar";
 import { SetStateAction } from "react";
 import { ParenttagType } from "../../../../types";
