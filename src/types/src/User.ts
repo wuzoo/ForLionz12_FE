@@ -3,7 +3,7 @@ export interface IUserInfo {
   email: string;
   name: string;
   part: string;
-  imageUrl: string;
+  imageUrl: string | null;
   introduction: string;
   githubAddress: string;
   instagramId: string;
