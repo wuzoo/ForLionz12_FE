@@ -30,7 +30,7 @@ function UploadHW() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const { data } = useGetAssignmentById(state?.id);
+  const { data } = useGetAssignmentById(state?.id || 0);
 
   const { register, handleSubmit, reset, getValues } = useForm<IInputs>({});
 

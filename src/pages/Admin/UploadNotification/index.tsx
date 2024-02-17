@@ -30,7 +30,7 @@ function UploadNotice() {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  const { data } = useNoticeById(state?.id);
+  const { data } = useNoticeById(state?.id || 0);
 
   useEffect(() => {
     if (data) {
