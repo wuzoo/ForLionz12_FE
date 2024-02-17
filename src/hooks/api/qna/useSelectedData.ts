@@ -15,10 +15,13 @@ export function useSelectedData(id: number) {
   const get = async () => {
     if (id === 0) {
       const response = await getAllQuestion();
+
+      setChildTags([]);
       setData(response.data);
     } else {
       const response = await getParentTagData(id);
       const { childTags, questionPosts } = response.data;
+
       setChildTags(childTags);
       setData(questionPosts);
     }
