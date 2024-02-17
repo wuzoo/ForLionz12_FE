@@ -18,6 +18,13 @@ function Home() {
 
   const { data: noticesData, error } = useAllNotification();
 
+  const recentSortData = noticesData?.sort((a, b) => {
+    const first = new Date(a.createdAt).getTime();
+    const second = new Date(b.createdAt).getTime();
+
+    return second - first;
+  });
+
   if (error === "rejected") {
     throw new Error(ERROR.ALL_NOTICE);
   }
@@ -56,7 +63,7 @@ function Home() {
           <PageLogo height="430" width="450" type="LION" />
         </Styled.banner>
         <FullScreenSlider>
-          {noticesData?.map((item, index) => (
+          {recentSortData?.map((item, index) => (
             <Card
               key={item.id}
               part={item.part}
