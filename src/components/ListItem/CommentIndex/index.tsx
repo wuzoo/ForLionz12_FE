@@ -1,5 +1,4 @@
 import Profile from "../../Profile/Profile";
-import user from "../../../assets/imgs/defaultUser.svg";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import chat from "./assets/chat.svg";
@@ -45,7 +44,7 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
     <Styled.Wrapper css={css``}>
       <div>
         <Styled.Info>
-          <Profile url={url || user} size="60" />
+          <Profile url={url} size="60" />
           <Styled.NameAndDate>
             <Styled.Name>
               <Typo>

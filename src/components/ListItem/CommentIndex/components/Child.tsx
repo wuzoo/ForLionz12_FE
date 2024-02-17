@@ -1,5 +1,4 @@
 import Profile from "../../../Profile/Profile";
-import user from "../../../../assets/imgs/defaultUser.svg";
 import * as Styled from "./style";
 import Typo from "../../../Typo/Typo";
 import getFormedDate from "../../../../utils/getFormedDate";
@@ -16,7 +15,7 @@ function Item({ url, name, createdAt, content, part }: IChild) {
   return (
     <Styled.Wrapper>
       <Styled.Info>
-        <Profile url={url || user} size="60" />
+        <Profile url={url} size="60" />
         <Styled.NameAndDate>
           <Styled.Name>
             <Typo>
