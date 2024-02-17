@@ -6,6 +6,7 @@ export interface IQna {
   createdAt: string;
   memberImageUrl: string;
   name: string;
+  childTags: string[];
 }
 
 export type ChildtagType = {
