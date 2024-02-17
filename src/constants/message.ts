@@ -23,6 +23,7 @@ export const ERROR = Object.freeze({
   ID_MEMBER: "특정 유저 조회 에러",
 
   DELETE_QNA: "해당 큐앤에이 삭제에 실패하였습니다.",
+  DELETE_USER_IMAGE: "프로필 이미지를 삭제하는데 실패하였습니다.",
 
   NO_LINK_ASSIGNMENT: "링크는 필수 사항입니다.",
   PART_ASSIGNMENT: "해당 파트 과제 조회 에러",
