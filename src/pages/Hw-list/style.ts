@@ -17,9 +17,7 @@ export const FullWidthContainer = styled.div`
 `;
 
 export const AlignWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
+  ${(props) => props.theme.flexRow("space-between", "end")}
 `;
 
 export const OtherHWContainer = styled.div`

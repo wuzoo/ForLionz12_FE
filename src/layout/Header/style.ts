@@ -3,9 +3,8 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div<{ type?: string }>`
   width: 100vw;
   height: 80px;
-  display: flex;
+  ${(props) => props.theme.flexRow("", "center")}
   justify-content: ${(props) => (props.type === "login" ? "center" : "start")};
-  align-items: center;
   padding: 0px 40px;
   position: fixed;
   top: 0;
@@ -19,9 +18,7 @@ export const logo = styled.span`
 `;
 
 export const navcol = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  ${(props) => props.theme.flexRow("start", "center")}
 
   a:not(:first-child) {
     text-align: start;

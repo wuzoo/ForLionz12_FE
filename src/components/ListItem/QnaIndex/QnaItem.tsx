@@ -3,6 +3,7 @@ import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import getFormedDate from "../../../utils/getFormedDate";
+import { theme } from "../../../theme/theme";
 
 interface IItem {
   title: string;
@@ -17,9 +18,7 @@ function QnaItem({ onClick, title, date, url, name }: IItem) {
     <Styled.Container onClick={onClick}>
       <div
         css={css`
-          display: flex;
-          align-items: center;
-          gap: 30px;
+          ${theme.flexRow("", "center", 30)}
         `}
       >
         <User url={url} size="45" />

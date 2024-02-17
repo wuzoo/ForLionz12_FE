@@ -3,9 +3,7 @@ import styled from "@emotion/styled";
 export const Form = styled.form`
   margin-top: 50px;
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  ${(props) => props.theme.flexColumn("", "", 50)}
 `;
 
 export const Input = styled.input`
@@ -44,39 +42,26 @@ export const Btn = styled.span`
 `;
 
 export const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "start", 10)}
 `;
 
 export const TitleAndTagWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 20px;
+  ${(props) => props.theme.flexRow("", "end", 20)}
 `;
 
 export const TagsContainer = styled.div`
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between", "end")}
 `;
 
 export const HorizontalAlignWrapper = styled.div`
-  display: flex;
-  gap: 15px;
+  ${(props) => props.theme.flexRow("", "", 15)}
 `;
 
 export const BtnWrapper = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("center", "", 10)}
 `;
 
 export const PartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "start", 10)}
 `;

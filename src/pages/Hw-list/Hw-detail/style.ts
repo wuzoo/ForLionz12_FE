@@ -34,10 +34,8 @@ export const Badge = styled.div`
   color: white;
   width: 68px;
   height: 26px;
-  display: flex;
   font-weight: ${(props) => props.theme.weight.semibold};
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flexRow("center", "center")}
   font-size: 16px;
   border-radius: 12px;
 `;
@@ -53,9 +51,7 @@ export const Tag = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 22px;
+  ${(props) => props.theme.flexRow("", "center", 22)}
 `;
 
 export const TagWrapper = styled(Wrapper)`
@@ -74,13 +70,9 @@ export const Content = styled.p`
 `;
 
 export const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  ${(props) => props.theme.flexColumn("", "", 16)}
 `;
 
 export const TitleAndModifyBtnWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 20px;
+  ${(props) => props.theme.flexRow("", "end", 20)}
 `;

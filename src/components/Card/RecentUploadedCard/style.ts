@@ -9,22 +9,18 @@ export const variants = {
 };
 
 export const CardWrapper = styled(motion.div)`
-  display: flex;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   height: 160px;
   margin: 0px 8px;
-  align-items: center;
   padding: 10px;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
 export const ContentWrapper = styled.div`
   width: 60%;
   height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  ${(props) => props.theme.flexColumn("space-between", "")}
   padding: 0px 5px;
 `;
 

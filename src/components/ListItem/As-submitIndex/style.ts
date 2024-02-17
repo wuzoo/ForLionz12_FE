@@ -11,17 +11,13 @@ export const Container = styled(motion.div)`
 `;
 
 export const PrevBar = styled.div`
-  display: flex;
   padding: 20px;
-  align-items: center;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between", "center")}
   height: 80px;
 `;
 
 export const ImgAndNameWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  ${(props) => props.theme.flexRow("", "center", 30)}
 `;
 
 export const Name = styled.p``;
@@ -42,10 +38,8 @@ export const Img = styled.img`
 `;
 
 export const LinkWrapper = styled.div`
-  display: flex;
-  align-items: center;
   padding: 20px;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
 export const LinkText = styled.span`

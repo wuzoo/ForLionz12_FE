@@ -2,17 +2,11 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
+  ${(props) => props.theme.flexRow("center", "center", 40)}
 `;
 
 export const ItemWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "center", 10)}
 `;
 
 export const Item = styled.div`
@@ -20,9 +14,7 @@ export const Item = styled.div`
   height: 170px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.color.lightgray};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flexRow("center", "center")}
   cursor: pointer;
 `;
 

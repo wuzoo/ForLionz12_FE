@@ -2,23 +2,17 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   padding: 20px 0px;
+  ${(props) => props.theme.flexColumn("", "", 20)}
   border-bottom: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const Info = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
 export const NameAndDate = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  ${(props) => props.theme.flexColumn("", "", 4)}
 `;
 
 export const Name = styled.p``;

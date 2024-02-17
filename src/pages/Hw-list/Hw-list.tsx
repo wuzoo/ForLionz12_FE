@@ -42,9 +42,7 @@ function HwList() {
     <Styled.Wrapper>
       <div
         css={css`
-          display: flex;
-          align-items: end;
-          justify-content: space-between;
+          ${theme.flexRow("space-between", "end")}
         `}
       >
         <MainAndSubtitle

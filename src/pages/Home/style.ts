@@ -3,17 +3,12 @@ import { motion } from "framer-motion";
 
 export const banner = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-left: 8rem;
+  ${(props) => props.theme.flexRow("center", "center")}
 `;
 
 export const textwrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  ${(props) => props.theme.flexColumn("center", "", 20)}
 `;
 
 export const text = styled(motion.h1)`

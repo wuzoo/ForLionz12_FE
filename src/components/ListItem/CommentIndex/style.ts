@@ -6,15 +6,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Info = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
 export const NameAndDate = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  ${(props) => props.theme.flexColumn("", "", 4)}
 `;
 
 export const Name = styled.p``;
@@ -27,18 +23,13 @@ export const Comment = styled.p`
 `;
 
 export const Child = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  ${(props) => props.theme.flexRow("", "center", 5)}
   cursor: pointer;
   padding: 20px 0px;
 `;
 
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  gap: 20px;
+  ${(props) => props.theme.flexColumn("", "end", 20)}
   width: 80%;
   padding: 20px 0px;
 `;

@@ -16,19 +16,14 @@ export const Wrapper = styled.div`
 export const Name = styled.p``;
 
 export const NameAndPart = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
+  ${(props) => props.theme.flexRow("space-between", "center", 30)};
   width: 200px;
 `;
 
 export const Badge = styled.div`
   width: 100px;
   height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flexRow("center", "center")}
   border-radius: 15px;
 `;
 
@@ -42,9 +37,7 @@ export const Introduce = styled.p`
 `;
 
 export const SNSbox = styled.div`
-  display: flex;
-  justify-content: end;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("end", "", 10)}
 `;
 
 export const Img = styled.img`

@@ -8,15 +8,11 @@ export const Wrapper = styled.div`
 export const Title = styled.p``;
 
 export const TitleAndInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "", 10)}
 `;
 
 export const TitleAndBtnWrapper = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 20px;
+  ${(props) => props.theme.flexRow("", "end", 20)}
 `;
 
 export const EditDeleteBtnWrapper = styled.div`
@@ -29,10 +25,8 @@ export const EditDeleteBtnWrapper = styled.div`
 `;
 
 export const NameAndDate = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 20px;
   padding-left: 5px;
+  ${(props) => props.theme.flexRow("", "center", 20)}
 `;
 
 export const CommentInput = styled.textarea`
@@ -46,29 +40,22 @@ export const CommentInput = styled.textarea`
 `;
 
 export const CommentCnt = styled.p`
-  display: flex;
-  align-items: center;
+  ${(props) => props.theme.flexRow("", "center")}
   padding-left: 10px;
 `;
 
 export const MarkDownContent = styled.div`
-  display: flex;
-  flex-direction: column;
   padding: 20px 2% 5% 2%;
   min-height: 60vh;
-  justify-content: center;
+  ${(props) => props.theme.flexColumn("center")}
 `;
 
 export const CommentsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  ${(props) => props.theme.flexColumn("", "center", 20)}
 `;
 
 export const BtnWrapper = styled.div`
-  display: flex;
-  justify-content: end;
+  ${(props) => props.theme.flexRow("end")}
   padding: 10px 0px;
 `;
 

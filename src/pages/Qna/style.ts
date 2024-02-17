@@ -8,19 +8,14 @@ export const Wrapper = styled.div`
 export const Title = styled.h1``;
 
 export const BoxContainer = styled.div`
-  display: flex;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "", 10)}
   margin: 20px 0px;
 `;
 
 export const ItemsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  ${(props) => props.theme.flexColumn("", "", 15)}
 `;
 
 export const TagsAndBtnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between", "center")}
 `;

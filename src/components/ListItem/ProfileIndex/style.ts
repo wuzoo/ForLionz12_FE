@@ -22,9 +22,7 @@ export const Icon = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  ${(props) => props.theme.flexColumn("", "", 6)}
   padding-left: 12px;
 `;
 
@@ -50,7 +48,5 @@ export const Edit = styled.p`
 
 export const Form = styled.form`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${(props) => props.theme.flexRow("space-between", "center")}
 `;

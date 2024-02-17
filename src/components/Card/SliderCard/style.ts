@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 
 export const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  ${(props) => props.theme.flexColumn("space-between", "center")}
   padding-bottom: 36px;
   position: relative;
 `;
@@ -22,17 +19,12 @@ export const Picture = styled.div`
 
 export const LogoAndTitle = styled.div`
   height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
+  ${(props) => props.theme.flexRow("end", "center")}
   width: 50%;
 `;
 
 export const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "start", 10)}
   z-index: 2;
   box-sizing: content-box;
   width: 65%;
@@ -59,8 +51,6 @@ export const CardContent = styled(Ellipsis)`
 `;
 
 export const AlignWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  ${(props) => props.theme.flexColumn("", "", 5)}
   z-index: 10;
 `;

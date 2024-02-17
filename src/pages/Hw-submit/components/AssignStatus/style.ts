@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${(props) => props.theme.flexColumn()}
 `;
 
 export const StatusWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   place-self: center;
   width: 90%;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "", 10)}
 
   button {
     place-self: end;
@@ -26,8 +23,7 @@ export const MyTextArea = styled.textarea`
 `;
 
 export const LinkWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  ${(props) => props.theme.flexRow("", "center")}
 
   img {
     width: 44px;

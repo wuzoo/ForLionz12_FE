@@ -15,9 +15,7 @@ export const Wrapper = styled(motion.div)`
 export const Badge = styled.div`
   width: 70px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flexRow("center", "center")}
   border-radius: 15px;
   margin-right: 16px;
 `;

@@ -2,9 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.form`
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  ${(props) => props.theme.flexColumn("", "", 50)}
   margin-top: 100px;
 `;
 
@@ -38,9 +36,7 @@ export const SelectTag = styled.select`
 `;
 
 export const CheckBoxWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
 export const ContentInput = styled.textarea`
@@ -62,9 +58,7 @@ export const PreviewImg = styled.img`
 `;
 
 export const HorizonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("", "center", 10)}
   margin-top: 10px;
 `;
 
@@ -81,9 +75,8 @@ export const MdBtnWrapper = styled.div`
 
 export const SubmitBtnWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  ${(props) => props.theme.flexRow("center", "", 20)}
+
   button {
     width: 120px;
     height: 36px;
@@ -91,11 +84,9 @@ export const SubmitBtnWrapper = styled.div`
 `;
 
 export const ContentTitleAndBtnWrapper = styled.div`
-  display: flex;
-  align-items: end;
+  ${(props) => props.theme.flexRow("", "end")}
 `;
 
 export const ContentTitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between")}
 `;

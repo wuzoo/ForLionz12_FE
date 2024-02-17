@@ -6,15 +6,11 @@ export const Wrapper = styled.div`
 
 export const Toggle = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
   margin-bottom: 20px;
+  ${(props) => props.theme.flexRow("flex-end")}
 `;
 
 export const Items = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+  ${(props) => props.theme.flexColumn("", "start", 12)}
   width: 95%;
-  gap: 12px;
 `;

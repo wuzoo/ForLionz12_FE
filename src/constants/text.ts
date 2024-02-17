@@ -1,4 +1,4 @@
-export const TEXT = {
+export const TEXT: { [key: string]: string } = {
   LOGIN: "LIKELION\nINHA UNIV 12기와\n함께하기", //
   HOME_MAIN_TEXT: "Growl\nTo Growth\nWelcome", //
   HOME_GREETING: "님 반갑습니다", //
@@ -10,7 +10,7 @@ export const TEXT = {
   PROFILE: "사자들에게 보여질 프로필을 수정할 수 있어요.", //
 } as const;
 
-export const SUB_TEXT = {
+export const SUB_TEXT: { [key: string]: string } = {
   HW_OTHER_PART: "다른 파트의 과제들을 구경할 수 있어요.",
   HW_RECENT_UPLOAD: "최근 업로드된 아기사자의 과제를 구경하세요 !",
   HW_EXPLAIN: "짧게 적어도 됩니다. 자신의 과제를 마음껏 표현해주세요.",

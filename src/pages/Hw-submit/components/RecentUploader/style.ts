@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const TotalWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  ${(props) => props.theme.flexRow("center")}
 `;
 
 export const ContentWrapper = styled.div`
@@ -10,7 +9,6 @@ export const ContentWrapper = styled.div`
 `;
 
 export const SliderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  ${(props) => props.theme.flexRow("center")}
   padding: 20px 0px;
 `;

@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  display: flex;
   padding: 20px;
-  align-items: center;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between", "center")}
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   cursor: pointer;

@@ -14,25 +14,18 @@ export const InformBox = styled.div`
 `;
 
 export const ProfilePartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "center", 10)}
   border-right: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const AlignWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "", 10)}
 `;
 
 export const IntroWrapper = styled.div`
   padding: 20px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  ${(props) => props.theme.flexColumn("center")}
 `;
 
 export const UploadBtn = styled.label`
@@ -57,9 +50,7 @@ export const EditText = styled.p`
 `;
 
 export const ListItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${(props) => props.theme.flexColumn("", "center")}
 `;
 
 export const Name = styled.p`
@@ -103,11 +94,8 @@ export const EditingIntro = styled.textarea`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
   height: 140px;
-  justify-content: space-between;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("space-between", "", 10)}
 `;
 
 export const Btn = styled.button`

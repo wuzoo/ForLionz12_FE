@@ -2,9 +2,8 @@ import styled from "@emotion/styled";
 
 export const page = styled.div`
   width: 100vw;
-  display: flex;
-  justify-content: center;
   margin-top: 100px;
+  ${(props) => props.theme.flexRow("center")}
 `;
 
 export const Img = styled.img`
@@ -57,7 +56,5 @@ export const Input = styled.input`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${(props) => props.theme.flexColumn("", "center")}
 `;

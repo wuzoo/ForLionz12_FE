@@ -3,9 +3,7 @@ import styled from "@emotion/styled";
 export const Form = styled.form`
   margin-top: 50px;
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  ${(props) => props.theme.flexColumn("", "", 50)}
 `;
 
 export const Input = styled.input`
@@ -40,15 +38,10 @@ export const HorizontalAlignWrapper = styled.div`
 `;
 
 export const BtnWrapper = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: center;
-  gap: 10px;
+  ${(props) => props.theme.flexRow("center", "", 10)}
 `;
 
 export const PartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  ${(props) => props.theme.flexColumn("", "start", 10)}
 `;

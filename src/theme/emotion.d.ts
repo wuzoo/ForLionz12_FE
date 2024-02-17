@@ -29,5 +29,13 @@ declare module "@emotion/react" {
   }
 }
 
-type JustifyType = "center" | "space-between" | "space-around" | "";
+type JustifyType =
+  | "center"
+  | "space-between"
+  | "space-around"
+  | "end"
+  | "start"
+  | "flex-end"
+  | "flex-start"
+  | "";
 type AlignType = "center" | "end" | "start" | "";

@@ -5,16 +5,12 @@ export const Wrapper = styled.div`
 `;
 
 export const Items = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
   width: 95%;
-  gap: 12px;
+  ${(props) => props.theme.flexColumn("", "start", 12)}
 `;
 
 export const Toggle = styled.div`
   width: 95%;
-  display: flex;
-  justify-content: flex-end;
   margin-bottom: 20px;
+  ${(props) => props.theme.flexRow("flex-end", "")}
 `;

@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${(props) => props.theme.flexRow("space-between", "center")}
   min-height: 70vh;
   max-width: 80vw;
   padding-left: 2rem;
