@@ -3,7 +3,7 @@ import * as Styled from "./style";
 import { useState } from "react";
 import { useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
-import { ChildtagType } from "../../types/Qna";
+import { ChildtagType } from "../../types";
 import code from "./assets/code.svg";
 import img from "./assets/img.svg";
 import Button from "../../components/Button/Button";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SUB_TEXT } from "../../constants/text";
+import Checkbox from "../Qna/components/Checkbox/Checkbox";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -27,18 +28,21 @@ interface IInputs {
 function QuestionUpload() {
   const [child, setChild] = useState<ChildtagType[]>();
   const [urls, setUrls] = useState<string[]>([]);
-
-  const { register, handleSubmit } = useForm<IInputs>();
-
-  const { data: tags } = useTags();
+  const [query, setQuery] = useState<number[]>([]);
 
   const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<IInputs>();
+  const { data: tags } = useTags();
+
+  console.log(query);
 
   const getChild = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const response = await getParentTagData(+e.target.value);
 
     const { childTags } = response.data;
     setChild(childTags);
+
+    setQuery([]);
   };
 
   const handleCodeInput = () => {
@@ -53,8 +57,6 @@ function QuestionUpload() {
       ...data,
       postImageUrls: [...urls],
     };
-
-    console.log(data);
 
     try {
       await axios.post("/question", request, {
@@ -112,14 +114,22 @@ function QuestionUpload() {
         <Styled.HorizonWrapper>
           <Styled.SelectTag onChange={getChild}>
             {tags?.map((item) => (
-              <option value={item.parentTagId}>{item.name}</option>
+              <option key={item.parentTagId} value={item.parentTagId}>
+                {item.name}
+              </option>
             ))}
           </Styled.SelectTag>
-          <Styled.SelectTag {...register("tag")}>
+          <Styled.CheckBoxWrapper>
             {child?.map((item) => (
-              <option value={item.name}>{item.name}</option>
+              <Checkbox
+                key={item.childTagId}
+                setClickedValue={setQuery}
+                text={item.name}
+                id={item.childTagId}
+                values={query}
+              />
             ))}
-          </Styled.SelectTag>
+          </Styled.CheckBoxWrapper>
         </Styled.HorizonWrapper>
       </div>
 

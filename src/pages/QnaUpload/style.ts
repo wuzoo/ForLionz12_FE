@@ -34,6 +34,12 @@ export const SelectTag = styled.select`
   }
 `;
 
+export const CheckBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const ContentInput = styled.textarea`
   width: 100%;
   min-height: 200px;
@@ -54,7 +60,9 @@ export const PreviewImg = styled.img`
 
 export const HorizonWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 10px;
+  margin-top: 10px;
 `;
 
 export const FileLabel = styled.label`
