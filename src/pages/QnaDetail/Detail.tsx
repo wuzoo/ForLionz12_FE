@@ -35,7 +35,7 @@ function QnaDetail() {
     if (!ok) return;
 
     await axios
-      .delete(`/question/${id}`)
+      .delete(`${import.meta.env.VITE_QUESTION}/${id}`)
       .then((res) => {
         if (res.status === 200) {
           navigate("/qna");
@@ -60,7 +60,7 @@ function QnaDetail() {
 
     await axios
       .post(
-        "/comment",
+        import.meta.env.VITE_COMMENT,
         {
           content: comment,
           questionPostId: +id,

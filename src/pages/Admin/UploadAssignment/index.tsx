@@ -76,17 +76,21 @@ function UploadHW() {
 
     try {
       if (state?.id === undefined) {
-        await axios.post("/assignment", formData, {
+        await axios.post(import.meta.env.VITE_ASSIGNMENT, formData, {
           headers: {
             "Content-Type": "application/json",
           },
         });
       } else if (typeof state?.id === "string") {
-        await axios.put(`/assignment/${+state?.id}`, formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        await axios.put(
+          `${import.meta.env.VITE_ASSIGNMENT}/${+state?.id}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
       }
     } catch (err) {
       throw new Error("upload assignment error");

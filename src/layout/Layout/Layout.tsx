@@ -26,7 +26,7 @@ function Layout() {
 
     await axios({
       method: "post",
-      url: `/auth/reissue?refreshToken=${getCookie("myToken")}`,
+      url: `${import.meta.env.VITE_AUTH_REISSUE}=${getCookie("myToken")}`,
     })
       .then((res) => {
         const { accessToken } = res.data.data;

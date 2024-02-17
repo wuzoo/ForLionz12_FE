@@ -13,7 +13,7 @@ export function useUserUpdater() {
       data = { introduction: value };
     }
     await axios
-      .put(`/member/${type}`, data, {
+      .put(`${import.meta.env.VITE_MEMBER}/${type}`, data, {
         headers: {
           "Content-Type": "application/json",
         },

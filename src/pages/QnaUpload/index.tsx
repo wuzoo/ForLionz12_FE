@@ -68,7 +68,7 @@ function QuestionUpload() {
     try {
       if (state?.id) {
         await axios
-          .put(`/question/${state?.id}`, request, {
+          .put(`${import.meta.env.VITE_QUESTION}/${state?.id}`, request, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -80,7 +80,7 @@ function QuestionUpload() {
           });
       } else {
         await axios
-          .post("/question", request, {
+          .post(import.meta.env.VITE_QUESTION, request, {
             headers: {
               "Content-Type": "application/json",
             },
@@ -102,7 +102,7 @@ function QuestionUpload() {
     if (!files || files.length !== 1) return;
 
     const response = await axios.post(
-      "/question/image",
+      `${import.meta.env.VITE_QUESTION}/image`,
       {
         file: files[0],
       },

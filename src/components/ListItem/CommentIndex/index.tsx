@@ -21,7 +21,7 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
 
     await axios
       .post(
-        "/childcomment",
+        import.meta.env.VITE_CHILD_COMMENT,
         {
           content: comment,
           commentId: id,
