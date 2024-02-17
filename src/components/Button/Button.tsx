@@ -16,12 +16,13 @@ function Button(props: IBtn) {
           ? theme.color[props.bgcolor]
           : theme.color.darkblue};
         border-radius: ${props.radius || "10px"};
-        height: ${props.height || "30px"};
+        height: ${props.height};
         border-style: solid;
         border-width: ${props.borderwidth || "0"};
         border-color: ${props.bordercolor
           ? theme.color[props.bordercolor]
           : "none"};
+        padding: ${props.padding};
       `}
     >
       <Typo
