@@ -1,5 +1,5 @@
 import { getQnaDetailById } from "../../../api/qna";
-import { IQna } from "../../../types/Qna";
+import { IQna } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useQnaDetail(id: number) {

@@ -1,5 +1,5 @@
 import { getPartNotification } from "../../../api/notification";
-import { INotificationResult } from "../../../types/Notification";
+import { INotificationResult } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function usePartNotification(part: string) {

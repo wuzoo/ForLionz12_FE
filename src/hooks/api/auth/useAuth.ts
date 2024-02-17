@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginInfoDispatch } from "../../../context/LoginUser/User";
 import { getCookie, removeCookie, setCookie } from "../../../utils/cookie";
+import { error } from "../../../utils/toast";
 
 export function useAuth() {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ export function useAuth() {
         .then((res) => {
           const { accessToken, refreshToken } = res.data.data;
 
+          console.log(accessToken, refreshToken);
+
           if (getCookie("myToken")) {
             removeCookie("myToken");
           }
@@ -42,24 +45,24 @@ export function useAuth() {
           if (res.status === 200) {
             navigate("/");
           }
-          if (res.status === 401) {
-            // showToast()
-          }
         })
         .catch((err) => {
-          throw new Error(err);
+          if (err.response.status === 401) {
+            error("올바른 유저 정보가 아니에요.");
+          }
         });
 
       const response = await axios
         .get(import.meta.env.VITE_MY_INFO)
         .then((res) => {
-          if (res.status === 500) {
-            throw new Error("token 500 error");
+          if (res.status === 200) {
+            return res.data;
           }
-          return res.data;
         })
         .catch((err) => {
-          console.log(err);
+          if (err.response.status === 500) {
+            error("유저 정보를 불러오는데 문제가 생겼어요.");
+          }
         });
       const res = response.data;
 

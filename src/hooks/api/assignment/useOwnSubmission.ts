@@ -1,5 +1,5 @@
 import { getMySubmission } from "../../../api/assignment";
-import { ISubmitted } from "../../../types/Assignment";
+import { ISubmitted } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useOwnSubmission(id: number) {

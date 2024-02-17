@@ -1,5 +1,5 @@
 import { getTags } from "../../../api/qna";
-import { ParenttagType } from "../../../types/Qna";
+import { ParenttagType } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useTags() {

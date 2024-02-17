@@ -3,7 +3,7 @@ import {
   IUserLoginAction,
   IUserLogoutAction,
   IUserReducerParam,
-} from "../../types/API";
+} from "../../types";
 
 type Dispatch = (action: ActionType) => void;
 

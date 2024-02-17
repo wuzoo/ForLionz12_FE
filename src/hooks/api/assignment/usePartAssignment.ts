@@ -1,5 +1,5 @@
 import { getPartAssignment } from "../../../api/assignment";
-import { IAssignmentResult } from "../../../types/Assignment";
+import { IAssignmentResult } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function usePartAssignment(part: string) {

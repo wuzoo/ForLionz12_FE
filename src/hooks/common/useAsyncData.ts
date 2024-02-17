@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import { IResponse, IReducerParam, IReducer } from "../../types/API";
+import { IResponse, IReducerParam, IReducer } from "../../types";
 
 function reducer<T>(state: IReducerParam<T>, action: IReducerParam<T>) {
   const { type } = action;

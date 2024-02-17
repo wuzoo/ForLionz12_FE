@@ -4,7 +4,7 @@ import {
   getChildTagData,
   getParentTagData,
 } from "../../../api/qna";
-import { ChildtagType, IQna } from "../../../types/Qna";
+import { ChildtagType, IQna } from "../../../types";
 
 export function useSelectedData(id: number) {
   const [data, setData] = useState<IQna[]>();

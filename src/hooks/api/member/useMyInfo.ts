@@ -1,5 +1,5 @@
 import { getMyInfo } from "../../../api/member";
-import { IUserInfo } from "../../../types/User";
+import { IUserInfo } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useMyInfo() {

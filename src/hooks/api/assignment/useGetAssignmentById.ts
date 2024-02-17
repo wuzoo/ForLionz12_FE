@@ -1,5 +1,5 @@
 import { getIdAssignment } from "../../../api/assignment";
-import { IAssignment } from "../../../types/Assignment";
+import { IAssignment } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useGetAssignmentById(AssignmentId: number) {

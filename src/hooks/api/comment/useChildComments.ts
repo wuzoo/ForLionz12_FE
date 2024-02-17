@@ -1,5 +1,5 @@
 import { getChildComments } from "../../../api/comment";
-import { IComment } from "../../../types/Comment";
+import { IComment } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useChildComments(id: number) {

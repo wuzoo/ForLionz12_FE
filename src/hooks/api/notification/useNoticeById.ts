@@ -1,5 +1,5 @@
 import { getNoticeById } from "../../../api/notification";
-import { INotification } from "../../../types/Notification";
+import { INotification } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useNoticeById(id: number) {

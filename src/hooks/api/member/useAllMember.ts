@@ -1,5 +1,5 @@
 import { getAllMember } from "../../../api/member";
-import { IMembers } from "../../../types/User";
+import { IMembers } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useAllMember() {
