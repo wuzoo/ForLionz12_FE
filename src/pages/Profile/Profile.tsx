@@ -3,7 +3,6 @@ import { TEXT } from "../../constants/text";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
-import { theme } from "../../styles/theme/theme";
 import { useState } from "react";
 import {
   useLoginInfoDispatch,
@@ -16,6 +15,7 @@ import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
 import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
 import { useMyInfo, useUserUpdater } from "../../hooks";
 import { ERROR } from "../../constants/message";
+import Button from "../../components/Button/Button";
 
 function Profile() {
   const user = useLoginInfoState();
@@ -23,6 +23,8 @@ function Profile() {
   const { updateUserInfo } = useUserUpdater();
 
   const { data: myInfo, reFetch } = useMyInfo();
+
+  console.log(myInfo);
 
   const [intro, setIntro] = useState(user.introduction);
   const [edit, setEdit] = useState(false);
@@ -85,6 +87,25 @@ function Profile() {
     }
   };
 
+  const handleDelete = async () => {
+    await axios
+      .put(`${import.meta.env.VITE_MEMBER}/imageDelete`)
+      .catch((err) => {
+        console.log(err);
+        throw new Error(ERROR.DELETE_USER_IMAGE);
+      });
+
+    dispatch({
+      type: "LOGIN",
+      data: {
+        ...user,
+        imageUrl: null,
+      },
+    });
+
+    reFetch();
+  };
+
   return (
     <Styled.Wrapper>
       <MainAndSubtitle
@@ -113,15 +134,15 @@ function Profile() {
             type="file"
             id="upload"
           />
-          <Styled.UploadBtn
-            css={css`
-              background-color: ${theme.color.superlightgray};
-            `}
+          <Button
+            radius="6px"
+            bgcolor="superlightgray"
+            width="120px"
+            padding="6px 0px"
+            onClick={handleDelete}
           >
-            <Typo weight="600" fontSize="18">
-              이미지 제거
-            </Typo>
-          </Styled.UploadBtn>
+            이미지 제거
+          </Button>
         </Styled.ProfilePartWrapper>
         <Styled.IntroWrapper>
           <Styled.AlignWrapper>
