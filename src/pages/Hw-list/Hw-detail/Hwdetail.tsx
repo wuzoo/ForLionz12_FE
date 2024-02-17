@@ -67,13 +67,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
           `}
         >
           <Styled.MainWrapper>
-            <div
-              css={css`
-                display: flex;
-                align-items: end;
-                gap: 20px;
-              `}
-            >
+            <Styled.TitleAndModifyBtnWrapper>
               <Typo fontSize="44" weight="600">
                 {title}
               </Typo>
@@ -82,7 +76,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
                 uid={uid + ""}
                 id={clickedId + ""}
               />
-            </div>
+            </Styled.TitleAndModifyBtnWrapper>
             <Styled.Wrapper>
               <Styled.Badge
                 css={css`
@@ -101,7 +95,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
             </Styled.Wrapper>
             <Styled.TagWrapper>
               {tags.map((item) => (
-                <Styled.Tag>{item}</Styled.Tag>
+                <Styled.Tag key={item}>{item}</Styled.Tag>
               ))}
             </Styled.TagWrapper>
           </Styled.MainWrapper>
@@ -120,12 +114,10 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
           <Button
             onClick={() => navigate(`/homework-submit/${id}`)}
             bgcolor="darkblue"
-            width="200px"
-            height="40px"
+            color="white"
+            padding="5px 15px"
           >
-            <Typo color="white" weight="600">
-              제출하러 가기
-            </Typo>
+            제출하러 가기
           </Button>
         </div>
       </Styled.Modal>

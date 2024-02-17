@@ -78,3 +78,9 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
+
+export const TitleAndModifyBtnWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  gap: 20px;
+`;
