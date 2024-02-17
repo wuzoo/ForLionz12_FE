@@ -33,6 +33,9 @@ function AssignStatus({
           css={css`
             display: flex;
             justify-content: space-between;
+            button {
+              margin-bottom: 10px;
+            }
           `}
         >
           <Styled.LinkWrapper>
