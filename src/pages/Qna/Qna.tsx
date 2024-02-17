@@ -46,7 +46,7 @@ function Qna() {
         <Styled.BoxContainer>
           {childTags?.map((item) => (
             <Checkbox
-              key={item.name}
+              key={item.childTagId}
               id={item.childTagId}
               values={query}
               setClickedValue={setQuery}
