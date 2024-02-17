@@ -1,6 +1,6 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
-import { useCallback, useEffect, useLayoutEffect } from "react";
+import { useCallback, useEffect } from "react";
 import axios from "axios";
 import * as Styled from "./style";
 import { useLoginInfoDispatch } from "../../context/LoginUser/User";
