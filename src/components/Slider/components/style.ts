@@ -7,7 +7,7 @@ export const Left = styled.img`
   position: absolute;
   left: 5%;
   top: calc(50% - 26px);
-  z-index: 10;
+  z-index: 9;
   opacity: 0.3;
 `;
 
@@ -18,6 +18,6 @@ export const Right = styled.img`
   top: calc(50% - 26px);
   right: 5%;
   cursor: pointer;
-  z-index: 10;
+  z-index: 9;
   opacity: 0.3;
 `;
