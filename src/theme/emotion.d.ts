@@ -23,5 +23,11 @@ declare module "@emotion/react" {
       bold: string;
       ultrabold: string;
     };
+
+    flexRow: (j?: JustifyType, a?: AlignType, gap?: number) => string;
+    flexColumn: (j?: JustifyType, a?: AlignType, gap?: number) => string;
   }
 }
+
+type JustifyType = "center" | "space-between" | "space-around" | "";
+type AlignType = "center" | "end" | "start" | "";

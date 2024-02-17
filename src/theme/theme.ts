@@ -22,4 +22,23 @@ export const theme: Theme = {
     bold: "700",
     ultrabold: "800",
   },
+
+  flexRow(j = "", a = "", gap = 0) {
+    return `
+      display: flex;
+      justify-content: ${j};
+      align-items: ${a};
+      gap: ${gap}px;
+      `;
+  },
+
+  flexColumn(j = "", a = "", gap = 0) {
+    return `
+    display: flex;
+    flex-direction: column;
+    align-items: ${a};
+    justify-content: ${j};
+    gap: ${gap}px;
+    `;
+  },
 };
