@@ -2,8 +2,8 @@ import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import { ICard } from "./types";
-import useMemberId from "../../../hooks/api/member/useMemberId";
-import user from "../../../assets/imgs/defaultUser.svg";
+import { useMemberId } from "../../../hooks";
+import user from "../../../assets/icons/user/defaultUser.svg";
 
 export default function Card({ name, content, link, cnt, uid }: ICard) {
   const { data } = useMemberId(uid);
