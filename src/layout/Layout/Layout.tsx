@@ -1,15 +1,17 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 import * as Styled from "./style";
 import { useLoginInfoDispatch } from "../../context/LoginUser/User";
 import { getCookie } from "../../utils/cookie";
+import { error } from "../../utils/toast";
 
 function Layout() {
   const { pathname } = useLocation();
   const isLoginMatch = pathname === "/login";
   const dispatch = useLoginInfoDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,13 +22,25 @@ function Layout() {
   }, []);
 
   const checkToken = useCallback(async () => {
-    const response = await axios({
+    console.log(getCookie("myToken"));
+
+    await axios({
       method: "post",
       url: `/auth/reissue?refreshToken=${getCookie("myToken")}`,
-    });
-    const { accessToken } = response.data.data;
+    })
+      .then((res) => {
+        const { accessToken } = res.data.data;
 
-    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+      })
+      .catch((err) => {
+        if (err.response?.status === 500) {
+          error("유저 정보에 문제가 있어요.");
+          navigate("/login");
+        }
+      });
 
     updateUser();
   }, []);
