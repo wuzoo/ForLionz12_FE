@@ -3,7 +3,7 @@ import * as Styled from "./style";
 import { theme } from "../../../../theme/theme";
 import useResponsivebar from "../../hooks/useResponsivebar";
 import { SetStateAction } from "react";
-import { ParenttagType } from "../../../../types/Qna";
+import { ParenttagType } from "../../../../types";
 
 interface ISideBar {
   setCategory: React.Dispatch<SetStateAction<number>>;

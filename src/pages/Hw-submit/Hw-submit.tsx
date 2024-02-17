@@ -10,7 +10,7 @@ import AssignForm from "./components/AssignForm/AssignForm";
 import RecentUploader from "./components/RecentUploader/RecentUploader";
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card/RecentUploadedCard";
-import { ISubmitted } from "../../types/Assignment";
+import { ISubmitted } from "../../types";
 import { useEffect, useState } from "react";
 import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
 
