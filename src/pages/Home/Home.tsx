@@ -11,23 +11,16 @@ import { MemorizedOnebyoneText } from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
 import { useAllNotification } from "../../hooks";
 import { ERROR } from "../../constants/message";
+import { compare } from "../../utils/sortByCreatedAt";
 
 function Home() {
   const userCt = useLoginInfoState();
   const { part, name } = userCt;
 
   const { data: noticesData, error } = useAllNotification();
+  const recentSortData = noticesData?.sort((a, b) => compare(a, b));
 
-  const recentSortData = noticesData?.sort((a, b) => {
-    const first = new Date(a.createdAt).getTime();
-    const second = new Date(b.createdAt).getTime();
-
-    return second - first;
-  });
-
-  if (error === "rejected") {
-    throw new Error(ERROR.ALL_NOTICE);
-  }
+  if (error === "rejected") throw new Error(ERROR.ALL_NOTICE);
 
   return (
     <div
