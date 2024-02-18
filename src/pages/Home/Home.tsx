@@ -60,7 +60,7 @@ function Home() {
               </Typo>
             </Styled.usergreet>
           </Styled.textwrapper>
-          <PageLogo height="430" width="450" type="LION" />
+          <PageLogo height="400" width="400" type="LION" />
         </Styled.banner>
         <FullScreenSlider>
           {recentSortData?.map((item, index) => (
