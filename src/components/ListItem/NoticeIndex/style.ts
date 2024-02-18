@@ -10,6 +10,7 @@ export const Wrapper = styled(motion.div)`
   padding: 18px;
   padding-left: 30px;
   background-color: ${(props) => props.theme.color.superlightgray};
+  cursor: pointer;
 `;
 
 export const Badge = styled.div`
