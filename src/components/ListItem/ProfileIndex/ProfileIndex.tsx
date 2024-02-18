@@ -12,28 +12,47 @@ import {
   useLoginInfoDispatch,
   useLoginInfoState,
 } from "../../../context/LoginUser/User";
+import { success } from "../../../utils/toast";
+import { GUIDE_MESSAGE } from "../../../constants/message";
 
-export default function InstagramIndex({ type, onSubmit }: IItem) {
+export default function ProfileItem({ type, onSubmit }: IItem) {
   const [edit, setEdit] = useState(false);
   const { updateUserInfo } = useUserUpdater();
 
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
 
-  const [info, setInfo] = useState(user.instagramId);
+  const { githubAddress, instagramId } = user;
+
+  const initialValue =
+    type === "github" ? githubAddress : type === "instagram" ? instagramId : "";
+
+  const [info, setInfo] = useState(initialValue);
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     updateUserInfo(type, info);
 
-    dispatch({
-      type: "LOGIN",
-      data: {
-        ...user,
-        instagramId: info,
-      },
-    });
+    if (type === "github") {
+      dispatch({
+        type: "LOGIN",
+        data: {
+          ...user,
+          githubAddress: info,
+        },
+      });
+    } else if (type === "instagram") {
+      dispatch({
+        type: "LOGIN",
+        data: {
+          ...user,
+          instagramId: info,
+        },
+      });
+    }
+
+    success(GUIDE_MESSAGE[type.toUpperCase()]);
 
     setEdit(false);
     onSubmit();
@@ -71,7 +90,11 @@ export default function InstagramIndex({ type, onSubmit }: IItem) {
           </>
         ) : (
           <>
-            <Styled.Input disabled value={info || user.instagramId} />
+            <Styled.Input
+              type={type === "password" ? "password" : undefined}
+              disabled
+              value={type === "password" ? new Array(5).join() : initialValue}
+            />
             <Styled.Edit onClick={() => setEdit(true)}>
               <Typo color="darkblue">수정</Typo>
             </Styled.Edit>
