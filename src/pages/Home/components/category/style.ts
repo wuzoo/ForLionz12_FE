@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   ${(props) => props.theme.flexRow("center", "center", 40)}
+  margin-top: 60px;
 `;
 
 export const ItemWrapper = styled.div`

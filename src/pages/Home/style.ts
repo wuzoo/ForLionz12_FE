@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const banner = styled.div`
   width: 100%;
-  max-height: 45%;
+  max-height: 45vh;
   padding-left: 8rem;
   ${(props) => props.theme.flexRow("center", "center")}
 `;

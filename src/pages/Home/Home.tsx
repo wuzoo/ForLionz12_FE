@@ -31,7 +31,6 @@ function Home() {
       <div
         css={css`
           position: relative;
-          height: 100vh;
         `}
       >
         <Styled.banner>
