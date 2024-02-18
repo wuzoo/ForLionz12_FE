@@ -38,6 +38,6 @@ export default function PageLogo(props: IPageLogo) {
         />
       </div>
     ),
-    [props.type]
+    [props.type, props.width, props.height]
   );
 }
