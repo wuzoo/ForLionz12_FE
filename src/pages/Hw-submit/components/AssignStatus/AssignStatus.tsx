@@ -41,7 +41,9 @@ function AssignStatus({
           <Styled.LinkWrapper>
             <img src={git} />
             <Link to={link}>
-              <Typo color="darkblue">{link}</Typo>
+              <Typo color="darkblue" fontSize="16">
+                {link}
+              </Typo>
             </Link>
           </Styled.LinkWrapper>
           <Button
