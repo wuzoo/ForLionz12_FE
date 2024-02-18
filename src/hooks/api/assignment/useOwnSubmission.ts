@@ -8,8 +8,6 @@ export function useOwnSubmission(id: number) {
     [id]
   );
 
-  console.log(state);
-
   const { isloading, error, data } = state;
 
   if (data === null) {
@@ -21,7 +19,7 @@ export function useOwnSubmission(id: number) {
         assignmentLink: "",
         createdAt: new Date().toISOString(),
         description: "",
-        id: 0,
+        id: undefined,
         memberId: 0,
         memberName: "",
       },
