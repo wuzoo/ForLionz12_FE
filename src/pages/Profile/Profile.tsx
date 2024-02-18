@@ -10,12 +10,10 @@ import {
 } from "../../context/LoginUser/User";
 import axios from "axios";
 import User from "../../components/Profile/Profile";
-import PasswordIndex from "../../components/ListItem/ProfileIndex/pwd";
-import GithubIndex from "../../components/ListItem/ProfileIndex/gitIndex";
-import InstagramIndex from "../../components/ListItem/ProfileIndex/instaIndex";
 import { useMyInfo, useUserUpdater } from "../../hooks";
 import { ERROR } from "../../constants/message";
 import Button from "../../components/Button/Button";
+import ProfileItem from "../../components/ListItem/ProfileIndex/ProfileIndex";
 
 function Profile() {
   const user = useLoginInfoState();
@@ -176,9 +174,9 @@ function Profile() {
       </Styled.InformBox>
 
       <Styled.ListItems>
-        <PasswordIndex key="pwd" type="password" onSubmit={reFetch} />
-        <GithubIndex key="git" type="github" onSubmit={reFetch} />
-        <InstagramIndex key="insta" type="instagram" onSubmit={reFetch} />
+        <ProfileItem key="pwd" type="password" onSubmit={reFetch} />
+        <ProfileItem key="git" type="github" onSubmit={reFetch} />
+        <ProfileItem key="insta" type="instagram" onSubmit={reFetch} />
       </Styled.ListItems>
     </Styled.Wrapper>
   );
