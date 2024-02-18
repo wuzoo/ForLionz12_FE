@@ -14,6 +14,7 @@ import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx
 import { css } from "@emotion/react";
 import { SUB_TEXT, TEXT } from "../../constants/text.ts";
 import { ERROR } from "../../constants/message.ts";
+import { compare } from "../../utils/sortByCreatedAt.ts";
 
 function HwList() {
   const [clickedId, setClickedId] = useState(0);
@@ -34,6 +35,7 @@ function HwList() {
   const filteredPartData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
   );
+  const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));
 
   if (error === "rejected") throw new Error(ERROR.ALL_ASSIGNMENT);
   if (myPartError === "rejected") throw new Error(ERROR.PART_ASSIGNMENT);
@@ -57,7 +59,7 @@ function HwList() {
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
         <FullScreenSlider>
-          {myAssignments?.map((item, index) => (
+          {sortByRecentCreatedAt?.map((item, index) => (
             <HwSliderCard
               key={item.id}
               onClick={() => setClickedId(item.id)}

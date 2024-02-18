@@ -9,6 +9,7 @@ import NoticeDetail from "./Notice-detail/Detail.tsx";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message.ts";
+import { compare } from "../../utils/sortByCreatedAt.ts";
 
 function Notification() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -21,9 +22,9 @@ function Notification() {
   if (!id) throw new Error(ERROR.NO_ID);
   if (error === "rejected") throw new Error(ERROR.ALL_NOTICE);
 
-  const filteredData = data?.filter(
-    (item) => item.part === selectedPart.toUpperCase()
-  );
+  const filteredData = data
+    ?.filter((item) => item.part === selectedPart.toUpperCase())
+    .sort((a, b) => compare(a, b));
 
   return (
     <Styled.Wrapper>

@@ -9,6 +9,7 @@ import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelectedData, useTags } from "../../hooks";
+import { compare } from "../../utils/sortByCreatedAt";
 
 function Qna() {
   const [category, setCategory] = useState<number>(0);
@@ -18,6 +19,8 @@ function Qna() {
 
   const title = tags?.find((item) => item.parentTagId === category)?.name;
   const { childTags, data, query, setQuery } = useSelectedData(category);
+
+  const sortedByCreatedAt = data?.sort((a, b) => compare(a, b));
 
   if (!tags) {
     return;
@@ -63,7 +66,7 @@ function Qna() {
         </Button>
       </Styled.TagsAndBtnWrapper>
       <Styled.ItemsContainer>
-        {data?.map((item) => (
+        {sortedByCreatedAt?.map((item) => (
           <QnaItem
             key={item.questionId}
             onClick={() => {
