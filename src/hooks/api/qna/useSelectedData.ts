@@ -30,7 +30,11 @@ export function useSelectedData(id: number) {
   const getChildData = async () => {
     const response = await getChildTagData(query);
 
-    if (response !== null) {
+    if (query.length === 0) {
+      const response = await getParentTagData(id);
+      const { questionPosts } = response.data;
+      setData(questionPosts);
+    } else {
       setData(response.data);
     }
   };
