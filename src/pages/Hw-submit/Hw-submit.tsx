@@ -10,10 +10,11 @@ import AssignForm from "./components/AssignForm/AssignForm";
 import RecentUploader from "./components/RecentUploader/RecentUploader";
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card/RecentUploadedCard";
-import { ISubmitted } from "../../types";
 import { useEffect, useState } from "react";
 import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
 import { ERROR } from "../../constants/message";
+import { getMySubmission } from "../../api/assignment";
+import { compare } from "../../utils/sortByCreatedAt";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
@@ -21,25 +22,31 @@ export const fixedProps = {
   gap: "4",
 };
 
-function cmp(a: ISubmitted, b: ISubmitted) {
-  const firstDate = new Date(a.createdAt).getTime();
-  const secondDate = new Date(b.createdAt).getTime();
-
-  return secondDate - firstDate;
-}
-
 function HwSubmit() {
   const { id } = useParams();
-
   if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
 
-  const { data: mySubmission, reFetch: mySubmitUpdate } = useOwnSubmission(+id);
+  const getUserSubmit = async () => {
+    await getMySubmission(+id)
+      .then((res) => {
+        setFormStatus(res.data !== null);
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new Error(ERROR.MY_ASSIGNMENT);
+      });
+  };
 
+  const { data: mySubmission, reFetch: mySubmitUpdate } = useOwnSubmission(+id);
   const { data: submittedData, reFetch: allSubmitUpate } =
     useSubmittedAssignments(+id);
   const [isSubmitted, setFormStatus] = useState<boolean>(
-    Boolean(mySubmission?.memberId !== 0)
+    mySubmission !== undefined
   );
+
+  useEffect(() => {
+    getUserSubmit();
+  }, []);
 
   useEffect(() => {
     if (isSubmitted) {
@@ -50,15 +57,17 @@ function HwSubmit() {
 
   if (!mySubmission) return;
 
-  const recentSubmitted = submittedData?.concat()?.sort((a, b) => cmp(a, b));
+  const recentSubmitted = submittedData
+    ?.concat()
+    ?.sort((a, b) => compare(a, b));
 
   return (
     <Styled.Wrapper>
       <Banner type="HW_SUBMIT" logowidth="500" logoheight="500" />
-
       <RecentUploader cnt={recentSubmitted?.length || 0}>
         {recentSubmitted?.map((item) => (
           <Card
+            key={item.assignmentId}
             cnt={recentSubmitted?.length}
             name={item.memberName}
             uid={item.memberId}
@@ -67,9 +76,7 @@ function HwSubmit() {
           />
         ))}
       </RecentUploader>
-
       <Margin gap="100" />
-
       <AssignForm
         description={mySubmission?.description}
         assignmentLink={mySubmission?.assignmentLink}
