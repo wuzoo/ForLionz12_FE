@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  margin-top: 50px;
   ${(props) => props.theme.flexRow("center", "center", 40)}
 `;
 

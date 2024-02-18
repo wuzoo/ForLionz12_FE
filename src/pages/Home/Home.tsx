@@ -28,7 +28,12 @@ function Home() {
         width: 100%;
       `}
     >
-      <div>
+      <div
+        css={css`
+          position: relative;
+          height: 100vh;
+        `}
+      >
         <Styled.banner>
           <Styled.textwrapper>
             <Styled.text>
