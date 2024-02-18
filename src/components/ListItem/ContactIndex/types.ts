@@ -1,5 +1,5 @@
 export interface IItem {
-  file?: string;
+  file?: string | null;
   name: string;
   part: string;
   introduce?: string;
