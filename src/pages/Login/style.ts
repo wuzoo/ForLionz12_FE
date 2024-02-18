@@ -14,7 +14,7 @@ export const Img = styled.img`
   top: 20%;
 `;
 
-export const loginbox = styled.div`
+export const LoginBox = styled.div`
   max-width: 60vw;
   max-height: 80vh;
   display: flex;
@@ -27,7 +27,7 @@ export const loginbox = styled.div`
   }
 `;
 
-export const welcometext = styled.h1`
+export const WelcomeText = styled.h1`
   font-size: 32px;
   font-weight: 600;
   text-align: right;

@@ -19,9 +19,9 @@ function Login() {
   return (
     <>
       <Styled.page>
-        <Styled.loginbox>
+        <Styled.LoginBox>
           <Styled.Img src={login} />
-          <Styled.welcometext>{TEXT.LOGIN}</Styled.welcometext>
+          <Styled.WelcomeText>{TEXT.LOGIN}</Styled.WelcomeText>
           <Styled.Form onSubmit={(e) => handleLogin(e)}>
             <Styled.Input
               type="text"
@@ -42,7 +42,7 @@ function Login() {
               </Typo>
             </Button>
           </Styled.Form>
-        </Styled.loginbox>
+        </Styled.LoginBox>
       </Styled.page>
     </>
   );
