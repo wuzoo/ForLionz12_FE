@@ -37,3 +37,9 @@ export const ERROR = Object.freeze({
   NO_PART: "파트가 존재하지 않습니다.",
   NO_ID: "유저 아이디가 존재하지 않습니다.",
 } as const);
+
+export const GUIDE_MESSAGE: { [key: string]: string } = Object.freeze({
+  PASSWORD: "비밀번호 변경에 성공하였습니다.",
+  GITHUB: "깃헙 주소 변경에 성공하였습니다.",
+  INSTAGRAM: "인스타그램 아이디 변경에 성공하였습니다.",
+} as const);
