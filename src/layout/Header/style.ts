@@ -23,6 +23,10 @@ export const navcol = styled.div`
   a:not(:first-child) {
     text-align: start;
     padding-right: 3rem;
+
+    @media screen and (max-width: 740px) {
+      display: none;
+    }
   }
   a:nth-child(2) {
     padding-left: 2rem;
