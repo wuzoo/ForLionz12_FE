@@ -29,7 +29,10 @@ function HwSubmit() {
   const isStaffUser = localStorage.getItem("part") === "STAFF";
 
   const getUserSubmit = async () => {
-    if (isStaffUser) return;
+    if (isStaffUser) {
+      setFormStatus(false);
+      return;
+    }
 
     await getMySubmission(+id)
       .then((res) => {
@@ -41,7 +44,14 @@ function HwSubmit() {
       });
   };
 
-  const { data: mySubmission, reFetch: mySubmitUpdate } = useOwnSubmission(+id);
+  const {
+    data: mySubmission,
+    error,
+    reFetch: mySubmitUpdate,
+  } = useOwnSubmission(+id);
+
+  if (error === "rejected") throw new Error(ERROR.ID_ASSIGNMENT);
+
   const { data: submittedData, reFetch: allSubmitUpate } =
     useSubmittedAssignments(+id);
   const [isSubmitted, setFormStatus] = useState<boolean>(
