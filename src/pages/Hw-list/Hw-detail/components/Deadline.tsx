@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import Typo from "../../../../components/Typo/Typo";
+import { theme } from "../../../../styles/theme/theme";
 
 type DateType = {
   expireAt: string;
@@ -32,32 +33,37 @@ function Deadline({ expireAt }: DateType) {
   return (
     <div
       css={css`
+        ${theme.flexColumn("", "end", 10)}
         span {
           padding: 0px 3px;
         }
       `}
     >
-      <Typo fontSize="22" weight="600">
-        마감까지
-      </Typo>
-      <Typo weight="600" color="darkblue" fontSize="40">
-        {day}
-      </Typo>
-      <Typo fontSize="22" weight="600">
-        일
-      </Typo>
-      <Typo weight="600" color="darkblue" fontSize="40">
-        {hour}
-      </Typo>
-      <Typo fontSize="22" weight="600">
-        시간
-      </Typo>
-      <Typo weight="600" color="darkblue" fontSize="40">
-        {minute}
-      </Typo>
-      <Typo fontSize="22" weight="600">
-        분
-      </Typo>
+      <p>
+        <Typo fontSize="26" weight="600">
+          마감까지
+        </Typo>
+      </p>
+      <div>
+        <Typo weight="600" color="darkblue" fontSize="40">
+          {day}
+        </Typo>
+        <Typo fontSize="22" weight="600">
+          일
+        </Typo>
+        <Typo weight="600" color="darkblue" fontSize="40">
+          {hour}
+        </Typo>
+        <Typo fontSize="22" weight="600">
+          시간
+        </Typo>
+        <Typo weight="600" color="darkblue" fontSize="40">
+          {minute}
+        </Typo>
+        <Typo fontSize="22" weight="600">
+          분
+        </Typo>
+      </div>
     </div>
   );
 }
