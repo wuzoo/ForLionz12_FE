@@ -1,11 +1,12 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
-import HwCard from "../../components/Card/HwCard";
+const LazyHwCard = React.lazy(() => import("../../components/Card/HwCard"));
+// import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
-import { Suspense, useState } from "react";
+import React, { Suspense, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -86,9 +87,23 @@ function HwList() {
       </Styled.AlignWrapper>
 
       <Styled.OtherHWContainer>
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense
+          fallback={
+            <div
+              css={css`
+                width: 100%;
+                height: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              `}
+            >
+              <p>Loading...</p>
+            </div>
+          }
+        >
           {filteredPartData?.map((item) => (
-            <HwCard
+            <LazyHwCard
               category={item.category}
               layoutId={item.id + ""}
               onClick={() => setClickedId(item.id)}
