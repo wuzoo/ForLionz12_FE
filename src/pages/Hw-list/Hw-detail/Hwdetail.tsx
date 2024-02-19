@@ -1,5 +1,5 @@
 import Typo from "../../../components/Typo/Typo";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Styled from "./style";
 import React, { useEffect } from "react";
 import { css } from "@emotion/react";
@@ -27,6 +27,20 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
       document.body.style.overflowY = "";
     };
   }, [clickedId]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    const { key } = e;
+
+    if (key === "Escape") {
+      setClickedId(0);
+    }
+  };
 
   const { data, error } = useGetAssignmentById(clickedId);
   const uid = localStorage.getItem("id");
@@ -59,15 +73,16 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
       >
         <div
           css={css`
-            display: flex;
-            justify-content: space-between;
+            ${theme.flexRow("space-between", "", 16)}
           `}
         >
           <Styled.MainWrapper>
             <Styled.TitleAndModifyBtnWrapper>
-              <Typo fontSize="44" weight="600">
-                {title}
-              </Typo>
+              <Styled.Title>
+                <Typo fontSize="44" weight="600">
+                  {title}
+                </Typo>
+              </Styled.Title>
               <AdminModifyBtn
                 type="assignment"
                 uid={uid + ""}
@@ -96,6 +111,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
               ))}
             </Styled.TagWrapper>
           </Styled.MainWrapper>
+
           <Deadline expireAt={expireAt} />
         </div>
         <Styled.ContentWrapper>
