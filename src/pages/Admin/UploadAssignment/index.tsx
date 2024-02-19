@@ -8,7 +8,10 @@ import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
 import { useGetAssignmentById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { initialDate, y_m_dDate } from "../../../utils/getCurrenty-m-dString";
+import {
+  initialDate,
+  ISOtoY_M_D_Date,
+} from "../../../utils/getCurrenty-m-dString";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";
@@ -60,7 +63,7 @@ function UploadHW() {
         content: data?.content,
         category: data?.category,
       });
-      setDate(y_m_dDate(data?.expireAt));
+      setDate(ISOtoY_M_D_Date(data?.expireAt));
       setTags([...data?.tags]);
       setPart(data?.part.toLowerCase());
     }
