@@ -10,7 +10,7 @@ export function useOwnSubmission(id: number) {
 
   const { isloading, error, data } = state;
 
-  if (data === null) {
+  if (data === null || data === undefined) {
     return {
       isloading,
       error,
