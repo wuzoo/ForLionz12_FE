@@ -28,6 +28,19 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
   const { data, error } = useNoticeById(clickedId);
   const uid = localStorage.getItem("id");
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    const { key } = e;
+    if (key === "Escape") {
+      setClickedId(0);
+    }
+  };
+
   if (error === "rejected") {
     throw new Error(ERROR.ID_NOTIFICATION);
   }
