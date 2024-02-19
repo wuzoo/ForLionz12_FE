@@ -8,10 +8,7 @@ import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
 import { useGetAssignmentById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {
-  initialDate,
-  ISOtoY_M_D_Date,
-} from "../../../utils/getCurrenty-m-dString";
+import { initialDate, ISOtoY_M_D_Date } from "../../../utils/getY_M_D_Date";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";
