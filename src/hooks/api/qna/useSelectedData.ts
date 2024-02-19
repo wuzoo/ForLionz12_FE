@@ -30,13 +30,7 @@ export function useSelectedData(id: number) {
   const getChildData = async () => {
     const response = await getChildTagData(query);
 
-    if (query.length === 0) {
-      const response = await getParentTagData(id);
-      const { questionPosts } = response.data;
-      setData(questionPosts);
-    } else {
-      setData(response.data);
-    }
+    setData(response.data);
   };
 
   useEffect(() => {
@@ -45,6 +39,8 @@ export function useSelectedData(id: number) {
   }, [id]);
 
   useEffect(() => {
+    if (id === 0) return;
+
     getChildData();
   }, [query]);
 
