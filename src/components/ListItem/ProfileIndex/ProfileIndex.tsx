@@ -3,7 +3,7 @@ import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
 import { css } from "@emotion/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../Button/Button";
 import { theme } from "../../../styles/theme/theme";
 import { useUserUpdater } from "../../../hooks";
@@ -21,13 +21,14 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
 
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
+  const [info, setInfo] = useState("");
 
-  const { githubAddress, instagramId } = user;
+  useEffect(() => {
+    let initialValue = "";
+    initialValue = type === "github" ? user.githubAddress : user.instagramId;
 
-  const initialValue =
-    type === "github" ? githubAddress : type === "instagram" ? instagramId : "";
-
-  const [info, setInfo] = useState(initialValue);
+    setInfo(initialValue);
+  }, [user]);
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,7 +94,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
             <Styled.Input
               type={type === "password" ? "password" : undefined}
               disabled
-              value={type === "password" ? new Array(5).join() : initialValue}
+              value={type === "password" ? new Array(5).join() : info.concat()}
             />
             <Styled.Edit onClick={() => setEdit(true)}>
               <Typo color="darkblue">수정</Typo>
