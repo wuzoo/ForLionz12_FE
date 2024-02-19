@@ -18,8 +18,12 @@ export const Thumnail = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 40%;
+  width: 140px;
   object-fit: cover;
+
+  @media screen and (max-width: 1050px) {
+    width: 190px;
+  }
 `;
 
 export const Content = styled.div`
