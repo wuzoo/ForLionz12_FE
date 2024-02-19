@@ -26,7 +26,11 @@ function HwSubmit() {
   const { id } = useParams();
   if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
 
+  const isStaffUser = localStorage.getItem("part") === "STAFF";
+
   const getUserSubmit = async () => {
+    if (isStaffUser) return;
+
     await getMySubmission(+id)
       .then((res) => {
         setFormStatus(res.data !== null);
