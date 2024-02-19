@@ -13,6 +13,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { SUB_TEXT } from "../../constants/text";
 import Checkbox from "../Qna/components/Checkbox/Checkbox";
 import { ERROR } from "../../constants/message";
+import { warning } from "../../utils/toast";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -43,6 +44,7 @@ function QuestionUpload() {
   useEffect(() => {
     if (data) {
       reset({ title: data?.title, content: data?.content });
+      setUrls([...data?.postImageUrls]);
     }
   }, [state?.id, data]);
 
@@ -50,8 +52,8 @@ function QuestionUpload() {
     const response = await getParentTagData(+e.target.value);
 
     const { childTags } = response.data;
-    setChild(childTags);
 
+    setChild(childTags);
     setQuery([]);
   };
 
@@ -68,6 +70,17 @@ function QuestionUpload() {
       postImageUrls: [...urls],
     };
 
+    if (!data.title) {
+      warning(ERROR.QNA_UPLOAD_NO_TITLE);
+      return;
+    } else if (query.length === 0) {
+      warning(ERROR.QNA_UPLOAD_NO_TAG);
+      return;
+    } else if (!data.content) {
+      warning(ERROR.QNA_UPLOAD_NO_CONTENT);
+      return;
+    }
+
     let postId: number = 0;
 
     try {
@@ -78,12 +91,7 @@ function QuestionUpload() {
               "Content-Type": "application/json",
             },
           })
-          .then((res) => {
-            if (res.status === 200) {
-              navigate(`/qna/${state?.id}`);
-            }
-            return res.data;
-          });
+          .then((res) => res.data);
 
         postId = response.data.id;
       } else {
@@ -112,7 +120,11 @@ function QuestionUpload() {
         )
         .then((res) => {
           if (res.status === 204) {
-            navigate("/qna");
+            if (state?.id) {
+              navigate(`/qna/${state?.id}`);
+            } else {
+              navigate("/qna");
+            }
           }
         });
     } catch (err) {
@@ -167,7 +179,8 @@ function QuestionUpload() {
         <MainAndSubtitle main="Tag" sub={SUB_TEXT.QNA_TAGS} {...defaultProps} />
         <Styled.HorizonWrapper>
           <Styled.SelectTag onChange={getChild}>
-            {tags?.map((item) => (
+            <option value="default">선택</option>
+            {tags?.slice(1)?.map((item) => (
               <option key={item.parentTagId} value={item.parentTagId}>
                 {item.name}
               </option>
