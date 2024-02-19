@@ -17,6 +17,7 @@ export const FullWidthContainer = styled.div`
 `;
 
 export const AlignWrapper = styled.div`
+  width: 98%;
   ${(props) => props.theme.flexRow("space-between", "end")}
 `;
 
@@ -26,12 +27,11 @@ export const OtherHWContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   column-gap: 30px;
   row-gap: 50px;
-  width: 100%;
 
-  /* @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1400px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     grid-template-columns: repeat(1, 1fr);
-  } */
+  }
 `;
