@@ -1,9 +1,9 @@
 import { getChildComments } from "../../../api/comment";
-import { IComment } from "../../../types";
+import { IChild } from "../../../types";
 import useAsyncData from "../../common/useAsyncData";
 
 export function useChildComments(id: number) {
-  const [state, reFetch] = useAsyncData<IComment[]>(
+  const [state, reFetch] = useAsyncData<IChild[]>(
     () => getChildComments(id),
     [id]
   );

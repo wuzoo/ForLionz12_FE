@@ -30,7 +30,9 @@ function UploadNotice() {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  const { data } = useNoticeById(state?.id || 0);
+  const { data, error } = useNoticeById(state?.id);
+
+  if (error === "rejected") throw new Error(ERROR.ID_NOTIFICATION);
 
   useEffect(() => {
     if (data) {
@@ -40,8 +42,6 @@ function UploadNotice() {
   }, [state?.id, data]);
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    console.log(data);
-
     const formedData = {
       ...data,
       part: part.toUpperCase(),
@@ -53,7 +53,7 @@ function UploadNotice() {
             "Content-Type": "application/json",
           },
         });
-      } else if (typeof state?.id === "string") {
+      } else if (state?.id !== undefined) {
         await axios.put(
           `${import.meta.env.VITE_NOTIFICATION}/${+state?.id}`,
           formedData,
@@ -64,11 +64,10 @@ function UploadNotice() {
           }
         );
       }
+      navigate("/notification");
     } catch (err) {
       throw new Error(ERROR.NOTIFICATION_UPLOAD);
     }
-
-    navigate("/notification");
   };
 
   return (

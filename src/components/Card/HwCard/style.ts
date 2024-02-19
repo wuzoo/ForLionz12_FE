@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 export const CardWrapper = styled(motion.div)`
   ${(props) => props.theme.flexColumn("center", "center")}
-  height: 360px;
-  width: 350px;
+  width: 100%;
+  min-width: 340px;
+  min-height: 340px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
 `;

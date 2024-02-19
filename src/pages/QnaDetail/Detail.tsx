@@ -23,7 +23,7 @@ function QnaDetail() {
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
 
-  console.log(data);
+  console.log(comments);
 
   const isMyQna = +uid === data?.memberId;
 
@@ -131,7 +131,7 @@ function QnaDetail() {
           placeholder="댓글을 남겨보세요."
         />
         <Styled.BtnWrapper>
-          <Button width="100px" color="white">
+          <Button padding="5px 10px" color="white">
             댓글 작성
           </Button>
         </Styled.BtnWrapper>
@@ -140,12 +140,14 @@ function QnaDetail() {
         {comments?.map((item) => (
           <ListItem
             key={item.commentId}
-            id={item.commentId}
+            commentId={item.commentId}
+            memberId={item.memberId}
             name={item.name}
-            url={item.memberImageUrl}
+            memberImageUrl={item.memberImageUrl}
             part={item.part}
             createdAt={item.createdAt}
             content={item.content}
+            update={reFetch}
           />
         ))}
       </Styled.CommentsContainer>

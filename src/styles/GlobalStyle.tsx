@@ -140,6 +140,7 @@ export const GlobalStyle = css`
   }
   ::-webkit-scrollbar {
     width: 10px;
+    height: 0;
   }
   ::-webkit-scrollbar-thumb {
     background: ${theme.color.skyblue};
@@ -152,5 +153,8 @@ export const GlobalStyle = css`
     text-align: center;
     font-weight: 600;
     font-size: 18;
+  }
+  .slick-dots li {
+    width: 10px;
   }
 `;

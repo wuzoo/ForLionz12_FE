@@ -17,6 +17,7 @@ export const FullWidthContainer = styled.div`
 `;
 
 export const AlignWrapper = styled.div`
+  width: 98%;
   ${(props) => props.theme.flexRow("space-between", "end")}
 `;
 
@@ -24,14 +25,21 @@ export const OtherHWContainer = styled.div`
   margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 30px;
-  row-gap: 50px;
-  width: 100%;
+  justify-content: space-between;
+  gap: 30px;
 
-  /* @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1400px) {
     grid-template-columns: repeat(2, 1fr);
+    & > div {
+      min-width: 400px;
+      min-height: 400px;
+    }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 920px) {
     grid-template-columns: repeat(1, 1fr);
-  } */
+    & > div {
+      min-height: 500px;
+      min-width: 500px;
+    }
+  }
 `;

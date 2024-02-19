@@ -18,12 +18,15 @@ import QuestionUpload from "./pages/QnaUpload";
 import QnaDetail from "./pages/QnaDetail/Detail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NoExist from "./pages/Error/404";
+import ErrorPage from "./pages/Error/error";
+import { ErrorProvider } from "./context/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <p>error</p>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -62,23 +65,29 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/*",
+    element: <NoExist />,
+  },
 ]);
 
 function App() {
   return (
     <>
-      <LoginInfoProvider>
-        <ThemeProvider theme={theme}>
-          <Global styles={GlobalStyle} />
-          <RouterProvider router={router} />
-          <ToastContainer
-            position="bottom-center"
-            limit={1}
-            autoClose={3000}
-            hideProgressBar
-          />
-        </ThemeProvider>
-      </LoginInfoProvider>
+      <ErrorProvider>
+        <LoginInfoProvider>
+          <ThemeProvider theme={theme}>
+            <Global styles={GlobalStyle} />
+            <RouterProvider router={router} />
+            <ToastContainer
+              position="bottom-center"
+              limit={1}
+              autoClose={3000}
+              hideProgressBar
+            />
+          </ThemeProvider>
+        </LoginInfoProvider>
+      </ErrorProvider>
     </>
   );
 }

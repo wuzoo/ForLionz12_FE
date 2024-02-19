@@ -1,8 +1,19 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  ${(props) => props.theme.flexRow("center", "center", 40)}
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 50%;
+  gap: 30px;
   margin-top: 60px;
+  place-self: center;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const ItemWrapper = styled.div`

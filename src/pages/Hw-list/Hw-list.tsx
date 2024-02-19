@@ -1,12 +1,11 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
-const LazyHwCard = React.lazy(() => import("../../components/Card/HwCard"));
-// import HwCard from "../../components/Card/HwCard";
+import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
-import React, { Suspense, useState } from "react";
+import { useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -87,33 +86,17 @@ function HwList() {
       </Styled.AlignWrapper>
 
       <Styled.OtherHWContainer>
-        <Suspense
-          fallback={
-            <div
-              css={css`
-                width: 100%;
-                height: 200px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              `}
-            >
-              <p>Loading...</p>
-            </div>
-          }
-        >
-          {filteredPartData?.map((item) => (
-            <LazyHwCard
-              category={item.category}
-              layoutId={item.id + ""}
-              onClick={() => setClickedId(item.id)}
-              key={item.id}
-              part={item.part.toLowerCase()}
-              title={item.title}
-              createdAt={getFormedDate(item.createdAt)}
-            />
-          ))}
-        </Suspense>
+        {filteredPartData?.map((item) => (
+          <HwCard
+            category={item.category}
+            layoutId={item.id + ""}
+            onClick={() => setClickedId(item.id)}
+            key={item.id}
+            part={item.part.toLowerCase()}
+            title={item.title}
+            createdAt={getFormedDate(item.createdAt)}
+          />
+        ))}
       </Styled.OtherHWContainer>
 
       <AnimatePresence>

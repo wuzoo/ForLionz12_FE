@@ -8,14 +8,31 @@ import { css } from "@emotion/react";
 import Button from "../../Button/Button";
 import Item from "./components/Child";
 import React, { useState } from "react";
-import { IComment } from "./types";
 import axios from "axios";
 import { ERROR } from "../../../constants/message";
+import { IComment } from "../../../types";
+import { theme } from "../../../styles/theme/theme";
 
-function ListItem({ url, name, createdAt, id, content, part }: IComment) {
-  const { data, reFetch } = useChildComments(id);
+function ListItem({
+  memberImageUrl,
+  name,
+  createdAt,
+  commentId,
+  content,
+  part,
+  memberId,
+  update,
+}: IComment) {
+  const { data, reFetch } = useChildComments(commentId);
   const [isChildClicked, setIsChildClicked] = useState(false);
   const [comment, setComment] = useState("");
+
+  const id = localStorage.getItem("id");
+  if (!id) throw new Error(ERROR.NO_ID);
+
+  const isMine = memberId === +id;
+
+  console.log(data);
 
   const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +42,7 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
         import.meta.env.VITE_CHILD_COMMENT,
         {
           content: comment,
-          commentId: id,
+          commentId,
         },
         {
           headers: {
@@ -38,28 +55,59 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
         throw new Error(ERROR.COMMENT_UPLOAD);
       });
 
-    setComment("");
     reFetch();
+
+    setComment("");
+  };
+
+  const handleDeleteComment = async () => {
+    const ok = window.confirm("삭제하시겠습니까?");
+
+    if (!ok) return;
+
+    await axios
+      .delete(`${import.meta.env.VITE_COMMENT}?commentId=${commentId}`)
+      .catch((err) => {
+        console.log(err);
+        throw new Error(ERROR.DELETE_COMMENT);
+      });
+
+    update();
   };
 
   return (
     <Styled.Wrapper css={css``}>
       <div>
-        <Styled.Info>
-          <Profile url={url} size="60" />
-          <Styled.NameAndDate>
-            <Styled.Name>
-              <Typo>
-                {name} <Typo>({part})</Typo>
-              </Typo>
-            </Styled.Name>
-            <Styled.Date>
-              <Typo fontSize="14" color="darkgray" weight="500">
-                {getFormedDate(createdAt)}
-              </Typo>
-            </Styled.Date>
-          </Styled.NameAndDate>
-        </Styled.Info>
+        <div
+          css={css`
+            ${theme.flexRow("space-between", "end")}
+          `}
+        >
+          <Styled.Info>
+            <Profile url={memberImageUrl} size="60" />
+            <Styled.NameAndDate>
+              <Styled.Name>
+                <Typo>
+                  {name} <Typo>({part})</Typo>
+                </Typo>
+              </Styled.Name>
+              <Styled.Date>
+                <Typo fontSize="14" color="darkgray" weight="500">
+                  {getFormedDate(createdAt)}
+                </Typo>
+              </Styled.Date>
+            </Styled.NameAndDate>
+          </Styled.Info>
+          {isMine && (
+            <Button
+              onClick={handleDeleteComment}
+              bgcolor="white"
+              color="darkblue"
+            >
+              삭제
+            </Button>
+          )}
+        </div>
 
         <Styled.Comment>
           <Typo weight="500">{content}</Typo>
@@ -81,12 +129,15 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
       >
         {data?.map((item) => (
           <Item
-            key={item.commentId}
+            key={item.childCommentId}
             name={item.name}
             part={item.part}
             createdAt={item.createdAt}
             content={item.content}
             url={item.memberImageUrl}
+            uid={item.memberId}
+            commentId={item.childCommentId}
+            update={update}
           />
         ))}
         <Styled.Form onSubmit={handleAddComment}>
@@ -95,8 +146,8 @@ function ListItem({ url, name, createdAt, id, content, part }: IComment) {
             onChange={(e) => setComment(e.target.value)}
             placeholder="댓글을 작성해주세요."
           />
-          <Button type="submit" width="100px" color="white">
-            댓글 작성
+          <Button type="submit" padding="5px 10px" color="white">
+            답글 작성
           </Button>
         </Styled.Form>
       </div>

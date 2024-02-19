@@ -45,6 +45,7 @@ export const CardTitle = styled(Ellipsis)`
 export const CardContent = styled(Ellipsis)`
   -webkit-line-clamp: 3;
   line-height: 1.3;
+  width: 100%;
 `;
 
 export const AlignWrapper = styled.div`

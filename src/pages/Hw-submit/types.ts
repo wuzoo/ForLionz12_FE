@@ -6,6 +6,7 @@ export interface IForm {
   description: string;
   assignmentLink: string;
   id: string;
+  refetch: () => void;
 }
 
 export interface IStatus {

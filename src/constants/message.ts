@@ -8,7 +8,12 @@ export const ERROR = Object.freeze({
   ASSIGNMENT_UPLOAD: "과제 업로드 에러",
   NOTIFICATION_UPLOAD: "공지사항 업로드 에러",
   COMMENT_UPLOAD: "댓글 작성 에러",
+
   QNA_UPLOAD: "큐앤에이 업로드 에러",
+  QNA_UPLOAD_NO_TITLE: "제목을 입력해주세요.",
+  QNA_UPLOAD_NO_TAG: "태그를 하나 이상 선택해주세요.",
+  QNA_UPLOAD_NO_CONTENT: "내용을 입력해주세요.",
+
   FILE_UPLOAD: "파일 업로드에 실패하였습니다.",
 
   ALL_MEMBER: "모든 멤버 조회 에러",
@@ -24,6 +29,7 @@ export const ERROR = Object.freeze({
 
   DELETE_QNA: "해당 큐앤에이 삭제에 실패하였습니다.",
   DELETE_USER_IMAGE: "프로필 이미지를 삭제하는데 실패하였습니다.",
+  DELETE_COMMENT: "해당 댓글 삭제에 실패하였습니다.",
 
   NO_LINK_ASSIGNMENT: "링크는 필수 사항입니다.",
   PART_ASSIGNMENT: "해당 파트 과제 조회 에러",
