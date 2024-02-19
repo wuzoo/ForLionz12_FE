@@ -16,6 +16,7 @@ function AssignForm({
   onSubmit,
   description,
   assignmentLink,
+  refetch,
 }: IForm) {
   const [explain, setExplain] = useState(description);
   const [link, setLink] = useState(assignmentLink);
@@ -55,6 +56,7 @@ function AssignForm({
     } catch (err) {
       throw new Error(ERROR.CANT_SUBMIT_ASSIGNMENT);
     }
+    refetch();
 
     onSubmit((prev) => !prev);
   };

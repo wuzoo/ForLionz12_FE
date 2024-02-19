@@ -52,12 +52,10 @@ function HwSubmit() {
     getUserSubmit();
   }, []);
 
-  useEffect(() => {
-    if (isSubmitted) {
-      mySubmitUpdate();
-      allSubmitUpate();
-    }
-  }, [isSubmitted]);
+  const handleUpdate = () => {
+    mySubmitUpdate();
+    allSubmitUpate();
+  };
 
   if (!mySubmission) return;
 
@@ -87,6 +85,7 @@ function HwSubmit() {
         id={id}
         isSubmitted={isSubmitted}
         onSubmit={setFormStatus}
+        refetch={handleUpdate}
       />
       <AssignStatus
         link={mySubmission?.assignmentLink}
