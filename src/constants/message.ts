@@ -8,7 +8,12 @@ export const ERROR = Object.freeze({
   ASSIGNMENT_UPLOAD: "과제 업로드 에러",
   NOTIFICATION_UPLOAD: "공지사항 업로드 에러",
   COMMENT_UPLOAD: "댓글 작성 에러",
+
   QNA_UPLOAD: "큐앤에이 업로드 에러",
+  QNA_UPLOAD_NO_TITLE: "제목을 입력해주세요.",
+  QNA_UPLOAD_NO_TAG: "태그를 하나 이상 선택해주세요.",
+  QNA_UPLOAD_NO_CONTENT: "내용을 입력해주세요.",
+
   FILE_UPLOAD: "파일 업로드에 실패하였습니다.",
 
   ALL_MEMBER: "모든 멤버 조회 에러",
