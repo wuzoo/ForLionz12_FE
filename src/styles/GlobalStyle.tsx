@@ -140,6 +140,7 @@ export const GlobalStyle = css`
   }
   ::-webkit-scrollbar {
     width: 10px;
+    height: 0;
   }
   ::-webkit-scrollbar-thumb {
     background: ${theme.color.skyblue};
