@@ -19,10 +19,9 @@ function Profile() {
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
   const { updateUserInfo } = useUserUpdater();
-
   const { data: myInfo, reFetch } = useMyInfo();
 
-  console.log(myInfo);
+  const info = user.introduction;
 
   const [intro, setIntro] = useState(user.introduction);
   const [edit, setEdit] = useState(false);
@@ -152,7 +151,7 @@ function Profile() {
             {!edit ? (
               <Styled.Form>
                 <Styled.Introduce>
-                  <Typo color="darkgray">{myInfo?.introduction}</Typo>
+                  <Typo color="darkgray">{myInfo?.introduction || info}</Typo>
                 </Styled.Introduce>
                 <Styled.EditText onClick={() => setEdit(true)}>
                   <Typo color="darkblue">수정</Typo>
