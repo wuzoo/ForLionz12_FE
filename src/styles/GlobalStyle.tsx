@@ -154,4 +154,7 @@ export const GlobalStyle = css`
     font-weight: 600;
     font-size: 18;
   }
+  .slick-dots li {
+    width: 10px;
+  }
 `;
