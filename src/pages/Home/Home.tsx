@@ -23,19 +23,15 @@ function Home() {
   if (error === "rejected") throw new Error(ERROR.ALL_NOTICE);
 
   return (
-    <div
-      css={css`
-        width: 100%;
-      `}
-    >
+    <Styled.Wrapper>
       <div
         css={css`
           position: relative;
         `}
       >
-        <Styled.banner>
-          <Styled.textwrapper>
-            <Styled.text>
+        <Styled.Banner>
+          <Styled.Textwrapper>
+            <Styled.Text>
               <Typo color="black" weight="700" fontSize="50">
                 <MemorizedOnebyoneText item={TEXT.HOME_MAIN_TEXT.split("")} />
                 &nbsp;
@@ -43,8 +39,8 @@ function Home() {
               <Typo color="darkpink" weight="700" fontSize="50">
                 LIONZ
               </Typo>
-            </Styled.text>
-            <Styled.usergreet
+            </Styled.Text>
+            <Styled.Usergreet
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
@@ -55,10 +51,10 @@ function Home() {
               <Typo color="black" fontSize="24" weight="600">
                 {TEXT.HOME_GREETING}
               </Typo>
-            </Styled.usergreet>
-          </Styled.textwrapper>
+            </Styled.Usergreet>
+          </Styled.Textwrapper>
           <PageLogo height="400" width="400" type="LION" />
-        </Styled.banner>
+        </Styled.Banner>
         <FullScreenSlider>
           {recentSortData?.map((item, index) => (
             <Card
@@ -74,7 +70,7 @@ function Home() {
         </FullScreenSlider>
       </div>
       <Category />
-    </div>
+    </Styled.Wrapper>
   );
 }
 
