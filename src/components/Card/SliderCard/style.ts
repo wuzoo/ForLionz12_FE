@@ -4,6 +4,7 @@ export const CardWrapper = styled.div`
   ${(props) => props.theme.flexColumn("space-between", "center")}
   padding-bottom: 36px;
   position: relative;
+  overflow: hidden;
 `;
 
 export const Picture = styled.img`
