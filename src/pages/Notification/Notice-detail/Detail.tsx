@@ -55,14 +55,14 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
         <Styled.MainWrapper>
           <div
             css={css`
-              display: flex;
-              align-items: end;
-              gap: 20px;
+              ${theme.flexRow("", "end", 20)}
             `}
           >
-            <Typo fontSize="44" weight="600">
-              {title}
-            </Typo>
+            <Styled.Title>
+              <Typo fontSize="44" weight="600">
+                {title}
+              </Typo>
+            </Styled.Title>
             <AdminModifyBtn
               type="notification"
               id={clickedId + ""}
