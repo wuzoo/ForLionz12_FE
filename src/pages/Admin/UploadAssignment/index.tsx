@@ -8,7 +8,7 @@ import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
 import { useGetAssignmentById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { initialDate } from "../../../utils/getCurrenty-m-dString";
+import { initialDate, y_m_dDate } from "../../../utils/getCurrenty-m-dString";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";
@@ -30,7 +30,9 @@ function UploadHW() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const { data } = useGetAssignmentById(state?.id || 0);
+  const { data, error } = useGetAssignmentById(state?.id);
+
+  if (error === "rejected") throw new Error(ERROR.ID_ASSIGNMENT);
 
   const { register, handleSubmit, reset, getValues } = useForm<IInputs>({});
 
@@ -58,6 +60,7 @@ function UploadHW() {
         content: data?.content,
         category: data?.category,
       });
+      setDate(y_m_dDate(data?.expireAt));
       setTags([...data?.tags]);
       setPart(data?.part.toLowerCase());
     }
@@ -93,11 +96,10 @@ function UploadHW() {
           }
         );
       }
+      navigate("/homework");
     } catch (err) {
       throw new Error(ERROR.ASSIGNMENT_UPLOAD);
     }
-
-    navigate("/homework");
   };
 
   return (
