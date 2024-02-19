@@ -36,7 +36,9 @@ function QuestionUpload() {
   const { state } = useLocation();
 
   const { data: tags } = useTags();
-  const { data } = useQnaDetail(state?.id || 0);
+  const { data, error } = useQnaDetail(state?.id);
+
+  if (error === "rejected") throw new Error(ERROR.ID_QNA);
 
   useEffect(() => {
     if (data) {
@@ -69,7 +71,7 @@ function QuestionUpload() {
     let postId: number = 0;
 
     try {
-      if (state?.id) {
+      if (state?.id !== undefined) {
         const response = await axios
           .put(`${import.meta.env.VITE_QUESTION}/${state?.id}`, request, {
             headers: {
