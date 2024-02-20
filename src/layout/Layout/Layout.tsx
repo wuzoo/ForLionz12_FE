@@ -35,12 +35,13 @@ function Layout() {
   }, [pathname]);
 
   useEffect(() => {
-    checkToken();
+    async function fetchToken() {
+      await checkToken();
+    }
+    fetchToken();
   }, []);
 
   const checkToken = useCallback(async () => {
-    console.log(getCookie("myToken"));
-
     await axios({
       method: "post",
       url: `${import.meta.env.VITE_AUTH_REISSUE}=${getCookie("myToken")}`,
@@ -59,7 +60,7 @@ function Layout() {
         }
       });
 
-    updateUser();
+    await updateUser();
   }, []);
 
   const updateUser = useCallback(async () => {
