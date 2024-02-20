@@ -5,7 +5,6 @@ import axios from "axios";
 import * as Styled from "./style";
 import { useLoginInfoDispatch } from "../../context/LoginUser/User";
 import { getCookie } from "../../utils/cookie";
-import { error } from "../../utils/toast";
 
 function Layout() {
   const { pathname, state } = useLocation();
@@ -55,7 +54,6 @@ function Layout() {
       })
       .catch((err) => {
         if (err.response?.status === 500) {
-          error("유저 정보에 문제가 있어요.");
           navigate("/login");
         }
       });
