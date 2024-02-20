@@ -9,19 +9,9 @@ import { Link } from "react-router-dom";
 import Typo from "../../../../components/Typo/Typo";
 import { IStatus } from "../../types";
 
-function AssignStatus({
-  isSubmitted,
-  onModify,
-  createdAt,
-  description,
-  link,
-}: IStatus) {
+function AssignStatus({ onModify, createdAt, description, link }: IStatus) {
   return (
-    <Styled.Container
-      css={css`
-        display: ${!isSubmitted ? "none" : ""};
-      `}
-    >
+    <Styled.Container>
       <Styled.StatusWrapper>
         <MainAndSubtitle
           main="나의 제출 상태"
