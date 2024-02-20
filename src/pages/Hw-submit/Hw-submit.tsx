@@ -54,9 +54,7 @@ function HwSubmit() {
 
   const { data: submittedData, reFetch: allSubmitUpate } =
     useSubmittedAssignments(+id);
-  const [isSubmitted, setFormStatus] = useState<boolean>(
-    mySubmission !== undefined
-  );
+  const [isSubmitted, setFormStatus] = useState<boolean>(false);
 
   useEffect(() => {
     getUserSubmit();
@@ -89,22 +87,24 @@ function HwSubmit() {
         ))}
       </RecentUploader>
       <Margin gap="100" />
-      <AssignForm
-        description={mySubmission?.description}
-        assignmentLink={mySubmission?.assignmentLink}
-        id={id}
-        isSubmitted={isSubmitted}
-        onSubmit={setFormStatus}
-        refetch={handleUpdate}
-      />
-      <AssignStatus
-        link={mySubmission?.assignmentLink}
-        description={mySubmission?.description}
-        createdAt={mySubmission?.createdAt}
-        id={id}
-        isSubmitted={isSubmitted}
-        onModify={setFormStatus}
-      />
+      {isSubmitted ? (
+        <AssignStatus
+          link={mySubmission?.assignmentLink}
+          description={mySubmission?.description}
+          createdAt={mySubmission?.createdAt}
+          id={id}
+          onModify={setFormStatus}
+        />
+      ) : (
+        <AssignForm
+          description={mySubmission?.description}
+          assignmentLink={mySubmission?.assignmentLink}
+          id={id}
+          onSubmit={setFormStatus}
+          refetch={handleUpdate}
+        />
+      )}
+
       <Margin gap="80" />
       <div css={Styled.AlignStyle}>
         <Styled.OtherHwWrapper>

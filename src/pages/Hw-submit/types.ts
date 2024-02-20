@@ -1,7 +1,6 @@
 import { SetStateAction } from "react";
 
 export interface IForm {
-  isSubmitted: boolean;
   onSubmit: React.Dispatch<SetStateAction<boolean>>;
   description: string;
   assignmentLink: string;
@@ -10,7 +9,6 @@ export interface IForm {
 }
 
 export interface IStatus {
-  isSubmitted: boolean;
   id: string;
   createdAt: string;
   description: string;
