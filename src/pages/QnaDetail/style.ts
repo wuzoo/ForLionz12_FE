@@ -5,7 +5,10 @@ export const Wrapper = styled.div`
   margin-top: 50px;
 `;
 
-export const Title = styled.p``;
+export const Title = styled.p`
+  width: 90%;
+  word-wrap: break-word;
+`;
 
 export const TitleAndInfoWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "", 10)}
@@ -22,6 +25,7 @@ export const TagWrapper = styled.div`
 
 export const EditDeleteBtnWrapper = styled.div`
   gap: 8px;
+  white-space: nowrap;
   button {
     text-decoration: underline;
     text-underline-offset: 4px;
