@@ -11,13 +11,15 @@ import Deadline from "./components/Deadline";
 import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 import { ERROR } from "../../../constants/message.ts";
+import git from "../../../assets/icons/github/img.svg";
 
 interface IHwDetail {
   clickedId: number;
   setClickedId: React.Dispatch<React.SetStateAction<number>>;
+  layoutId: string;
 }
 
-function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
+function Hwdetail({ clickedId, setClickedId, layoutId }: IHwDetail) {
   useEffect(() => {
     document.body.style.maxWidth = `${document.body.clientWidth}px`;
     document.body.style.overflowY = "hidden";
@@ -46,6 +48,8 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
   const uid = localStorage.getItem("id");
   const navigate = useNavigate();
 
+  console.log(data);
+
   if (error === "rejected") throw new Error(ERROR.ID_ASSIGNMENT);
   if (!data) return;
 
@@ -69,7 +73,7 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
         transition={{
           duration: 0.3,
         }}
-        layoutId={clickedId + ""}
+        layoutId={layoutId}
       >
         <div
           css={css`
@@ -111,8 +115,19 @@ function Hwdetail({ clickedId, setClickedId }: IHwDetail) {
               ))}
             </Styled.TagWrapper>
           </Styled.MainWrapper>
-
-          <Deadline expireAt={expireAt} />
+          <div
+            css={css`
+              ${theme.flexColumn("", "end", 16)}
+            `}
+          >
+            <Deadline expireAt={expireAt} />
+            <Styled.AssignmentLink>
+              <img src={git} width="50" />
+              <Link to={data?.githubLink}>
+                <Typo color="darkblue">{data.githubLink}</Typo>
+              </Link>
+            </Styled.AssignmentLink>
+          </div>
         </div>
         <Styled.ContentWrapper>
           <Styled.Content>{content}</Styled.Content>
