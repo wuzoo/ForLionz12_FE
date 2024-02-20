@@ -6,25 +6,26 @@ export const Wrapper = styled.div`
   border: 1.5px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   padding: 12px 20px;
+  min-width: 500px;
 `;
 
 export const InfoWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr 4fr 2fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   cursor: pointer;
 `;
 
 export const Name = styled.p``;
 
 export const NameAndPart = styled.div`
-  ${(props) => props.theme.flexRow("space-between", "center", 30)};
-  width: 200px;
+  ${(props) => props.theme.flexRow("space-between", "center")};
+  width: 180px;
 `;
 
 export const Badge = styled.div`
-  width: 100px;
+  width: 90px;
   height: 30px;
   ${(props) => props.theme.flexRow("center", "center")}
   border-radius: 15px;
