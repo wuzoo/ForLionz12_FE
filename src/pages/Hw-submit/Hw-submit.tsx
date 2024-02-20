@@ -52,8 +52,7 @@ function HwSubmit() {
 
   if (error === "rejected") throw new Error(ERROR.ID_ASSIGNMENT);
 
-  const { data: submittedData, reFetch: allSubmitUpate } =
-    useSubmittedAssignments(+id);
+  const { data: submittedData } = useSubmittedAssignments(+id);
   const [isSubmitted, setFormStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -62,7 +61,6 @@ function HwSubmit() {
 
   const handleUpdate = () => {
     mySubmitUpdate();
-    allSubmitUpate();
   };
 
   if (!mySubmission) return;
