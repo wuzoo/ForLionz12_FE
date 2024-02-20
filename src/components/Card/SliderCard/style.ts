@@ -41,6 +41,7 @@ export const Ellipsis = styled.p`
 export const CardTitle = styled(Ellipsis)`
   -webkit-line-clamp: 1;
   margin-bottom: 6px;
+  line-height: 1.3;
 `;
 
 export const CardContent = styled(Ellipsis)`

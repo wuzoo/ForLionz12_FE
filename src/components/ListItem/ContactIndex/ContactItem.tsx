@@ -32,31 +32,40 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
         `}
         onClick={() => setClicked((prev) => !prev)}
       >
-        <UserImg
-          radius={clicked ? "20px" : ""}
-          url={file}
-          size={clicked ? "200" : undefined}
-        />
-        <Styled.NameAndPart
+        <div
           css={css`
-            flex-direction: ${clicked ? "column" : "row"};
+            ${theme.flexRow("space-between", "center", 30)}
           `}
         >
-          <Styled.Name>
-            <Typo fontSize={clicked ? "24" : ""} weight="600">
-              {name}
-            </Typo>
-          </Styled.Name>
-          <Styled.Badge
+          <UserImg
+            radius={clicked ? "20px" : ""}
+            url={file}
+            size={clicked ? "200" : undefined}
+          />
+          <Styled.NameAndPart
             css={css`
-              background-color: ${theme.color[PART_COLOR[part.toLowerCase()]]};
+              flex-direction: ${clicked ? "column" : "row"};
+              gap: ${clicked && "12px"};
             `}
           >
-            <Typo color="white" weight="600">
-              {part.toUpperCase()}
-            </Typo>
-          </Styled.Badge>
-        </Styled.NameAndPart>
+            <Styled.Name>
+              <Typo fontSize={clicked ? "24" : ""} weight="600">
+                {name}
+              </Typo>
+            </Styled.Name>
+            <Styled.Badge
+              css={css`
+                background-color: ${theme.color[
+                  PART_COLOR[part.toLowerCase()]
+                ]};
+              `}
+            >
+              <Typo color="white" weight="600">
+                {part.toUpperCase()}
+              </Typo>
+            </Styled.Badge>
+          </Styled.NameAndPart>
+        </div>
         <Styled.Introduce
           css={css`
             overflow: ${clicked ? "visible" : "hidden"};

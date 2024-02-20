@@ -19,10 +19,15 @@ function QnaItem({ onClick, title, date, url, name }: IItem) {
       <div
         css={css`
           ${theme.flexRow("", "center", 30)}
+          width: 70%;
         `}
       >
         <User url={url} size="45" />
-        <div css={css``}>
+        <div
+          css={css`
+            width: 80%;
+          `}
+        >
           <Styled.Title>
             <Typo>{title}</Typo>
           </Styled.Title>
