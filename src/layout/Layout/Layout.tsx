@@ -21,9 +21,14 @@ function Layout() {
       return;
     }
     if (state?.history === "detail") {
-      document.body.style.maxWidth = "100vw";
-      document.body.style.overflowY = "";
-      return;
+      if (pathname === "/homework") {
+        document.body.style.maxWidth = "100vw";
+        document.body.style.overflowY = "scroll";
+        return;
+      } else if (pathname !== "/homework") {
+        document.body.style.maxWidth = "100vw";
+        document.body.style.overflowY = "scroll";
+      }
     }
 
     window.scrollTo(0, 0);
