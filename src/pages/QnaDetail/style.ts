@@ -54,9 +54,9 @@ export const CommentCnt = styled.p`
 `;
 
 export const MarkDownContent = styled.div`
-  padding: 20px 2% 5% 2%;
+  padding: 30px 10px 5% 10px;
   min-height: 60vh;
-  ${(props) => props.theme.flexColumn("center")}
+  ${(props) => props.theme.flexColumn("flex-start", "start")}
 `;
 
 export const CommentsContainer = styled.div`
