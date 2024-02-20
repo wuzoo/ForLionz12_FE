@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import { useCallback, useEffect } from "react";
 import axios from "axios";
@@ -8,12 +8,24 @@ import { getCookie } from "../../utils/cookie";
 import { error } from "../../utils/toast";
 
 function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   const isLoginMatch = pathname === "/login";
   const dispatch = useLoginInfoDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
+    if (pathname === `/homework/${id}`) {
+      document.body.style.maxWidth = `${document.body.clientWidth}px`;
+      document.body.style.overflowY = "hidden";
+      return;
+    }
+    if (state?.history === "detail") {
+      document.body.style.maxWidth = "100vw";
+      document.body.style.overflowY = "";
+      return;
+    }
+
     window.scrollTo(0, 0);
   }, [pathname]);
 
