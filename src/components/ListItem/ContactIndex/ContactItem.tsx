@@ -25,47 +25,49 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
   };
 
   return (
-    <Styled.Wrapper
-      css={css`
-        padding: ${clicked ? "30px" : ""};
-      `}
-      onClick={() => setClicked((prev) => !prev)}
-    >
-      <UserImg
-        radius={clicked ? "20px" : ""}
-        url={file}
-        size={clicked ? "200" : undefined}
-      />
-      <Styled.NameAndPart
+    <Styled.Wrapper>
+      <Styled.InfoWrapper
         css={css`
-          flex-direction: ${clicked ? "column" : "row"};
+          padding: ${clicked ? "30px" : ""};
         `}
+        onClick={() => setClicked((prev) => !prev)}
       >
-        <Styled.Name>
-          <Typo fontSize={clicked ? "24" : ""} weight="600">
-            {name}
-          </Typo>
-        </Styled.Name>
-        <Styled.Badge
+        <UserImg
+          radius={clicked ? "20px" : ""}
+          url={file}
+          size={clicked ? "200" : undefined}
+        />
+        <Styled.NameAndPart
           css={css`
-            background-color: ${theme.color[PART_COLOR[part.toLowerCase()]]};
+            flex-direction: ${clicked ? "column" : "row"};
           `}
         >
-          <Typo color="white" weight="600">
-            {part.toUpperCase()}
+          <Styled.Name>
+            <Typo fontSize={clicked ? "24" : ""} weight="600">
+              {name}
+            </Typo>
+          </Styled.Name>
+          <Styled.Badge
+            css={css`
+              background-color: ${theme.color[PART_COLOR[part.toLowerCase()]]};
+            `}
+          >
+            <Typo color="white" weight="600">
+              {part.toUpperCase()}
+            </Typo>
+          </Styled.Badge>
+        </Styled.NameAndPart>
+        <Styled.Introduce
+          css={css`
+            overflow: ${clicked ? "visible" : "hidden"};
+            display: ${clicked ? "" : "-webkit-box"};
+          `}
+        >
+          <Typo color="darkgray" weight="500" fontSize="16">
+            {introduce}
           </Typo>
-        </Styled.Badge>
-      </Styled.NameAndPart>
-      <Styled.Introduce
-        css={css`
-          overflow: ${clicked ? "visible" : "hidden"};
-          display: ${clicked ? "" : "-webkit-box"};
-        `}
-      >
-        <Typo color="darkgray" weight="500" fontSize="16">
-          {introduce}
-        </Typo>
-      </Styled.Introduce>
+        </Styled.Introduce>
+      </Styled.InfoWrapper>
       <Styled.SNSbox>
         <Styled.Img
           css={css`
