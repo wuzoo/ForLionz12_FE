@@ -102,7 +102,7 @@ function Hwdetail({ clickedId }: IHwDetail) {
           }
           bgcolor="darkblue"
           color="white"
-          padding="5px 15px"
+          padding="8px 24px"
         >
           제출하러 가기
         </Button>
