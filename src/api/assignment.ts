@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAuthorization } from "./auth";
 
 export const getAllAssignment = async () => {
   const response = await axios.get(`${import.meta.env.VITE_ASSIGNMENT}/all`);
@@ -31,6 +32,8 @@ export const getSubmittedAssignment = async (id: number) => {
 };
 
 export const getMySubmission = async (id: number) => {
+  await getAuthorization();
+
   const response = await axios.get(
     `${import.meta.env.VITE_ASSIGNMENT}/${id}/mysubmission`
   );

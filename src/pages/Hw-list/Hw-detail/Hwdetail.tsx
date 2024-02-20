@@ -93,7 +93,13 @@ function Hwdetail({ clickedId }: IHwDetail) {
         `}
       >
         <Button
-          onClick={() => navigate(`/homework-submit/${id}`)}
+          onClick={() =>
+            navigate(`/homework-submit/${id}`, {
+              state: {
+                history: "detail",
+              },
+            })
+          }
           bgcolor="darkblue"
           color="white"
           padding="5px 15px"

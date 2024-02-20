@@ -6,7 +6,6 @@ export function useMyInfo() {
   const [state, reFetch] = useAsyncData<IUserInfo>(getMyInfo, []);
 
   const { isloading, data, error } = state;
-  console.log(state);
 
   return { isloading, data, error, reFetch };
 }

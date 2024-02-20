@@ -11,7 +11,6 @@ import { error } from "../../../../utils/toast";
 import { ERROR } from "../../../../constants/message";
 
 function AssignForm({
-  isSubmitted,
   id,
   onSubmit,
   description,
@@ -64,7 +63,6 @@ function AssignForm({
     <Styled.AssignForm
       onSubmit={handleAssignmentSubmit}
       css={css`
-        display: ${isSubmitted ? "none" : ""};
         display: ${part === "STAFF" && "none"};
       `}
     >

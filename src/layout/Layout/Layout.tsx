@@ -21,21 +21,27 @@ function Layout() {
       return;
     }
     if (state?.history === "detail") {
-      document.body.style.maxWidth = "100vw";
-      document.body.style.overflowY = "";
-      return;
+      if (pathname === "/homework") {
+        document.body.style.maxWidth = "100vw";
+        document.body.style.overflowY = "scroll";
+        return;
+      } else if (pathname !== "/homework") {
+        document.body.style.maxWidth = "100vw";
+        document.body.style.overflowY = "scroll";
+      }
     }
 
     window.scrollTo(0, 0);
   }, [pathname]);
 
   useEffect(() => {
-    checkToken();
+    async function fetchToken() {
+      await checkToken();
+    }
+    fetchToken();
   }, []);
 
   const checkToken = useCallback(async () => {
-    console.log(getCookie("myToken"));
-
     await axios({
       method: "post",
       url: `${import.meta.env.VITE_AUTH_REISSUE}=${getCookie("myToken")}`,
@@ -54,7 +60,7 @@ function Layout() {
         }
       });
 
-    updateUser();
+    await updateUser();
   }, []);
 
   const updateUser = useCallback(async () => {
