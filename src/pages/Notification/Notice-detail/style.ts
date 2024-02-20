@@ -70,3 +70,9 @@ export const Content = styled.p`
 export const MainWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "", 16)}
 `;
+
+export const Title = styled.p`
+  width: 100%;
+  word-wrap: break-word;
+  white-space: pre-line;
+`;

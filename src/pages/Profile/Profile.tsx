@@ -3,7 +3,7 @@ import { TEXT } from "../../constants/text";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useLoginInfoDispatch,
   useLoginInfoState,
@@ -19,15 +19,18 @@ function Profile() {
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
   const { updateUserInfo } = useUserUpdater();
-
   const { data: myInfo, reFetch } = useMyInfo();
 
-  console.log(myInfo);
+  const info = user.introduction;
 
-  const [intro, setIntro] = useState(user.introduction);
+  const [intro, setIntro] = useState("");
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState<Blob | null>(null);
   const [url, setUrl] = useState(user.imageUrl);
+
+  useEffect(() => {
+    setIntro(user.introduction);
+  }, [user]);
 
   const handleIntroSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -152,7 +155,7 @@ function Profile() {
             {!edit ? (
               <Styled.Form>
                 <Styled.Introduce>
-                  <Typo color="darkgray">{myInfo?.introduction}</Typo>
+                  <Typo color="darkgray">{myInfo?.introduction || info}</Typo>
                 </Styled.Introduce>
                 <Styled.EditText onClick={() => setEdit(true)}>
                   <Typo color="darkblue">수정</Typo>

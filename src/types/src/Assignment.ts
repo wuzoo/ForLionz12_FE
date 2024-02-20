@@ -9,6 +9,7 @@ export interface IAssignment {
   tags: string[];
   submissions: ISubmitted[];
   submissionCount: number;
+  githubLink: string;
 }
 
 export interface ISubmitted {

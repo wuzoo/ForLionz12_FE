@@ -18,8 +18,12 @@ export const Thumnail = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 40%;
+  width: 140px;
   object-fit: cover;
+
+  @media screen and (max-width: 1050px) {
+    width: 190px;
+  }
 `;
 
 export const Content = styled.div`
@@ -29,7 +33,13 @@ export const Content = styled.div`
   ${(props) => props.theme.flexColumn("space-between", "center")}
 `;
 
-export const CardTitle = styled.h1``;
+export const CardTitle = styled.h1`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+`;
 
 export const Badge = styled.div`
   width: 56px;
@@ -42,4 +52,5 @@ export const Date = styled.p``;
 
 export const AlignWrapper = styled.div`
   ${(props) => props.theme.flexRow("space-between", "center")}
+  gap: 20px;
 `;

@@ -1,34 +1,4 @@
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
-
-export const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  z-index: 11;
-`;
-
-export const Modal = styled(motion.div)`
-  position: fixed;
-  background-color: ${(props) => props.theme.color.white};
-  border-radius: 30px;
-  width: 70vw;
-  height: 80vh;
-  min-height: 500px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto auto;
-  padding: 80px;
-  z-index: 12;
-  display: flex;
-  flex-direction: column;
-`;
 
 export const Badge = styled.div`
   color: white;
@@ -71,8 +41,24 @@ export const Content = styled.p`
 
 export const MainWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "", 16)}
+  max-width: 60%;
 `;
 
 export const TitleAndModifyBtnWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "end", 20)}
+`;
+
+export const Title = styled.p`
+  width: 100%;
+  word-wrap: break-word;
+  white-space: pre-line;
+`;
+
+export const AssignmentLink = styled.div`
+  ${(props) => props.theme.flexRow("", "center", 10)}
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: ${(props) => props.theme.color.darkblue};
+  }
 `;

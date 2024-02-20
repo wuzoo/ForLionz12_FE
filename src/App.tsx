@@ -36,6 +36,11 @@ const router = createBrowserRouter([
         path: "homework",
         element: <HwList />,
       },
+      {
+        path: "homework/:id",
+        element: <HwList />,
+      },
+
       { path: "homework/upload", element: <UploadHW /> },
       { path: "homework-submit/:id", element: <HwSubmit /> },
 

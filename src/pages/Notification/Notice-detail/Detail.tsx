@@ -28,6 +28,19 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
   const { data, error } = useNoticeById(clickedId);
   const uid = localStorage.getItem("id");
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    const { key } = e;
+    if (key === "Escape") {
+      setClickedId(0);
+    }
+  };
+
   if (error === "rejected") {
     throw new Error(ERROR.ID_NOTIFICATION);
   }
@@ -55,14 +68,14 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
         <Styled.MainWrapper>
           <div
             css={css`
-              display: flex;
-              align-items: end;
-              gap: 20px;
+              ${theme.flexRow("", "end", 20)}
             `}
           >
-            <Typo fontSize="44" weight="600">
-              {title}
-            </Typo>
+            <Styled.Title>
+              <Typo fontSize="44" weight="600">
+                {title}
+              </Typo>
+            </Styled.Title>
             <AdminModifyBtn
               type="notification"
               id={clickedId + ""}

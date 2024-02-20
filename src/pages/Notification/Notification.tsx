@@ -10,6 +10,7 @@ import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message.ts";
 import { compare } from "../../utils/sortByCreatedAt.ts";
+import { theme } from "../../styles/theme/theme.ts";
 
 function Notification() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -33,9 +34,7 @@ function Notification() {
       <div
         css={css`
           width: 95%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          ${theme.flexRow("space-between", "center")}
         `}
       >
         <AdminUploadBtn type="notification" id={id} />
