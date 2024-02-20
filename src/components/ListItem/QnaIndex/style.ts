@@ -8,7 +8,15 @@ export const Container = styled.div`
   cursor: pointer;
 `;
 
-export const Title = styled.p``;
+export const Title = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  line-height: 1.2;
+`;
 
 export const Date = styled.p``;
 
