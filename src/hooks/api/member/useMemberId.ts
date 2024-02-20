@@ -9,7 +9,6 @@ export function useMemberId(id: number) {
   );
 
   const { isloading, data, error } = state;
-  console.log(state);
 
   return { isloading, data, error, reFetch };
 }
