@@ -5,7 +5,7 @@ import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/Hwdetail";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -15,9 +15,10 @@ import { css } from "@emotion/react";
 import { SUB_TEXT, TEXT } from "../../constants/text.ts";
 import { ERROR } from "../../constants/message.ts";
 import { compare } from "../../utils/sortByCreatedAt.ts";
+import { useMatch, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function HwList() {
-  const [clickedId, setClickedId] = useState(0);
   const [selectedPart, setSelectedPart] = useState("all");
 
   const part = localStorage.getItem("part");
@@ -35,10 +36,41 @@ function HwList() {
   const filteredPartData = data?.filter(
     (item) => item.part === selectedPart.toUpperCase()
   );
+  const navigate = useNavigate();
+  const DetailMatch = useMatch("/homework/:id");
   const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));
 
   if (error === "rejected") throw new Error(ERROR.ALL_ASSIGNMENT);
   if (myPartError === "rejected") throw new Error(ERROR.PART_ASSIGNMENT);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    const { key } = e;
+
+    if (key === "Escape") {
+      navigate("/homework", {
+        state: {
+          history: "detail",
+        },
+      });
+    }
+  };
+
+  const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { target, currentTarget } = e;
+    if (target == currentTarget) {
+      navigate("/homework", {
+        state: {
+          history: "detail",
+        },
+      });
+    }
+  };
 
   return (
     <Styled.Wrapper>
@@ -62,7 +94,7 @@ function HwList() {
           {sortByRecentCreatedAt?.map((item, index) => (
             <HwSliderCard
               key={item.id}
-              onClick={() => setClickedId(item.id)}
+              onClick={() => navigate(`${item.id}`)}
               index={index}
               title={item.title}
               content={item.content}
@@ -90,7 +122,7 @@ function HwList() {
           <HwCard
             category={item.category}
             layoutId={item.id + ""}
-            onClick={() => setClickedId(item.id)}
+            onClick={() => navigate(`${item.id}`)}
             key={item.id}
             part={item.part.toLowerCase()}
             title={item.title}
@@ -100,8 +132,17 @@ function HwList() {
       </Styled.OtherHWContainer>
 
       <AnimatePresence>
-        {clickedId !== 0 && (
-          <Hwdetail setClickedId={setClickedId} clickedId={clickedId} />
+        {DetailMatch?.params.id && (
+          <>
+            <Styled.Overlay
+              onClick={handleExit}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+            <motion.div css={Styled.Modal} layoutId={DetailMatch?.params.id}>
+              <Hwdetail clickedId={+DetailMatch?.params.id} />
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </Styled.Wrapper>
