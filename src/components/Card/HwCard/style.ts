@@ -39,6 +39,7 @@ export const CardTitle = styled.h1`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  line-height: 1.3;
 `;
 
 export const Badge = styled.div`
