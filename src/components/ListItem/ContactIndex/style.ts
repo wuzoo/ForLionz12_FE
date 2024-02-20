@@ -1,14 +1,17 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  ${(props) => props.theme.flexRow("space-between", "center")}
   width: 100%;
+  border: 1.5px solid ${(props) => props.theme.color.lightgray};
+  border-radius: 10px;
+  padding: 12px 20px;
+`;
+
+export const InfoWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 4fr 2fr;
   align-items: center;
-  border: 1.5px solid ${(props) => props.theme.color.lightgray};
-  border-radius: 10px;
-  padding: 10px;
-  padding-left: 30px;
   gap: 10px;
   cursor: pointer;
 `;

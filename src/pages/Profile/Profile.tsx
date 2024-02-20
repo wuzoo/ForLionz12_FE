@@ -28,6 +28,8 @@ function Profile() {
   const [file, setFile] = useState<Blob | null>(null);
   const [url, setUrl] = useState(user.imageUrl);
 
+  console.log(myInfo);
+
   useEffect(() => {
     setIntro(user.introduction);
   }, [user]);
