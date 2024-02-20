@@ -27,7 +27,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
     let initialValue = "";
     initialValue = type === "github" ? user.githubAddress : user.instagramId;
 
-    setInfo(initialValue);
+    setInfo(initialValue || "");
   }, [user]);
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
