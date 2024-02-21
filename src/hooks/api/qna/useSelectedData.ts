@@ -28,9 +28,13 @@ export function useSelectedData(id: number) {
   };
 
   const getChildData = async () => {
-    const response = await getChildTagData(query);
-
-    setData(response.data);
+    if (query.length === 0) {
+      const response = await getParentTagData(id);
+      setData(response.data.questionPosts);
+    } else {
+      const response = await getChildTagData(query);
+      setData(response.data);
+    }
   };
 
   useEffect(() => {
