@@ -24,7 +24,7 @@ function Header({ type }: IHeader) {
           <Styled.logo>LIONZ</Styled.logo>
         </Link>
         {!isLoginPage && (
-          <>
+          <div>
             <Link to="/homework">
               <Typo
                 color={
@@ -62,7 +62,7 @@ function Header({ type }: IHeader) {
                 Contact
               </Typo>
             </Link>
-          </>
+          </div>
         )}
       </Styled.navcol>
       <Styled.headerprofile
