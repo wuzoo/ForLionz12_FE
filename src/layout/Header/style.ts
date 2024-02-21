@@ -13,14 +13,14 @@ export const Wrapper = styled.div<{ type?: string }>`
   z-index: 10;
 `;
 
-export const logo = styled.span`
+export const Logo = styled.span`
   font-size: 35px;
   font-weight: 700;
 `;
 
-export const navcol = styled.div`
+export const NavCol = styled.div`
   ${(props) => props.theme.flexRow("start", "center")}
-  width: 40vw;
+  width: 36vw;
   div {
     margin-left: 40px;
     display: flex;
@@ -30,7 +30,7 @@ export const navcol = styled.div`
   }
 `;
 
-export const headerprofile = styled.div<{ show: boolean }>`
+export const Profile = styled.div<{ show: boolean }>`
   cursor: pointer;
   display: ${(props) => !props.show && "none"};
 

@@ -19,9 +19,9 @@ function Header({ type }: IHeader) {
 
   return (
     <Styled.Wrapper type={type}>
-      <Styled.navcol>
+      <Styled.NavCol>
         <Link to="/">
-          <Styled.logo>LIONZ</Styled.logo>
+          <Styled.Logo>LIONZ</Styled.Logo>
         </Link>
         {!isLoginPage && (
           <div>
@@ -64,13 +64,13 @@ function Header({ type }: IHeader) {
             </Link>
           </div>
         )}
-      </Styled.navcol>
-      <Styled.headerprofile
+      </Styled.NavCol>
+      <Styled.Profile
         onClick={마이페이지가기}
         show={!isLoginPage ? true : false}
       >
         <Profile url={imageUrl} size="50" />
-      </Styled.headerprofile>
+      </Styled.Profile>
     </Styled.Wrapper>
   );
 }
