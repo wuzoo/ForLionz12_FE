@@ -19,6 +19,7 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
       ref={ref}
       css={css`
         @media screen and (max-width: 900px) {
+          position: static;
           display: flex;
           padding: 20px 0px;
         }
