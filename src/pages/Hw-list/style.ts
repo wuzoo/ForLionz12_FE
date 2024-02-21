@@ -52,7 +52,7 @@ export const OtherHWContainer = styled.div`
   @media screen and (max-width: 1300px) {
     grid-template-columns: repeat(2, 1fr);
     & > div {
-      min-width: 400px;
+      width: 100%;
       min-height: 400px;
     }
   }
@@ -60,7 +60,7 @@ export const OtherHWContainer = styled.div`
     grid-template-columns: repeat(1, 1fr);
     & > div {
       min-height: 500px;
-      min-width: 500px;
+      width: 100%;
     }
   }
 `;
