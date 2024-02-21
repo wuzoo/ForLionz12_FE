@@ -26,7 +26,7 @@ export default function PageLogo(props: IPageLogo) {
           height: ${props.height}px;
           aspect-ratio: 1/1;
 
-          @media screen and (max-width: 840px) {
+          @media screen and (max-width: 900px) {
             display: none;
           }
         `}
