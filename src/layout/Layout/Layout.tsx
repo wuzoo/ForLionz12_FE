@@ -34,11 +34,8 @@ function Layout() {
   }, [pathname]);
 
   useEffect(() => {
-    async function fetchToken() {
-      await checkToken();
-    }
-    fetchToken();
-  }, []);
+    checkToken();
+  }, [pathname]);
 
   const checkToken = useCallback(async () => {
     await axios({
