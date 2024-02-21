@@ -3,7 +3,7 @@ import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
 import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import Hwdetail from "./Hw-detail/Hwdetail";
+import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
@@ -94,7 +94,7 @@ function HwList() {
           {sortByRecentCreatedAt?.map((item, index) => (
             <HwSliderCard
               key={item.id}
-              onClick={() => navigate(`${item.id}`)}
+              onClick={() => navigate(`detail/${item.id}`)}
               index={index}
               title={item.title}
               content={item.content}

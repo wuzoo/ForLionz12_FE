@@ -73,7 +73,7 @@ function Hwdetail({ clickedId }: IHwDetail) {
             ${theme.flexColumn("", "end", 16)}
           `}
         >
-          <Deadline expireAt={expireAt} />
+          <Deadline isModal={true} expireAt={expireAt} />
           <Styled.AssignmentLink>
             <img src={git} width="50" />
             <Link to={data?.githubLink}>

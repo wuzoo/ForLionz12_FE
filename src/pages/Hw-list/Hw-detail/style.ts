@@ -62,3 +62,10 @@ export const AssignmentLink = styled.div`
     text-decoration-color: ${(props) => props.theme.color.darkblue};
   }
 `;
+
+export const PageWrapper = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+`;

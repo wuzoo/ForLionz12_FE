@@ -21,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NoExist from "./pages/Error/404";
 import ErrorPage from "./pages/Error/error";
 import { ErrorProvider } from "./context/Error/Error";
+import Detail from "./pages/Hw-list/Hw-detail/detail";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "homework",
         element: <HwList />,
+      },
+      {
+        path: "homework/detail/:id",
+        element: <Detail />,
       },
       {
         path: "homework/:id",
