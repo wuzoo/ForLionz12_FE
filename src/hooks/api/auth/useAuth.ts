@@ -25,17 +25,19 @@ export function useAuth() {
         .then((res) => {
           const { accessToken, refreshToken } = res.data.data;
 
-          console.log(accessToken, refreshToken);
-
           if (getCookie("myToken")) {
             removeCookie("myToken");
           }
+
+          const day = 3600 * 24;
+          const expiration = new Date(Date.now() + 1000 * day);
 
           if (refreshToken) {
             setCookie("myToken", refreshToken, {
               path: "/",
               secure: true,
               sameSite: "none",
+              expires: expiration,
             });
           }
 
