@@ -4,9 +4,10 @@ import { theme } from "../../../../styles/theme/theme";
 
 type DateType = {
   expireAt: string;
+  isModal: boolean;
 };
 
-function Deadline({ expireAt }: DateType) {
+function Deadline({ expireAt, isModal }: DateType) {
   console.log(new Date(expireAt));
 
   const start = new Date();
@@ -39,12 +40,19 @@ function Deadline({ expireAt }: DateType) {
         }
       `}
     >
-      <p>
-        <Typo fontSize="26" weight="600">
-          마감까지
-        </Typo>
-      </p>
+      {isModal && (
+        <p>
+          <Typo fontSize="26" weight="600">
+            마감까지
+          </Typo>
+        </p>
+      )}
       <div>
+        {!isModal && (
+          <Typo fontSize="26" weight="600">
+            마감까지
+          </Typo>
+        )}
         <Typo weight="600" color="darkblue" fontSize="40">
           {day}
         </Typo>
