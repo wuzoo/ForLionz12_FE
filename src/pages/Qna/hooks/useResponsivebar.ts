@@ -12,6 +12,11 @@ function useResponsivebar() {
     if (!obj) return;
     if (!origin_y) return;
 
+    if (window.innerWidth <= 900) {
+      ref.current.style.position = "static";
+      return;
+    }
+
     if (pos_y > (window.innerHeight * 7) / 10) {
       ref.current.style.position = "fixed";
       ref.current.style.top = "80px";
@@ -24,8 +29,12 @@ function useResponsivebar() {
 
   useEffect(() => {
     window.addEventListener("scroll", SidebarControl);
+    window.addEventListener("resize", SidebarControl);
 
-    return () => window.removeEventListener("scroll", SidebarControl);
+    return () => {
+      window.removeEventListener("scroll", SidebarControl);
+      window.removeEventListener("resize", SidebarControl);
+    };
   }, []);
 
   return ref;
