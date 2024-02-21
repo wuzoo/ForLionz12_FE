@@ -4,7 +4,8 @@ export const Wrapper = styled.div<{ type?: string }>`
   width: 100vw;
   height: 80px;
   ${(props) => props.theme.flexRow("", "center")}
-  justify-content: ${(props) => (props.type === "login" ? "center" : "start")};
+  justify-content: ${(props) =>
+    props.type === "login" ? "center" : "space-between"};
   padding: 0px 40px;
   position: fixed;
   top: 0;
@@ -19,31 +20,23 @@ export const logo = styled.span`
 
 export const navcol = styled.div`
   ${(props) => props.theme.flexRow("start", "center")}
-
-  a:not(:first-child) {
-    text-align: start;
-    padding-right: 3rem;
-
-    @media screen and (max-width: 740px) {
-      display: none;
-    }
-  }
-  a:nth-child(2) {
-    padding-left: 2rem;
-  }
-  a {
-    span {
-      position: relative;
-    }
+  width: 40vw;
+  div {
+    margin-left: 40px;
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 
 export const headerprofile = styled.div<{ show: boolean }>`
-  position: absolute;
   cursor: pointer;
-  right: 40px;
-  padding: 10px;
   display: ${(props) => !props.show && "none"};
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
   img {
     &:hover {

@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import * as Styled from "./style";
 import { theme } from "../../../../styles/theme/theme";
 import useResponsivebar from "../../hooks/useResponsivebar";
-import { SetStateAction } from "react";
+import React, { SetStateAction } from "react";
 import { ParenttagType } from "../../../../types";
 
 interface ISideBar {
@@ -15,7 +15,15 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
   const ref = useResponsivebar();
 
   return (
-    <Styled.Wrapper ref={ref}>
+    <Styled.Wrapper
+      ref={ref}
+      css={css`
+        @media screen and (max-width: 900px) {
+          display: flex;
+          padding: 20px 0px;
+        }
+      `}
+    >
       {tags.map((item) => (
         <Styled.Item
           key={item.parentTagId}

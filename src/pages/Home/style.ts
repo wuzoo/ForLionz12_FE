@@ -11,6 +11,10 @@ export const Banner = styled.div`
   max-height: 45vh;
   padding-left: 8rem;
   ${(props) => props.theme.flexRow("center", "center")}
+
+  @media screen and (max-width: 900px) {
+    padding: 40px 0px;
+  }
 `;
 
 export const Textwrapper = styled.div`
@@ -19,6 +23,18 @@ export const Textwrapper = styled.div`
 
 export const Text = styled(motion.h1)`
   white-space: pre-line;
+
+  span {
+    @media screen and (max-width: 900px) {
+      font-size: 40px;
+    }
+  }
 `;
 
-export const Usergreet = styled(motion.h3)``;
+export const Usergreet = styled(motion.h3)`
+  span {
+    @media screen and (max-width: 900px) {
+      font-size: 20px;
+    }
+  }
+`;
