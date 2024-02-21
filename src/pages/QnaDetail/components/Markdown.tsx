@@ -27,6 +27,7 @@ export default function Markdown({ children }: { children: string }) {
               language={match && match[1]}
               PreTag="div"
               showLineNumbers={true}
+              wrapLongLines={true}
               {...props}
             />
           );

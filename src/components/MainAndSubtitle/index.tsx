@@ -11,7 +11,7 @@ function MainAndSubtitle({ main, sub, fontsizes, colors, gap }: ITitle) {
         css={css`
           @media screen and (max-width: 768px) {
             span {
-              font-size: ${(+mainsize * 2) / 3}px;
+              font-size: ${(+mainsize * 3) / 4}px;
             }
           }
         `}
@@ -32,7 +32,7 @@ function MainAndSubtitle({ main, sub, fontsizes, colors, gap }: ITitle) {
         css={css`
           @media screen and (max-width: 768px) {
             span {
-              font-size: ${(+subsize * 2) / 3}px;
+              font-size: ${(+subsize * 3) / 4}px;
             }
           }
         `}
