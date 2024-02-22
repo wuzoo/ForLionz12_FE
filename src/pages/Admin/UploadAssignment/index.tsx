@@ -3,7 +3,7 @@ import MainAndSubtitle from "../../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
 import Typo from "../../../components/Typo/Typo";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getDeadlineTime } from "../../../utils/getDeadlineTime";
 import { useGetAssignmentById } from "../../../hooks";
@@ -24,11 +24,19 @@ interface IInputs {
   category: string;
   tag: string;
   content: string;
+  link: string;
 }
 
 function UploadHW() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const allowed = useLoaderData();
+
+  useEffect(() => {
+    if (allowed === "LIMIT") {
+      navigate("/*");
+    }
+  }, [allowed]);
 
   const { data, error } = useGetAssignmentById(state?.id);
 
@@ -68,6 +76,8 @@ function UploadHW() {
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
     const expireAt = getDeadlineTime(date);
+
+    console.log(data);
 
     const values = getValues();
     const formData = {
@@ -170,6 +180,14 @@ function UploadHW() {
             onChange={(e) => setTag(e.target.value)}
           />
         </div>
+      </div>
+      <div>
+        <MainAndSubtitle
+          main={TITLE["link"]}
+          sub={TEXT["link"]}
+          {...defaultProps}
+        />
+        <Styled.LinkInput {...register("link")} />
       </div>
       <div>
         <MainAndSubtitle
