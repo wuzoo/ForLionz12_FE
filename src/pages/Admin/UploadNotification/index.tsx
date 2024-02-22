@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MainAndSubtitle from "../../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import Button from "../../../components/Button/Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useNoticeById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -24,12 +24,17 @@ interface IInputs {
 
 function UploadNotice() {
   const { register, handleSubmit, reset } = useForm<IInputs>();
+  const allowed = useLoaderData();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (allowed === "LIMIT") {
+      navigate("/*");
+    }
+  }, [allowed]);
 
   const [part, setPart] = useState("all");
-
-  const navigate = useNavigate();
-
-  const { state } = useLocation();
   const { data, error } = useNoticeById(state?.id);
 
   if (error === "rejected") throw new Error(ERROR.ID_NOTIFICATION);
