@@ -66,22 +66,11 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
       ></Styled.Overlay>
       <Styled.Modal>
         <Styled.MainWrapper>
-          <div
-            css={css`
-              ${theme.flexRow("", "end", 20)}
-            `}
-          >
-            <Styled.Title>
-              <Typo fontSize="44" weight="600">
-                {title}
-              </Typo>
-            </Styled.Title>
-            <AdminModifyBtn
-              type="notification"
-              id={clickedId + ""}
-              uid={uid + ""}
-            />
-          </div>
+          <Styled.Title>
+            <Typo fontSize="44" weight="600">
+              {title}
+            </Typo>
+          </Styled.Title>
           <Styled.Wrapper>
             <Styled.Badge
               css={css`
@@ -97,6 +86,11 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
                 작성일: {getFormedDate(createdAt)}
               </Typo>
             </Styled.Date>
+            <AdminModifyBtn
+              type="notification"
+              id={clickedId + ""}
+              uid={uid + ""}
+            />
           </Styled.Wrapper>
         </Styled.MainWrapper>
 

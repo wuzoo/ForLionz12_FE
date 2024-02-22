@@ -39,7 +39,6 @@ function Detail() {
               {data?.title}
             </Typo>
           </Styled.Title>
-          <AdminModifyBtn type="assignment" uid={uid} id={id} />
         </div>
         <div
           css={css`
@@ -60,6 +59,7 @@ function Detail() {
               작성일: {getFormedDate(data?.createdAt)}
             </Typo>
           </p>
+          <AdminModifyBtn type="assignment" uid={uid} id={id} />
         </div>
         <Styled.TagWrapper>
           {data?.tags.map((item) => (
