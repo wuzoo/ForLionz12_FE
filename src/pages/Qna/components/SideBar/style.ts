@@ -12,6 +12,7 @@ export const Item = styled.p`
   margin: 10px;
   text-align: center;
   word-break: keep-all;
+  white-space: nowrap;
 
   font-weight: ${(props) => props.theme.weight.semibold};
   border-radius: 10px;
