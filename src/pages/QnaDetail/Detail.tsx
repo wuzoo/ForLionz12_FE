@@ -83,74 +83,95 @@ function QnaDetail() {
 
   return (
     <Styled.Wrapper>
-      <Styled.TitleAndInfoWrapper>
-        <Styled.TitleAndBtnWrapper>
+      <div
+        css={css`
+          width: 80%;
+          place-self: center;
+        `}
+      >
+        <Styled.TitleAndInfoWrapper>
           <Styled.Title>
             <Typo fontSize="40" weight="700">
               {data?.title}
             </Typo>
           </Styled.Title>
-          <Styled.EditDeleteBtnWrapper
-            css={css`
-              display: ${isMyQna ? "flex" : "none"};
-            `}
-          >
-            <Button bgcolor="white" color="darkblue" onClick={handleEdit}>
-              수정
-            </Button>
-            <Button bgcolor="white" color="darkblue" onClick={handleDelete}>
-              삭제
-            </Button>
-          </Styled.EditDeleteBtnWrapper>
-        </Styled.TitleAndBtnWrapper>
-        <Styled.NameAndDate>
-          <Typo>{data?.name}</Typo>
-          <Typo fontSize="14" color="darkgray">
-            작성일: {getFormedDate(data?.createdAt)}
-          </Typo>
-        </Styled.NameAndDate>
-        <Styled.TagWrapper>
-          {data?.childTags.map((tag) => (
-            <Styled.Tag>{tag}</Styled.Tag>
-          ))}
-        </Styled.TagWrapper>
-      </Styled.TitleAndInfoWrapper>
-      <Styled.MarkDownContent>
-        <Markdown>{data?.content}</Markdown>
-      </Styled.MarkDownContent>
-      <form onSubmit={handleCommentSubmit}>
-        <Styled.CommentCnt>
-          <Typo color="darkblue" fontSize="24">
-            {comments?.length}&nbsp;
-          </Typo>
-          <Typo>개의 댓글</Typo>
-        </Styled.CommentCnt>
-        <Styled.CommentInput
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="댓글을 남겨보세요."
-        />
-        <Styled.BtnWrapper>
-          <Button padding="5px 10px" color="white">
-            댓글 작성
-          </Button>
-        </Styled.BtnWrapper>
-      </form>
-      <Styled.CommentsContainer>
-        {comments?.map((item) => (
-          <ListItem
-            key={item.commentId}
-            commentId={item.commentId}
-            memberId={item.memberId}
-            name={item.name}
-            memberImageUrl={item.memberImageUrl}
-            part={item.part}
-            createdAt={item.createdAt}
-            content={item.content}
-            update={reFetch}
+          <Styled.InfoAndBtnWrapper>
+            <div>
+              <Styled.NameAndDate>
+                <Typo>{data?.name}</Typo>
+                <Typo fontSize="14" color="darkgray">
+                  작성일: {getFormedDate(data?.createdAt)}
+                </Typo>
+              </Styled.NameAndDate>
+              <Styled.TagWrapper>
+                {data?.childTags.map((tag) => (
+                  <Styled.Tag>{tag}</Styled.Tag>
+                ))}
+              </Styled.TagWrapper>
+            </div>
+            <Styled.EditDeleteBtnWrapper
+              css={css`
+                display: ${isMyQna ? "flex" : "none"};
+              `}
+            >
+              <Button
+                fontSize="16"
+                bgcolor="white"
+                color="darkblue"
+                onClick={handleEdit}
+              >
+                수정
+              </Button>
+              <Button
+                fontSize="16"
+                bgcolor="white"
+                color="darkblue"
+                onClick={handleDelete}
+              >
+                삭제
+              </Button>
+            </Styled.EditDeleteBtnWrapper>
+          </Styled.InfoAndBtnWrapper>
+        </Styled.TitleAndInfoWrapper>
+        <Styled.MarkDownContent>
+          <Markdown>{data?.content}</Markdown>
+        </Styled.MarkDownContent>
+      </div>
+      <div>
+        <form onSubmit={handleCommentSubmit}>
+          <Styled.CommentCnt>
+            <Typo color="darkblue" fontSize="24">
+              {comments?.length}&nbsp;
+            </Typo>
+            <Typo>개의 댓글</Typo>
+          </Styled.CommentCnt>
+          <Styled.CommentInput
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="댓글을 남겨보세요."
           />
-        ))}
-      </Styled.CommentsContainer>
+          <Styled.BtnWrapper>
+            <Button padding="5px 10px" color="white">
+              댓글 작성
+            </Button>
+          </Styled.BtnWrapper>
+        </form>
+        <Styled.CommentsContainer>
+          {comments?.map((item) => (
+            <ListItem
+              key={item.commentId}
+              commentId={item.commentId}
+              memberId={item.memberId}
+              name={item.name}
+              memberImageUrl={item.memberImageUrl}
+              part={item.part}
+              createdAt={item.createdAt}
+              content={item.content}
+              update={reFetch}
+            />
+          ))}
+        </Styled.CommentsContainer>
+      </div>
     </Styled.Wrapper>
   );
 }
