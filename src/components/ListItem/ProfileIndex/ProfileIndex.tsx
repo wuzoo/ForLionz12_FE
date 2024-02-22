@@ -38,7 +38,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
 
       console.log(info.match(regexp));
 
-      if (!regexp.test(info)) {
+      if (info.length !== 0 && !regexp.test(info)) {
         error("주소는 https:// 로 시작해야 합니다.");
         return;
       }
