@@ -46,7 +46,15 @@ const router = createBrowserRouter([
         element: <HwList />,
       },
 
-      { path: "homework/upload", element: <UploadHW /> },
+      {
+        path: "homework/upload",
+        element: <UploadHW />,
+        loader: () => {
+          const part = localStorage.getItem("part");
+
+          return part === "STAFF" ? "ALLOWED" : "LIMIT";
+        },
+      },
       { path: "homework-submit/:id", element: <HwSubmit /> },
 
       { path: "contact", element: <Contact /> },
@@ -54,7 +62,15 @@ const router = createBrowserRouter([
         path: "notification",
         element: <Notification />,
       },
-      { path: "notification/upload", element: <UploadNotice /> },
+      {
+        path: "notification/upload",
+        element: <UploadNotice />,
+        loader: () => {
+          const part = localStorage.getItem("part");
+
+          return part === "STAFF" ? "ALLOWED" : "LIMIT";
+        },
+      },
 
       { path: "profile", element: <Profile /> },
       {
