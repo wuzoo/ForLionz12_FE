@@ -4,6 +4,7 @@ import { fixedProps } from "../../Hw-submit";
 import RecentUploadSlider from "../../../../components/Slider/RecentUploadSlider";
 import * as Styled from "./style";
 import { ReactNode } from "react";
+import Typo from "../../../../components/Typo/Typo";
 
 function RecentUploader({
   cnt,
@@ -21,7 +22,13 @@ function RecentUploader({
           {...fixedProps}
         />
         <Styled.SliderWrapper>
-          <RecentUploadSlider cnt={cnt}>{children}</RecentUploadSlider>
+          {cnt !== 0 ? (
+            <RecentUploadSlider cnt={cnt}>{children}</RecentUploadSlider>
+          ) : (
+            <Typo color="darkgray" fontSize="16">
+              아무도 아직 제출하지 않았어요 !
+            </Typo>
+          )}
         </Styled.SliderWrapper>
       </Styled.ContentWrapper>
     </Styled.TotalWrapper>
