@@ -22,7 +22,7 @@ export function useSelectedData(id: number) {
       const response = await getParentTagData(id);
       const { childTags, questionPosts } = response.data;
 
-      setChildTags(childTags);
+      setChildTags(id === 4 || id === 6 ? [] : childTags); // 부모 category가 etc, 잡담이면 childTag No
       setData(questionPosts);
     }
   };
