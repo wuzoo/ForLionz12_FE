@@ -25,7 +25,11 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
   };
 
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper
+      whileHover={{
+        scale: 1.02,
+      }}
+    >
       <Styled.InfoWrapper
         css={css`
           padding: ${clicked ? "30px" : ""};
@@ -55,12 +59,16 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
             </Styled.Name>
             <Styled.Badge
               css={css`
-                background-color: ${theme.color[
-                  PART_COLOR[part.toLowerCase()]
-                ]};
+                background-color: ${clicked
+                  ? theme.color[PART_COLOR[part.toLowerCase()]]
+                  : "white"};
               `}
             >
-              <Typo color="white" weight="600">
+              <Typo
+                fontSize="20"
+                color={clicked ? "white" : PART_COLOR[part.toLowerCase()]}
+                weight="700"
+              >
                 {part.toUpperCase()}
               </Typo>
             </Styled.Badge>
