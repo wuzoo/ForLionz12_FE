@@ -11,6 +11,8 @@ const MDImg = styled.img`
 
 const MDParagraph = styled.p`
   line-height: 1.3;
+  word-break: break-all;
+  word-wrap: break-word;
 `;
 
 export default function Markdown({ children }: { children: string }) {
@@ -25,9 +27,12 @@ export default function Markdown({ children }: { children: string }) {
               children={String(props.children).replace(/\n$/, "")}
               style={oneDark}
               language={match && match[1]}
-              PreTag="div"
+              customStyle={{
+                width: "50vw",
+              }}
               showLineNumbers={true}
               wrapLongLines={true}
+              wrapLines={true}
               {...props}
             />
           );
