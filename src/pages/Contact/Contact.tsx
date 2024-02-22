@@ -33,17 +33,19 @@ function Contact() {
         <PartToggle part={selectedToggle} setPart={setSelectedToggle} />
       </Styled.Toggle>
       <Styled.Items>
-        {filterData()?.map((item) => (
-          <Item
-            key={item.id}
-            file={item.imageUrl}
-            name={item.name}
-            part={item.part}
-            introduce={item.introduction}
-            githuburl={item.githubAddress || undefined}
-            instaid={item.instagramId || undefined}
-          />
-        ))}
+        {filterData()
+          .filter((item) => +item.id !== 2)
+          ?.map((item) => (
+            <Item
+              key={item.id}
+              file={item.imageUrl}
+              name={item.name}
+              part={item.part}
+              introduce={item.introduction}
+              githuburl={item.githubAddress || undefined}
+              instaid={item.instagramId || undefined}
+            />
+          ))}
       </Styled.Items>
     </Styled.Wrapper>
   );
