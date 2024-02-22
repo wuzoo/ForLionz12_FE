@@ -11,10 +11,11 @@ export const Wrapper = styled.div`
 
 export const InfoWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  width: 100%;
 `;
 
 export const Name = styled.p``;
