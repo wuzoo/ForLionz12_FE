@@ -17,6 +17,7 @@ import { ERROR } from "../../constants/message.ts";
 import { compare } from "../../utils/sortByCreatedAt.ts";
 import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Typo from "../../components/Typo/Typo.tsx";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -90,6 +91,18 @@ function HwList() {
       </div>
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
+        {sortByRecentCreatedAt?.length === 0 && (
+          <div
+            css={css`
+              ${theme.flexRow("center", "center")}
+              padding-top: 20px;
+            `}
+          >
+            <Typo color="darkgray">
+              업로드된 {part.toUpperCase()} 과제가 없어요
+            </Typo>
+          </div>
+        )}
         <FullScreenSlider>
           {sortByRecentCreatedAt?.map((item, index) => (
             <HwSliderCard

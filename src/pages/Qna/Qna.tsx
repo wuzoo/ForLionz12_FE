@@ -10,12 +10,15 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelectedData, useTags } from "../../hooks";
 import { compare } from "../../utils/sortByCreatedAt";
+import { theme } from "../../styles/theme/theme";
 
 function Qna() {
   const [category, setCategory] = useState<number>(0);
 
   const { data: tags } = useTags();
   const navigate = useNavigate();
+
+  console.log(tags);
 
   const title = tags?.find((item) => item.parentTagId === category)?.name;
   const { childTags, data, query, setQuery } = useSelectedData(category);
@@ -66,18 +69,31 @@ function Qna() {
         </Button>
       </Styled.TagsAndBtnWrapper>
       <Styled.ItemsContainer>
-        {sortedByCreatedAt?.map((item) => (
-          <QnaItem
-            key={item.questionId}
-            onClick={() => {
-              navigate(`${item.questionId}`);
-            }}
-            title={item.title}
-            date={item.createdAt}
-            url={item.memberImageUrl}
-            name={item.name}
-          />
-        ))}
+        {sortedByCreatedAt?.length === 0 ? (
+          <p
+            css={css`
+              padding-top: 20px;
+              ${theme.flexRow("center")}
+            `}
+          >
+            <Typo fontSize="16" color="darkgray">
+              작성된 질문이 없습니다
+            </Typo>
+          </p>
+        ) : (
+          sortedByCreatedAt?.map((item) => (
+            <QnaItem
+              key={item.questionId}
+              onClick={() => {
+                navigate(`${item.questionId}`);
+              }}
+              title={item.title}
+              date={item.createdAt}
+              url={item.memberImageUrl}
+              name={item.name}
+            />
+          ))
+        )}
       </Styled.ItemsContainer>
     </Styled.Wrapper>
   );

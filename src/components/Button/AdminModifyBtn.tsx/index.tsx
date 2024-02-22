@@ -40,6 +40,7 @@ export default function AdminModifyBtn({ type, uid, id }: IBtn) {
           navigate(destination, {
             state: {
               id,
+              history: type === "assignment" ? "detail" : null,
             },
           })
         }

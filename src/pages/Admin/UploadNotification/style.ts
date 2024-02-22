@@ -25,6 +25,7 @@ export const ContentInput = styled.textarea`
   border-radius: 10px;
   margin-top: 10px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
+  padding: 10px;
 `;
 
 export const Btn = styled.span`

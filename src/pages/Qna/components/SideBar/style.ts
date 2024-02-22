@@ -11,12 +11,14 @@ export const Item = styled.p`
   padding: 15px;
   margin: 10px;
   text-align: center;
+  word-break: keep-all;
 
   font-weight: ${(props) => props.theme.weight.semibold};
   border-radius: 10px;
   /* border-bottom: 1px solid ${(props) => props.theme.color.lightgray}; */
 
   &:hover {
-    background-color: ${(props) => props.theme.color.lightgray};
+    background-color: ${(props) => props.theme.color.black};
+    color: ${(props) => props.theme.color.white};
   }
 `;

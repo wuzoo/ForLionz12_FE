@@ -1,26 +1,30 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 70%;
+  width: 60%;
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Title = styled.p`
-  width: 90%;
   word-wrap: break-word;
+  word-break: break-all;
+  padding-bottom: 40px;
 `;
 
 export const TitleAndInfoWrapper = styled.div`
-  ${(props) => props.theme.flexColumn("", "", 10)}
-`;
-
-export const TitleAndBtnWrapper = styled.div`
-  ${(props) => props.theme.flexRow("", "end", 20)}
+  ${(props) => props.theme.flexColumn("", "center", 10)}
 `;
 
 export const TagWrapper = styled.div`
   margin-top: 10px;
   ${(props) => props.theme.flexRow("", "center", 10)}
+`;
+
+export const InfoAndBtnWrapper = styled.div`
+  ${(props) => props.theme.flexRow("space-between", "end")}
+  width: 100%;
 `;
 
 export const EditDeleteBtnWrapper = styled.div`
@@ -34,7 +38,7 @@ export const EditDeleteBtnWrapper = styled.div`
 `;
 
 export const NameAndDate = styled.p`
-  padding-left: 5px;
+  padding-left: 14px;
   ${(props) => props.theme.flexRow("", "center", 20)}
 `;
 

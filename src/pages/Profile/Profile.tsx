@@ -98,6 +98,8 @@ function Profile() {
         throw new Error(ERROR.DELETE_USER_IMAGE);
       });
 
+    reFetch();
+
     dispatch({
       type: "LOGIN",
       data: {
@@ -105,8 +107,6 @@ function Profile() {
         imageUrl: null,
       },
     });
-
-    reFetch();
   };
 
   return (

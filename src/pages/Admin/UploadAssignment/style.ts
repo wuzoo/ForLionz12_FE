@@ -20,6 +20,10 @@ export const TitleInput = styled(Input)`
 
 export const DateInput = styled(Input)``;
 
+export const LinkInput = styled(Input)`
+  width: 100%;
+`;
+
 export const CategoryInput = styled(Input)``;
 
 export const TagInput = styled(Input)`
@@ -34,6 +38,7 @@ export const ContentInput = styled.textarea`
   border-radius: 10px;
   margin-top: 10px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
+  padding: 10px;
 `;
 
 export const Btn = styled.span`

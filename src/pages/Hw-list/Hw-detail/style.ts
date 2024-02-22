@@ -41,16 +41,11 @@ export const Content = styled.p`
 
 export const MainWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "", 16)}
-  max-width: 60%;
-`;
-
-export const TitleAndModifyBtnWrapper = styled.div`
-  ${(props) => props.theme.flexRow("", "end", 20)}
+  max-width: 65%;
 `;
 
 export const Title = styled.p`
   width: 100%;
-  word-wrap: break-word;
   white-space: pre-line;
 `;
 

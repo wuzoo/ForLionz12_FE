@@ -9,7 +9,7 @@ export const PROFILE_TEXT: { [key: string]: TextObj } = {
     sub: "LIONZ에서 사용할 비밀번호를 변경합니다.",
   },
   github: {
-    main: "깃허브 주소",
+    main: "깃허브 프로필 주소",
     sub: "나의 깃허브 프로필 주소를 입력합니다.",
   },
   instagram: {

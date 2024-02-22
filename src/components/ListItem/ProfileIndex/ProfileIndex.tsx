@@ -12,7 +12,7 @@ import {
   useLoginInfoDispatch,
   useLoginInfoState,
 } from "../../../context/LoginUser/User";
-import { success } from "../../../utils/toast";
+import { error, success } from "../../../utils/toast";
 import { GUIDE_MESSAGE } from "../../../constants/message";
 
 export default function ProfileItem({ type, onSubmit }: IItem) {
@@ -32,6 +32,17 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (type === "github") {
+      const regexp = /^(https:\/\/)/g;
+
+      console.log(info.match(regexp));
+
+      if (!regexp.test(info)) {
+        error("주소는 https:// 로 시작해야 합니다.");
+        return;
+      }
+    }
 
     updateUserInfo(type, info);
 
