@@ -34,18 +34,11 @@ function Hwdetail({ clickedId }: IHwDetail) {
         `}
       >
         <Styled.MainWrapper>
-          <Styled.TitleAndModifyBtnWrapper>
-            <Styled.Title>
-              <Typo fontSize="44" weight="600">
-                {title}
-              </Typo>
-            </Styled.Title>
-            <AdminModifyBtn
-              type="assignment"
-              uid={uid + ""}
-              id={clickedId + ""}
-            />
-          </Styled.TitleAndModifyBtnWrapper>
+          <Styled.Title>
+            <Typo fontSize="44" weight="600">
+              {title}
+            </Typo>
+          </Styled.Title>
           <Styled.Wrapper>
             <Styled.Badge
               css={css`
@@ -61,6 +54,11 @@ function Hwdetail({ clickedId }: IHwDetail) {
                 작성일: {getFormedDate(createdAt)}
               </Typo>
             </Styled.Date>
+            <AdminModifyBtn
+              type="assignment"
+              uid={uid + ""}
+              id={clickedId + ""}
+            />
           </Styled.Wrapper>
           <Styled.TagWrapper>
             {tags.map((item) => (
