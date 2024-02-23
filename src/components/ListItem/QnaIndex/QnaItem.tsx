@@ -11,38 +11,50 @@ interface IItem {
   url: string;
   name: string;
   onClick: () => void;
+  tags: string[];
 }
 
-function QnaItem({ onClick, title, date, url, name }: IItem) {
+function QnaItem({ onClick, title, date, url, name, tags }: IItem) {
   return (
     <Styled.Container onClick={onClick}>
       <div
         css={css`
-          ${theme.flexRow("", "center", 30)}
+          ${theme.flexRow("", "center", 24)}
           width: 70%;
         `}
       >
-        <User url={url} size="45" />
+        <User url={url} size="64" />
         <div
           css={css`
             width: 80%;
           `}
         >
           <Styled.Title>
-            <Typo>{title}</Typo>
+            <Typo weight="600">{title}</Typo>
           </Styled.Title>
           <Styled.Writer>
-            <Typo color="darkgray" fontSize="14">
+            <Typo color="darkgray" fontSize="16">
               {name}
             </Typo>
           </Styled.Writer>
         </div>
       </div>
-      <Styled.Date>
-        <Typo color="darkgray" fontSize="14">
-          작성일: {getFormedDate(date)}
-        </Typo>
-      </Styled.Date>
+      <Styled.BottomRow>
+        <Styled.TagWrapper>
+          {tags.map((item) => (
+            <Styled.Tag key={item}>
+              <Typo fontSize="16" weight="400">
+                {item}
+              </Typo>
+            </Styled.Tag>
+          ))}
+        </Styled.TagWrapper>
+        <Styled.Date>
+          <Typo color="darkgray" fontSize="14">
+            작성일: {getFormedDate(date)}
+          </Typo>
+        </Styled.Date>
+      </Styled.BottomRow>
     </Styled.Container>
   );
 }

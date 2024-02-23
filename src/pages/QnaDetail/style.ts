@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Title = styled.p`
   word-wrap: break-word;
   word-break: break-all;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 `;
 
 export const TitleAndInfoWrapper = styled.div`
@@ -18,7 +18,7 @@ export const TitleAndInfoWrapper = styled.div`
 `;
 
 export const TagWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
   ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
@@ -73,7 +73,7 @@ export const BtnWrapper = styled.div`
 `;
 
 export const Tag = styled.p`
-  padding: 6px 15px;
-  border-radius: 10px;
+  padding: 8px 15px;
+  border-radius: 20px;
   background-color: ${(props) => props.theme.color.superlightgray};
 `;

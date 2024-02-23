@@ -7,7 +7,7 @@ import { useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
 import Button from "../../components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelectedData, useTags } from "../../hooks";
 import { compare } from "../../utils/sortByCreatedAt";
 import { theme } from "../../styles/theme/theme";
@@ -18,16 +18,32 @@ function Qna() {
   const { data: tags } = useTags();
   const navigate = useNavigate();
 
-  console.log(tags);
-
   const title = tags?.find((item) => item.parentTagId === category)?.name;
   const { childTags, data, query, setQuery } = useSelectedData(category);
 
   const sortedByCreatedAt = data?.sort((a, b) => compare(a, b));
 
-  if (!tags) {
+  const location = useLocation();
+
+  const currentPage = new URLSearchParams(location.search).get("page");
+
+  let paginatedData;
+
+  if (currentPage === null) {
+    paginatedData = sortedByCreatedAt;
+  } else if (currentPage) {
+    paginatedData = sortedByCreatedAt?.slice(
+      (+currentPage - 1) * 4,
+      +currentPage * 4
+    );
+  }
+
+  if (!tags || !data) {
     return;
   }
+
+  const pageCnt = Math.ceil(data?.length / 4);
+  const pageObj = new Array(pageCnt).fill(0).map((_, i) => i + 1);
 
   return (
     <Styled.Wrapper>
@@ -81,7 +97,7 @@ function Qna() {
             </Typo>
           </p>
         ) : (
-          sortedByCreatedAt?.map((item) => (
+          paginatedData?.map((item) => (
             <QnaItem
               key={item.questionId}
               onClick={() => {
@@ -91,10 +107,26 @@ function Qna() {
               date={item.createdAt}
               url={item.memberImageUrl}
               name={item.name}
+              tags={item.childTags}
             />
           ))
         )}
       </Styled.ItemsContainer>
+      <Styled.PageBtnWrapper>
+        {pageObj.map((page) => (
+          <Button
+            onClick={() => navigate(`/qna?page=${page}`)}
+            color="black"
+            width="40px"
+            padding="5px 0px"
+            bgcolor="white"
+            bordercolor="lightgray"
+            borderwidth="1.5px"
+          >
+            {page}
+          </Button>
+        ))}
+      </Styled.PageBtnWrapper>
     </Styled.Wrapper>
   );
 }
