@@ -28,13 +28,14 @@ function Qna() {
   const currentPage = new URLSearchParams(location.search).get("page");
 
   let paginatedData;
+  const contentCntInPage = 4;
 
   if (currentPage === null) {
-    paginatedData = sortedByCreatedAt;
+    paginatedData = sortedByCreatedAt?.slice(0, contentCntInPage);
   } else if (currentPage) {
     paginatedData = sortedByCreatedAt?.slice(
-      (+currentPage - 1) * 4,
-      +currentPage * 4
+      (+currentPage - 1) * contentCntInPage,
+      +currentPage * contentCntInPage
     );
   }
 
