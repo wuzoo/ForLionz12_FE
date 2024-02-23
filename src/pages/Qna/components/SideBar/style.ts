@@ -16,10 +16,8 @@ export const Item = styled.p`
 
   font-weight: ${(props) => props.theme.weight.semibold};
   border-radius: 10px;
-  /* border-bottom: 1px solid ${(props) => props.theme.color.lightgray}; */
 
   &:hover {
-    background-color: ${(props) => props.theme.color.black};
-    color: ${(props) => props.theme.color.white};
+    background-color: ${(props) => props.theme.color.lightgray};
   }
 `;
