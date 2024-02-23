@@ -17,13 +17,11 @@ function Qna() {
 
   const { data: tags } = useTags();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const title = tags?.find((item) => item.parentTagId === category)?.name;
   const { childTags, data, query, setQuery } = useSelectedData(category);
-
   const sortedByCreatedAt = data?.sort((a, b) => compare(a, b));
-
-  const location = useLocation();
 
   const currentPage = new URLSearchParams(location.search).get("page");
 
@@ -114,14 +112,16 @@ function Qna() {
         )}
       </Styled.ItemsContainer>
       <Styled.PageBtnWrapper>
-        {pageObj.map((page) => (
+        {pageObj.map((page, index) => (
           <Button
             onClick={() => navigate(`/qna?page=${page}`)}
-            color="black"
+            color={index + 1 === +(currentPage ?? 1) ? "white" : "black"}
             width="40px"
             padding="5px 0px"
-            bgcolor="white"
-            bordercolor="lightgray"
+            bgcolor={index + 1 === +(currentPage ?? 1) ? "darkblue" : "white"}
+            bordercolor={
+              index + 1 === +(currentPage ?? 1) ? "darkblue" : "lightgray"
+            }
             borderwidth="1.5px"
           >
             {page}
