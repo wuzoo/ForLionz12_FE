@@ -10,6 +10,7 @@ import django from "../assets/icons/django/Vector.webp";
 import password from "../assets/icons/password/password.svg";
 import github from "../assets/icons/github/3d.png";
 import instagram from "../assets/icons/insta/insta.svg";
+import lion from "../assets/icons/logo/logo.png";
 
 function getImgForCategory(category: string) {
   switch (category) {
@@ -39,6 +40,9 @@ function getImgForCategory(category: string) {
     }
     case "DJANGO": {
       return django;
+    }
+    case "LION": {
+      return lion;
     }
     case "github": {
       return github;
