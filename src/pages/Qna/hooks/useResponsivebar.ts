@@ -12,21 +12,18 @@ function useResponsivebar() {
     if (!obj) return;
     if (!origin_y) return;
 
+    if (window.innerWidth <= 900) {
+      ref.current.style.position = "static";
+      return;
+    }
+
     if (pos_y > (window.innerHeight * 7) / 10) {
-      if (window.innerWidth <= 900) {
-        ref.current.style.position = "static";
-      } else {
-        ref.current.style.position = "fixed";
-        ref.current.style.top = "80px";
-      }
+      ref.current.style.position = "fixed";
+      ref.current.style.top = "80px";
     } else {
-      if (window.innerWidth <= 900) {
-        ref.current.style.position = " static";
-      } else {
-        ref.current.style.position = "absolute";
-        ref.current.style.left = "3%";
-        ref.current.style.top = "70vh";
-      }
+      ref.current.style.position = "absolute";
+      ref.current.style.left = "3%";
+      ref.current.style.top = "70vh";
     }
   };
 
