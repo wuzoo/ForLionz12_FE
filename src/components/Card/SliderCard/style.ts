@@ -12,7 +12,7 @@ export const Picture = styled.img`
   position: absolute;
   object-fit: cover;
   top: 10%;
-  right: 57%;
+  right: 56%;
 `;
 
 export const LogoAndTitle = styled.div`
@@ -25,7 +25,7 @@ export const TitleWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "start", 10)}
   z-index: 2;
   box-sizing: content-box;
-  width: 65%;
+  width: 60%;
 `;
 
 export const Ellipsis = styled.p`
