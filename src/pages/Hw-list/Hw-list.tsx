@@ -21,6 +21,8 @@ import { compare } from "../../utils/sortByCreatedAt.ts";
 import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
+import Lottie from "lottie-react";
+import loadAni from "../../assets/lottie/Animation - 1708753255115.json";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -106,7 +108,17 @@ function HwList() {
             </Typo>
           </div>
         )}
-        <Suspense fallback={<p>Loading..</p>}>
+        <Suspense
+          fallback={
+            <div
+              css={css`
+                ${theme.flexRow("center", "center")}
+              `}
+            >
+              <Lottie animationData={loadAni} />
+            </div>
+          }
+        >
           <LazySlider>
             {sortByRecentCreatedAt?.map((item, index) => (
               <HwSliderCard
