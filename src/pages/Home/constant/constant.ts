@@ -3,9 +3,9 @@ import one from "../assets/1.png";
 import two from "../assets/2.png";
 import three from "../assets/4.png";
 import four from "../assets/5.png";
-import img1 from "../assets/slider1.webp";
-import img2 from "../assets/slider2.webp";
-import img3 from "../assets/slider3.webp";
+import first from "../assets/one.webp";
+import second from "../assets/two.webp";
+import third from "../assets/three.webp";
 
 interface IDest {
   [key: string]: string;
@@ -27,5 +27,5 @@ export const Destination: IDest = {
 
 export const SliderProps = {
   color: [theme.color.skyblue, theme.color.pink, "#EBDCA6"],
-  imgs: [img1, img2, img3],
+  imgs: [first, second, third],
 };
