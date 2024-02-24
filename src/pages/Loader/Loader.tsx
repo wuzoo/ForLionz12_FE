@@ -8,11 +8,11 @@ export default function Loader() {
     <div
       css={css`
         width: 100vw;
-        height: 100vh;
+        height: 80vh;
         ${theme.flexRow("center", "center")}
       `}
     >
-      <Lottie animationData={loadAni} width={30} height={30} />
+      <Lottie animationData={loadAni} width={20} height={20} />
     </div>
   );
 }

@@ -103,7 +103,14 @@ const router = createBrowserRouter([
         },
       },
 
-      { path: "profile", element: <Profile /> },
+      {
+        path: "profile",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Profile />
+          </Suspense>
+        ),
+      },
       {
         path: "qna",
         element: (
