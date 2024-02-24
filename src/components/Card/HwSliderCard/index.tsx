@@ -4,9 +4,8 @@ import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { ICard } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
-import one from "./assets/one.webp";
-import two from "./assets/two.webp";
-import three from "./assets/three.webp";
+import type1 from "./assets/type1.webp";
+import type2 from "./assets/type2.webp";
 
 function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
   function getPartAndDate() {
@@ -23,12 +22,10 @@ function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
     );
   }
   function getImg() {
-    if (props.index % 3 === 0) {
-      return one;
-    } else if (props.index % 3 === 1) {
-      return two;
-    } else {
-      return three;
+    if (props.index % 2 === 0) {
+      return type1;
+    } else if (props.index % 2 !== 0) {
+      return type2;
     }
   }
 
@@ -39,7 +36,14 @@ function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
         background-color: ${bgcolor};
       `}
     >
-      <Styled.Picture src={getImg()} />
+      <Styled.Picture
+        src={getImg()}
+        width={props.index % 2 === 0 ? "400" : "420"}
+        height={props.index % 2 === 0 ? "400" : "420"}
+        css={css`
+          padding-bottom: ${props.index % 2 === 0 ? "10px" : "30px"};
+        `}
+      />
       <Styled.LogoAndTitle>
         <Styled.TitleWrapper>
           <Styled.CardTitle>

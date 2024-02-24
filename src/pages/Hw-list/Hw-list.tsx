@@ -34,9 +34,9 @@ function HwList() {
   const { error: myPartError, data: myAssignments } =
     usePartAssignment(ifStaff_partAll);
 
-  const filteredPartData = data?.filter(
-    (item) => item.part === selectedPart.toUpperCase()
-  );
+  const filteredPartData = data
+    ?.filter((item) => item.part === selectedPart.toUpperCase())
+    .sort((a, b) => compare(a, b));
   const navigate = useNavigate();
   const DetailMatch = useMatch("/homework/:id");
   const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));

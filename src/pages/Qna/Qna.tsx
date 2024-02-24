@@ -51,7 +51,7 @@ function Qna() {
           width: 100%;
         `}
       >
-        <Banner type="Q&A" logowidth="500" logoheight="500" />
+        <Banner type="Q&A" logowidth="450" logoheight="450" />
       </div>
       <SideBar
         tags={tags}

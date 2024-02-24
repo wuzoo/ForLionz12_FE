@@ -25,8 +25,8 @@ export const Writer = styled.p`
 `;
 
 export const Tag = styled.span`
-  border: 1px solid ${(props) => props.theme.color.lightgray};
-  padding: 5px 12px;
+  background-color: ${(props) => props.theme.color.superlightgray};
+  padding: 8px 12px;
   border-radius: 18px;
 `;
 
