@@ -23,10 +23,11 @@ function QnaItem({ onClick, title, date, url, name, tags }: IItem) {
           width: 70%;
         `}
       >
-        <User url={url} size="64" />
+        <User url={url} size="60" />
         <div
           css={css`
             width: 80%;
+            ${theme.flexColumn("", "", 3)}
           `}
         >
           <Styled.Title>
