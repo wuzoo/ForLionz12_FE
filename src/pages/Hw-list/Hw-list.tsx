@@ -1,14 +1,11 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
-// import FullScreenSlider from "../../components/Slider/FullScreenSlider";
-const LazySlider = React.lazy(
-  () => import("../../components/Slider/FullScreenSlider")
-);
+import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -21,8 +18,6 @@ import { compare } from "../../utils/sortByCreatedAt.ts";
 import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
-import Lottie from "lottie-react";
-import loadAni from "../../assets/lottie/load.json";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -108,32 +103,20 @@ function HwList() {
             </Typo>
           </div>
         )}
-        <Suspense
-          fallback={
-            <div
-              css={css`
-                ${theme.flexRow("center", "center")}
-              `}
-            >
-              <Lottie animationData={loadAni} width={50} height={50} />
-            </div>
-          }
-        >
-          <LazySlider>
-            {sortByRecentCreatedAt?.map((item, index) => (
-              <HwSliderCard
-                key={item.id}
-                onClick={() => navigate(`detail/${item.id}`)}
-                index={index}
-                title={item.title}
-                content={item.content}
-                bgcolor={theme.color.skyblue}
-                expireAt={item.expireAt}
-                part={item.part}
-              />
-            ))}
-          </LazySlider>
-        </Suspense>
+        <FullScreenSlider>
+          {sortByRecentCreatedAt?.map((item, index) => (
+            <HwSliderCard
+              key={item.id}
+              onClick={() => navigate(`detail/${item.id}`)}
+              index={index}
+              title={item.title}
+              content={item.content}
+              bgcolor={theme.color.skyblue}
+              expireAt={item.expireAt}
+              part={item.part}
+            />
+          ))}
+        </FullScreenSlider>
       </Styled.FullWidthContainer>
       <Styled.Margin height="460px" />
       <Styled.AlignWrapper>
