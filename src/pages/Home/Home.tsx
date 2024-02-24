@@ -2,10 +2,7 @@ import { css } from "@emotion/react";
 import Typo from "../../components/Typo/Typo";
 import PageLogo from "../../components/PageLogo/PageLogo";
 import * as Styled from "./style";
-// import FullScreenSlider from "../../components/Slider/FullScreenSlider";
-const LazySlider = React.lazy(
-  () => import("../../components/Slider/FullScreenSlider")
-);
+import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import { TEXT } from "../../constants/text";
 import Card from "../../components/Card/SliderCard";
 import Category from "./components/category/Category";
@@ -15,10 +12,6 @@ import { useLoginInfoState } from "../../context/LoginUser/User";
 import { useAllNotification } from "../../hooks";
 import { ERROR } from "../../constants/message";
 import { compare } from "../../utils/sortByCreatedAt";
-import React, { Suspense } from "react";
-import Lottie from "lottie-react";
-import loadAni from "../../assets/lottie/load.json";
-import { theme } from "../../styles/theme/theme";
 
 function Home() {
   const userCt = useLoginInfoState();
@@ -62,31 +55,19 @@ function Home() {
           </Styled.Textwrapper>
           <PageLogo height="400" width="400" type="LION" />
         </Styled.Banner>
-        <Suspense
-          fallback={
-            <div
-              css={css`
-                ${theme.flexRow("center", "center")}
-              `}
-            >
-              <Lottie animationData={loadAni} width={50} height={50} />
-            </div>
-          }
-        >
-          <LazySlider>
-            {recentSortData?.map((item, index) => (
-              <Card
-                key={item.id}
-                part={item.part}
-                title={item.title}
-                createdAt={item.createdAt}
-                content={item.content}
-                bgcolor={SliderProps.color[index % 3]}
-                logo={SliderProps.imgs[index % 3]}
-              />
-            ))}
-          </LazySlider>
-        </Suspense>
+        <FullScreenSlider>
+          {recentSortData?.map((item, index) => (
+            <Card
+              key={item.id}
+              part={item.part}
+              title={item.title}
+              createdAt={item.createdAt}
+              content={item.content}
+              bgcolor={SliderProps.color[index % 3]}
+              logo={SliderProps.imgs[index % 3]}
+            />
+          ))}
+        </FullScreenSlider>
       </div>
       <Category />
     </Styled.Wrapper>
