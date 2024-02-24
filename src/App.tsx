@@ -25,36 +25,45 @@ import ErrorPage from "./pages/Error/error";
 import { ErrorProvider } from "./context/Error/Error";
 import Detail from "./pages/Hw-list/Hw-detail/detail";
 import React, { Suspense } from "react";
-import Lottie from "lottie-react";
-import loadAni from "./assets/lottie/load.json";
+import Loader from "./pages/Loader/Loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense
-        fallback={<Lottie animationData={loadAni} width={30} height={30} />}
-      >
-        <Layout />
-      </Suspense>
-    ),
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "homework",
-        element: <HwList />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <HwList />
+          </Suspense>
+        ),
       },
       {
         path: "homework/detail/:id",
-        element: <Detail />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Detail />
+          </Suspense>
+        ),
       },
       {
         path: "homework/:id",
-        element: <HwList />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <HwList />
+          </Suspense>
+        ),
       },
 
       {
@@ -68,10 +77,21 @@ const router = createBrowserRouter([
       },
       { path: "homework-submit/:id", element: <HwSubmit /> },
 
-      { path: "contact", element: <Contact /> },
+      {
+        path: "contact",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Contact />
+          </Suspense>
+        ),
+      },
       {
         path: "notification",
-        element: <Notification />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Notification />
+          </Suspense>
+        ),
       },
       {
         path: "notification/upload",
@@ -86,7 +106,11 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       {
         path: "qna",
-        element: <Qna />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Qna />
+          </Suspense>
+        ),
       },
       {
         path: "qna/:id",
