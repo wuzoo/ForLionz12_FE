@@ -22,7 +22,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
 import Lottie from "lottie-react";
-import loadAni from "../../assets/lottie/Animation - 1708753255115.json";
+import loadAni from "../../assets/lottie/load.json";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -115,7 +115,7 @@ function HwList() {
                 ${theme.flexRow("center", "center")}
               `}
             >
-              <Lottie animationData={loadAni} width={300} height={300} />
+              <Lottie animationData={loadAni} width={50} height={50} />
             </div>
           }
         >
