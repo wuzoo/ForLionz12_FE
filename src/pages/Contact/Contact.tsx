@@ -28,7 +28,7 @@ function Contact() {
 
   return (
     <Styled.Wrapper>
-      <Banner type="CONTACT" logowidth="400" logoheight="430" />
+      <Banner type="CONTACT" logowidth="450" logoheight="450" />
       <Styled.Toggle>
         <PartToggle part={selectedToggle} setPart={setSelectedToggle} />
       </Styled.Toggle>
