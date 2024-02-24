@@ -3,8 +3,8 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global, ThemeProvider } from "@emotion/react";
 import { theme } from "./styles/theme/theme";
 import Layout from "./layout/Layout/Layout";
+import Login from "./pages/Login/Login";
 const Home = React.lazy(() => import("./pages/Home/Home"));
-const Login = React.lazy(() => import("./pages/Login/Login"));
 const HwList = React.lazy(() => import("./pages/Hw-list/Hw-list"));
 const HwSubmit = React.lazy(() => import("./pages/Hw-submit/Hw-submit"));
 const Contact = React.lazy(() => import("./pages/Contact/Contact"));
@@ -51,11 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "homework/detail/:id",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Detail />
-          </Suspense>
-        ),
+        element: <Detail />,
       },
       {
         path: "homework/:id",
@@ -75,7 +71,14 @@ const router = createBrowserRouter([
           return part === "STAFF" ? "ALLOWED" : "LIMIT";
         },
       },
-      { path: "homework-submit/:id", element: <HwSubmit /> },
+      {
+        path: "homework-submit/:id",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <HwSubmit />
+          </Suspense>
+        ),
+      },
 
       {
         path: "contact",
