@@ -1,11 +1,14 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import HwCard from "../../components/Card/HwCard";
-import FullScreenSlider from "../../components/Slider/FullScreenSlider";
+// import FullScreenSlider from "../../components/Slider/FullScreenSlider";
+const LazySlider = React.lazy(
+  () => import("../../components/Slider/FullScreenSlider")
+);
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -103,20 +106,22 @@ function HwList() {
             </Typo>
           </div>
         )}
-        <FullScreenSlider>
-          {sortByRecentCreatedAt?.map((item, index) => (
-            <HwSliderCard
-              key={item.id}
-              onClick={() => navigate(`detail/${item.id}`)}
-              index={index}
-              title={item.title}
-              content={item.content}
-              bgcolor={theme.color.skyblue}
-              expireAt={item.expireAt}
-              part={item.part}
-            />
-          ))}
-        </FullScreenSlider>
+        <Suspense fallback={<p>Loading..</p>}>
+          <LazySlider>
+            {sortByRecentCreatedAt?.map((item, index) => (
+              <HwSliderCard
+                key={item.id}
+                onClick={() => navigate(`detail/${item.id}`)}
+                index={index}
+                title={item.title}
+                content={item.content}
+                bgcolor={theme.color.skyblue}
+                expireAt={item.expireAt}
+                part={item.part}
+              />
+            ))}
+          </LazySlider>
+        </Suspense>
       </Styled.FullWidthContainer>
       <Styled.Margin height="460px" />
       <Styled.AlignWrapper>
