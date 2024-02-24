@@ -115,7 +115,7 @@ function HwList() {
                 ${theme.flexRow("center", "center")}
               `}
             >
-              <Lottie animationData={loadAni} />
+              <Lottie animationData={loadAni} width={300} height={300} />
             </div>
           }
         >
