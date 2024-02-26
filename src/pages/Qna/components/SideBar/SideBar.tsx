@@ -22,6 +22,8 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
           position: static;
           display: flex;
           padding: 20px 0px;
+          width: 100%;
+          flex-wrap: wrap;
         }
       `}
     >
