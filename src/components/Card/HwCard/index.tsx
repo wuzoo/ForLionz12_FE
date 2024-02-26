@@ -8,12 +8,6 @@ import getImgForCategory from "../../../utils/getImgForCategory";
 import { theme } from "../../../styles/theme/theme";
 import { useLayoutEffect, useRef } from "react";
 
-const variants = {
-  hover: {
-    scale: 1.03,
-  },
-};
-
 function HwCard({
   category,
   part,
@@ -32,12 +26,7 @@ function HwCard({
   }, [category]);
 
   return (
-    <Styled.CardWrapper
-      layoutId={layoutId}
-      variants={variants}
-      whileHover="hover"
-      onClick={onClick}
-    >
+    <Styled.CardWrapper layoutId={layoutId} onClick={onClick}>
       <Styled.Thumnail>
         <Styled.Img ref={ref} />
       </Styled.Thumnail>
