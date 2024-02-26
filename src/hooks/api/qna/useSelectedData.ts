@@ -5,12 +5,14 @@ import {
   getParentTagData,
 } from "../../../api/qna";
 import { ChildtagType, IQna } from "../../../types";
+import { useNavigate } from "react-router-dom";
 
 export function useSelectedData(id: number) {
   const [data, setData] = useState<IQna[]>();
   const [childTags, setChildTags] = useState<ChildtagType[]>();
 
   const [query, setQuery] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   const get = async () => {
     if (id === 0) {
@@ -24,6 +26,11 @@ export function useSelectedData(id: number) {
 
       setChildTags(id === 4 || id === 6 ? [] : childTags); // 부모 category가 etc, 잡담이면 childTag No
       setData(questionPosts);
+    }
+    const params = new URL(location.href).searchParams.get("page");
+
+    if (params !== null && params !== "1") {
+      navigate("/qna");
     }
   };
 
