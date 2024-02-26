@@ -9,12 +9,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
+  padding-bottom: 3px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  width: 100%;
   line-height: 1.2;
 `;
 
@@ -38,6 +38,10 @@ export const TagWrapper = styled.div`
 export const BottomRow = styled.div`
   ${(props) => props.theme.flexRow("space-between", "center")}
   padding: 10px 0px 0px 78px;
+
+  @media screen and (max-width: 768px) {
+    ${(props) => props.theme.flexColumn("", "start", 10)}
+  }
 `;
 
 export const CommentCnt = styled.p`

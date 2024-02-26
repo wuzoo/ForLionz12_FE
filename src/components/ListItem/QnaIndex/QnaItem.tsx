@@ -20,25 +20,25 @@ function QnaItem({ onClick, title, date, url, name, tags, commentCnt }: IItem) {
     <Styled.Container onClick={onClick}>
       <div
         css={css`
-          ${theme.flexRow("space-between", "center", 24)}
-          width: 100%;
+          ${theme.flexRow("space-between", "center")}
         `}
       >
-        <User url={url} size="60" />
         <div
           css={css`
-            width: 80%;
-            ${theme.flexColumn("space-between", "start", 4)}
+            ${theme.flexRow("space-between", "center", 24)}
           `}
         >
-          <Styled.Title>
-            <Typo weight="600">{title}</Typo>
-          </Styled.Title>
-          <Styled.Writer>
-            <Typo color="darkgray" fontSize="16">
-              {name}
-            </Typo>
-          </Styled.Writer>
+          <User url={url} size="60" />
+          <div>
+            <Styled.Title>
+              <Typo weight="600">{title}</Typo>
+            </Styled.Title>
+            <Styled.Writer>
+              <Typo color="darkgray" fontSize="16">
+                {name}
+              </Typo>
+            </Styled.Writer>
+          </div>
         </div>
         <Styled.CommentCnt>
           <Typo color="darkblue" fontSize="18">
