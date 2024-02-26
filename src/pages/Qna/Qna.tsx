@@ -42,7 +42,9 @@ function Qna() {
   }
 
   const pageCnt = Math.ceil(data?.length / 4);
-  const pageObj = new Array(pageCnt).fill(0).map((_, i) => i + 1);
+  const pageObj = new Array(pageCnt).fill(0).map((_, i) => {
+    return { id: i + 1, index: i + 1 };
+  });
 
   return (
     <Styled.Wrapper>
@@ -107,6 +109,7 @@ function Qna() {
               url={item.memberImageUrl}
               name={item.name}
               tags={item.childTags}
+              commentCnt={item.commentCount}
             />
           ))
         )}
@@ -114,7 +117,8 @@ function Qna() {
       <Styled.PageBtnWrapper>
         {pageObj.map((page, index) => (
           <Button
-            onClick={() => navigate(`/qna?page=${page}`)}
+            key={page.id}
+            onClick={() => navigate(`/qna?page=${page.index}`)}
             color={index + 1 === +(currentPage ?? 1) ? "white" : "black"}
             width="40px"
             padding="5px 0px"
@@ -124,7 +128,7 @@ function Qna() {
             }
             borderwidth="1.5px"
           >
-            {page}
+            {page.index}
           </Button>
         ))}
       </Styled.PageBtnWrapper>
