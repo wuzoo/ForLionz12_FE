@@ -12,22 +12,23 @@ interface IItem {
   name: string;
   onClick: () => void;
   tags: string[];
+  commentCnt: number;
 }
 
-function QnaItem({ onClick, title, date, url, name, tags }: IItem) {
+function QnaItem({ onClick, title, date, url, name, tags, commentCnt }: IItem) {
   return (
     <Styled.Container onClick={onClick}>
       <div
         css={css`
-          ${theme.flexRow("", "center", 24)}
-          width: 70%;
+          ${theme.flexRow("space-between", "center", 24)}
+          width: 100%;
         `}
       >
         <User url={url} size="60" />
         <div
           css={css`
             width: 80%;
-            ${theme.flexColumn("", "", 3)}
+            ${theme.flexColumn("space-between", "start", 4)}
           `}
         >
           <Styled.Title>
@@ -39,6 +40,12 @@ function QnaItem({ onClick, title, date, url, name, tags }: IItem) {
             </Typo>
           </Styled.Writer>
         </div>
+        <Styled.CommentCnt>
+          <Typo color="darkblue" fontSize="18">
+            {commentCnt}&nbsp;
+          </Typo>
+          <Typo fontSize="16">개의 댓글</Typo>
+        </Styled.CommentCnt>
       </div>
       <Styled.BottomRow>
         <Styled.TagWrapper>

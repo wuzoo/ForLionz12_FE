@@ -36,6 +36,11 @@ export const TagWrapper = styled.div`
 `;
 
 export const BottomRow = styled.div`
-  ${(props) => props.theme.flexRow("space-between")}
+  ${(props) => props.theme.flexRow("space-between", "center")}
   padding: 10px 0px 0px 78px;
+`;
+
+export const CommentCnt = styled.p`
+  white-space: nowrap;
+  ${(props) => props.theme.flexRow("", "center")}
 `;
