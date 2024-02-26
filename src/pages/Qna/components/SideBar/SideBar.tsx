@@ -24,6 +24,7 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
           padding: 20px 0px;
           width: 100%;
           flex-wrap: wrap;
+          max-width: none;
         }
       `}
     >
