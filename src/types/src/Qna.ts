@@ -8,6 +8,7 @@ export interface IQna {
   name: string;
   childTags: string[];
   postImageUrls: string[];
+  commentCount: number;
 }
 
 export type ChildtagType = {
