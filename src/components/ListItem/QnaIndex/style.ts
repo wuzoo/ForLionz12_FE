@@ -9,7 +9,6 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
-  padding-bottom: 3px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -22,6 +21,7 @@ export const Date = styled.p``;
 
 export const Writer = styled.p`
   padding: 3px 0px;
+  margin-top: 4px;
 `;
 
 export const Tag = styled.span`
