@@ -4,15 +4,15 @@ import { Global, ThemeProvider } from "@emotion/react";
 import { theme } from "./styles/theme/theme";
 import Layout from "./layout/Layout/Layout";
 import Login from "./pages/Login/Login";
-const Home = React.lazy(() => import("./pages/Home/Home"));
-const HwList = React.lazy(() => import("./pages/Hw-list/Hw-list"));
-const HwSubmit = React.lazy(() => import("./pages/Hw-submit/Hw-submit"));
-const Contact = React.lazy(() => import("./pages/Contact/Contact"));
+const Home = React.lazy(() => import("./pages/Home/Home")); // import Home from "./pages/Home/Home";
+const HwList = React.lazy(() => import("./pages/Hw-list/Hw-list")); // import HwList from "./pages/Hw-list/Hw-list";
+const HwSubmit = React.lazy(() => import("./pages/Hw-submit/Hw-submit")); // import HwSubmit from "./pages/Hw-submit/Hw-submit";
+const Contact = React.lazy(() => import("./pages/Contact/Contact")); // import Contact from "./pages/Contact/Contact";
 const Notification = React.lazy(
-  () => import("./pages/Notification/Notification")
+  () => import("./pages/Notification/Notification") // import Notification from "./pages/Notification/Notification";
 );
-const Profile = React.lazy(() => import("./pages/Profile/Profile"));
-const Qna = React.lazy(() => import("./pages/Qna/Qna"));
+const Profile = React.lazy(() => import("./pages/Profile/Profile")); // import Profile from "./pages/Profile/Profile";
+const Qna = React.lazy(() => import("./pages/Qna/Qna")); // import Qna from "./pages/Qna/Qna";
 import { LoginInfoProvider } from "./context/LoginUser/User";
 import UploadHW from "./pages/Admin/UploadAssignment";
 import UploadNotice from "./pages/Admin/UploadNotification";

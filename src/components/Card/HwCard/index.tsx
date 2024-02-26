@@ -26,7 +26,13 @@ function HwCard({
   }, [category]);
 
   return (
-    <Styled.CardWrapper layoutId={layoutId} onClick={onClick}>
+    <Styled.CardWrapper
+      whileHover={{
+        scale: 1.03,
+      }}
+      layoutId={layoutId}
+      onClick={onClick}
+    >
       <Styled.Thumnail>
         <Styled.Img ref={ref} />
       </Styled.Thumnail>
