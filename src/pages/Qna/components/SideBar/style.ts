@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   left: 3%;
   top: 70vh;
   width: 15%;
-  max-width: 180px;
 `;
 
 export const Item = styled.p`
@@ -16,7 +15,7 @@ export const Item = styled.p`
   white-space: nowrap;
 
   font-weight: ${(props) => props.theme.weight.semibold};
-  border-radius: 10px;
+  border-radius: 5px;
 
   &:hover {
     background-color: ${(props) => props.theme.color.lightgray};

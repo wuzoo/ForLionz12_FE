@@ -8,6 +8,11 @@ export const CardWrapper = styled(motion.div)`
   min-height: 340px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  transition: all 0.2s ease-in-out;
 `;
 
 export const Thumnail = styled.div`

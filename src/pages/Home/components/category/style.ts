@@ -3,15 +3,14 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
   width: 50%;
   gap: 30px;
-  margin-top: 60px;
-  place-self: center;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;

@@ -7,7 +7,10 @@ export const Wrapper = styled(motion.div)`
   border: 1.5px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   padding: 16px 20px;
-  min-width: 500px;
+
+  @media screen and (max-width: 768px) {
+    ${(props) => props.theme.flexColumn("", "end", 10)}
+  }
 `;
 
 export const InfoWrapper = styled.div`
@@ -17,13 +20,18 @@ export const InfoWrapper = styled.div`
   gap: 20px;
   cursor: pointer;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    ${(props) => props.theme.flexColumn("", "center", 20)}
+  }
 `;
 
-export const Name = styled.p``;
+export const Name = styled.p`
+  white-space: nowrap;
+`;
 
 export const NameAndPart = styled.div`
-  ${(props) => props.theme.flexRow("space-between", "center")};
-  width: 160px;
+  ${(props) => props.theme.flexRow("space-between", "center", 20)};
 `;
 
 export const Badge = styled.div`

@@ -30,21 +30,16 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
         scale: 1.02,
       }}
     >
-      <Styled.InfoWrapper
-        css={css`
-          padding: ${clicked ? "30px" : ""};
-        `}
-        onClick={() => setClicked((prev) => !prev)}
-      >
+      <Styled.InfoWrapper onClick={() => setClicked((prev) => !prev)}>
         <div
           css={css`
-            ${theme.flexRow("space-between", "center", 30)}
+            ${theme.flexRow("space-between", "center", 50)}
           `}
         >
           <UserImg
             radius={clicked ? "20px" : ""}
             url={file}
-            size={clicked ? "200" : undefined}
+            size={clicked ? "170" : undefined}
           />
           <Styled.NameAndPart
             css={css`
