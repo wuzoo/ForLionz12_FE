@@ -1,7 +1,9 @@
 import * as Styled from "./style";
-import PageLogo from "../PageLogo/PageLogo";
+// import PageLogo from "../PageLogo/PageLogo";
+const LazyPageLogo = React.lazy(() => import("../PageLogo/PageLogo"));
 import MainAndSubtitle from "../MainAndSubtitle";
 import { TEXT } from "../../constants/text";
+import React from "react";
 
 interface IBanner {
   type: string;
@@ -26,7 +28,7 @@ function Banner({ type, logowidth, logoheight }: IBanner) {
         colors={["black", "darkgray"]}
         gap="7"
       />
-      <PageLogo type={type} width={logowidth} height={logoheight} />
+      <LazyPageLogo type={type} width={logowidth} height={logoheight} />
     </Styled.Container>
   );
 }
