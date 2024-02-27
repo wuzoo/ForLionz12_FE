@@ -35,7 +35,6 @@ export default function PageLogo(props: IPageLogo) {
             aspect-ratio: 1/1;
           `}
           src={PAGE_OBJ[props.type]}
-          loading="lazy"
           {...props}
         />
       </div>
