@@ -18,12 +18,9 @@ export const Thumnail = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 140px;
+  width: 35%;
+  aspect-ratio: 1/1;
   object-fit: cover;
-
-  @media screen and (max-width: 1050px) {
-    width: 190px;
-  }
 `;
 
 export const Content = styled.div`
