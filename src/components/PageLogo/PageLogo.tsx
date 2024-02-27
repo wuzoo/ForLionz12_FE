@@ -24,8 +24,6 @@ export default function PageLogo(props: IPageLogo) {
         css={css`
           width: ${props.width}px;
           height: ${props.height}px;
-          aspect-ratio: 1/1;
-
           @media screen and (max-width: 900px) {
             display: none;
           }
@@ -34,10 +32,10 @@ export default function PageLogo(props: IPageLogo) {
         <img
           css={css`
             object-fit: contain;
+            aspect-ratio: 1/1;
           `}
           src={PAGE_OBJ[props.type]}
-          width="100%"
-          height="100%"
+          loading="lazy"
           {...props}
         />
       </div>
