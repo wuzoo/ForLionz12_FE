@@ -15,7 +15,6 @@ function Category() {
     <div
       css={css`
         ${theme.flexRow("center", "center")}
-        width: 100%;
         padding-top: 50px;
       `}
     >
