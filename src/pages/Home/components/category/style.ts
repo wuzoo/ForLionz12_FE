@@ -4,7 +4,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  width: 50%;
   gap: 30px;
 
   @media screen and (max-width: 1000px) {
@@ -20,8 +19,8 @@ export const ItemWrapper = styled.div`
 `;
 
 export const Item = styled.div`
-  width: 170px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.color.lightgray};
   ${(props) => props.theme.flexRow("center", "center")}
@@ -30,6 +29,7 @@ export const Item = styled.div`
 
 export const Img = styled.img`
   width: 85%;
+  aspect-ratio: 1/1;
 `;
 
 export const Text = styled.p``;
