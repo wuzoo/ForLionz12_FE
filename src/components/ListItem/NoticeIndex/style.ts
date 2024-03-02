@@ -9,7 +9,6 @@ export const Wrapper = styled(motion.div)`
   border-radius: 10px;
   padding: 18px;
   padding-left: 30px;
-  background-color: ${(props) => props.theme.color.superlightgray};
   cursor: pointer;
 `;
 

@@ -5,10 +5,24 @@ import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { variants } from "./variants";
 import { theme } from "../../../styles/theme/theme";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/IsDark/IsDark";
 
 function ListItem({ part, title, date, onClick }: IItem) {
+  const { isDark } = useContext(ThemeContext);
   return (
-    <Styled.Wrapper onClick={onClick} variants={variants} whileHover="hover">
+    <Styled.Wrapper
+      css={css`
+        background-color: ${isDark
+          ? theme.mode.dark.bgColor
+          : theme.color.superlightgray};
+
+        border: ${isDark && `1px solid ${theme.color.darkgray}`};
+      `}
+      onClick={onClick}
+      variants={variants}
+      whileHover="hover"
+    >
       <Styled.Badge
         css={css`
           background-color: ${theme.color[PART_COLOR[part]]};

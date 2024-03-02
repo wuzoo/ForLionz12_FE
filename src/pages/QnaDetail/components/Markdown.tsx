@@ -2,6 +2,8 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { theme } from "../../../styles/theme/theme";
 
 const MDImg = styled.img`
   max-width: 100%;
@@ -13,9 +15,16 @@ const MDParagraph = styled.p`
   line-height: 1.3;
   word-break: break-all;
   word-wrap: break-word;
+  font-weight: ${(props) => props.theme.weight.regular};
 `;
 
-export default function Markdown({ children }: { children: string }) {
+export default function Markdown({
+  children,
+  isDark,
+}: {
+  children: string;
+  isDark: boolean;
+}) {
   return (
     <ReactMarkdown
       children={children}
@@ -40,7 +49,15 @@ export default function Markdown({ children }: { children: string }) {
         p: (props: any) => {
           return (
             <>
-              <MDParagraph>{props.children}</MDParagraph>
+              <MDParagraph
+                css={css`
+                  color: ${isDark
+                    ? theme.mode.dark.main
+                    : theme.mode.light.main};
+                `}
+              >
+                {props.children}
+              </MDParagraph>
             </>
           );
         },

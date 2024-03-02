@@ -5,11 +5,14 @@ import getFormedDate from "../../utils/getFormedDate";
 import Button from "../../components/Button/Button";
 import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message";
 import Markdown from "./components/Markdown";
+import Tag from "../../components/Tag/Tag";
+import { ThemeContext } from "../../context/IsDark/IsDark";
+import { theme } from "../../styles/theme/theme";
 
 function QnaDetail() {
   const { id } = useParams();
@@ -20,10 +23,10 @@ function QnaDetail() {
 
   const { data: comments, reFetch } = useCommentsById(+id);
   const { data, error } = useQnaDetail(+id);
+  const { isDark } = useContext(ThemeContext);
+
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
-
-  console.log(comments);
 
   const isMyQna = +uid === data?.memberId;
 
@@ -105,7 +108,7 @@ function QnaDetail() {
               </Styled.NameAndDate>
               <Styled.TagWrapper>
                 {data?.childTags.map((tag) => (
-                  <Styled.Tag>{tag}</Styled.Tag>
+                  <Tag>{tag}</Tag>
                 ))}
               </Styled.TagWrapper>
             </div>
@@ -114,27 +117,17 @@ function QnaDetail() {
                 display: ${isMyQna ? "flex" : "none"};
               `}
             >
-              <Button
-                fontSize="16"
-                bgcolor="white"
-                color="darkblue"
-                onClick={handleEdit}
-              >
+              <Button fontSize="16" color="darkblue" onClick={handleEdit}>
                 수정
               </Button>
-              <Button
-                fontSize="16"
-                bgcolor="white"
-                color="darkblue"
-                onClick={handleDelete}
-              >
+              <Button fontSize="16" color="darkblue" onClick={handleDelete}>
                 삭제
               </Button>
             </Styled.EditDeleteBtnWrapper>
           </Styled.InfoAndBtnWrapper>
         </Styled.TitleAndInfoWrapper>
         <Styled.MarkDownContent>
-          <Markdown>{data?.content}</Markdown>
+          <Markdown isDark={isDark}>{data?.content}</Markdown>
         </Styled.MarkDownContent>
       </div>
       <div>
@@ -146,12 +139,18 @@ function QnaDetail() {
             <Typo>개의 댓글</Typo>
           </Styled.CommentCnt>
           <Styled.CommentInput
+            css={css`
+              background-color: ${isDark && theme.mode.dark.bgColor};
+              color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+              border: 2px solid
+                ${isDark ? theme.color.darkgray : theme.color.lightgray};
+            `}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="댓글을 남겨보세요."
           />
           <Styled.BtnWrapper>
-            <Button padding="5px 10px" color="white">
+            <Button padding="5px 10px" color="white" bgcolor="darkblue">
               댓글 작성
             </Button>
           </Styled.BtnWrapper>
@@ -160,6 +159,7 @@ function QnaDetail() {
           {comments?.map((item) => (
             <ListItem
               key={item.commentId}
+              isDark={isDark}
               commentId={item.commentId}
               memberId={item.memberId}
               name={item.name}

@@ -36,7 +36,7 @@ function Login() {
               placeholder="비밀번호를 입력하세요"
             />
 
-            <Button type="submit" width="60%" height="40px" onClick={() => {}}>
+            <Button type="submit" width="60%" height="40px" bgcolor="darkblue">
               <Typo fontSize="20" weight="600" color="white">
                 로그인
               </Typo>

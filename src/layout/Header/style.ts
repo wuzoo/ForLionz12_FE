@@ -16,6 +16,7 @@ export const Wrapper = styled.div<{ type?: string }>`
 export const Logo = styled.span`
   font-size: 35px;
   font-weight: 700;
+  transition: all 0.2s ease-in-out;
 `;
 
 export const NavCol = styled.div`
@@ -45,4 +46,17 @@ export const Profile = styled.div<{ show: boolean }>`
     }
     transition: all 0.2s ease-in-out;
   }
+`;
+
+export const ThemeWrapper = styled.div`
+  cursor: pointer;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 5px rgba(140, 122, 230, 0.5);
+  ${(props) => props.theme.flexRow("center", "center")}
+  &:hover {
+    transform: scale(1.1);
+  }
+  transition: all 0.2s ease-in-out;
 `;

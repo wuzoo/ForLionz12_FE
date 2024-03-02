@@ -3,8 +3,11 @@ import * as Styled from "./style";
 import { IBtn } from "./types";
 import { theme } from "../../styles/theme/theme";
 import Typo from "../Typo/Typo";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 function Button(props: IBtn) {
+  const { isDark } = useContext(ThemeContext);
   return (
     <Styled.Btn
       {...props}
@@ -14,7 +17,10 @@ function Button(props: IBtn) {
         width: ${props.width};
         background-color: ${props.bgcolor
           ? theme.color[props.bgcolor]
-          : theme.color.darkblue};
+          : isDark
+          ? theme.mode.dark.bgColor
+          : theme.mode.light.bgColor};
+        background-color: ${props.bgcolor === "transparent" && "transparent"};
         border-radius: ${props.radius || "10px"};
         height: ${props.height};
         border-style: solid;

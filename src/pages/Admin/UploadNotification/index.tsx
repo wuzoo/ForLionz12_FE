@@ -12,7 +12,6 @@ import { ERROR } from "../../../constants/message";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
-  colors: ["black", "darkgray"],
   gap: "5",
 };
 

@@ -10,13 +10,15 @@ import Deadline from "./components/Deadline";
 import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 import { ERROR } from "../../../constants/message.ts";
-import git from "../../../assets/icons/github/img.svg";
+import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
+import Tag from "../../../components/Tag/Tag.tsx";
 
 interface IHwDetail {
   clickedId: number;
+  isDark: boolean;
 }
 
-function Hwdetail({ clickedId }: IHwDetail) {
+function Hwdetail({ clickedId, isDark }: IHwDetail) {
   const { data, error } = useGetAssignmentById(clickedId);
   const uid = localStorage.getItem("id");
   const navigate = useNavigate();
@@ -62,7 +64,7 @@ function Hwdetail({ clickedId }: IHwDetail) {
           </Styled.Wrapper>
           <Styled.TagWrapper>
             {tags.map((item) => (
-              <Styled.Tag key={item}>{item}</Styled.Tag>
+              <Tag key={item}>{item}</Tag>
             ))}
           </Styled.TagWrapper>
         </Styled.MainWrapper>
@@ -73,7 +75,11 @@ function Hwdetail({ clickedId }: IHwDetail) {
         >
           <Deadline isModal={true} expireAt={expireAt} />
           <Styled.AssignmentLink>
-            <img src={git} width="50" />
+            <GithubLogo
+              width={50}
+              height={50}
+              fill={isDark ? "white" : "black"}
+            />
             <Link to={data?.githubLink}>
               <Typo color="darkblue">{data.githubLink}</Typo>
             </Link>
@@ -81,7 +87,9 @@ function Hwdetail({ clickedId }: IHwDetail) {
         </div>
       </div>
       <Styled.ContentWrapper>
-        <Styled.Content>{content}</Styled.Content>
+        <Styled.Content>
+          <Typo weight="400">{content}</Typo>
+        </Styled.Content>
       </Styled.ContentWrapper>
       <div
         css={css`

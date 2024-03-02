@@ -2,14 +2,16 @@ import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Item from "../../components/ListItem/ContactIndex/ContactItem";
 import * as Styled from "./style";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAllMember } from "../../hooks";
 import { ERROR } from "../../constants/message";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 function Contact() {
   const [selectedToggle, setSelectedToggle] = useState("all");
 
   const { error, data } = useAllMember();
+  const { isDark } = useContext(ThemeContext);
 
   if (error === "rejected") {
     throw new Error(ERROR.ALL_MEMBER);
@@ -38,6 +40,7 @@ function Contact() {
           ?.map((item) => (
             <Item
               key={item.id}
+              isDark={isDark}
               file={item.imageUrl}
               name={item.name}
               part={item.part}

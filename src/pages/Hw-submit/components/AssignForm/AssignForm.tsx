@@ -9,6 +9,7 @@ import axios from "axios";
 import { IForm } from "../../types";
 import { error } from "../../../../utils/toast";
 import { ERROR } from "../../../../constants/message";
+import { theme } from "../../../../styles/theme/theme";
 
 function AssignForm({
   id,
@@ -16,6 +17,7 @@ function AssignForm({
   description,
   assignmentLink,
   refetch,
+  isDark,
 }: IForm) {
   const [explain, setExplain] = useState(description);
   const [link, setLink] = useState(assignmentLink);
@@ -73,6 +75,12 @@ function AssignForm({
           {...fixedProps}
         />
         <Styled.ExplainArea
+          css={css`
+            background-color: ${isDark
+              ? theme.mode.dark.bgColor
+              : theme.mode.light.bgColor};
+            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+          `}
           value={explain}
           onChange={(e) => setExplain(e.target.value)}
         />
@@ -82,11 +90,17 @@ function AssignForm({
           {...fixedProps}
         />
         <Styled.LinkInput
+          css={css`
+            background-color: ${isDark
+              ? theme.mode.dark.bgColor
+              : theme.mode.light.bgColor};
+            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+          `}
           as="input"
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />
-        <Button type="submit" bgcolor="white" fontSize="18" color="darkblue">
+        <Button type="submit" fontSize="18" color="darkblue">
           제출하기
         </Button>
       </Styled.SubmitWrapper>

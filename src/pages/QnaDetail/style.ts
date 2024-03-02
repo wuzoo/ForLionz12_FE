@@ -49,7 +49,11 @@ export const CommentInput = styled.textarea`
   border-radius: 10px;
   padding: 10px;
   margin-top: 10px;
-  border: 2px solid ${(props) => props.theme.color.lightgray};
+
+  &:focus {
+    outline: none;
+    border: 2px solid ${(props) => props.theme.color.darkblue};
+  }
 `;
 
 export const CommentCnt = styled.p`

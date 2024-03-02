@@ -154,7 +154,32 @@ export const GlobalStyle = css`
     font-weight: 600;
     font-size: 18;
   }
-  .slick-dots li {
-    width: 10px;
+
+  .dots_custom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .dots_custom ul {
+    display: flex;
+    position: relative;
+    top: -20px;
+    gap: 10px;
+  }
+  .dots_custom li {
+  }
+  .dots_custom li button {
+    border: none;
+    background: ${theme.color.darkgray};
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    padding: 0;
+  }
+  .dots_custom li.slick-active button {
+    background: ${theme.color.black};
   }
 `;

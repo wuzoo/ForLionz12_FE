@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   padding: 20px;
   ${(props) => props.theme.flexColumn()}
-  border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   cursor: pointer;
 `;
@@ -25,7 +24,6 @@ export const Writer = styled.p`
 `;
 
 export const Tag = styled.span`
-  background-color: ${(props) => props.theme.color.superlightgray};
   padding: 8px 12px;
   border-radius: 18px;
 `;

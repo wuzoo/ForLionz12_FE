@@ -9,7 +9,15 @@ import githubimg from "../../../assets/icons/github/img.png";
 import { theme } from "../../../styles/theme/theme";
 import { useState } from "react";
 
-function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
+function Item({
+  file,
+  name,
+  part,
+  introduce,
+  instaid,
+  githuburl,
+  isDark,
+}: IItem) {
   const [clicked, setClicked] = useState(false);
 
   const goGithub = () => {
@@ -26,6 +34,11 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
 
   return (
     <Styled.Wrapper
+      css={css`
+        border: ${isDark
+          ? `1px solid ${theme.color.darkgray}`
+          : `1.5px solid ${theme.color.lightgray};`};
+      `}
       whileHover={{
         scale: 1.02,
       }}
@@ -47,16 +60,23 @@ function Item({ file, name, part, introduce, instaid, githuburl }: IItem) {
               gap: ${clicked && "12px"};
             `}
           >
-            <Styled.Name>
-              <Typo fontSize={clicked ? "24" : ""} weight="600">
-                {name}
-              </Typo>
+            <Styled.Name
+              css={css`
+                color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+                font-size: ${clicked ? "24px" : "18px"};
+                font-weight: ${theme.weight.semibold};
+              `}
+            >
+              {name}
             </Styled.Name>
             <Styled.Badge
               css={css`
                 background-color: ${clicked
                   ? theme.color[PART_COLOR[part.toLowerCase()]]
-                  : "white"};
+                  : isDark
+                  ? theme.mode.dark.bgColor
+                  : theme.mode.light.bgColor};
+                border: ${isDark && `1px solid ${theme.color.darkgray}`};
               `}
             >
               <Typo

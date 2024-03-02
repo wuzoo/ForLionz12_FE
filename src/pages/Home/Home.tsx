@@ -32,7 +32,7 @@ function Home() {
         <Styled.Banner>
           <Styled.Textwrapper>
             <Styled.Text>
-              <Typo color="black" weight="700" fontSize="50">
+              <Typo weight="700" fontSize="50">
                 <MemorizedOnebyoneText item={TEXT.HOME_MAIN_TEXT.split("")} />
                 &nbsp;
               </Typo>
@@ -48,7 +48,7 @@ function Home() {
               <Typo color="darkblue" weight="600" fontSize="24">
                 {part} {name}&nbsp;
               </Typo>
-              <Typo color="black" fontSize="24" weight="600">
+              <Typo fontSize="24" weight="600">
                 {TEXT.HOME_GREETING}
               </Typo>
             </Styled.Usergreet>

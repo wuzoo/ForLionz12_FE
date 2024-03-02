@@ -28,6 +28,12 @@ export default function MySlider({
     autoplaySpeed: autoplaySpeed || 5000,
     prevArrow: <Prev onClick={Slider.prototype.slickPrev} />,
     nextArrow: <Next onClick={Slider.prototype.slickNext} />,
+    appendDots: (dots: any) => (
+      <div>
+        <ul>{dots}</ul>
+      </div>
+    ),
+    dotsClass: "dots_custom",
   };
 
   return <Slider {...setting}>{children}</Slider>;

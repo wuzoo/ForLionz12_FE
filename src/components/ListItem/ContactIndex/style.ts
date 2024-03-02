@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 export const Wrapper = styled(motion.div)`
   ${(props) => props.theme.flexRow("space-between", "center")}
   width: 100%;
-  border: 1.5px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   padding: 16px 20px;
 

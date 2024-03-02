@@ -1,10 +1,13 @@
 import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 import Header from "../Header/Header";
-import { useCallback, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import axios from "axios";
 import * as Styled from "./style";
 import { useLoginInfoDispatch } from "../../context/LoginUser/User";
 import { getCookie } from "../../utils/cookie";
+import { ThemeContext } from "../../context/IsDark/IsDark";
+import { css } from "@emotion/react";
+import { theme } from "../../styles/theme/theme";
 
 function Layout() {
   const { pathname, state } = useLocation();
@@ -12,6 +15,7 @@ function Layout() {
   const dispatch = useLoginInfoDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const { isDark } = useContext(ThemeContext);
 
   useEffect(() => {
     if (pathname === `/homework/${id}`) {
@@ -72,7 +76,13 @@ function Layout() {
   }, []);
 
   return (
-    <Styled.Layout>
+    <Styled.Layout
+      css={css`
+        background-color: ${isDark
+          ? theme.mode.dark.bgColor
+          : theme.mode.light.bgColor};
+      `}
+    >
       <Header type={isLoginMatch ? "login" : ""} />
       <Outlet />
     </Styled.Layout>

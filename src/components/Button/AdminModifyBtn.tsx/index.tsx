@@ -35,7 +35,7 @@ export default function AdminModifyBtn({ type, uid, id }: IBtn) {
       `}
     >
       <Button
-        bgcolor="white"
+        bgcolor="transparent"
         onClick={() =>
           navigate(destination, {
             state: {

@@ -4,6 +4,7 @@ import { theme } from "../../../../styles/theme/theme";
 import useResponsivebar from "../../hooks/useResponsivebar";
 import React, { SetStateAction } from "react";
 import { ParenttagType } from "../../../../types";
+import Typo from "../../../../components/Typo/Typo";
 
 interface ISideBar {
   setCategory: React.Dispatch<SetStateAction<number>>;
@@ -37,7 +38,7 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
           `}
           onClick={() => setCategory(item.parentTagId)}
         >
-          {item.name}
+          <Typo>{item.name}</Typo>
         </Styled.Item>
       ))}
     </Styled.Wrapper>

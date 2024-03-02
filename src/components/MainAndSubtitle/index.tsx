@@ -2,8 +2,12 @@ import { css } from "@emotion/react";
 import Typo from "../Typo/Typo";
 import { ITitle } from "./types";
 import * as Styled from "./style";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/IsDark/IsDark";
+import { theme } from "../../styles/theme/theme";
 
-function MainAndSubtitle({ main, sub, fontsizes, colors, gap }: ITitle) {
+function MainAndSubtitle({ main, sub, fontsizes, gap }: ITitle) {
+  const { isDark } = useContext(ThemeContext);
   const [mainsize, subsize] = fontsizes;
   return (
     <div>
@@ -16,7 +20,11 @@ function MainAndSubtitle({ main, sub, fontsizes, colors, gap }: ITitle) {
           }
         `}
       >
-        <Typo weight="700" color={colors[0]} fontSize={mainsize}>
+        <Typo
+          weight="700"
+          color={isDark ? theme.mode.dark.main : theme.mode.light.main}
+          fontSize={mainsize}
+        >
           {main}
         </Typo>
       </Styled.Title>
@@ -37,7 +45,7 @@ function MainAndSubtitle({ main, sub, fontsizes, colors, gap }: ITitle) {
           }
         `}
       >
-        <Typo color={colors[1]} fontSize={subsize} weight="500">
+        <Typo color="darkgray" fontSize={subsize} weight="500">
           {sub}
         </Typo>
       </Styled.Content>

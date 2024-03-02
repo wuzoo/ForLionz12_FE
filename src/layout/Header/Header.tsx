@@ -4,6 +4,12 @@ import * as Styled from "./style";
 import Profile from "../../components/Profile/Profile";
 import Typo from "../../components/Typo/Typo";
 import { useLoginInfoState } from "../../context/LoginUser/User";
+import night from "./assets/night.svg";
+import sun from "./assets/sun.svg";
+import { css } from "@emotion/react";
+import { darkTheme, lightTheme, theme } from "../../styles/theme/theme";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 function Header({ type }: IHeader) {
   const isLoginPage = Boolean(type);
@@ -12,16 +18,28 @@ function Header({ type }: IHeader) {
 
   const { pathname } = useLocation();
   const { id } = useParams();
+  const { isDark, toggleColorTheme } = useContext(ThemeContext);
 
   const 마이페이지가기 = () => {
     navigate("/profile");
   };
 
   return (
-    <Styled.Wrapper type={type}>
+    <Styled.Wrapper
+      type={type}
+      css={css`
+        background-color: ${isDark ? darkTheme.bgColor : lightTheme.bgColor};
+      `}
+    >
       <Styled.NavCol>
         <Link to="/">
-          <Styled.Logo>LIONZ</Styled.Logo>
+          <Styled.Logo
+            css={css`
+              color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+            `}
+          >
+            LIONZ
+          </Styled.Logo>
         </Link>
         {!isLoginPage && (
           <div>
@@ -31,7 +49,7 @@ function Header({ type }: IHeader) {
                   pathname === "/homework" ||
                   pathname === `/homework-submit/${id}`
                     ? "darkblue"
-                    : "black"
+                    : undefined
                 }
                 weight="600"
               >
@@ -40,7 +58,7 @@ function Header({ type }: IHeader) {
             </Link>
             <Link to="/notification">
               <Typo
-                color={pathname === "/notification" ? "darkblue" : "black"}
+                color={pathname === "/notification" ? "darkblue" : undefined}
                 weight="600"
               >
                 Notification
@@ -48,7 +66,7 @@ function Header({ type }: IHeader) {
             </Link>
             <Link to="/qna">
               <Typo
-                color={pathname === "/qna" ? "darkblue" : "black"}
+                color={pathname === "/qna" ? "darkblue" : undefined}
                 weight="600"
               >
                 Q&A
@@ -56,7 +74,7 @@ function Header({ type }: IHeader) {
             </Link>
             <Link to="/contact">
               <Typo
-                color={pathname === "/contact" ? "darkblue" : "black"}
+                color={pathname === "/contact" ? "darkblue" : undefined}
                 weight="600"
               >
                 Contact
@@ -65,12 +83,22 @@ function Header({ type }: IHeader) {
           </div>
         )}
       </Styled.NavCol>
-      <Styled.Profile
-        onClick={마이페이지가기}
-        show={!isLoginPage ? true : false}
+
+      <div
+        css={css`
+          ${theme.flexRow("", "center", 30)}
+        `}
       >
-        <Profile url={imageUrl} size="50" />
-      </Styled.Profile>
+        <Styled.ThemeWrapper onClick={toggleColorTheme}>
+          <img src={isDark ? sun : night} width={30} height={30} />
+        </Styled.ThemeWrapper>
+        <Styled.Profile
+          onClick={마이페이지가기}
+          show={!isLoginPage ? true : false}
+        >
+          <Profile url={imageUrl} size="50" />
+        </Styled.Profile>
+      </div>
     </Styled.Wrapper>
   );
 }

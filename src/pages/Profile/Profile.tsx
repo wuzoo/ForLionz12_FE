@@ -115,7 +115,6 @@ function Profile() {
         main="Your Profile"
         sub={TEXT.PROFILE}
         fontsizes={["40", "18"]}
-        colors={["black", "darkgray"]}
         gap="5"
       />
       <Styled.InformBox>

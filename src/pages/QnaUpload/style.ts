@@ -6,13 +6,21 @@ export const Wrapper = styled.form`
   margin-top: 100px;
 `;
 
-export const TitleInput = styled.input`
-  width: 100%;
-  margin-top: 10px;
-  padding: 5px;
+const Input = styled.input`
+  padding: 10px;
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 6px;
   font-size: 18px;
+  margin-top: 10px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${(props) => props.theme.color.darkblue};
+  }
+`;
+
+export const TitleInput = styled(Input)`
+  width: 100%;
 `;
 
 export const Img = styled.img`
@@ -39,13 +47,9 @@ export const CheckBoxWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
-export const ContentInput = styled.textarea`
+export const ContentInput = styled(Input)`
   width: 100%;
   min-height: 200px;
-  font-size: 18px;
-  border-radius: 10px;
-  margin-top: 10px;
-  border: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const FileInput = styled.input`

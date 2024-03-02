@@ -6,14 +6,13 @@ export const CardWrapper = styled(motion.div)`
   width: 100%;
   min-width: 340px;
   min-height: 340px;
-  border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const Thumnail = styled.div`
   width: 100%;
   height: 50%;
-  background-color: #f3f3f3;
   ${(props) => props.theme.flexRow("center", "center")}
 `;
 

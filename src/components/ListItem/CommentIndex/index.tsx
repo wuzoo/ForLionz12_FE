@@ -22,6 +22,7 @@ function ListItem({
   part,
   memberId,
   update,
+  isDark,
 }: IComment) {
   const { data, reFetch } = useChildComments(commentId);
   const [isChildClicked, setIsChildClicked] = useState(false);
@@ -31,8 +32,6 @@ function ListItem({
   if (!id) throw new Error(ERROR.NO_ID);
 
   const isMine = memberId === +id;
-
-  console.log(data);
 
   const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -99,11 +98,7 @@ function ListItem({
             </Styled.NameAndDate>
           </Styled.Info>
           {isMine && (
-            <Button
-              onClick={handleDeleteComment}
-              bgcolor="white"
-              color="darkblue"
-            >
+            <Button onClick={handleDeleteComment} color="darkblue">
               삭제
             </Button>
           )}
@@ -142,11 +137,17 @@ function ListItem({
         ))}
         <Styled.Form onSubmit={handleAddComment}>
           <Styled.ChildCommentInput
+            css={css`
+              background-color: ${isDark
+                ? theme.color.lightblack
+                : theme.mode.light.bgColor};
+              color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+            `}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="댓글을 작성해주세요."
+            placeholder="답글을 남겨보세요."
           />
-          <Button type="submit" padding="5px 10px" color="white">
+          <Button type="submit" padding="5px 10px" color="darkblue">
             답글 작성
           </Button>
         </Styled.Form>
