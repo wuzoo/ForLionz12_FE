@@ -17,10 +17,12 @@ const color: { [key: string]: string } = {
   darkblue: "#4B8FE2",
   white: "#ffffff",
 
+  lightblack: "#1B1B1A",
+  black: "#000000",
+
   lightgray: "#DDDDDD",
   superlightgray: "#F6F6F6",
   darkgray: "#8E8888",
-  black: "#000000",
 } as const;
 
 const weight = {
@@ -50,7 +52,27 @@ function flexColumn(j: JustifyType = "", a: AlignType = "", gap = 0) {
   `;
 }
 
+export const lightTheme = {
+  main: "black",
+  sub: "#8E8888",
+  bgColor: "#ffffff",
+};
+
+export const darkTheme = {
+  main: "white",
+  sub: "#8E8888",
+  bgColor: "#202124",
+};
+
+export type ColorTheme = typeof lightTheme;
+
+const mode = {
+  dark: darkTheme,
+  light: lightTheme,
+} as const;
+
 export const theme = {
+  mode,
   color,
   weight,
   flexRow,
