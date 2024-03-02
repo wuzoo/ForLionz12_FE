@@ -3,25 +3,38 @@ import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
 import { css } from "@emotion/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../Button/Button";
 import { theme } from "../../../styles/theme/theme";
 import { useUserUpdater } from "../../../hooks";
-import getImgForCategory from "../../../utils/getImgForCategory";
+import Password from "../../../assets/icons/password/password.svg?react";
+import Instagram from "../../../assets/icons/insta/insta.svg?react";
+import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
 import {
   useLoginInfoDispatch,
   useLoginInfoState,
 } from "../../../context/LoginUser/User";
 import { error, success } from "../../../utils/toast";
 import { GUIDE_MESSAGE } from "../../../constants/message";
+import { ThemeContext } from "../../../context/IsDark/IsDark";
 
 export default function ProfileItem({ type, onSubmit }: IItem) {
   const [edit, setEdit] = useState(false);
   const { updateUserInfo } = useUserUpdater();
+  const { isDark } = useContext(ThemeContext);
 
   const user = useLoginInfoState();
   const dispatch = useLoginInfoDispatch();
   const [info, setInfo] = useState("");
+
+  const img =
+    type === "password" ? (
+      <Password width={40} height={40} />
+    ) : type === "github" ? (
+      <GithubLogo fill={isDark ? "white" : "black"} width={40} height={40} />
+    ) : (
+      <Instagram width={40} height={40} />
+    );
 
   useEffect(() => {
     let initialValue = "";
@@ -72,11 +85,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
   return (
     <Styled.Container>
       <Styled.LeftColumn>
-        <Styled.Icon
-          css={css`
-            background-image: url(${getImgForCategory(type)});
-          `}
-        />
+        {img}
         <Styled.TextWrapper>
           <Typo weight="600" fontSize="24">
             {PROFILE_TEXT[type].main}
@@ -92,6 +101,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
             <Styled.Input
               css={css`
                 background-color: ${theme.color.superlightgray};
+                /* color: ${isDark ? theme.color.white : theme.color.black}; */
               `}
               value={info}
               onChange={(e) => setInfo(e.target.value)}
@@ -103,6 +113,9 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
         ) : (
           <>
             <Styled.Input
+              css={css`
+                color: ${isDark ? theme.color.white : theme.color.black};
+              `}
               type={type === "password" ? "password" : undefined}
               disabled
               value={type === "password" ? new Array(5).join() : info.concat()}

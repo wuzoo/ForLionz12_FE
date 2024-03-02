@@ -10,15 +10,15 @@ import AssignForm from "./components/AssignForm/AssignForm";
 import RecentUploader from "./components/RecentUploader/RecentUploader";
 import { useParams } from "react-router-dom";
 import Card from "../../components/Card/RecentUploadedCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
 import { ERROR } from "../../constants/message";
 import { getMySubmission } from "../../api/assignment";
 import { compare } from "../../utils/sortByCreatedAt";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 export const fixedProps = {
   fontsizes: ["30", "14"],
-  colors: ["black", "darkgray"],
   gap: "4",
 };
 
@@ -27,6 +27,7 @@ function HwSubmit() {
   if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
 
   const isStaffUser = localStorage.getItem("part") === "STAFF";
+  const { isDark } = useContext(ThemeContext);
 
   const getUserSubmit = async () => {
     if (isStaffUser) {
@@ -87,6 +88,7 @@ function HwSubmit() {
       <Margin gap="100" />
       {isSubmitted ? (
         <AssignStatus
+          isDark={isDark}
           link={mySubmission?.assignmentLink}
           description={mySubmission?.description}
           createdAt={mySubmission?.createdAt}
@@ -95,6 +97,7 @@ function HwSubmit() {
         />
       ) : (
         <AssignForm
+          isDark={isDark}
           description={mySubmission?.description}
           assignmentLink={mySubmission?.assignmentLink}
           id={id}

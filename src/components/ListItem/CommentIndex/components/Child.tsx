@@ -70,11 +70,7 @@ function Item({
           </Styled.NameAndDate>
         </Styled.Info>
         {isMine && (
-          <Button
-            onClick={handleDeleteComment}
-            bgcolor="white"
-            color="darkblue"
-          >
+          <Button onClick={handleDeleteComment} color="darkblue">
             삭제
           </Button>
         )}

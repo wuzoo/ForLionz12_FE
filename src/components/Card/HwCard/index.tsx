@@ -6,7 +6,8 @@ import { PART_COLOR } from "../../../constants/partcolor";
 import { IHwCard } from "./types";
 import getImgForCategory from "../../../utils/getImgForCategory";
 import { theme } from "../../../styles/theme/theme";
-import { useLayoutEffect, useRef } from "react";
+import { useContext, useLayoutEffect, useRef } from "react";
+import { ThemeContext } from "../../../context/IsDark/IsDark";
 
 function HwCard({
   category,
@@ -17,6 +18,7 @@ function HwCard({
   createdAt,
 }: IHwCard) {
   const ref = useRef<HTMLImageElement>(null);
+  const { isDark } = useContext(ThemeContext);
 
   useLayoutEffect(() => {
     ref.current?.setAttribute(
@@ -27,13 +29,23 @@ function HwCard({
 
   return (
     <Styled.CardWrapper
+      css={css`
+        border: 1px solid
+          ${isDark ? theme.color.darkgray : theme.color.lightgray};
+      `}
       whileHover={{
         scale: 1.03,
       }}
       layoutId={layoutId}
       onClick={onClick}
     >
-      <Styled.Thumnail>
+      <Styled.Thumnail
+        css={css`
+          background-color: ${isDark
+            ? theme.color.lightblack
+            : theme.color.superlightgray};
+        `}
+      >
         <Styled.Img ref={ref} />
       </Styled.Thumnail>
       <Styled.Content>
@@ -64,8 +76,7 @@ function HwCard({
           width="100%"
           height="40px"
           borderwidth="1px"
-          bordercolor="lightgray"
-          bgcolor="white"
+          bordercolor={isDark ? "darkgray" : "lightgray"}
         >
           <Typo>Go to page</Typo>
         </Button>

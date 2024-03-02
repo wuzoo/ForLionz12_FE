@@ -9,8 +9,11 @@ import * as Styled from "./style.ts";
 import { css } from "@emotion/react";
 import { theme } from "../../../styles/theme/theme";
 import { PART_COLOR } from "../../../constants/partcolor";
-import github from "../../../assets/icons/github/img.svg";
+import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
 import Button from "../../../components/Button/Button.tsx";
+import Tag from "../../../components/Tag/Tag.tsx";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/IsDark/IsDark.tsx";
 
 function Detail() {
   const { id } = useParams();
@@ -20,10 +23,9 @@ function Detail() {
   if (!uid) throw new Error(ERROR.NO_ID);
   if (!id) throw new Error(ERROR.ROUTE_NO_PARAM);
   const { data } = useGetAssignmentById(+id);
+  const { isDark } = useContext(ThemeContext);
 
   if (!data) return;
-
-  console.log(data);
 
   return (
     <Styled.PageWrapper>
@@ -63,7 +65,7 @@ function Detail() {
         </div>
         <Styled.TagWrapper>
           {data?.tags.map((item) => (
-            <Styled.Tag key={item}>{item}</Styled.Tag>
+            <Tag key={item}>{item}</Tag>
           ))}
         </Styled.TagWrapper>
         <div
@@ -73,7 +75,11 @@ function Detail() {
           `}
         >
           <Styled.AssignmentLink>
-            <img width="54" src={github} />
+            <GithubLogo
+              width={50}
+              height={50}
+              fill={isDark ? "white" : "black"}
+            />
             <Link to={data?.githubLink}>
               <Typo color="darkblue">{data?.githubLink}</Typo>
             </Link>
@@ -86,7 +92,9 @@ function Detail() {
           min-height: 40vh;
         `}
       >
-        <Styled.Content>{data?.content}</Styled.Content>
+        <Styled.Content>
+          <Typo weight="400">{data?.content}</Typo>
+        </Styled.Content>
       </div>
       <div
         css={css`
@@ -96,6 +104,7 @@ function Detail() {
       >
         <Button
           color="white"
+          bgcolor="darkblue"
           padding="5px 20px"
           onClick={() => navigate(`/homework-submit/${id}`)}
         >

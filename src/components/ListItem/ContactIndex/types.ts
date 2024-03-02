@@ -5,4 +5,5 @@ export interface IItem {
   introduce?: string;
   instaid?: string;
   githuburl?: string;
+  isDark: boolean;
 }

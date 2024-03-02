@@ -37,8 +37,13 @@ export const Form = styled.form`
 export const ChildCommentInput = styled.textarea`
   width: 100%;
   min-height: 100px;
-  border: 1px solid ${(props) => props.theme.color.lightgray};
+  border: 1.5px solid ${(props) => props.theme.color.lightgray};
   border-radius: 10px;
   padding: 10px;
   font-size: 18px;
+
+  &:focus {
+    outline: none;
+    border: 1.5px solid ${(props) => props.theme.color.darkblue};
+  }
 `;

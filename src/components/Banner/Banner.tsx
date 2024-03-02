@@ -10,22 +10,20 @@ interface IBanner {
   logowidth: string;
   logoheight: string;
 }
+function getMainText(type: string) {
+  if (type === "HW_SUBMIT") {
+    return "Assignment Submit";
+  }
+  return type[0].toUpperCase() + type.slice(1);
+}
 
 function Banner({ type, logowidth, logoheight }: IBanner) {
-  function getMainText() {
-    if (type === "HW_SUBMIT") {
-      return "Assignment Submit";
-    }
-    return type[0].toUpperCase() + type.slice(1);
-  }
-
   return (
     <Styled.Container>
       <MainAndSubtitle
-        main={getMainText()}
+        main={getMainText(type)}
         sub={TEXT[type]}
         fontsizes={["70", "18"]}
-        colors={["black", "darkgray"]}
         gap="7"
       />
       <LazyPageLogo type={type} width={logowidth} height={logoheight} />

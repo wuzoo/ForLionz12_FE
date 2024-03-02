@@ -6,6 +6,7 @@ export interface IForm {
   assignmentLink: string;
   id: string;
   refetch: () => void;
+  isDark: boolean;
 }
 
 export interface IStatus {
@@ -14,4 +15,5 @@ export interface IStatus {
   description: string;
   onModify: React.Dispatch<SetStateAction<boolean>>;
   link: string;
+  isDark: boolean;
 }

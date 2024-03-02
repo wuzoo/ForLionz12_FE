@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const LeftColumn = styled.div`
-  display: flex;
+  ${(props) => props.theme.flexRow("", "center")}
 `;
 
 export const Icon = styled.div`

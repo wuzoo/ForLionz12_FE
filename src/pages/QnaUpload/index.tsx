@@ -1,6 +1,6 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useQnaDetail, useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
 import { ChildtagType } from "../../types";
@@ -14,10 +14,12 @@ import { SUB_TEXT } from "../../constants/text";
 import Checkbox from "../Qna/components/Checkbox/Checkbox";
 import { ERROR } from "../../constants/message";
 import { warning } from "../../utils/toast";
+import { ThemeContext } from "../../context/IsDark/IsDark";
+import { css } from "@emotion/react";
+import { theme } from "../../styles/theme/theme";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
-  colors: ["black", "darkgray"],
   gap: "5",
 };
 
@@ -38,8 +40,15 @@ function QuestionUpload() {
 
   const { data: tags } = useTags();
   const { data, error } = useQnaDetail(state?.id);
-
+  const { isDark } = useContext(ThemeContext);
   if (error === "rejected") throw new Error(ERROR.ID_QNA);
+
+  const defaultDarkModeCss = `
+    background-color: ${
+      isDark ? theme.color.lightblack : theme.mode.light.bgColor
+    };
+    color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+`;
 
   useEffect(() => {
     if (data) {
@@ -173,12 +182,22 @@ function QuestionUpload() {
           sub={SUB_TEXT.QNA_TITLE}
           {...defaultProps}
         />
-        <Styled.TitleInput {...register("title")} />
+        <Styled.TitleInput
+          css={css`
+            ${defaultDarkModeCss}
+          `}
+          {...register("title")}
+        />
       </div>
       <div>
         <MainAndSubtitle main="Tag" sub={SUB_TEXT.QNA_TAGS} {...defaultProps} />
         <Styled.HorizonWrapper>
-          <Styled.SelectTag onChange={getChild}>
+          <Styled.SelectTag
+            css={css`
+              ${defaultDarkModeCss}
+            `}
+            onChange={getChild}
+          >
             <option value="default">선택</option>
             {tags?.slice(1)?.map((item) => (
               <option key={item.parentTagId} value={item.parentTagId}>
@@ -190,6 +209,7 @@ function QuestionUpload() {
             {child?.map((item) => (
               <Checkbox
                 key={item.childTagId}
+                isDark={isDark}
                 setClickedValue={setQuery}
                 text={item.name}
                 id={item.childTagId}
@@ -226,13 +246,20 @@ function QuestionUpload() {
             ))}
           </Styled.HorizonWrapper>
         </Styled.ContentTitleWrapper>
-        <Styled.ContentInput id="content" {...register("content")} />
+        <Styled.ContentInput
+          css={css`
+            ${defaultDarkModeCss}
+          `}
+          id="content"
+          as="textarea"
+          {...register("content")}
+        />
       </div>
       <Styled.SubmitBtnWrapper>
         <Button onClick={() => navigate(-1)} bgcolor="black" color="white">
           작성 취소
         </Button>
-        <Button type="submit" color="white">
+        <Button type="submit" color="white" bgcolor="darkblue">
           업로드
         </Button>
       </Styled.SubmitBtnWrapper>

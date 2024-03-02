@@ -12,20 +12,20 @@ export const Badge = styled.div`
 
 export const Date = styled.p``;
 
-export const Tag = styled.div`
-  padding: 6px 14px;
-  border: 1.5px solid ${(props) => props.theme.color.lightgray};
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: ${(props) => props.theme.weight.semibold};
-`;
-
 export const Wrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 22)}
 `;
 
 export const TagWrapper = styled(Wrapper)`
   gap: 18px;
+`;
+
+export const Tag = styled.p`
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: ${(props) => props.theme.color.superlightgray};
+  font-size: 14px;
+  font-weight: ${(props) => props.theme.weight.regular};
 `;
 
 export const ContentWrapper = styled.div`

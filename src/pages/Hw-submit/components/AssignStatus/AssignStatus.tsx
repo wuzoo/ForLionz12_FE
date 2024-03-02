@@ -4,12 +4,19 @@ import { fixedProps } from "../../Hw-submit";
 import Button from "../../../../components/Button/Button";
 import { css } from "@emotion/react";
 import getFormedDate from "../../../../utils/getFormedDate";
-import git from "../../../../assets/icons/github/img.svg";
 import { Link } from "react-router-dom";
 import Typo from "../../../../components/Typo/Typo";
 import { IStatus } from "../../types";
+import { theme } from "../../../../styles/theme/theme";
+import GithubLogo from "../../../../assets/icons/github/img_dark.svg?react";
 
-function AssignStatus({ onModify, createdAt, description, link }: IStatus) {
+function AssignStatus({
+  onModify,
+  createdAt,
+  description,
+  link,
+  isDark,
+}: IStatus) {
   return (
     <Styled.Container>
       <Styled.StatusWrapper>
@@ -18,7 +25,16 @@ function AssignStatus({ onModify, createdAt, description, link }: IStatus) {
           sub={`${getFormedDate(createdAt)}에 제출 완료된 과제입니다.`}
           {...fixedProps}
         />
-        <Styled.MyTextArea disabled value={description} />
+        <Styled.MyTextArea
+          css={css`
+            background-color: ${isDark
+              ? theme.color.lightblack
+              : theme.mode.light.bgColor};
+            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+          `}
+          disabled
+          value={description}
+        />
         <div
           css={css`
             display: flex;
@@ -29,7 +45,11 @@ function AssignStatus({ onModify, createdAt, description, link }: IStatus) {
           `}
         >
           <Styled.LinkWrapper>
-            <img src={git} />
+            <GithubLogo
+              width={50}
+              height={50}
+              fill={isDark ? "white" : "black"}
+            />
             <Link to={link}>
               <Typo color="darkblue" fontSize="16">
                 {link}
@@ -38,7 +58,6 @@ function AssignStatus({ onModify, createdAt, description, link }: IStatus) {
           </Styled.LinkWrapper>
           <Button
             onClick={() => onModify((prev) => !prev)}
-            bgcolor="white"
             color="darkblue"
             fontSize="18"
           >

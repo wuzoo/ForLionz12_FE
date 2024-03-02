@@ -56,7 +56,11 @@ function SubmitItem({ name, date, link, description, id }: IItem) {
         </Styled.Date>
       </Styled.PrevBar>
       <div>
-        <Styled.Explain>{description}</Styled.Explain>
+        <Styled.Explain>
+          <Typo fontSize="16" weight="400">
+            {description}
+          </Typo>
+        </Styled.Explain>
         <Styled.LinkWrapper>
           <Styled.Img src={github} />
           <Link to={link}>

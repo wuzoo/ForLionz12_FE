@@ -5,7 +5,7 @@ import FullScreenSlider from "../../components/Slider/FullScreenSlider";
 import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import getFormedDate from "../../utils/getFormedDate";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
@@ -18,6 +18,7 @@ import { compare } from "../../utils/sortByCreatedAt.ts";
 import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
+import { ThemeContext } from "../../context/IsDark/IsDark.tsx";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -33,6 +34,7 @@ function HwList() {
   const { data, error } = useAllAssignment();
   const { error: myPartError, data: myAssignments } =
     usePartAssignment(ifStaff_partAll);
+  const { isDark } = useContext(ThemeContext);
 
   const filteredPartData = data
     ?.filter((item) => item.part === selectedPart.toUpperCase())
@@ -85,7 +87,6 @@ function HwList() {
           sub={TEXT.HW_LIST}
           fontsizes={["40", "18"]}
           gap="10"
-          colors={["black", "darkgray"]}
         />
         <AdminUploadBtn id={id} type="assignment" />
       </div>
@@ -125,7 +126,6 @@ function HwList() {
           sub={SUB_TEXT.HW_OTHER_PART}
           fontsizes={["37", "18"]}
           gap="10"
-          colors={["black", "darkgray"]}
         />
         <PartToggle part={selectedPart} setPart={setSelectedPart} />
       </Styled.AlignWrapper>
@@ -152,8 +152,16 @@ function HwList() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
-            <motion.div css={Styled.Modal} layoutId={DetailMatch?.params.id}>
-              <Hwdetail clickedId={+DetailMatch?.params.id} />
+            <motion.div
+              css={css`
+                ${Styled.Modal}
+                background-color: ${isDark
+                  ? theme.color.lightblack
+                  : theme.color.white};
+              `}
+              layoutId={DetailMatch?.params.id}
+            >
+              <Hwdetail isDark={isDark} clickedId={+DetailMatch?.params.id} />
             </motion.div>
           </>
         )}

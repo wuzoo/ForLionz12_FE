@@ -1,6 +1,6 @@
 import Typo from "../../../components/Typo/Typo.tsx";
 import * as Styled from "./style.ts";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor.ts";
 import getFormedDate from "../../../utils/getFormedDate.ts";
@@ -8,6 +8,7 @@ import { useNoticeById } from "../../../hooks/index.ts";
 import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx/index.tsx";
 import { ERROR } from "../../../constants/message.ts";
+import { ThemeContext } from "../../../context/IsDark/IsDark.tsx";
 
 interface INoticeModal {
   clickedId: number;
@@ -27,6 +28,7 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
 
   const { data, error } = useNoticeById(clickedId);
   const uid = localStorage.getItem("id");
+  const { isDark } = useContext(ThemeContext);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
@@ -64,7 +66,13 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       ></Styled.Overlay>
-      <Styled.Modal>
+      <Styled.Modal
+        css={css`
+          background-color: ${isDark
+            ? theme.color.lightblack
+            : theme.color.white};
+        `}
+      >
         <Styled.MainWrapper>
           <Styled.Title>
             <Typo fontSize="44" weight="600">
@@ -95,7 +103,9 @@ function NoticeDetail({ clickedId, setClickedId }: INoticeModal) {
         </Styled.MainWrapper>
 
         <Styled.ContentWrapper>
-          <Styled.Content>{content}</Styled.Content>
+          <Styled.Content>
+            <Typo weight="400">{content}</Typo>
+          </Styled.Content>
         </Styled.ContentWrapper>
       </Styled.Modal>
     </>

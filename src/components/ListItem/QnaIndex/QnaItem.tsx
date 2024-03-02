@@ -4,6 +4,7 @@ import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import getFormedDate from "../../../utils/getFormedDate";
 import { theme } from "../../../styles/theme/theme";
+import Tag from "../../Tag/Tag";
 
 interface IItem {
   title: string;
@@ -13,11 +14,27 @@ interface IItem {
   onClick: () => void;
   tags: string[];
   commentCnt: number;
+  isDark: boolean;
 }
 
-function QnaItem({ onClick, title, date, url, name, tags, commentCnt }: IItem) {
+function QnaItem({
+  onClick,
+  title,
+  date,
+  url,
+  name,
+  tags,
+  commentCnt,
+  isDark,
+}: IItem) {
   return (
-    <Styled.Container onClick={onClick}>
+    <Styled.Container
+      css={css`
+        border: 1px solid
+          ${isDark ? theme.color.darkgray : theme.color.lightgray};
+      `}
+      onClick={onClick}
+    >
       <div
         css={css`
           ${theme.flexRow("space-between", "center")}
@@ -50,11 +67,7 @@ function QnaItem({ onClick, title, date, url, name, tags, commentCnt }: IItem) {
       <Styled.BottomRow>
         <Styled.TagWrapper>
           {tags.map((item) => (
-            <Styled.Tag key={item}>
-              <Typo fontSize="16" weight="400">
-                {item}
-              </Typo>
-            </Styled.Tag>
+            <Tag key={item}>{item}</Tag>
           ))}
         </Styled.TagWrapper>
         <Styled.Date>

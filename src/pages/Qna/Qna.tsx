@@ -3,7 +3,7 @@ import Banner from "../../components/Banner/Banner";
 import * as Styled from "./style";
 import SideBar from "./components/SideBar/SideBar";
 import Typo from "../../components/Typo/Typo";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Checkbox from "./components/Checkbox/Checkbox";
 import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
 import Button from "../../components/Button/Button";
@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSelectedData, useTags } from "../../hooks";
 import { compare } from "../../utils/sortByCreatedAt";
 import { theme } from "../../styles/theme/theme";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 function Qna() {
   const [category, setCategory] = useState<number>(0);
@@ -21,6 +22,8 @@ function Qna() {
 
   const title = tags?.find((item) => item.parentTagId === category)?.name;
   const { childTags, data, query, setQuery } = useSelectedData(category);
+  const { isDark } = useContext(ThemeContext);
+
   const sortedByCreatedAt = data?.sort((a, b) => compare(a, b));
 
   const currentPage = new URLSearchParams(location.search).get("page");
@@ -70,6 +73,7 @@ function Qna() {
           {childTags?.map((item) => (
             <Checkbox
               key={item.childTagId}
+              isDark={isDark}
               id={item.childTagId}
               values={query}
               setClickedValue={setQuery}
@@ -77,11 +81,7 @@ function Qna() {
             />
           ))}
         </Styled.BoxContainer>
-        <Button
-          onClick={() => navigate("upload")}
-          bgcolor="white"
-          color="darkblue"
-        >
+        <Button onClick={() => navigate("upload")} color="darkblue">
           작성하기
         </Button>
       </Styled.TagsAndBtnWrapper>
@@ -100,6 +100,7 @@ function Qna() {
         ) : (
           paginatedData?.map((item) => (
             <QnaItem
+              isDark={isDark}
               key={item.questionId}
               onClick={() => {
                 navigate(`${item.questionId}`);

@@ -15,7 +15,6 @@ import { ERROR } from "../../../constants/message";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
-  colors: ["black", "darkgray"],
   gap: "5",
 };
 
@@ -208,7 +207,13 @@ function UploadHW() {
         >
           작성 취소
         </Button>
-        <Button type="submit" width="130px" height="36px" color="white">
+        <Button
+          type="submit"
+          width="130px"
+          height="36px"
+          bgcolor="darkblue"
+          color="white"
+        >
           업로드하기
         </Button>
       </Styled.BtnWrapper>

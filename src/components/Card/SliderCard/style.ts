@@ -4,6 +4,7 @@ export const CardWrapper = styled.div`
   ${(props) => props.theme.flexColumn("space-between", "center")}
   padding-bottom: 36px;
   position: relative;
+  border-radius: 34px;
   overflow: hidden;
 `;
 

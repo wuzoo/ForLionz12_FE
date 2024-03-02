@@ -23,12 +23,8 @@ export const MyTextArea = styled.textarea`
 `;
 
 export const LinkWrapper = styled.div`
-  ${(props) => props.theme.flexRow("", "center")}
+  ${(props) => props.theme.flexRow("", "center", 10)}
 
-  img {
-    width: 44px;
-    margin-right: 6px;
-  }
   a {
     text-decoration: underline;
     text-decoration-color: ${(props) => props.theme.color.darkblue};

@@ -34,12 +34,9 @@ export default function AdminUploadBtn({ type, id }: IBtn) {
         width="120px"
         bordercolor="lightgray"
         borderwidth="2px"
-        bgcolor="white"
         onClick={() => navigate(destination)}
       >
-        <Typo fontSize="16" color="black">
-          {getText()}
-        </Typo>
+        <Typo fontSize="16">{getText()}</Typo>
       </Button>
     </div>
   );
