@@ -7,9 +7,6 @@ import python from "../assets/icons/python/Python.webp";
 import html from "../assets/icons/html/HTML-Logo.webp";
 import git from "../assets/icons/git/github-logo.webp";
 import django from "../assets/icons/django/Vector.webp";
-import password from "../assets/icons/password/password.svg";
-import github from "../assets/icons/github/3d.png";
-import instagram from "../assets/icons/insta/insta.svg";
 import lion from "../assets/icons/logo/logo.png";
 
 function getImgForCategory(category: string) {
@@ -43,15 +40,6 @@ function getImgForCategory(category: string) {
     }
     case "LION": {
       return lion;
-    }
-    case "github": {
-      return github;
-    }
-    case "instagram": {
-      return instagram;
-    }
-    case "password": {
-      return password;
     }
   }
 }
