@@ -43,6 +43,13 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
     setInfo(initialValue || "");
   }, [user]);
 
+  const defaultDarkStyle = `
+    color: ${isDark ? theme.color.white : theme.color.black};
+    background-color: ${
+      isDark ? theme.color.lightblack : theme.color.superlightgray
+    };
+  `;
+
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -100,8 +107,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
           <>
             <Styled.Input
               css={css`
-                background-color: ${theme.color.superlightgray};
-                /* color: ${isDark ? theme.color.white : theme.color.black}; */
+                ${defaultDarkStyle}
               `}
               value={info}
               onChange={(e) => setInfo(e.target.value)}
@@ -114,7 +120,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
           <>
             <Styled.Input
               css={css`
-                color: ${isDark ? theme.color.white : theme.color.black};
+                ${defaultDarkStyle}
               `}
               type={type === "password" ? "password" : undefined}
               disabled
