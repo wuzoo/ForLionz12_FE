@@ -5,7 +5,9 @@ import * as Styled from "./style";
 import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor";
 import instaimg from "../../../assets/icons/insta/img.png";
+import insta_dark from "../../../assets/icons/insta/contact_dark.png";
 import githubimg from "../../../assets/icons/github/img.png";
+import github_dark from "../../../assets/icons/github/contact_dark.png";
 import { theme } from "../../../styles/theme/theme";
 import { useState } from "react";
 
@@ -76,7 +78,6 @@ function Item({
                   : isDark
                   ? theme.mode.dark.bgColor
                   : theme.mode.light.bgColor};
-                border: ${isDark && `1px solid ${theme.color.darkgray}`};
               `}
             >
               <Typo
@@ -102,18 +103,22 @@ function Item({
       </Styled.InfoWrapper>
       <Styled.SNSbox>
         <Styled.Img
+          width={isDark ? 35 : 32}
+          height={isDark ? 35 : 32}
           css={css`
             display: ${instaid ? "" : "none"};
           `}
           onClick={goInstagram}
-          src={instaimg}
+          src={isDark ? insta_dark : instaimg}
         />
         <Styled.Img
+          width={isDark ? 35 : 32}
+          height={isDark ? 35 : 32}
           css={css`
             display: ${githuburl ? "" : "none"};
           `}
           onClick={goGithub}
-          src={githubimg}
+          src={isDark ? github_dark : githubimg}
         />
       </Styled.SNSbox>
     </Styled.Wrapper>

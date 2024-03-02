@@ -55,4 +55,5 @@ export const SNSbox = styled.div`
 
 export const Img = styled.img`
   cursor: pointer;
+  object-fit: cover;
 `;
