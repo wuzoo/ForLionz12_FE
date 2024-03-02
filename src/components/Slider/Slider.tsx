@@ -3,8 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ISlider } from "./types";
 import { Next, Prev } from "./components/Arrow";
-import { css } from "@emotion/react";
-import { theme } from "../../styles/theme/theme";
 
 export default function MySlider({
   children,
