@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   position: absolute;
   left: 3%;
-  top: 70vh;
+  top: 78vh;
   width: 15%;
   max-width: 180px;
 `;
