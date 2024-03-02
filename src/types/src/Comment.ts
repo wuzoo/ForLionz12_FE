@@ -7,6 +7,7 @@ export interface IComment {
   content: string;
   memberId: number;
   update: () => void;
+  isDark: boolean;
 }
 
 export interface IChild {
