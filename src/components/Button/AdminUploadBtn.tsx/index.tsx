@@ -32,9 +32,9 @@ export default function AdminUploadBtn({ type, id }: IBtn) {
       `}
     >
       <Button
-        width="120px"
         bordercolor="lightgray"
-        borderwidth="2px"
+        borderwidth="1px"
+        padding="6px 10px"
         onClick={() => navigate(destination)}
       >
         <Typo fontSize="16">{getText()}</Typo>

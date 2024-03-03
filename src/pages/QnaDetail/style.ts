@@ -11,6 +11,7 @@ export const Title = styled.p`
   word-wrap: break-word;
   word-break: break-all;
   padding-bottom: 20px;
+  line-height: 1.3;
 `;
 
 export const TitleAndInfoWrapper = styled.div`

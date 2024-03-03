@@ -12,6 +12,7 @@ import axios from "axios";
 import { ERROR } from "../../../constants/message";
 import { IComment } from "../../../types";
 import { theme } from "../../../styles/theme/theme";
+import CustomInput from "../../Input/Input";
 
 function ListItem({
   memberImageUrl,
@@ -75,7 +76,12 @@ function ListItem({
   };
 
   return (
-    <Styled.Wrapper css={css``}>
+    <Styled.Wrapper
+      css={css`
+        border-bottom: 1px solid
+          ${isDark ? theme.color.darkgray : theme.color.lightgray};
+      `}
+    >
       <div>
         <div
           css={css`
@@ -125,6 +131,7 @@ function ListItem({
         {data?.map((item) => (
           <Item
             key={item.childCommentId}
+            isDark={isDark}
             name={item.name}
             part={item.part}
             createdAt={item.createdAt}
@@ -136,13 +143,11 @@ function ListItem({
           />
         ))}
         <Styled.Form onSubmit={handleAddComment}>
-          <Styled.ChildCommentInput
-            css={css`
-              background-color: ${isDark
-                ? theme.color.lightblack
-                : theme.mode.light.bgColor};
-              color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-            `}
+          <CustomInput
+            as="textarea"
+            width="100%"
+            height="120px"
+            radius={1.5}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="답글을 남겨보세요."

@@ -4,7 +4,6 @@ export const Wrapper = styled.div`
   width: 95%;
   padding: 20px 0px;
   ${(props) => props.theme.flexColumn("", "", 20)}
-  border-bottom: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const Info = styled.div`

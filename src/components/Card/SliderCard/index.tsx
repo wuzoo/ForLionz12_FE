@@ -5,6 +5,7 @@ import * as Styled from "./style";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "./types";
 import { getFormedDate } from "../../../utils/date";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 function Card({ logo, bgcolor, ...props }: ICard) {
   const navigate = useNavigate();
@@ -32,16 +33,21 @@ function Card({ logo, bgcolor, ...props }: ICard) {
       <Styled.Picture src={logo} />
       <Styled.LogoAndTitle onClick={() => navigate("/notification")}>
         <Styled.TitleWrapper>
-          <Styled.CardTitle>
+          <EllipsisText color="white" lineHeight={1.3} textAlign="start">
             <Typo weight="700" color="white" fontSize="42">
               {props.title}
             </Typo>
-          </Styled.CardTitle>
-          <Styled.CardContent>
+          </EllipsisText>
+          <EllipsisText
+            color="white"
+            lineHeight={1.3}
+            lineClamp={3}
+            width="100%"
+          >
             <Typo color="white" fontSize="18" weight="500">
               {props.content}
             </Typo>
-          </Styled.CardContent>
+          </EllipsisText>
         </Styled.TitleWrapper>
       </Styled.LogoAndTitle>
       <Styled.AlignWrapper>

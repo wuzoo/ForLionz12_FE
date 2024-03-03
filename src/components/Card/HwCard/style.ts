@@ -29,16 +29,6 @@ export const Content = styled.div`
   ${(props) => props.theme.flexColumn("space-between", "center")}
 `;
 
-export const CardTitle = styled.h1`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-height: 1.3;
-  width: 100%;
-`;
-
 export const Badge = styled.div`
   width: 56px;
   height: 28px;

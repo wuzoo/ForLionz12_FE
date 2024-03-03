@@ -6,6 +6,7 @@ import { ICard } from "./types";
 import { getFormedDate } from "../../../utils/date";
 import type1 from "./assets/type1.webp";
 import type2 from "./assets/type2.webp";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
   function getPartAndDate() {
@@ -46,16 +47,21 @@ function HwSliderCard({ onClick, bgcolor, ...props }: ICard) {
       />
       <Styled.LogoAndTitle>
         <Styled.TitleWrapper>
-          <Styled.CardTitle>
+          <EllipsisText color="white" lineHeight={1.3} textAlign="start">
             <Typo weight="700" color="white" fontSize="42">
               {props.title}
             </Typo>
-          </Styled.CardTitle>
-          <Styled.CardContent>
+          </EllipsisText>
+          <EllipsisText
+            color="white"
+            lineHeight={1.3}
+            lineClamp={3}
+            width="100%"
+          >
             <Typo color="white" fontSize="18" weight="500">
               {props.content}
             </Typo>
-          </Styled.CardContent>
+          </EllipsisText>
         </Styled.TitleWrapper>
       </Styled.LogoAndTitle>
       <Styled.AlignWrapper>

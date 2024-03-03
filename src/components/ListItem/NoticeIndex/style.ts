@@ -20,17 +20,6 @@ export const Badge = styled.div`
   margin-right: 16px;
 `;
 
-export const Notice = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-decoration-color: white;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  box-sizing: content-box;
-  line-height: 1.2;
-`;
-
 export const Date = styled.p`
   text-align: end;
   padding-right: 6px;

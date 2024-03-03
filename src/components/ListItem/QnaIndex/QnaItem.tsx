@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import { getFormedDate } from "../../../utils/date";
 import { theme } from "../../../styles/theme/theme";
 import Tag from "../../Tag/Tag";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 interface IItem {
   title: string;
@@ -47,9 +48,9 @@ function QnaItem({
         >
           <User url={url} size="60" />
           <div>
-            <Styled.Title>
+            <EllipsisText color={isDark ? "white" : "black"} lineHeight={1.2}>
               <Typo weight="600">{title}</Typo>
-            </Styled.Title>
+            </EllipsisText>
             <Styled.Writer>
               <Typo color="darkgray" fontSize="16">
                 {name}

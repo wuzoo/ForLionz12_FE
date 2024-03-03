@@ -29,28 +29,6 @@ export const TitleWrapper = styled.div`
   width: 60%;
 `;
 
-export const Ellipsis = styled.p`
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  text-decoration-color: white;
-  color: white;
-  text-align: start;
-`;
-
-export const CardTitle = styled(Ellipsis)`
-  -webkit-line-clamp: 1;
-  margin-bottom: 6px;
-  line-height: 1.3;
-`;
-
-export const CardContent = styled(Ellipsis)`
-  -webkit-line-clamp: 3;
-  line-height: 1.3;
-  width: 100%;
-`;
-
 export const AlignWrapper = styled.div`
   ${(props) => props.theme.flexColumn("", "", 5)}
   z-index: 10;
