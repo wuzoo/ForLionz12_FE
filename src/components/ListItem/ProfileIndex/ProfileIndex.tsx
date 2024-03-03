@@ -2,10 +2,8 @@ import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { IItem } from "./types";
 import { PROFILE_TEXT } from "../../../pages/Profile/constants/text";
-import { css } from "@emotion/react";
 import React, { useContext, useEffect, useState } from "react";
 import Button from "../../Button/Button";
-import { theme } from "../../../styles/theme/theme";
 import { useUserUpdater } from "../../../hooks";
 import Password from "../../../assets/icons/password/password.svg?react";
 import Instagram from "../../../assets/icons/insta/insta.svg?react";
@@ -17,6 +15,7 @@ import {
 import { error, success } from "../../../utils/toast";
 import { GUIDE_MESSAGE } from "../../../constants/message";
 import { ThemeContext } from "../../../context/IsDark/IsDark";
+import CustomInput from "../../Input/Input";
 
 export default function ProfileItem({ type, onSubmit }: IItem) {
   const [edit, setEdit] = useState(false);
@@ -37,18 +36,18 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
     );
 
   useEffect(() => {
+    if (edit) {
+      const input = document.getElementById("infoInput");
+      input?.focus();
+    }
+  }, [edit]);
+
+  useEffect(() => {
     let initialValue = "";
     initialValue = type === "github" ? user.githubAddress : user.instagramId;
 
     setInfo(initialValue || "");
   }, [user]);
-
-  const defaultDarkStyle = `
-    color: ${isDark ? theme.color.white : theme.color.black};
-    background-color: ${
-      isDark ? theme.color.lightblack : theme.color.superlightgray
-    };
-  `;
 
   const handleInfoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,6 +88,7 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
     setEdit(false);
     onSubmit();
   };
+
   return (
     <Styled.Container>
       <Styled.LeftColumn>
@@ -105,10 +105,9 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
       <Styled.Form onSubmit={handleInfoSubmit}>
         {edit ? (
           <>
-            <Styled.Input
-              css={css`
-                ${defaultDarkStyle}
-              `}
+            <CustomInput
+              id="infoInput"
+              width="50%"
               value={info}
               onChange={(e) => setInfo(e.target.value)}
             />
@@ -118,10 +117,9 @@ export default function ProfileItem({ type, onSubmit }: IItem) {
           </>
         ) : (
           <>
-            <Styled.Input
-              css={css`
-                ${defaultDarkStyle}
-              `}
+            <CustomInput
+              width="50%"
+              lightBgColor="superlightgray"
               type={type === "password" ? "password" : undefined}
               disabled
               value={type === "password" ? new Array(5).join() : info.concat()}
