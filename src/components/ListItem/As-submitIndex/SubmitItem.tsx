@@ -2,7 +2,6 @@ import User from "../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
-import github from "../../../assets/icons/github/img.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { variants } from "./variants";
@@ -10,8 +9,9 @@ import { IItem } from "./types";
 import getFormedDate from "../../../utils/getFormedDate";
 import { useMemberId } from "../../../hooks";
 import { ERROR } from "../../../constants/message";
+import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
 
-function SubmitItem({ name, date, link, description, id }: IItem) {
+function SubmitItem({ name, date, link, description, id, isDark }: IItem) {
   const [clicked, setClicked] = useState(false);
 
   const { data, error } = useMemberId(+id);
@@ -62,7 +62,11 @@ function SubmitItem({ name, date, link, description, id }: IItem) {
           </Typo>
         </Styled.Explain>
         <Styled.LinkWrapper>
-          <Styled.Img src={github} />
+          <GithubLogo
+            width={40}
+            height={40}
+            fill={isDark ? "white" : "black"}
+          />
           <Link to={link}>
             <Styled.LinkText id="link">{link}</Styled.LinkText>
           </Link>

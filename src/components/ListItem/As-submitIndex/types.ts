@@ -4,4 +4,5 @@ export interface IItem {
   name: string;
   link: string;
   description: string;
+  isDark: boolean;
 }
