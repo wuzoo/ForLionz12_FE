@@ -18,7 +18,7 @@ export const Thumnail = styled.div`
 
 export const Img = styled.img`
   width: 35%;
-  aspect-ratio: 1/1;
+  height: auto;
   object-fit: cover;
 `;
 
