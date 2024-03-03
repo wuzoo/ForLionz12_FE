@@ -17,6 +17,7 @@ interface IChild {
   uid: number;
   commentId: number;
   update: () => void;
+  isDark: boolean;
 }
 
 function Item({
@@ -28,6 +29,7 @@ function Item({
   uid,
   commentId,
   update,
+  isDark,
 }: IChild) {
   const id = localStorage.getItem("id");
   if (!id) throw new Error(ERROR.NO_ID);
@@ -48,7 +50,12 @@ function Item({
   };
 
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper
+      css={css`
+        border-bottom: 1px solid
+          ${isDark ? theme.color.darkgray : theme.color.lightgray};
+      `}
+    >
       <div
         css={css`
           ${theme.flexRow("space-between", "center")}

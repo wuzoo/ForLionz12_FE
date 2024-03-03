@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 95%;
-  border-bottom: 1px solid ${(props) => props.theme.color.lightgray};
 `;
 
 export const Info = styled.div`
