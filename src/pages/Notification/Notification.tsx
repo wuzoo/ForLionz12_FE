@@ -4,12 +4,11 @@ import ListItem from "../../components/ListItem/NoticeIndex/ListItem";
 import * as Styled from "./style";
 import { useState } from "react";
 import { useAllNotification } from "../../hooks";
-import getFormedDate from "../../utils/getFormedDate";
+import { getFormedDate, compare } from "../../utils/date.ts";
 import NoticeDetail from "./Notice-detail/Detail.tsx";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message.ts";
-import { compare } from "../../utils/sortByCreatedAt.ts";
 import { theme } from "../../styles/theme/theme.ts";
 
 function Notification() {

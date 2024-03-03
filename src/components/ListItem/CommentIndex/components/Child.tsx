@@ -1,7 +1,7 @@
 import Profile from "../../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../../Typo/Typo";
-import getFormedDate from "../../../../utils/getFormedDate";
+import { getFormedDate } from "../../../../utils/date";
 import Button from "../../../Button/Button";
 import { ERROR } from "../../../../constants/message";
 import { css } from "@emotion/react";

@@ -2,7 +2,7 @@ import User from "../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date";
 import { theme } from "../../../styles/theme/theme";
 import Tag from "../../Tag/Tag";
 

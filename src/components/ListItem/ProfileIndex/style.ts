@@ -26,20 +26,6 @@ export const TextWrapper = styled.div`
   padding-left: 12px;
 `;
 
-export const Input = styled.input`
-  padding: 6px;
-  border-radius: 4px;
-  min-width: 50%;
-  border: 1px solid ${(props) => props.theme.color.lightgray};
-  font-size: 16px;
-
-  &:focus {
-    outline: none;
-    border-width: 2px;
-    border-color: ${(props) => props.theme.color.darkblue};
-  }
-`;
-
 export const Edit = styled.p`
   text-align: center;
   cursor: pointer;

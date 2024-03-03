@@ -6,6 +6,7 @@ import four from "../assets/5.png";
 import first from "../assets/one.webp";
 import second from "../assets/two.webp";
 import third from "../assets/three.webp";
+import { URL_MAP } from "../../../constants/url";
 
 interface IDest {
   [key: string]: string;
@@ -19,10 +20,10 @@ export const ColorAndImgofItem = {
 };
 
 export const Destination: IDest = {
-  공지사항: "/notification",
-  과제: "/homework",
-  연락처: "/contact",
-  "Q&A": "/qna",
+  공지사항: `/${URL_MAP.NOTIFICATION}`,
+  과제: `/${URL_MAP.ASSIGNMENT}`,
+  연락처: `/${URL_MAP.CONTACT}`,
+  "Q&A": `${URL_MAP.CONTACT}`,
 };
 
 export const SliderProps = {

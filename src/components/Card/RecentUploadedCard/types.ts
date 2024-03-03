@@ -4,4 +4,5 @@ export interface ICard {
   link: string;
   cnt: number;
   uid: number;
+  isDark: boolean;
 }

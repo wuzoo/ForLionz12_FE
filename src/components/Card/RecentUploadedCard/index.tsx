@@ -3,9 +3,9 @@ import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import { ICard } from "./types";
 import { useMemberId } from "../../../hooks";
-import user from "../../../assets/icons/user/defaultUser.svg";
+import User from "../../../assets/icons/user/defaultUser.svg?react";
 
-export default function Card({ name, content, link, cnt, uid }: ICard) {
+export default function Card({ name, content, link, cnt, uid, isDark }: ICard) {
   const { data } = useMemberId(uid);
 
   if (!data) return;
@@ -26,7 +26,11 @@ export default function Card({ name, content, link, cnt, uid }: ICard) {
 
   return (
     <Styled.CardWrapper variants={Styled.variants} whileHover="hover">
-      <Styled.Img src={data?.imageUrl || user} />
+      {data?.imageUrl ? (
+        <Styled.Img src={data?.imageUrl} />
+      ) : (
+        <User width="40%" stroke={isDark ? "white" : "black"} />
+      )}
       <Styled.ContentWrapper
         css={css`
           max-width: ${handleWidth()};

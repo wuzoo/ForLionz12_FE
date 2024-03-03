@@ -3,7 +3,7 @@ import * as Styled from "./style.ts";
 import React, { useContext, useEffect } from "react";
 import { css } from "@emotion/react";
 import { PART_COLOR } from "../../../constants/partcolor.ts";
-import getFormedDate from "../../../utils/getFormedDate.ts";
+import { getFormedDate } from "../../../utils/date.ts";
 import { useNoticeById } from "../../../hooks/index.ts";
 import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx/index.tsx";

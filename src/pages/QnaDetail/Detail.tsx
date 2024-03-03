@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
-import getFormedDate from "../../utils/getFormedDate";
+import { getFormedDate } from "../../utils/date";
 import Button from "../../components/Button/Button";
 import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";
@@ -13,6 +13,7 @@ import Markdown from "./components/Markdown";
 import Tag from "../../components/Tag/Tag";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 import { theme } from "../../styles/theme/theme";
+import { URL_MAP } from "../../constants/url";
 
 function QnaDetail() {
   const { id } = useParams();
@@ -42,7 +43,7 @@ function QnaDetail() {
       .delete(`${import.meta.env.VITE_QUESTION}/${id}`)
       .then((res) => {
         if (res.status === 200) {
-          navigate("/qna");
+          navigate(`/${URL_MAP.QNA}`);
         }
       })
       .catch((err) => {
@@ -52,7 +53,7 @@ function QnaDetail() {
   };
 
   const handleEdit = () => {
-    navigate("/qna/upload", {
+    navigate(`/${URL_MAP.QNA}/upload`, {
       state: {
         id,
       },

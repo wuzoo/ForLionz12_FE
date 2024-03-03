@@ -3,12 +3,12 @@ import MainAndSubtitle from "../../../../components/MainAndSubtitle";
 import { fixedProps } from "../../Hw-submit";
 import Button from "../../../../components/Button/Button";
 import { css } from "@emotion/react";
-import getFormedDate from "../../../../utils/getFormedDate";
+import { getFormedDate } from "../../../../utils/date";
 import { Link } from "react-router-dom";
 import Typo from "../../../../components/Typo/Typo";
 import { IStatus } from "../../types";
-import { theme } from "../../../../styles/theme/theme";
 import GithubLogo from "../../../../assets/icons/github/img_dark.svg?react";
+import CustomInput from "../../../../components/Input/Input";
 
 function AssignStatus({
   onModify,
@@ -25,13 +25,10 @@ function AssignStatus({
           sub={`${getFormedDate(createdAt)}에 제출 완료된 과제입니다.`}
           {...fixedProps}
         />
-        <Styled.MyTextArea
-          css={css`
-            background-color: ${isDark
-              ? theme.color.lightblack
-              : theme.mode.light.bgColor};
-            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-          `}
+        <CustomInput
+          padding="10px"
+          height="140px"
+          as="textarea"
           disabled
           value={description}
         />

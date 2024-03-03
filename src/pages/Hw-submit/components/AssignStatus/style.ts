@@ -14,14 +14,6 @@ export const StatusWrapper = styled.div`
   }
 `;
 
-export const MyTextArea = styled.textarea`
-  min-height: 100px;
-  font-size: 16px;
-  border: 1.5px solid ${(props) => props.theme.color.lightgray};
-  border-radius: 10px;
-  padding: 10px;
-`;
-
 export const LinkWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
 

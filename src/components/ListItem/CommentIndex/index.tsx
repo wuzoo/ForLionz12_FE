@@ -2,7 +2,7 @@ import Profile from "../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
 import chat from "./assets/chat.svg";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date";
 import { useChildComments } from "../../../hooks";
 import { css } from "@emotion/react";
 import Button from "../../Button/Button";

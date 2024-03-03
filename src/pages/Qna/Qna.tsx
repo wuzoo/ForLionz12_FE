@@ -9,7 +9,7 @@ import QnaItem from "../../components/ListItem/QnaIndex/QnaItem";
 import Button from "../../components/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelectedData, useTags } from "../../hooks";
-import { compare } from "../../utils/sortByCreatedAt";
+import { compare } from "../../utils/date";
 import { theme } from "../../styles/theme/theme";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 

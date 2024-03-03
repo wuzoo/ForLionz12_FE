@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import { useCallback, useContext, useEffect } from "react";
 import axios from "axios";
@@ -8,34 +8,16 @@ import { getCookie } from "../../utils/cookie";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 import { css } from "@emotion/react";
 import { theme } from "../../styles/theme/theme";
+import { URL_MAP } from "../../constants/url";
+import DefaultScrollMotion from "../ControlScroll/DefaultScrollMotion";
 
 function Layout() {
-  const { pathname, state } = useLocation();
+  const { pathname } = useLocation();
   const isLoginMatch = pathname === "/login";
   const dispatch = useLoginInfoDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+
   const { isDark } = useContext(ThemeContext);
-
-  useEffect(() => {
-    if (pathname === `/homework/${id}`) {
-      document.body.style.maxWidth = `${document.body.clientWidth}px`;
-      document.body.style.overflowY = "hidden";
-      return;
-    }
-    if (state?.history === "detail") {
-      if (pathname === "/homework") {
-        document.body.style.maxWidth = "100vw";
-        document.body.style.overflowY = "scroll";
-        return;
-      } else if (pathname !== "/homework") {
-        document.body.style.maxWidth = "100vw";
-        document.body.style.overflowY = "scroll";
-      }
-    }
-
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   useEffect(() => {
     checkToken();
@@ -55,7 +37,7 @@ function Layout() {
       })
       .catch((err) => {
         if (err.response?.status === 500) {
-          navigate("/login");
+          navigate(`${URL_MAP.LOGIN}`);
         }
       });
 
@@ -83,8 +65,10 @@ function Layout() {
           : theme.mode.light.bgColor};
       `}
     >
-      <Header type={isLoginMatch ? "login" : ""} />
-      <Outlet />
+      <DefaultScrollMotion>
+        <Header type={isLoginMatch ? "login" : ""} />
+        <Outlet />
+      </DefaultScrollMotion>
     </Styled.Layout>
   );
 }

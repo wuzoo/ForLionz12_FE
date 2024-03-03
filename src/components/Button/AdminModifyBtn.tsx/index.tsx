@@ -3,6 +3,7 @@ import Button from "../Button";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
 import { theme } from "../../../styles/theme/theme";
+import { URL_MAP } from "../../../constants/url";
 
 interface IBtn {
   type: string;
@@ -17,9 +18,9 @@ export default function AdminModifyBtn({ type, uid, id }: IBtn) {
 
   let destination = "";
   if (type === "notification") {
-    destination = "/notification/upload";
+    destination = `/${URL_MAP.NOTIFICATION}/upload`;
   } else if (type === "assignment") {
-    destination = "/homework/upload";
+    destination = `/${URL_MAP.ASSIGNMENT}/upload`;
   }
 
   return (

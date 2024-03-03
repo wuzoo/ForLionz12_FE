@@ -26,6 +26,9 @@ import { ErrorProvider } from "./context/Error/Error";
 import Detail from "./pages/Hw-list/Hw-detail/detail";
 import React, { Suspense } from "react";
 import Loader from "./pages/Loader/Loader";
+import { ThemeContextProvider } from "./context/IsDark/IsDark";
+import { CookiesProvider } from "react-cookie";
+import { URL_MAP } from "./constants/url";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +45,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "homework",
+        path: URL_MAP.ASSIGNMENT,
         element: (
           <Suspense fallback={<Loader />}>
             <HwList />
@@ -50,11 +53,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "homework/detail/:id",
+        path: `${URL_MAP.ASSIGNMENT}/detail/:id`,
         element: <Detail />,
       },
       {
-        path: "homework/:id",
+        path: `${URL_MAP.ASSIGNMENT}/:id`,
         element: (
           <Suspense fallback={<Loader />}>
             <HwList />
@@ -63,7 +66,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "homework/upload",
+        path: `${URL_MAP.ASSIGNMENT}/upload`,
         element: <UploadHW />,
         loader: () => {
           const part = localStorage.getItem("part");
@@ -72,7 +75,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "homework-submit/:id",
+        path: `${URL_MAP.ASSIGNMENT_SUBMIT}/:id`,
         element: (
           <Suspense fallback={<Loader />}>
             <HwSubmit />
@@ -81,7 +84,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "contact",
+        path: URL_MAP.CONTACT,
         element: (
           <Suspense fallback={<Loader />}>
             <Contact />
@@ -89,7 +92,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "notification",
+        path: URL_MAP.NOTIFICATION,
         element: (
           <Suspense fallback={<Loader />}>
             <Notification />
@@ -97,7 +100,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "notification/upload",
+        path: `${URL_MAP.NOTIFICATION}/upload`,
         element: <UploadNotice />,
         loader: () => {
           const part = localStorage.getItem("part");
@@ -107,7 +110,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "profile",
+        path: URL_MAP.PROFILE,
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
@@ -115,7 +118,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "qna",
+        path: URL_MAP.QNA,
         element: (
           <Suspense fallback={<Loader />}>
             <Qna />
@@ -123,17 +126,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "qna/:id",
+        path: `${URL_MAP.QNA}/:id`,
         element: <QnaDetail />,
       },
       {
-        path: "qna/upload",
+        path: `${URL_MAP.QNA}/upload`,
         element: <QuestionUpload />,
       },
     ],
   },
   {
-    path: "/login",
+    path: `/${URL_MAP.LOGIN}`,
     element: <Login />,
   },
   {
@@ -145,20 +148,24 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <ErrorProvider>
-        <LoginInfoProvider>
-          <ThemeProvider theme={theme}>
-            <Global styles={GlobalStyle} />
-            <RouterProvider router={router} />
-            <ToastContainer
-              position="bottom-center"
-              limit={1}
-              autoClose={3000}
-              hideProgressBar
-            />
-          </ThemeProvider>
-        </LoginInfoProvider>
-      </ErrorProvider>
+      <CookiesProvider>
+        <ThemeContextProvider>
+          <ErrorProvider>
+            <LoginInfoProvider>
+              <ThemeProvider theme={theme}>
+                <Global styles={GlobalStyle} />
+                <RouterProvider router={router} />
+                <ToastContainer
+                  position="bottom-center"
+                  limit={1}
+                  autoClose={3000}
+                  hideProgressBar
+                />
+              </ThemeProvider>
+            </LoginInfoProvider>
+          </ErrorProvider>
+        </ThemeContextProvider>
+      </CookiesProvider>
     </>
   );
 }

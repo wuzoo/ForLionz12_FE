@@ -4,7 +4,7 @@ import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "./types";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date";
 
 function Card({ logo, bgcolor, ...props }: ICard) {
   const navigate = useNavigate();

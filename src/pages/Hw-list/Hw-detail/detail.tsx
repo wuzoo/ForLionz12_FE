@@ -3,7 +3,7 @@ import { useGetAssignmentById } from "../../../hooks";
 import { ERROR } from "../../../constants/message";
 import Typo from "../../../components/Typo/Typo";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date.ts";
 import Deadline from "./components/Deadline";
 import * as Styled from "./style.ts";
 import { css } from "@emotion/react";

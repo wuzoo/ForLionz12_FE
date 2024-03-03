@@ -6,7 +6,6 @@ export interface IForm {
   assignmentLink: string;
   id: string;
   refetch: () => void;
-  isDark: boolean;
 }
 
 export interface IStatus {

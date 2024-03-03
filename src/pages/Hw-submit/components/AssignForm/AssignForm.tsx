@@ -9,7 +9,7 @@ import axios from "axios";
 import { IForm } from "../../types";
 import { error } from "../../../../utils/toast";
 import { ERROR } from "../../../../constants/message";
-import { theme } from "../../../../styles/theme/theme";
+import CustomInput from "../../../../components/Input/Input";
 
 function AssignForm({
   id,
@@ -17,7 +17,6 @@ function AssignForm({
   description,
   assignmentLink,
   refetch,
-  isDark,
 }: IForm) {
   const [explain, setExplain] = useState(description);
   const [link, setLink] = useState(assignmentLink);
@@ -74,13 +73,10 @@ function AssignForm({
           sub={SUB_TEXT.HW_EXPLAIN}
           {...fixedProps}
         />
-        <Styled.ExplainArea
-          css={css`
-            background-color: ${isDark
-              ? theme.mode.dark.bgColor
-              : theme.mode.light.bgColor};
-            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-          `}
+        <CustomInput
+          as="textarea"
+          radius={1.5}
+          padding="10px"
           value={explain}
           onChange={(e) => setExplain(e.target.value)}
         />
@@ -89,14 +85,9 @@ function AssignForm({
           sub={SUB_TEXT.HW_LINK}
           {...fixedProps}
         />
-        <Styled.LinkInput
-          css={css`
-            background-color: ${isDark
-              ? theme.mode.dark.bgColor
-              : theme.mode.light.bgColor};
-            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-          `}
-          as="input"
+        <CustomInput
+          padding="10px"
+          radius={1.5}
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />

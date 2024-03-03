@@ -11,7 +11,7 @@ import { MemorizedOnebyoneText } from "./components/onebyonetext/Onebyonetext";
 import { useLoginInfoState } from "../../context/LoginUser/User";
 import { useAllNotification } from "../../hooks";
 import { ERROR } from "../../constants/message";
-import { compare } from "../../utils/sortByCreatedAt";
+import { compare } from "../../utils/date";
 
 function Home() {
   const userCt = useLoginInfoState();

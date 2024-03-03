@@ -3,7 +3,7 @@ import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { ICard } from "./types";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date";
 import type1 from "./assets/type1.webp";
 import type2 from "./assets/type2.webp";
 

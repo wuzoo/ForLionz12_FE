@@ -27,20 +27,3 @@ export const SubmitWrapper = styled.div`
     margin-bottom: 40px;
   }
 `;
-
-export const ExplainArea = styled.textarea`
-  min-height: 100px;
-  font-size: 16px;
-  border: 1.5px solid ${(props) => props.theme.color.lightgray};
-  border-radius: 10px;
-  padding: 10px;
-
-  &:focus {
-    outline: none;
-    border: 1.5px solid ${(props) => props.theme.color.darkblue};
-  }
-`;
-
-export const LinkInput = styled(ExplainArea)`
-  min-height: 0;
-`;

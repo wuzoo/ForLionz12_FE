@@ -20,7 +20,7 @@ export const ProfilePartWrapper = styled.div`
 `;
 
 export const AlignWrapper = styled.div`
-  ${(props) => props.theme.flexColumn("", "", 10)}
+  ${(props) => props.theme.flexColumn("", "", 20)}
 `;
 
 export const IntroWrapper = styled.div`
@@ -65,32 +65,6 @@ export const Introduce = styled.p`
   line-height: 1.3;
   font-weight: ${(props) => props.theme.weight.regular};
   color: ${(props) => props.theme.color.darkgray};
-`;
-
-export const EditingName = styled.input`
-  font-size: 32px;
-  font-weight: ${(props) => props.theme.weight.semibold};
-  border-radius: 10px;
-  border: 2px solid ${(props) => props.theme.color.lightgray};
-
-  &:focus {
-    outline: none;
-    border-width: 2px;
-    border-color: ${(props) => props.theme.color.darkblue};
-  }
-`;
-
-export const EditingIntro = styled.textarea`
-  font-size: 18px;
-  font-weight: ${(props) => props.theme.weight.regular};
-  color: ${(props) => props.theme.color.darkgray};
-  border-radius: 10px;
-  border: 2px solid ${(props) => props.theme.color.lightgray};
-
-  &:focus {
-    outline: none;
-    border-color: ${(props) => props.theme.color.darkblue};
-  }
 `;
 
 export const Form = styled.form`
