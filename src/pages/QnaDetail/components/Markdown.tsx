@@ -37,7 +37,7 @@ export default function Markdown({
               style={oneDark}
               language={match && match[1]}
               customStyle={{
-                width: "50vw",
+                width: "46vw",
               }}
               showLineNumbers={true}
               wrapLongLines={true}
