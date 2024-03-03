@@ -4,7 +4,7 @@ import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { PART_COLOR } from "../../../constants/partcolor";
 import { IHwCard } from "./types";
-import getImgForCategory from "../../../utils/getImgForCategory";
+import getImgForCategory from "../../../utils/categoryImg";
 import { theme } from "../../../styles/theme/theme";
 import { useContext, useLayoutEffect, useRef } from "react";
 import { ThemeContext } from "../../../context/IsDark/IsDark";
