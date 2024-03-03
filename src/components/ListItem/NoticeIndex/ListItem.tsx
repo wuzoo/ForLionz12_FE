@@ -7,6 +7,7 @@ import { variants } from "./variants";
 import { theme } from "../../../styles/theme/theme";
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/IsDark/IsDark";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 function ListItem({ part, title, date, onClick }: IItem) {
   const { isDark } = useContext(ThemeContext);
@@ -30,11 +31,11 @@ function ListItem({ part, title, date, onClick }: IItem) {
       >
         <Typo color="white">{part.toUpperCase()}</Typo>
       </Styled.Badge>
-      <Styled.Notice>
+      <EllipsisText color={isDark ? "white" : "black"} lineHeight={1.2}>
         <Typo weight="600" fontSize="16">
           {title}
         </Typo>
-      </Styled.Notice>
+      </EllipsisText>
       <Styled.Date>
         <Typo weight="400" fontSize="12" color="darkgray">
           작성일: {date}
