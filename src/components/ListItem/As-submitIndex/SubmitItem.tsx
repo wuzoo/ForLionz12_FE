@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { variants } from "./variants";
 import { IItem } from "./types";
-import getFormedDate from "../../../utils/getFormedDate";
+import { getFormedDate } from "../../../utils/date";
 import { useMemberId } from "../../../hooks";
 import { ERROR } from "../../../constants/message";
 import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
