@@ -8,6 +8,7 @@ import getImgForCategory from "../../../utils/categoryImg";
 import { theme } from "../../../styles/theme/theme";
 import { useContext, useLayoutEffect, useRef } from "react";
 import { ThemeContext } from "../../../context/IsDark/IsDark";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 function HwCard({
   category,
@@ -55,9 +56,13 @@ function HwCard({
           `}
         >
           <Styled.AlignWrapper>
-            <Styled.CardTitle>
+            <EllipsisText
+              color={isDark ? "white" : "black"}
+              lineHeight={1.3}
+              width="100%"
+            >
               <Typo>{title}</Typo>
-            </Styled.CardTitle>
+            </EllipsisText>
             <Styled.Badge
               css={css`
                 background-color: ${theme.color[PART_COLOR[part]]};
