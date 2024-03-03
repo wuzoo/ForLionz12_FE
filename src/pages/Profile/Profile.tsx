@@ -14,6 +14,7 @@ import { useMyInfo, useUserUpdater } from "../../hooks";
 import { ERROR } from "../../constants/message";
 import Button from "../../components/Button/Button";
 import ProfileItem from "../../components/ListItem/ProfileIndex/ProfileIndex";
+import CustomInput from "../../components/Input/Input";
 
 function Profile() {
   const user = useLoginInfoState();
@@ -27,8 +28,6 @@ function Profile() {
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState<Blob | null>(null);
   const [url, setUrl] = useState(user.imageUrl);
-
-  console.log(myInfo);
 
   useEffect(() => {
     setIntro(user.introduction);
@@ -164,9 +163,10 @@ function Profile() {
               </Styled.Form>
             ) : (
               <Styled.Form onSubmit={(e) => handleIntroSubmit(e)}>
-                <Styled.EditingIntro
-                  onChange={(e) => setIntro(e.target.value)}
+                <CustomInput
+                  width="80%"
                   value={intro}
+                  onChange={(e) => setIntro(e.target.value)}
                 />
                 <Styled.Btn type="submit">
                   <Typo color="darkblue">변경</Typo>
@@ -176,7 +176,6 @@ function Profile() {
           </Styled.AlignWrapper>
         </Styled.IntroWrapper>
       </Styled.InformBox>
-
       <Styled.ListItems>
         <ProfileItem key="pwd" type="password" onSubmit={reFetch} />
         <ProfileItem key="git" type="github" onSubmit={reFetch} />

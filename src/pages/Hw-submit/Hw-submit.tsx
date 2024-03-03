@@ -77,6 +77,7 @@ function HwSubmit() {
         {recentSubmitted?.map((item) => (
           <Card
             key={item.assignmentId}
+            isDark={isDark}
             cnt={recentSubmitted?.length}
             name={item.memberName}
             uid={item.memberId}
@@ -97,7 +98,6 @@ function HwSubmit() {
         />
       ) : (
         <AssignForm
-          isDark={isDark}
           description={mySubmission?.description}
           assignmentLink={mySubmission?.assignmentLink}
           id={id}
@@ -122,6 +122,7 @@ function HwSubmit() {
             <SubmitItem
               key={item.id}
               id={item.memberId}
+              isDark={isDark}
               link={item.assignmentLink}
               name={item.memberName}
               date={item.createdAt}

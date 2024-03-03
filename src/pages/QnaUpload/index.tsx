@@ -4,8 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { useQnaDetail, useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
 import { ChildtagType } from "../../types";
-import code from "./assets/code.svg";
-import img from "./assets/img.svg";
+import CodeInput from "./assets/code.svg?react";
+import ImgInput from "./assets/img.svg?react";
 import Button from "../../components/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +17,8 @@ import { warning } from "../../utils/toast";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 import { css } from "@emotion/react";
 import { theme } from "../../styles/theme/theme";
+import CustomInput from "../../components/Input/Input";
+import { URL_MAP } from "../../constants/url";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -130,9 +132,9 @@ function QuestionUpload() {
         .then((res) => {
           if (res.status === 204) {
             if (state?.id) {
-              navigate(`/qna/${state?.id}`);
+              navigate(`/${URL_MAP.QNA}/${state?.id}`);
             } else {
-              navigate("/qna");
+              navigate(`/${URL_MAP.QNA}`);
             }
           }
         });
@@ -182,11 +184,12 @@ function QuestionUpload() {
           sub={SUB_TEXT.QNA_TITLE}
           {...defaultProps}
         />
-        <Styled.TitleInput
-          css={css`
-            ${defaultDarkModeCss}
-          `}
-          {...register("title")}
+        <CustomInput
+          ref={null}
+          radius={1.5}
+          padding="10px"
+          width="100%"
+          register={register("title")}
         />
       </div>
       <div>
@@ -229,9 +232,30 @@ function QuestionUpload() {
             />
 
             <Styled.MdBtnWrapper>
-              <Styled.Img onClick={handleCodeInput} src={code} />
-              <Styled.FileLabel htmlFor="img">
-                <Styled.Img width="100%" height="100%" src={img} />
+              <Styled.CodeWrapper
+                css={css`
+                  border: 1px solid
+                    ${isDark ? theme.color.darkgray : theme.color.lightgray};
+                `}
+              >
+                <CodeInput
+                  width={30}
+                  onClick={handleCodeInput}
+                  stroke={isDark ? "white" : "black"}
+                />
+              </Styled.CodeWrapper>
+              <Styled.FileLabel
+                css={css`
+                  border: 1px solid
+                    ${isDark ? theme.color.darkgray : theme.color.lightgray};
+                `}
+                htmlFor="img"
+              >
+                <ImgInput
+                  width={30}
+                  height={30}
+                  stroke={isDark ? "white" : "black"}
+                />
               </Styled.FileLabel>
               <Styled.FileInput
                 onChange={handleImgUpload}
@@ -246,13 +270,12 @@ function QuestionUpload() {
             ))}
           </Styled.HorizonWrapper>
         </Styled.ContentTitleWrapper>
-        <Styled.ContentInput
-          css={css`
-            ${defaultDarkModeCss}
-          `}
+        <CustomInput
           id="content"
+          radius={1.5}
+          width="100%"
           as="textarea"
-          {...register("content")}
+          register={register("content")}
         />
       </div>
       <Styled.SubmitBtnWrapper>

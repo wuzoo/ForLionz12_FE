@@ -19,6 +19,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
 import { ThemeContext } from "../../context/IsDark/IsDark.tsx";
+import { URL_MAP } from "../../constants/url.ts";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
@@ -56,7 +57,7 @@ function HwList() {
     const { key } = e;
 
     if (key === "Escape") {
-      navigate("/homework", {
+      navigate(`/${URL_MAP.ASSIGNMENT}`, {
         state: {
           history: "detail",
         },
@@ -67,7 +68,7 @@ function HwList() {
   const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
     const { target, currentTarget } = e;
     if (target == currentTarget) {
-      navigate("/homework", {
+      navigate(`/${URL_MAP.ASSIGNMENT}`, {
         state: {
           history: "detail",
         },

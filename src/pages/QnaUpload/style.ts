@@ -6,23 +6,6 @@ export const Wrapper = styled.form`
   margin-top: 100px;
 `;
 
-const Input = styled.input`
-  padding: 10px;
-  border: 1px solid ${(props) => props.theme.color.lightgray};
-  border-radius: 6px;
-  font-size: 18px;
-  margin-top: 10px;
-
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.color.darkblue};
-  }
-`;
-
-export const TitleInput = styled(Input)`
-  width: 100%;
-`;
-
 export const Img = styled.img`
   border: 1px solid ${(props) => props.theme.color.lightgray};
   border-radius: 5px;
@@ -47,11 +30,6 @@ export const CheckBoxWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
-export const ContentInput = styled(Input)`
-  width: 100%;
-  min-height: 200px;
-`;
-
 export const FileInput = styled.input`
   display: none;
 `;
@@ -64,11 +42,21 @@ export const PreviewImg = styled.img`
 export const HorizonWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
   margin-top: 10px;
+  height: 60px;
 `;
 
 export const FileLabel = styled.label`
-  width: 40px;
-  height: 40px;
+  ${(props) => props.theme.flexRow("center", "center")}
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+`;
+
+export const CodeWrapper = styled.div`
+  padding: 5px;
+  border-radius: 6px;
+  ${(props) => props.theme.flexRow("center", "center")}
+  cursor: pointer;
 `;
 
 export const MdBtnWrapper = styled.div`

@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";
+import { URL_MAP } from "../../../constants/url";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -68,7 +69,7 @@ function UploadNotice() {
           }
         );
       }
-      navigate("/notification");
+      navigate(`/${URL_MAP.NOTIFICATION}`);
     } catch (err) {
       throw new Error(ERROR.NOTIFICATION_UPLOAD);
     }
