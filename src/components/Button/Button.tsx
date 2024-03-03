@@ -29,7 +29,6 @@ function Button(props: IBtn) {
           ? theme.color[props.bordercolor]
           : "none"};
         padding: ${props.padding};
-        white-space: nowrap;
       `}
     >
       <Typo
