@@ -10,6 +10,7 @@ import { css } from "@emotion/react";
 import { darkTheme, lightTheme, theme } from "../../styles/theme/theme";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/IsDark/IsDark";
+import { URL_MAP } from "../../constants/url";
 
 function Header({ type }: IHeader) {
   const isLoginPage = Boolean(type);
@@ -21,7 +22,7 @@ function Header({ type }: IHeader) {
   const { isDark, toggleColorTheme } = useContext(ThemeContext);
 
   const 마이페이지가기 = () => {
-    navigate("/profile");
+    navigate(`/${URL_MAP.PROFILE}`);
   };
 
   return (
@@ -43,11 +44,11 @@ function Header({ type }: IHeader) {
         </Link>
         {!isLoginPage && (
           <div>
-            <Link to="/homework">
+            <Link to={`/${URL_MAP.ASSIGNMENT}`}>
               <Typo
                 color={
-                  pathname === "/homework" ||
-                  pathname === `/homework-submit/${id}`
+                  pathname === `/${URL_MAP.ASSIGNMENT}` ||
+                  pathname === `/${URL_MAP.ASSIGNMENT_SUBMIT}/${id}`
                     ? "darkblue"
                     : undefined
                 }
@@ -56,25 +57,31 @@ function Header({ type }: IHeader) {
                 Assignment
               </Typo>
             </Link>
-            <Link to="/notification">
+            <Link to={`/${URL_MAP.NOTIFICATION}`}>
               <Typo
-                color={pathname === "/notification" ? "darkblue" : undefined}
+                color={
+                  pathname === `/${URL_MAP.NOTIFICATION}`
+                    ? "darkblue"
+                    : undefined
+                }
                 weight="600"
               >
                 Notification
               </Typo>
             </Link>
-            <Link to="/qna">
+            <Link to={`/${URL_MAP.QNA}`}>
               <Typo
-                color={pathname === "/qna" ? "darkblue" : undefined}
+                color={pathname === `/${URL_MAP.QNA}` ? "darkblue" : undefined}
                 weight="600"
               >
                 Q&A
               </Typo>
             </Link>
-            <Link to="/contact">
+            <Link to={`/${URL_MAP.CONTACT}`}>
               <Typo
-                color={pathname === "/contact" ? "darkblue" : undefined}
+                color={
+                  pathname === `/${URL_MAP.CONTACT}` ? "darkblue" : undefined
+                }
                 weight="600"
               >
                 Contact
