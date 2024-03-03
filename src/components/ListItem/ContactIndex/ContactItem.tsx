@@ -10,6 +10,7 @@ import githubimg from "../../../assets/icons/github/img.png";
 import github_dark from "../../../assets/icons/github/contact_dark.png";
 import { theme } from "../../../styles/theme/theme";
 import { useState } from "react";
+import EllipsisText from "../../Ellipsis/EllipsisText";
 
 function Item({
   file,
@@ -90,16 +91,17 @@ function Item({
             </Styled.Badge>
           </Styled.NameAndPart>
         </div>
-        <Styled.Introduce
-          css={css`
-            overflow: ${clicked ? "visible" : "hidden"};
-            display: ${clicked ? "" : "-webkit-box"};
-          `}
+        <EllipsisText
+          color="darkgray"
+          overflow={clicked ? "visible" : "hidden"}
+          display={clicked ? "" : "-webkit-box"}
+          lineHeight={1.2}
+          padding="0px 1rem"
         >
           <Typo color="darkgray" weight="500" fontSize="16">
             {introduce}
           </Typo>
-        </Styled.Introduce>
+        </EllipsisText>
       </Styled.InfoWrapper>
       <Styled.SNSbox>
         <Styled.Img

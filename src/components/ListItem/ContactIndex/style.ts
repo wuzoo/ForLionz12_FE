@@ -40,15 +40,6 @@ export const Badge = styled.div`
   border-radius: 24px;
 `;
 
-export const Introduce = styled.p`
-  padding: 0px 1rem;
-  text-overflow: ellipsis;
-  text-decoration-color: white;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  line-height: 1.2;
-`;
-
 export const SNSbox = styled.div`
   ${(props) => props.theme.flexRow("end", "", 10)}
 `;
