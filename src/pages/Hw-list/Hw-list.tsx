@@ -6,7 +6,7 @@ import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import getFormedDate from "../../utils/getFormedDate";
+import { getFormedDate, compare } from "../../utils/date.ts";
 import { useAllAssignment, usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
 import HwSliderCard from "../../components/Card/HwSliderCard";
@@ -14,7 +14,6 @@ import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx
 import { css } from "@emotion/react";
 import { SUB_TEXT, TEXT } from "../../constants/text.ts";
 import { ERROR } from "../../constants/message.ts";
-import { compare } from "../../utils/sortByCreatedAt.ts";
 import { useMatch, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";

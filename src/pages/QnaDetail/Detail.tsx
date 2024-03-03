@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "./style";
 import Typo from "../../components/Typo/Typo";
-import getFormedDate from "../../utils/getFormedDate";
+import { getFormedDate } from "../../utils/date";
 import Button from "../../components/Button/Button";
 import { useCommentsById, useQnaDetail } from "../../hooks";
 import ListItem from "../../components/ListItem/CommentIndex";

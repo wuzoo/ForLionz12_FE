@@ -5,10 +5,13 @@ import Button from "../../../components/Button/Button";
 import Typo from "../../../components/Typo/Typo";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getDeadlineTime } from "../../../utils/getDeadlineTime";
+import {
+  getDeadlineTime,
+  initialDate,
+  ISOtoY_M_D_Date,
+} from "../../../utils/date";
 import { useGetAssignmentById } from "../../../hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { initialDate, ISOtoY_M_D_Date } from "../../../utils/getY_M_D_Date";
 import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";

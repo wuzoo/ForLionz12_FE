@@ -116,7 +116,13 @@ function UploadNotice() {
         >
           작성 취소
         </Button>
-        <Button type="submit" width="130px" height="36px" color="white">
+        <Button
+          type="submit"
+          width="130px"
+          height="36px"
+          color="white"
+          bgcolor="darkblue"
+        >
           업로드하기
         </Button>
       </Styled.BtnWrapper>

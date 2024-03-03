@@ -14,7 +14,7 @@ import { useContext, useEffect, useState } from "react";
 import { useOwnSubmission, useSubmittedAssignments } from "../../hooks";
 import { ERROR } from "../../constants/message";
 import { getMySubmission } from "../../api/assignment";
-import { compare } from "../../utils/sortByCreatedAt";
+import { compare } from "../../utils/date";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 
 export const fixedProps = {

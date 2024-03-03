@@ -3,7 +3,7 @@ import MainAndSubtitle from "../../../../components/MainAndSubtitle";
 import { fixedProps } from "../../Hw-submit";
 import Button from "../../../../components/Button/Button";
 import { css } from "@emotion/react";
-import getFormedDate from "../../../../utils/getFormedDate";
+import { getFormedDate } from "../../../../utils/date";
 import { Link } from "react-router-dom";
 import Typo from "../../../../components/Typo/Typo";
 import { IStatus } from "../../types";
