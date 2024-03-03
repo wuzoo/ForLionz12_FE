@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import Typo from "../../Typo/Typo";
 import { css } from "@emotion/react";
+import { URL_MAP } from "../../../constants/url";
 
 interface IBtn {
   type: string;
@@ -16,10 +17,10 @@ export default function AdminUploadBtn({ type, id }: IBtn) {
   let destination = "";
   const getText = () => {
     if (type === "notification") {
-      destination = "/notification/upload";
+      destination = `/${URL_MAP.NOTIFICATION}/upload`;
       return "공지사항 업로드";
     } else if (type === "assignment") {
-      destination = "/homework/upload";
+      destination = `/${URL_MAP.ASSIGNMENT}/upload`;
       return "과제 업로드";
     }
   };
