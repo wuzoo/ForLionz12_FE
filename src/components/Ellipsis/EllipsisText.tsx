@@ -18,6 +18,8 @@ export default function EllipsisText({ children, color, ...props }: IText) {
         padding: ${props.padding || 0};
         overflow: ${props.overflow || "hidden"};
         display: ${props.display || "-webkit-box"};
+        width: ${props.width || "auto"};
+        text-align: ${props.textAlign};
       `}
     >
       {children}

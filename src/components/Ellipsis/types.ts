@@ -8,4 +8,6 @@ export interface IText {
   padding?: string;
   overflow?: string;
   display?: string;
+  width?: string;
+  textAlign?: string;
 }
