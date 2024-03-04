@@ -1,9 +1,8 @@
 import * as Styled from "./style";
-// import PageLogo from "../PageLogo/PageLogo";
-const LazyPageLogo = React.lazy(() => import("../PageLogo/PageLogo"));
+import PageLogo from "../PageLogo/PageLogo";
 import MainAndSubtitle from "../MainAndSubtitle";
 import { TEXT } from "../../constants/text";
-import React from "react";
+import { memo } from "react";
 
 interface IBanner {
   type: string;
@@ -17,7 +16,7 @@ function getMainText(type: string) {
   return type[0].toUpperCase() + type.slice(1);
 }
 
-function Banner({ type, logowidth, logoheight }: IBanner) {
+const Banner = memo(function Banner({ type, logowidth, logoheight }: IBanner) {
   return (
     <Styled.Container>
       <MainAndSubtitle
@@ -26,9 +25,9 @@ function Banner({ type, logowidth, logoheight }: IBanner) {
         fontsizes={["70", "18"]}
         gap="7"
       />
-      <LazyPageLogo type={type} width={logowidth} height={logoheight} />
+      <PageLogo type={type} width={logowidth} height={logoheight} />
     </Styled.Container>
   );
-}
+});
 
 export default Banner;
