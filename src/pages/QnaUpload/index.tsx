@@ -1,24 +1,21 @@
 import MainAndSubtitle from "../../components/MainAndSubtitle";
 import * as Styled from "./style";
 import { useContext, useEffect, useState } from "react";
-import { useQnaDetail, useTags } from "../../hooks";
+import { useQnaDetail, useSubmit, useTags } from "../../hooks";
 import { getParentTagData } from "../../api/qna";
 import { ChildtagType } from "../../types";
-import CodeInput from "./assets/code.svg?react";
-import ImgInput from "./assets/img.svg?react";
 import Button from "../../components/Button/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { SUB_TEXT } from "../../constants/text";
 import Checkbox from "../Qna/components/Checkbox/Checkbox";
 import { ERROR } from "../../constants/message";
-import { warning } from "../../utils/toast";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 import { css } from "@emotion/react";
 import { theme } from "../../styles/theme/theme";
 import CustomInput from "../../components/Input/Input";
-import { URL_MAP } from "../../constants/url";
+import MarkdownInput from "./components/MarkdownInput";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -33,8 +30,7 @@ interface IInputs {
 
 function QuestionUpload() {
   const [child, setChild] = useState<ChildtagType[]>();
-  const [urls, setUrls] = useState<string[]>([]);
-  const [query, setQuery] = useState<number[]>([]);
+  const { query, setQuery, urls, setUrls, onSubmit } = useSubmit();
   const { register, handleSubmit, reset } = useForm<IInputs>();
 
   const navigate = useNavigate();
@@ -73,74 +69,6 @@ function QuestionUpload() {
 
     input.value += "  \n```language\ncode\n```  \n";
     input.focus();
-  };
-
-  const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    const request = {
-      ...data,
-      postImageUrls: [...urls],
-    };
-
-    if (!data.title) {
-      warning(ERROR.QNA_UPLOAD_NO_TITLE);
-      return;
-    } else if (query.length === 0) {
-      warning(ERROR.QNA_UPLOAD_NO_TAG);
-      return;
-    } else if (!data.content) {
-      warning(ERROR.QNA_UPLOAD_NO_CONTENT);
-      return;
-    }
-
-    let postId: number = 0;
-
-    try {
-      if (state?.id !== undefined) {
-        const response = await axios
-          .put(`${import.meta.env.VITE_QUESTION}/${state?.id}`, request, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-          .then((res) => res.data);
-
-        postId = response.data.id;
-      } else {
-        const response = await axios
-          .post(import.meta.env.VITE_QUESTION, request, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-          .then((res) => res.data);
-
-        postId = response.data.id;
-      }
-      await axios
-        .post(
-          import.meta.env.VITE_TAG_MAP,
-          {
-            questionPostId: postId,
-            childTagId: query,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          if (res.status === 204) {
-            if (state?.id) {
-              navigate(`/${URL_MAP.QNA}/${state?.id}`);
-            } else {
-              navigate(`/${URL_MAP.QNA}`);
-            }
-          }
-        });
-    } catch (err) {
-      throw new Error(ERROR.QNA_UPLOAD);
-    }
   };
 
   const handleImgUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -230,39 +158,11 @@ function QuestionUpload() {
               sub={SUB_TEXT.QNA_CONTENT}
               {...defaultProps}
             />
-
-            <Styled.MdBtnWrapper>
-              <Styled.CodeWrapper
-                css={css`
-                  border: 1px solid
-                    ${isDark ? theme.color.darkgray : theme.color.lightgray};
-                `}
-              >
-                <CodeInput
-                  width={30}
-                  onClick={handleCodeInput}
-                  stroke={isDark ? "white" : "black"}
-                />
-              </Styled.CodeWrapper>
-              <Styled.FileLabel
-                css={css`
-                  border: 1px solid
-                    ${isDark ? theme.color.darkgray : theme.color.lightgray};
-                `}
-                htmlFor="img"
-              >
-                <ImgInput
-                  width={30}
-                  height={30}
-                  stroke={isDark ? "white" : "black"}
-                />
-              </Styled.FileLabel>
-              <Styled.FileInput
-                onChange={handleImgUpload}
-                id="img"
-                type="file"
-              />
-            </Styled.MdBtnWrapper>
+            <MarkdownInput
+              onCodeClick={handleCodeInput}
+              onImgClick={handleImgUpload}
+              isDark={isDark}
+            />
           </Styled.ContentTitleAndBtnWrapper>
           <Styled.HorizonWrapper>
             {urls.map((item) => (

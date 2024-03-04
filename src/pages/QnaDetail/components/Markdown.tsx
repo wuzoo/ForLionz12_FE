@@ -39,8 +39,9 @@ export default function Markdown({
               customStyle={{
                 width: "46vw",
               }}
-              showLineNumbers={true}
-              wrapLongLines={true}
+              lineProps={{
+                style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
+              }}
               wrapLines={true}
               {...props}
             />

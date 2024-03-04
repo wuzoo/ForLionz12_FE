@@ -39,3 +39,51 @@ export const getQnaDetailById = async (id: number) => {
 
   return response.data;
 };
+
+type IInfo = {
+  title: string;
+  tag: string;
+  content: string;
+  postImageUrls: string[];
+};
+
+export const postUploadQna = async (data: IInfo) => {
+  const response = await axios
+    .post(import.meta.env.VITE_QUESTION, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.data);
+
+  return response;
+};
+
+export const putUploadQna = async (data: IInfo, id: string) => {
+  const response = await axios
+    .put(`${import.meta.env.VITE_QUESTION}/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.data);
+
+  return response;
+};
+
+export const postChildTagData = async (id: number, query: number[]) => {
+  const response = await axios.post(
+    import.meta.env.VITE_TAG_MAP,
+    {
+      questionPostId: id,
+      childTagId: query,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  return response;
+};

@@ -30,10 +30,6 @@ export const CheckBoxWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
 `;
 
-export const FileInput = styled.input`
-  display: none;
-`;
-
 export const PreviewImg = styled.img`
   object-fit: cover;
   border-radius: 10px;
@@ -43,26 +39,6 @@ export const HorizonWrapper = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
   margin-top: 10px;
   height: 60px;
-`;
-
-export const FileLabel = styled.label`
-  ${(props) => props.theme.flexRow("center", "center")}
-  padding: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-`;
-
-export const CodeWrapper = styled.div`
-  padding: 5px;
-  border-radius: 6px;
-  ${(props) => props.theme.flexRow("center", "center")}
-  cursor: pointer;
-`;
-
-export const MdBtnWrapper = styled.div`
-  display: flex;
-  gap: 5px;
-  margin-left: 40px;
 `;
 
 export const SubmitBtnWrapper = styled.div`

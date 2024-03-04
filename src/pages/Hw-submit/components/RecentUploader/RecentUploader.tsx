@@ -5,8 +5,9 @@ import RecentUploadSlider from "../../../../components/Slider/RecentUploadSlider
 import * as Styled from "./style";
 import { ReactNode } from "react";
 import Typo from "../../../../components/Typo/Typo";
+import { memo } from "react";
 
-function RecentUploader({
+const RecentUploader = memo(function RecentUploader({
   cnt,
   children,
 }: {
@@ -33,6 +34,6 @@ function RecentUploader({
       </Styled.ContentWrapper>
     </Styled.TotalWrapper>
   );
-}
+});
 
 export default RecentUploader;

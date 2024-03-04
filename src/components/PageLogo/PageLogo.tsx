@@ -5,10 +5,10 @@ import notice from "../../assets/3dicons/notice/people.webp";
 import qna from "../../assets/3dicons/qna/baby.webp";
 import lion from "../../assets/3dicons/main/lion.webp";
 import { IPageLogo, IPageobj } from "./types";
-import { useMemo } from "react";
 import { css } from "@emotion/react";
+import { memo } from "react";
 
-export default function PageLogo(props: IPageLogo) {
+const PageLogo = memo(function PageLogo(props: IPageLogo) {
   const PAGE_OBJ: IPageobj = {
     HW_SUBMIT: submit,
     CONTACT: contact,
@@ -18,27 +18,26 @@ export default function PageLogo(props: IPageLogo) {
     LION: lion,
   };
 
-  return useMemo(
-    () => (
-      <div
+  return (
+    <div
+      css={css`
+        width: ${props.width}px;
+        height: ${props.height}px;
+        @media screen and (max-width: 900px) {
+          display: none;
+        }
+      `}
+    >
+      <img
         css={css`
-          width: ${props.width}px;
-          height: ${props.height}px;
-          @media screen and (max-width: 900px) {
-            display: none;
-          }
+          object-fit: contain;
+          aspect-ratio: 1/1;
         `}
-      >
-        <img
-          css={css`
-            object-fit: contain;
-            aspect-ratio: 1/1;
-          `}
-          src={PAGE_OBJ[props.type]}
-          {...props}
-        />
-      </div>
-    ),
-    [props.type, props.width, props.height]
+        src={PAGE_OBJ[props.type]}
+        {...props}
+      />
+    </div>
   );
-}
+});
+
+export default PageLogo;
