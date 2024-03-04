@@ -37,7 +37,7 @@ function Layout() {
       })
       .catch((err) => {
         if (err.response?.status === 500) {
-          navigate(`${URL_MAP.LOGIN}`);
+          navigate(`/${URL_MAP.LOGIN}`);
         }
       });
 
