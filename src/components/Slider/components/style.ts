@@ -1,23 +1,19 @@
 import styled from "@emotion/styled";
 
-export const Left = styled.img`
-  width: 50px;
-  height: 50px;
+export const Arrow = styled.div`
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   position: absolute;
-  left: 5%;
   top: calc(50% - 26px);
   z-index: 9;
-  opacity: 0.3;
+  opacity: 0.6;
 `;
 
-export const Right = styled.img`
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: calc(50% - 26px);
-  right: 5%;
-  cursor: pointer;
-  z-index: 9;
-  opacity: 0.3;
+export const Left = styled(Arrow)`
+  left: 1.5rem;
+`;
+
+export const Right = styled(Arrow)`
+  right: 1.5rem;
 `;

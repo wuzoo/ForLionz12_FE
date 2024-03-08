@@ -3,6 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ISlider } from "./types";
 import { Next, Prev } from "./components/Arrow";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/IsDark/IsDark";
 
 export default function MySlider({
   children,
@@ -16,6 +18,7 @@ export default function MySlider({
   arrows,
   autoplaySpeed,
 }: ISlider) {
+  const { isDark } = useContext(ThemeContext);
   const setting: Settings = {
     dots: dots,
     infinite: infinite,
@@ -26,8 +29,8 @@ export default function MySlider({
     slidesToScroll: slidesToScroll || 1,
     initialSlide: initialSlide || 0,
     autoplaySpeed: autoplaySpeed || 5000,
-    prevArrow: <Prev onClick={Slider.prototype.slickPrev} />,
-    nextArrow: <Next onClick={Slider.prototype.slickNext} />,
+    prevArrow: <Prev isDark={isDark} onClick={Slider.prototype.slickPrev} />,
+    nextArrow: <Next isDark={isDark} onClick={Slider.prototype.slickNext} />,
     appendDots: (dots: any) => (
       <div>
         <ul>{dots}</ul>
