@@ -80,7 +80,7 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
               height={50}
               fill={isDark ? "white" : "black"}
             />
-            <Link to={data?.githubLink}>
+            <Link to={data?.githubLink} target="_blank">
               <Typo color="darkblue">{data.githubLink}</Typo>
             </Link>
           </Styled.AssignmentLink>
