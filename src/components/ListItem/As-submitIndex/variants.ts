@@ -12,7 +12,7 @@ export const variants = {
     transition: {
       type: "spring",
       damping: 8,
-      duration: 0.2,
+      duration: 0.1,
     },
   },
 };
