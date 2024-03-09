@@ -6,5 +6,5 @@ export const Layout = styled.div`
   min-height: 100vh;
   position: relative;
   ${(props) => props.theme.flexColumn("", "center")}
-  background-color: white;
+  overflow: hidden;
 `;
