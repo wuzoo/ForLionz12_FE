@@ -4,15 +4,12 @@ import { css } from "@emotion/react";
 import { ICard } from "./types";
 import { useMemberId } from "../../../hooks";
 import User from "../../../assets/icons/user/defaultUser.svg?react";
+import { Link } from "react-router-dom";
 
 export default function Card({ name, content, link, cnt, uid, isDark }: ICard) {
   const { data } = useMemberId(uid);
 
   if (!data) return;
-
-  const handleLinkClick = () => {
-    location.href = link;
-  };
 
   const handleWidth = () => {
     if (cnt === 1) {
@@ -53,9 +50,11 @@ export default function Card({ name, content, link, cnt, uid, isDark }: ICard) {
             cursor: pointer;
           `}
         >
-          <Typo onClick={handleLinkClick} color="darkblue" fontSize="18">
-            구경하러 가기
-          </Typo>
+          <Link to={link} target="_blank">
+            <Typo color="darkblue" fontSize="18">
+              구경하러 가기
+            </Typo>
+          </Link>
         </div>
       </Styled.ContentWrapper>
     </Styled.CardWrapper>
