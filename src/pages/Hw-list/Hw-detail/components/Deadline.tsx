@@ -8,8 +8,6 @@ type DateType = {
 };
 
 function Deadline({ expireAt, isModal }: DateType) {
-  console.log(new Date(expireAt));
-
   const start = new Date();
   const end = new Date(expireAt);
 
