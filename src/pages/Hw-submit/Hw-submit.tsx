@@ -118,9 +118,10 @@ function HwSubmit() {
           <CurrentSubmit count={submittedData?.length || 0} />
         </Styled.OtherHwWrapper>
         <Styled.List>
-          {submittedData?.map((item) => (
+          {submittedData?.map((item, index) => (
             <SubmitItem
               key={item.id}
+              index={index}
               id={item.memberId}
               isDark={isDark}
               link={item.assignmentLink}
