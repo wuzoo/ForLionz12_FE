@@ -5,4 +5,5 @@ export interface IItem {
   link: string;
   description: string;
   isDark: boolean;
+  index: number;
 }

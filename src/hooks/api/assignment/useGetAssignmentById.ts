@@ -14,7 +14,6 @@ export function useGetAssignmentById(AssignmentId: number | undefined) {
     [AssignmentId]
   );
 
-  console.log(state);
   const { isloading, error, data } = state;
 
   return {

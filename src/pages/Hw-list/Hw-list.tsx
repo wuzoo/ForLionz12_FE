@@ -35,13 +35,13 @@ function HwList() {
   const { error: myPartError, data: myAssignments } =
     usePartAssignment(ifStaff_partAll);
   const { isDark } = useContext(ThemeContext);
+  const navigate = useNavigate();
+  const DetailMatch = useMatch("/homework/:id");
 
+  const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));
   const filteredPartData = data
     ?.filter((item) => item.part === selectedPart.toUpperCase())
     .sort((a, b) => compare(a, b));
-  const navigate = useNavigate();
-  const DetailMatch = useMatch("/homework/:id");
-  const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));
 
   if (error === "rejected") throw new Error(ERROR.ALL_ASSIGNMENT);
   if (myPartError === "rejected") throw new Error(ERROR.PART_ASSIGNMENT);

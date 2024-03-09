@@ -11,7 +11,15 @@ import { useMemberId } from "../../../hooks";
 import { ERROR } from "../../../constants/message";
 import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
 
-function SubmitItem({ name, date, link, description, id, isDark }: IItem) {
+function SubmitItem({
+  name,
+  date,
+  link,
+  description,
+  id,
+  isDark,
+  index,
+}: IItem) {
   const [clicked, setClicked] = useState(false);
 
   const { data, error } = useMemberId(+id);
@@ -24,9 +32,10 @@ function SubmitItem({ name, date, link, description, id, isDark }: IItem) {
       setClicked((prev) => !prev);
     } else if (clicked) {
       // click된 상태라면 link인지 container인지 체크
-      const elem = document.getElementById("link");
-      console.log(elem == e.target);
-      if (elem !== e.target) {
+      const elem = document.querySelectorAll(".link");
+      console.log(elem);
+
+      if (elem[index] !== e.target) {
         setClicked((prev) => !prev);
       }
     }
@@ -67,8 +76,8 @@ function SubmitItem({ name, date, link, description, id, isDark }: IItem) {
             height={40}
             fill={isDark ? "white" : "black"}
           />
-          <Link to={link}>
-            <Styled.LinkText id="link">{link}</Styled.LinkText>
+          <Link to={link} target="_blank">
+            <Styled.LinkText className="link">{link}</Styled.LinkText>
           </Link>
         </Styled.LinkWrapper>
       </div>
