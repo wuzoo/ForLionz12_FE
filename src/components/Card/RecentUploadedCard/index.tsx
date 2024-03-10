@@ -26,7 +26,7 @@ export default function Card({ name, content, link, cnt, uid, isDark }: ICard) {
       {data?.imageUrl ? (
         <Styled.Img src={data?.imageUrl} />
       ) : (
-        <User width="40%" stroke={isDark ? "white" : "black"} />
+        <User width="160px" stroke={isDark ? "white" : "black"} />
       )}
       <Styled.ContentWrapper
         css={css`
