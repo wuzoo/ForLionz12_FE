@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { IResponse, IReducerParam, IReducer } from "../../types";
 
 function reducer<T>(state: IReducerParam<T>, action: IReducerParam<T>) {
@@ -43,7 +43,7 @@ function useAsyncData<T>(
     error: "fullfilled",
   };
 
-  async function fetchData(params?: any[]) {
+  const fetchData = useCallback(async (params?: any[]) => {
     dispatch({ type: "ISLOADING" });
     try {
       const response = params ? await api(params) : await api();
@@ -53,7 +53,7 @@ function useAsyncData<T>(
     } catch (e) {
       dispatch({ type: "FAILURE", error: "rejected" });
     }
-  }
+  }, []);
 
   const [state, dispatch] = useReducer<IReducer<T>>(reducer, initialState);
 
