@@ -2,7 +2,7 @@ export const variants = {
   initial: { height: "80px" },
   hover: {
     scale: 1.01,
-    boxShadow: "0px 2px 8px rgba(250, 182, 173, 0.7)",
+    boxShadow: "0px 2px 8px rgba(250, 182, 173, 0.5)",
     transition: {
       duration: 0.2,
     },

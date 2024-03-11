@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const variants = {
   hover: {
-    boxShadow: "0px 2px 8px rgba(250, 182, 173, 0.7)",
+    boxShadow: "0px 2px 8px rgba(250, 182, 173, 0.5)",
     y: -10,
   },
 };

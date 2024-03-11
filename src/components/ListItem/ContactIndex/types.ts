@@ -6,4 +6,5 @@ export interface IItem {
   instaid?: string;
   githuburl?: string;
   isDark: boolean;
+  id: number;
 }
