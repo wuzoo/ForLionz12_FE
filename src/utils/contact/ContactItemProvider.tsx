@@ -1,10 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
 
-type ItemType = {
-  clickedId: number | null;
-  toggle: (e: number) => void;
-};
-
 export const ContactItemContext = createContext<ItemType>({
   clickedId: 0,
   toggle: () => {},
@@ -25,3 +20,8 @@ export function ItemContextProvider({ children }: { children: ReactNode }) {
     </ContactItemContext.Provider>
   );
 }
+
+type ItemType = {
+  clickedId: number | null;
+  toggle: (e: number) => void;
+};
