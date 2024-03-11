@@ -5,7 +5,7 @@ export const Wrapper = styled(motion.div)`
   ${(props) => props.theme.flexRow("space-between", "center")}
   width: 100%;
   border-radius: 10px;
-  padding: 16px 20px;
+  padding: 0px 20px;
 
   @media screen and (max-width: 768px) {
     ${(props) => props.theme.flexColumn("", "end", 10)}
@@ -18,6 +18,7 @@ export const InfoWrapper = styled.div`
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  padding: 20px 0px;
   width: 100%;
 
   @media screen and (max-width: 768px) {
