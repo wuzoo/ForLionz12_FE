@@ -1,6 +1,6 @@
 import Banner from "../../components/Banner/Banner";
 import PartToggle from "../../components/PartToggle/PartToggle";
-import Item from "../../components/ListItem/ContactIndex/ContactItem";
+import Item from "../../components/ListItem/ContactIndex/index";
 import * as Styled from "./style";
 import { useContext, useState } from "react";
 import { useAllMember } from "../../hooks";
