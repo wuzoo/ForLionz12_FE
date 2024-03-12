@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   top: 78vh;
   width: 15%;
   max-width: 180px;
+  cursor: pointer;
 `;
 
 export const Item = styled.p`
