@@ -43,6 +43,7 @@ export const Badge = styled.div`
 
 export const SNSbox = styled.div`
   ${(props) => props.theme.flexRow("end", "", 10)}
+  padding: 10px 0px;
 `;
 
 export const Img = styled.img`
