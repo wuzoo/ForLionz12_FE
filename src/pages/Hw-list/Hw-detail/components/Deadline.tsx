@@ -33,6 +33,7 @@ function Deadline({ expireAt, isModal }: DateType) {
     <div
       css={css`
         ${theme.flexColumn("", "end", 10)}
+        white-space: nowrap;
         span {
           padding: 0px 3px;
         }
