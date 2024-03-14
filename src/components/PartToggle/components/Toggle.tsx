@@ -20,6 +20,7 @@ function Toggle({ text, part, setPart }: IToggle) {
       width="74px"
       padding="6px 0px"
       fontSize="15"
+      fontWeight="700"
       borderwidth={isDark ? "1.5px" : "2px"}
     >
       {text.toUpperCase()}

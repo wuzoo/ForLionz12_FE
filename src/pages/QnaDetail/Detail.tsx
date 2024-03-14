@@ -12,8 +12,8 @@ import { ERROR } from "../../constants/message";
 import Markdown from "./components/Markdown";
 import Tag from "../../components/Tag/Tag";
 import { ThemeContext } from "../../context/IsDark/IsDark";
-import { theme } from "../../styles/theme/theme";
 import { URL_MAP } from "../../constants/url";
+import CustomInput from "../../components/Input/Input";
 
 function QnaDetail() {
   const { id } = useParams();
@@ -135,17 +135,14 @@ function QnaDetail() {
         <form onSubmit={handleCommentSubmit}>
           <Styled.CommentCnt>
             <Typo color="darkblue" fontSize="24">
-              {comments?.length}&nbsp;
+              {data?.commentCount}&nbsp;
             </Typo>
             <Typo>개의 댓글</Typo>
           </Styled.CommentCnt>
-          <Styled.CommentInput
-            css={css`
-              background-color: ${isDark && theme.mode.dark.bgColor};
-              color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-              border: 2px solid
-                ${isDark ? theme.color.darkgray : theme.color.lightgray};
-            `}
+          <CustomInput
+            as="textarea"
+            height="150px"
+            width="98%"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="댓글을 남겨보세요."

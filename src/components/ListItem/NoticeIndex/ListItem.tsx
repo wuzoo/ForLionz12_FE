@@ -32,7 +32,7 @@ function ListItem({ part, title, date, onClick }: IItem) {
         <Typo color="white">{part.toUpperCase()}</Typo>
       </Styled.Badge>
       <EllipsisText color={isDark ? "white" : "black"} lineHeight={1.2}>
-        <Typo weight="600" fontSize="16">
+        <Typo weight="600" fontSize="17">
           {title}
         </Typo>
       </EllipsisText>

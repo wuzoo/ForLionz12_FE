@@ -2,8 +2,6 @@ import { css } from "@emotion/react";
 import { theme } from "./theme/theme";
 
 export const GlobalStyle = css`
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
   @import "slick-carousel/slick/slick.css";
   @import "slick-carousel/slick/slick-theme.css";
   @import "react-toastify/dist/ReactToastify.css";
@@ -181,7 +179,7 @@ export const GlobalStyle = css`
   }
   .Toastify__toast-body div {
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18;
   }
 
