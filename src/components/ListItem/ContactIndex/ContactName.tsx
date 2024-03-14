@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { theme } from "../../../styles/theme/theme";
 import * as Styled from "./style";
-import { css } from "@emotion/react";
+import Typo from "../../Typo/Typo";
 
 type NameType = {
   isDark: boolean;
@@ -11,14 +11,14 @@ type NameType = {
 
 export default function ContactName({ isDark, children, clicked }: NameType) {
   return (
-    <Styled.Name
-      css={css`
-        color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
-        font-size: ${clicked ? "24px" : "18px"};
-        font-weight: ${theme.weight.semibold};
-      `}
-    >
-      {children}
+    <Styled.Name>
+      <Typo
+        weight="600"
+        fontSize={clicked ? "24" : "18"}
+        color={isDark ? theme.mode.dark.main : theme.mode.light.main}
+      >
+        {children}
+      </Typo>
     </Styled.Name>
   );
 }
