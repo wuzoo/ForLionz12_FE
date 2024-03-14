@@ -1,4 +1,4 @@
-export const getDeadlineTime = (date: string) => {
+export const getDeadlineTime = (date: string, hour: string) => {
   const ymd = date.split("-");
 
   const y = +ymd[0];
@@ -7,9 +7,8 @@ export const getDeadlineTime = (date: string) => {
 
   const day =
     new Date(y, m - 1, d).getTime() +
-    2 * 9 * 1000 * 60 * 60 -
-    1000 * 60 +
-    new Date().getTimezoneOffset() * 60 * 1000;
+    9 * 1000 * 60 * 60 +
+    +hour * 1000 * 60 * 60;
 
   const newday = new Date(day).toISOString();
 

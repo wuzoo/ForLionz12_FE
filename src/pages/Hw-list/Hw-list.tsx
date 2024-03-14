@@ -6,8 +6,8 @@ import PartToggle from "../../components/PartToggle/PartToggle";
 import Hwdetail from "./Hw-detail/detailModal.tsx";
 import { AnimatePresence } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { getFormedDate, compare } from "../../utils/date.ts";
-import { useAllAssignment, usePartAssignment } from "../../hooks";
+import { getFormedDate } from "../../utils/date.ts";
+import { usePartAssignment } from "../../hooks";
 import { theme } from "../../styles/theme/theme.ts";
 import HwSliderCard from "../../components/Card/HwSliderCard";
 import AdminUploadBtn from "../../components/Button/AdminUploadBtn.tsx/index.tsx";
@@ -19,31 +19,23 @@ import { motion } from "framer-motion";
 import Typo from "../../components/Typo/Typo.tsx";
 import { ThemeContext } from "../../context/IsDark/IsDark.tsx";
 import { URL_MAP } from "../../constants/url.ts";
+import useFilteredAssignment from "../../hooks/api/assignment/useFilteredAssignment.ts";
+import useLocalStorage from "../../hooks/common/useLocalStorage.ts";
 
 function HwList() {
   const [selectedPart, setSelectedPart] = useState("all");
-
-  const part = localStorage.getItem("part");
-  const id = localStorage.getItem("id");
-
-  if (!part) throw new Error(ERROR.NO_PART);
-  if (!id) throw new Error(ERROR.NO_ID);
-
-  const ifStaff_partAll = part !== "STAFF" ? part : "ALL";
-
-  const { data, error } = useAllAssignment();
-  const { error: myPartError, data: myAssignments } =
-    usePartAssignment(ifStaff_partAll);
   const { isDark } = useContext(ThemeContext);
   const navigate = useNavigate();
   const DetailMatch = useMatch("/homework/:id");
+  const filteredPartData = useFilteredAssignment(selectedPart);
+  const { part, id } = useLocalStorage(["part", "id"]);
 
-  const sortByRecentCreatedAt = myAssignments?.sort((a, b) => compare(a, b));
-  const filteredPartData = data
-    ?.filter((item) => item.part === selectedPart.toUpperCase())
-    .sort((a, b) => compare(a, b));
+  console.log(part, id);
 
-  if (error === "rejected") throw new Error(ERROR.ALL_ASSIGNMENT);
+  const ifStaff_partAll = part !== "STAFF" ? part : "ALL";
+  const { error: myPartError, data: myAssignments } =
+    usePartAssignment(ifStaff_partAll);
+
   if (myPartError === "rejected") throw new Error(ERROR.PART_ASSIGNMENT);
 
   useEffect(() => {
@@ -88,11 +80,11 @@ function HwList() {
           fontsizes={["40", "18"]}
           gap="10"
         />
-        <AdminUploadBtn id={id} type="assignment" />
+        <AdminUploadBtn id={id + ""} type="assignment" />
       </div>
       <Styled.Margin height="40px" />
       <Styled.FullWidthContainer>
-        {sortByRecentCreatedAt?.length === 0 && (
+        {myAssignments?.length === 0 && (
           <div
             css={css`
               ${theme.flexRow("center", "center")}
@@ -105,7 +97,7 @@ function HwList() {
           </div>
         )}
         <FullScreenSlider>
-          {sortByRecentCreatedAt?.map((item, index) => (
+          {myAssignments?.map((item, index) => (
             <HwSliderCard
               key={item.id}
               onClick={() => navigate(`detail/${item.id}`)}
@@ -158,6 +150,7 @@ function HwList() {
                 background-color: ${isDark
                   ? theme.color.lightblack
                   : theme.color.white};
+                overflow: hidden;
               `}
               layoutId={DetailMatch?.params.id}
             >

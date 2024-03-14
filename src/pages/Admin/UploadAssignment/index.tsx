@@ -16,6 +16,7 @@ import PartToggle from "../../../components/PartToggle/PartToggle";
 import { TEXT, TITLE } from "./constant/text";
 import { ERROR } from "../../../constants/message";
 import { URL_MAP } from "../../../constants/url";
+import CustomInput from "../../../components/Input/Input";
 
 const defaultProps = {
   fontsizes: ["30", "14"],
@@ -51,6 +52,7 @@ function UploadHW() {
   const [part, setPart] = useState("all");
   const [tags, setTags] = useState<string[]>([]);
   const [tag, setTag] = useState("");
+  const [hour, setHour] = useState("");
 
   const AddTag = () => {
     setTags((obj) => {
@@ -78,7 +80,7 @@ function UploadHW() {
   }, [state?.id, data]);
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    const expireAt = getDeadlineTime(date);
+    const expireAt = getDeadlineTime(date, hour);
 
     console.log(data);
 
@@ -135,6 +137,11 @@ function UploadHW() {
           value={date}
           onChange={(e) => setDate(e.target.value)}
           type="date"
+        />
+        <CustomInput
+          value={hour}
+          onChange={(e) => setHour(e.target.value)}
+          placeholder="시간"
         />
       </div>
       <Styled.PartContainer>

@@ -11,6 +11,7 @@ import { theme } from "../../../styles/theme/theme.ts";
 import AdminModifyBtn from "../../../components/Button/AdminModifyBtn.tsx";
 import { ERROR } from "../../../constants/message.ts";
 import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
+import NotionLogo from "../../../assets/icons/notion/notion.svg?react";
 import Tag from "../../../components/Tag/Tag.tsx";
 
 interface IHwDetail {
@@ -75,13 +76,23 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
         >
           <Deadline isModal={true} expireAt={expireAt} />
           <Styled.AssignmentLink>
-            <GithubLogo
-              width={50}
-              height={50}
-              fill={isDark ? "white" : "black"}
-            />
+            {clickedId === 51 ? (
+              <NotionLogo
+                width={40}
+                height={40}
+                fill={isDark ? "white" : "black"}
+              />
+            ) : (
+              <GithubLogo
+                width={50}
+                height={50}
+                fill={isDark ? "white" : "black"}
+              />
+            )}
             <Link to={data?.githubLink} target="_blank">
-              <Typo color="darkblue">{data.githubLink}</Typo>
+              <Typo color="darkblue">
+                {clickedId === 51 ? "Notion Link" : "Github Link"}
+              </Typo>
             </Link>
           </Styled.AssignmentLink>
         </div>

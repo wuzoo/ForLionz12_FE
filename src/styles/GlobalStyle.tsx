@@ -95,7 +95,9 @@ export const GlobalStyle = css`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    font-family: "Inter", sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
     box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
@@ -148,6 +150,9 @@ export const GlobalStyle = css`
   }
   .recent_slide .slick-list {
     padding: 20px 0px;
+  }
+  .Toastify__toast-body {
+    white-space: nowrap;
   }
   .Toastify__toast-body div {
     text-align: center;

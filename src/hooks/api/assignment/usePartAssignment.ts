@@ -1,5 +1,6 @@
 import { getPartAssignment } from "../../../api/assignment";
 import { IAssignmentResult } from "../../../types";
+import { compare } from "../../../utils/date";
 import useAsyncData from "../../common/useAsyncData";
 
 export function usePartAssignment(part: string) {
@@ -8,7 +9,9 @@ export function usePartAssignment(part: string) {
     [part]
   );
 
-  const { isloading, error, data } = state;
+  const sorted = state.data?.sort((a, b) => compare(a, b));
 
-  return { isloading, error, data, reFetch };
+  const { isloading, error } = state;
+
+  return { isloading, error, data: sorted, reFetch };
 }
