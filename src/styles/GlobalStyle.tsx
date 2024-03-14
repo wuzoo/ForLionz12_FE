@@ -151,6 +151,9 @@ export const GlobalStyle = css`
   .recent_slide .slick-list {
     padding: 20px 0px;
   }
+  .Toastify__toast-body {
+    white-space: nowrap;
+  }
   .Toastify__toast-body div {
     text-align: center;
     font-weight: 600;
