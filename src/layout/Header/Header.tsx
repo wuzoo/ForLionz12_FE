@@ -39,7 +39,9 @@ function Header({ type }: IHeader) {
               color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
             `}
           >
-            LIONZ
+            <Typo fontSize="40" weight="700">
+              LIONZ
+            </Typo>
           </Styled.Logo>
         </Link>
         {!isLoginPage && (
@@ -52,7 +54,8 @@ function Header({ type }: IHeader) {
                     ? "darkblue"
                     : undefined
                 }
-                weight="600"
+                weight="700"
+                fontSize="19"
               >
                 Assignment
               </Typo>
@@ -64,7 +67,8 @@ function Header({ type }: IHeader) {
                     ? "darkblue"
                     : undefined
                 }
-                weight="600"
+                weight="700"
+                fontSize="19"
               >
                 Notification
               </Typo>
@@ -72,7 +76,8 @@ function Header({ type }: IHeader) {
             <Link to={`/${URL_MAP.QNA}`}>
               <Typo
                 color={pathname === `/${URL_MAP.QNA}` ? "darkblue" : undefined}
-                weight="600"
+                weight="700"
+                fontSize="19"
               >
                 Q&A
               </Typo>
@@ -83,6 +88,7 @@ function Header({ type }: IHeader) {
                   pathname === `/${URL_MAP.CONTACT}` ? "darkblue" : undefined
                 }
                 weight="600"
+                fontSize="19"
               >
                 Contact
               </Typo>

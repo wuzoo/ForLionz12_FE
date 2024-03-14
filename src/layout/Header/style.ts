@@ -14,8 +14,6 @@ export const Wrapper = styled.div<{ type?: string }>`
 `;
 
 export const Logo = styled.span`
-  font-size: 40px;
-  font-weight: 800;
   transition: all 0.2s ease-in-out;
 `;
 
@@ -28,6 +26,9 @@ export const NavCol = styled.div`
     gap: 30px;
     width: 100%;
     justify-content: space-between;
+  }
+  a {
+    letter-spacing: -0.02em;
   }
 `;
 
