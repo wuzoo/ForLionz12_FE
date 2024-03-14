@@ -33,6 +33,7 @@ function Button(props: IBtn) {
     >
       <Typo
         fontSize={props.fontSize || "18"}
+        weight={props.fontWeight || "500"}
         color={props.color || theme.color.black}
       >
         {props.children}

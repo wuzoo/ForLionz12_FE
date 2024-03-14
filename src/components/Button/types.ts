@@ -16,4 +16,5 @@ export interface IBtnStyle {
   bordercolor?: string;
   fontSize?: string;
   padding?: string;
+  fontWeight?: string;
 }
