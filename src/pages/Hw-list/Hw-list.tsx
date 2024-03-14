@@ -78,7 +78,7 @@ function HwList() {
           main="My Assignments"
           sub={TEXT.HW_LIST}
           fontsizes={["40", "18"]}
-          gap="10"
+          gap="6"
         />
         <AdminUploadBtn id={id + ""} type="assignment" />
       </div>
@@ -117,7 +117,7 @@ function HwList() {
           main="다른 파트의 과제"
           sub={SUB_TEXT.HW_OTHER_PART}
           fontsizes={["37", "18"]}
-          gap="10"
+          gap="6"
         />
         <PartToggle part={selectedPart} setPart={setSelectedPart} />
       </Styled.AlignWrapper>
