@@ -56,6 +56,7 @@ export const AssignmentLink = styled.div`
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-color: ${(props) => props.theme.color.darkblue};
+    font-weight: 600;
   }
 `;
 

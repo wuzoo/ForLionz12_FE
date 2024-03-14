@@ -64,7 +64,7 @@ function Qna() {
         setCategory={setCategory}
       />
       <Styled.Title>
-        <Typo weight="600" fontSize="30">
+        <Typo weight="600" fontSize="34">
           {title}
         </Typo>
       </Styled.Title>

@@ -14,8 +14,8 @@ export const Wrapper = styled.div<{ type?: string }>`
 `;
 
 export const Logo = styled.span`
-  font-size: 35px;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 800;
   transition: all 0.2s ease-in-out;
 `;
 
