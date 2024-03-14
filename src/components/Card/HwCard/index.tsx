@@ -61,7 +61,7 @@ function HwCard({
               lineHeight={1.3}
               width="100%"
             >
-              <Typo>{title}</Typo>
+              <Typo weight="600">{title}</Typo>
             </EllipsisText>
             <Styled.Badge
               css={css`
