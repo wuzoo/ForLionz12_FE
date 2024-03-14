@@ -46,7 +46,7 @@ function Home() {
               transition={{ delay: 1 }}
             >
               <Typo color="darkblue" weight="600" fontSize="24">
-                {part} {name}&nbsp;
+                {part}&nbsp; {name}&nbsp;
               </Typo>
               <Typo fontSize="24" weight="600">
                 {TEXT.HOME_GREETING}
