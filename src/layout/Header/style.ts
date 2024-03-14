@@ -27,9 +27,6 @@ export const NavCol = styled.div`
     width: 100%;
     justify-content: space-between;
   }
-  a {
-    letter-spacing: -0.02em;
-  }
 `;
 
 export const Profile = styled.div<{ show: boolean }>`
