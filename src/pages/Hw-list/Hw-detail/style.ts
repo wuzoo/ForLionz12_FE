@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Badge = styled.div`
   color: white;
-  width: 68px;
+  min-width: 68px;
   height: 26px;
   font-weight: ${(props) => props.theme.weight.semibold};
   ${(props) => props.theme.flexRow("center", "center")}
@@ -51,6 +51,7 @@ export const Title = styled.p`
 
 export const AssignmentLink = styled.div`
   ${(props) => props.theme.flexRow("", "center", 10)}
+
   a {
     text-decoration: underline;
     text-underline-offset: 4px;
