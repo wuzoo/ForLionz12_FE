@@ -8,6 +8,34 @@ export const GlobalStyle = css`
   @import "slick-carousel/slick/slick-theme.css";
   @import "react-toastify/dist/ReactToastify.css";
 
+  @font-face {
+    font-family: "Pretendard-bold";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff")
+      format("woff");
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: "Pretendard-semibold";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff")
+      format("woff");
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: "Pretendard-medium";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff")
+      format("woff");
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: "Pretendard-regular";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+      format("woff");
+    font-weight: 400;
+  }
+
   html,
   body,
   div,
@@ -95,9 +123,6 @@ export const GlobalStyle = css`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
     box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
