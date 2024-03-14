@@ -138,7 +138,7 @@ function Profile() {
           <Button
             radius="6px"
             bgcolor="superlightgray"
-            width="120px"
+            width="140px"
             padding="6px 0px"
             onClick={handleDelete}
           >

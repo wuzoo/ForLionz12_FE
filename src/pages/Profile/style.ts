@@ -32,7 +32,7 @@ export const UploadBtn = styled.label`
   cursor: pointer;
   white-space: nowrap;
   padding: 8px;
-  width: 120px;
+  width: 140px;
   text-align: center;
   border-radius: 6px;
   background-color: ${(props) => props.theme.color.darkblue};
