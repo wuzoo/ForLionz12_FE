@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import Typo from "../../../../components/Typo/Typo";
 
 interface IText {
   item: string[];
@@ -15,7 +16,9 @@ function OnebyoneText({ item }: IText) {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: Number(index * 0.06) }}
         >
-          <span>{char}</span>
+          <Typo fontSize="50" weight="700">
+            {char}
+          </Typo>
         </motion.span>
       ))}
     </>
