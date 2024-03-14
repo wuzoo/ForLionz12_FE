@@ -10,6 +10,7 @@ import { css } from "@emotion/react";
 import { theme } from "../../../styles/theme/theme";
 import { PART_COLOR } from "../../../constants/partcolor";
 import GithubLogo from "../../../assets/icons/github/img_dark.svg?react";
+import NotionLogo from "../../../assets/icons/notion/notion.svg?react";
 import Button from "../../../components/Button/Button.tsx";
 import Tag from "../../../components/Tag/Tag.tsx";
 import { useContext } from "react";
@@ -75,13 +76,23 @@ function Detail() {
           `}
         >
           <Styled.AssignmentLink>
-            <GithubLogo
-              width={50}
-              height={50}
-              fill={isDark ? "white" : "black"}
-            />
+            {id === "51" ? (
+              <NotionLogo
+                width={40}
+                height={40}
+                fill={isDark ? "white" : "black"}
+              />
+            ) : (
+              <GithubLogo
+                width={50}
+                height={50}
+                fill={isDark ? "white" : "black"}
+              />
+            )}
             <Link to={data?.githubLink}>
-              <Typo color="darkblue">{data?.githubLink}</Typo>
+              <Typo color="darkblue">
+                {id === "51" ? "Notion Link" : "Github Link"}
+              </Typo>
             </Link>
           </Styled.AssignmentLink>
           <Deadline isModal={false} expireAt={data?.expireAt} />
