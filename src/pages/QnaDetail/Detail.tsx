@@ -128,7 +128,7 @@ function QnaDetail() {
           </Styled.InfoAndBtnWrapper>
         </Styled.TitleAndInfoWrapper>
         <Styled.MarkDownContent>
-          <Markdown isDark={isDark}>{data?.content}</Markdown>
+          <Markdown isDark={isDark} content={data?.content} />
         </Styled.MarkDownContent>
       </div>
       <div>

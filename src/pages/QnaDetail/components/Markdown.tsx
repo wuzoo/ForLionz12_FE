@@ -7,27 +7,26 @@ import { theme } from "../../../styles/theme/theme";
 
 const MDImg = styled.img`
   max-width: 100%;
-  height: 400px;
   object-fit: cover;
 `;
 
 const MDParagraph = styled.p`
   line-height: 1.3;
-  word-break: break-all;
-  word-wrap: break-word;
+  white-space: pre-line;
   font-weight: ${(props) => props.theme.weight.regular};
 `;
 
 export default function Markdown({
-  children,
+  content,
   isDark,
 }: {
-  children: string;
+  content: string;
   isDark: boolean;
 }) {
+  // const source = content.replace(/\n/gi, "\n &nbsp;");
   return (
     <ReactMarkdown
-      children={children}
+      children={content}
       components={{
         code: (props: any) => {
           const match = /language-(\w+)/.exec(props.className || "");
@@ -47,6 +46,9 @@ export default function Markdown({
             />
           );
         },
+        img: (props: any) => {
+          return <MDImg {...props} />;
+        },
         p: (props: any) => {
           return (
             <>
@@ -61,9 +63,6 @@ export default function Markdown({
               </MDParagraph>
             </>
           );
-        },
-        img: (props: any) => {
-          return <MDImg {...props} />;
         },
       }}
     />
