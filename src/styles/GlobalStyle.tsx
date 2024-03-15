@@ -135,11 +135,6 @@ export const GlobalStyle = css`
   hgroup,
   menu,
   nav,
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
   section {
     display: block;
   }
