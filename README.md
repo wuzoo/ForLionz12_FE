@@ -13,8 +13,8 @@
 
 | **category**  |                    **stack**                     |
 | :-----------: | :----------------------------------------------: |
-|    Common     |    `TypeScript`, `npm`, `prettier`, `ESLint`     |
-|   FrontEnd    | `React`, `Vite`, `emotion.js`, `Recoil`, `Axios` |
+|    Common     |    `TypeScript`, `npm`, `prettier`     |
+|   FrontEnd    | `React`, `Vite`, `emotion.js`, `Axios` |
 |    BackEnd    |             `Spring`, `JPA`, `MySQL`             |
 | Collaboration |                `notion`, `Figma`                 |
 
