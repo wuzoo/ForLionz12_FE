@@ -38,7 +38,7 @@ function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
           `}
           onClick={() => setCategory(item.parentTagId)}
         >
-          <Typo weight="500">{item.name}</Typo>
+          <Typo weight="600">{item.name}</Typo>
         </Styled.Item>
       ))}
     </Styled.Wrapper>
