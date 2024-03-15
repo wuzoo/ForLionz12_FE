@@ -1,24 +1,32 @@
 import { motion } from "framer-motion";
-import React from "react";
-import Typo from "../../../../components/Typo/Typo";
+import React, { useContext } from "react";
+import { css } from "@emotion/react";
+import { ThemeContext } from "../../../../context/IsDark/IsDark";
+import { theme } from "../../../../styles/theme/theme";
 
 interface IText {
-  item: string[];
+  text: string[];
 }
 
-function OnebyoneText({ item }: IText) {
+function OnebyoneText({ text }: IText) {
+  const { isDark } = useContext(ThemeContext);
   return (
     <>
-      {item.map((char, index) => (
+      {text.map((char, index) => (
         <motion.span
+          css={css`
+            font-family: "Pretendard-bold";
+            font-size: 50px;
+            color: ${isDark ? theme.mode.dark.main : theme.mode.light.main};
+
+            transition: color 0.2s ease-in-out;
+          `}
           key={index}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: Number(index * 0.06) }}
         >
-          <Typo fontSize="50" weight="700">
-            {char}
-          </Typo>
+          {char}
         </motion.span>
       ))}
     </>
