@@ -20,10 +20,12 @@ export default function DefaultScrollMotion({
       if (pathname === `/${URL_MAP.ASSIGNMENT}`) {
         document.body.style.maxWidth = "100vw";
         document.body.style.overflowY = "scroll";
+        document.body.style.overflowX = "hidden";
         return;
       } else if (pathname !== `/${URL_MAP.ASSIGNMENT}`) {
         document.body.style.maxWidth = "100vw";
         document.body.style.overflowY = "scroll";
+        document.body.style.overflowX = "hidden";
       }
     }
 
