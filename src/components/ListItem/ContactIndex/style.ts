@@ -31,7 +31,8 @@ export const Name = styled.p`
 `;
 
 export const NameAndPart = styled.div`
-  ${(props) => props.theme.flexRow("space-between", "center", 20)};
+  width: 170px;
+  ${(props) => props.theme.flexRow("space-between", "center")};
 `;
 
 export const Badge = styled.div`
