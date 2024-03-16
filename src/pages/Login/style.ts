@@ -43,6 +43,7 @@ export const Input = styled.input`
   margin: 5px 0px;
   border-radius: 10px;
   font-size: 18px;
+  font-family: "Pretendard-medium";
   padding-left: 26px;
 
   &::placeholder {
