@@ -42,8 +42,11 @@ function Home() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
+              <Typo color="darkblue" weight="600" fontSize="26">
+                {part}&nbsp;&nbsp;
+              </Typo>
               <Typo color="darkblue" weight="600" fontSize="24">
-                {part}&nbsp; {name}&nbsp;
+                {name}&nbsp;
               </Typo>
               <Typo fontSize="24" weight="600">
                 {TEXT.HOME_GREETING}

@@ -67,7 +67,7 @@ function QuestionUpload() {
   const handleCodeInput = () => {
     const input = document.getElementById("content") as HTMLInputElement;
 
-    input.value += "  \n```language\ncode\n```  \n";
+    input.value += "\n```language\ncode\n```\n";
     input.focus();
   };
 

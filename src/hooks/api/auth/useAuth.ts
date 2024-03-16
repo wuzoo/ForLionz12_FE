@@ -35,7 +35,7 @@ export function useAuth() {
           if (refreshToken) {
             setCookie("myToken", refreshToken, {
               path: "/",
-              secure: true,
+              secure: false,
               sameSite: "none",
               expires: expiration,
             });

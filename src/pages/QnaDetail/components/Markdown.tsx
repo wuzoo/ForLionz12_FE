@@ -23,10 +23,25 @@ export default function Markdown({
   content: string;
   isDark: boolean;
 }) {
-  // const source = content.replace(/\n/gi, "\n &nbsp;");
+  // ```javascript
+  // code
+  // ```
+  const source = content.replace(
+    /(```(?:[\s\S]*?)```)|\n/g,
+    (match, codeBlock) => {
+      console.log(match);
+      if (codeBlock) {
+        return "\n" + codeBlock + "\n";
+      } else {
+        return "\n &nbsp;";
+      }
+    }
+  );
+
+  console.log(source);
   return (
     <ReactMarkdown
-      children={content}
+      children={source}
       components={{
         code: (props: any) => {
           const match = /language-(\w+)/.exec(props.className || "");

@@ -32,6 +32,7 @@ export const Text = styled(motion.h1)`
 `;
 
 export const Usergreet = styled(motion.h3)`
+  ${(props) => props.theme.flexRow("", "center")}
   span {
     @media screen and (max-width: 900px) {
       font-size: 20px;
