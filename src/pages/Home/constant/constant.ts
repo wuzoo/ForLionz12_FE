@@ -23,7 +23,7 @@ export const Destination: IDest = {
   공지사항: `/${URL_MAP.NOTIFICATION}`,
   과제: `/${URL_MAP.ASSIGNMENT}`,
   연락처: `/${URL_MAP.CONTACT}`,
-  "Q&A": `${URL_MAP.CONTACT}`,
+  "Q&A": `${URL_MAP.QNA}`,
 };
 
 export const SliderProps = {
