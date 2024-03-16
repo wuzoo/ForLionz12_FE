@@ -2,6 +2,8 @@
 
 본 프로젝트는 인하대학교 멋쟁이사자처럼 12기를 관리하고 운영하기 위한 웹 사이트를 제작하는 프로젝트입니다.
 
+> 2024.01.15 ~ ing
+
 ## 👬 팀 소개
 
 |                                                              **최주용(FE, 디자인)**                                                              |                                                              **한수현(BE, 디자인)**                                                              |
@@ -13,9 +15,14 @@
 
 | **category**  |                    **stack**                     |
 | :-----------: | :----------------------------------------------: |
-|    Common     |    `TypeScript`, `npm`, `prettier`     |
-|   FrontEnd    | `React`, `Vite`, `emotion.js`, `Axios` |
-|    BackEnd    |             `Spring`, `JPA`, `MySQL`             |
+|    Common     |    `npm`, `prettier`     |
+|Language|`TypeScript`, `JavaScript`|
+|Bundler, Build|`Vite`|
+|Framework|`React`|
+|style|`emotion.js`|
+|API|`Axios`|
+|Authentication|`Cookie`, `RefreshToken`|
+|Deployment|`Netlify`|
 | Collaboration |                `notion`, `Figma`                 |
 
 ## 🎯 기능 목록
