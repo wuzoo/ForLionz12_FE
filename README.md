@@ -17,10 +17,10 @@
 | :-----------: | :----------------------------------------------: |
 |    Common     |    `npm`, `prettier`     |
 |Language|`TypeScript`, `JavaScript`|
-|Bundler, Build|`Vite`|
+|Bundler & Build|`Vite`|
 |Framework|`React`|
-|style|`emotion.js`|
-|API|`Axios`|
+|Style|`emotion.js`|
+|Data Fetching|`Axios`|
 |Authentication|`Cookie`, `RefreshToken`|
 |Deployment|`Netlify`|
 | Collaboration |                `notion`, `Figma`                 |
@@ -50,3 +50,4 @@
 |  style:   |  스타일 추가 및 수정  |
 |  chore:   |   주석 추가 및 수정   |
 |   docs:   | 리드미 등의 문서 작성 |
+|asset: |이미지 혹은 폰트 등의 파일 업로드 및 수정|
