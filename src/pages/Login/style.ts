@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const page = styled.div`
   width: 100vw;
-  margin-top: 100px;
+  margin-top: 80px;
   ${(props) => props.theme.flexRow("center")}
 `;
 
@@ -10,7 +10,7 @@ export const Img = styled.img`
   position: absolute;
   width: 400px;
   z-index: -10;
-  left: 20%;
+  left: 14%;
   top: 20%;
 `;
 
@@ -30,15 +30,18 @@ export const LoginBox = styled.div`
 export const WelcomeText = styled.h1`
   font-size: 32px;
   font-weight: 600;
+  font-family: "Pretendard-medium";
   text-align: right;
   white-space: pre-line;
   place-self: end;
   line-height: 1.2;
+  letter-spacing: -0.01em;
 `;
 
 export const Input = styled.input`
   border: 2.5px solid ${(props) => props.theme.color.lightgray};
   width: 30vw;
+  min-width: 300px;
   height: 50px;
   margin: 5px 0px;
   border-radius: 10px;
@@ -58,6 +61,7 @@ export const Input = styled.input`
 
 export const Form = styled.form`
   ${(props) => props.theme.flexColumn("", "center")}
+  margin-top: 16px;
 `;
 
 export const MobileLayout = styled.div`
