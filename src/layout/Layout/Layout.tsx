@@ -10,7 +10,6 @@ import { css } from "@emotion/react";
 import { theme } from "../../styles/theme/theme";
 import { URL_MAP } from "../../constants/url";
 import DefaultScrollMotion from "../ControlScroll/DefaultScrollMotion";
-import Typo from "../../components/Typo/Typo";
 
 function Layout() {
   const { pathname } = useLocation();
@@ -19,8 +18,6 @@ function Layout() {
   const navigate = useNavigate();
 
   const { isDark } = useContext(ThemeContext);
-
-  const isMobile = /iPhone|Android/i.test(window.navigator.userAgent);
 
   useEffect(() => {
     checkToken();
@@ -59,20 +56,6 @@ function Layout() {
       },
     });
   }, []);
-
-  if (isMobile) {
-    return (
-      <Styled.Layout
-        css={css`
-          background-color: ${theme.mode.dark.bgColor};
-        `}
-      >
-        <Typo weight="600" fontSize="20">
-          모바일은 허용되지 않습니다.
-        </Typo>
-      </Styled.Layout>
-    );
-  }
 
   return (
     <Styled.Layout
