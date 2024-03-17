@@ -59,3 +59,9 @@ export const Input = styled.input`
 export const Form = styled.form`
   ${(props) => props.theme.flexColumn("", "center")}
 `;
+
+export const MobileLayout = styled.div`
+  height: 100vh;
+  width: 100vw;
+  ${(props) => props.theme.flexRow("center", "center")}
+`;

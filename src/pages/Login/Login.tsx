@@ -11,10 +11,22 @@ function Login() {
   const [pwd, setPwd] = useState("");
   const { check } = useAuth();
 
+  const isMobile = /iPhone|Android/i.test(window.navigator.userAgent);
+
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     check(id, pwd);
   };
+
+  if (isMobile) {
+    return (
+      <Styled.MobileLayout>
+        <Typo weight="600" fontSize="20">
+          Mobile is Not Allowed
+        </Typo>
+      </Styled.MobileLayout>
+    );
+  }
 
   return (
     <>
