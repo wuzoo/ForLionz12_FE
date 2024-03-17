@@ -10,8 +10,8 @@ export const Img = styled.img`
   position: absolute;
   width: 400px;
   z-index: -10;
-  left: 14%;
-  top: 20%;
+  top: -120px;
+  left: -260px;
 `;
 
 export const LoginBox = styled.div`
@@ -21,6 +21,7 @@ export const LoginBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 15rem;
+  position: relative;
 
   button {
     margin-top: 25px;
@@ -28,7 +29,7 @@ export const LoginBox = styled.div`
 `;
 
 export const WelcomeText = styled.h1`
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 600;
   font-family: "Pretendard-medium";
   text-align: right;
@@ -61,7 +62,7 @@ export const Input = styled.input`
 
 export const Form = styled.form`
   ${(props) => props.theme.flexColumn("", "center")}
-  margin-top: 16px;
+  margin-top: 12px;
 `;
 
 export const MobileLayout = styled.div`
