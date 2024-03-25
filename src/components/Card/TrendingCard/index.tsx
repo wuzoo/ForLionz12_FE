@@ -4,12 +4,14 @@ import Like from "../../../assets/icons/likes/Like.svg?react";
 import { css } from "@emotion/react";
 import { theme } from "../../../styles/theme/theme";
 import * as Styled from "./style";
+import { useNavigate } from "react-router-dom";
 
 interface ICard {
   createdAt: string;
   text: string;
   likes: number;
   comments: number;
+  id: number;
 }
 
 export default function TrendingCard({
@@ -17,9 +19,16 @@ export default function TrendingCard({
   text,
   likes,
   comments,
+  id,
 }: ICard) {
+  const navigate = useNavigate();
+
+  const handleClickPost = () => {
+    navigate(`/qna/${id}`);
+  };
+
   return (
-    <Styled.CardWrapper>
+    <Styled.CardWrapper onClick={handleClickPost}>
       <Typo color="darkgray">{createdAt}</Typo>
       <div
         css={css`
@@ -35,7 +44,6 @@ export default function TrendingCard({
           <Typo>{comments}</Typo>
         </Styled.IconAndCount>
       </div>
-
       <Typo weight="500">{text}</Typo>
     </Styled.CardWrapper>
   );
