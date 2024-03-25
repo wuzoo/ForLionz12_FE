@@ -1,68 +1,69 @@
 import { css } from "@emotion/react";
-import Button from "../../Button/Button";
 import Typo from "../../Typo/Typo";
 import * as Styled from "./style";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "./types";
 import { getFormedDate } from "../../../utils/date";
 import EllipsisText from "../../Ellipsis/EllipsisText";
+import Tag from "../../Tag/Tag";
+import redirectimg from "./assets/redirect.svg";
+import { theme } from "../../../styles/theme/theme";
 
 function Card({ logo, bgcolor, ...props }: ICard) {
   const navigate = useNavigate();
 
-  function getPartAndDate() {
-    return (
-      <p>
-        <Typo color="white" weight="regular">
-          {props.part}
-        </Typo>
-        <Typo color="white">&nbsp;⎸&nbsp;</Typo>
-        <Typo color="white" weight="regular">
-          {getFormedDate(props.createdAt)}
-        </Typo>
-      </p>
-    );
-  }
+  const 공지사항페이지로가기 = () => {
+    navigate("/notification");
+  };
+
+  const tagContent = [
+    getFormedDate(props.createdAt).split(" ")[0],
+    "NOTIFICATION",
+    "UPDATED",
+  ];
 
   return (
-    <Styled.CardWrapper
-      css={css`
-        background-color: ${bgcolor};
-      `}
-    >
-      <Styled.Picture src={logo} />
-      <Styled.LogoAndTitle onClick={() => navigate("/notification")}>
-        <Styled.TitleWrapper>
-          <EllipsisText color="white" lineHeight={1.3} textAlign="start">
-            <Typo weight="700" color="white" fontSize="42">
-              {props.title}
-            </Typo>
-          </EllipsisText>
-          <EllipsisText
-            color="white"
-            lineHeight={1.3}
-            lineClamp={3}
-            width="100%"
+    <Styled.Wrapper>
+      <Styled.ImgBox
+        onClick={(e: React.MouseEvent) => {
+          console.log(e.target, e.currentTarget);
+        }}
+        css={css`
+          background-color: ${bgcolor};
+          overflow: hidden;
+        `}
+      >
+        <Styled.Icon src={logo} />
+        <Styled.InnerContent>
+          <div
+            css={css`
+              ${theme.flexRow("space-between", "start")}
+            `}
           >
-            <Typo color="white" fontSize="18" weight="500">
-              {props.content}
-            </Typo>
-          </EllipsisText>
-        </Styled.TitleWrapper>
-      </Styled.LogoAndTitle>
-      <Styled.AlignWrapper>
-        {getPartAndDate()}
-        <Button
-          onClick={() => navigate("/notification")}
-          radius="5px"
-          width="100%"
-          height="40px"
-          bgcolor="white"
-        >
-          <Typo color="darkgray">공지 전체 보러 가기</Typo>
-        </Button>
-      </Styled.AlignWrapper>
-    </Styled.CardWrapper>
+            <Styled.InnerTag>{props.part}</Styled.InnerTag>
+            <img
+              onClick={공지사항페이지로가기}
+              width={40}
+              height={40}
+              src={redirectimg}
+            />
+          </div>
+          <EllipsisText color="white">{props.content}</EllipsisText>
+        </Styled.InnerContent>
+      </Styled.ImgBox>
+      <Styled.TagWrapper>
+        {tagContent.map((tag) => (
+          <Tag type="main" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </Styled.TagWrapper>
+      <Styled.Title>
+        <Typo fontSize="24" weight="600">
+          {props.title + "  (LIKELION 12th InHA Univ.)"}
+        </Typo>
+      </Styled.Title>
+    </Styled.Wrapper>
   );
 }
 
