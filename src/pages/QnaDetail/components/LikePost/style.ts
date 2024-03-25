@@ -10,6 +10,12 @@ export const Wrapper = styled.div`
   padding: 18px 10px;
 
   @media screen and (max-width: 900px) {
-    position: static;
+    ${(props) => props.theme.flexRow("", "center", 10)}
+    flex-direction: row;
+    padding: 0px 5px;
+    position: relative;
+    svg {
+      width: 14px;
+    }
   }
 `;
