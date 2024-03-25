@@ -93,7 +93,9 @@ function Detail() {
             )}
             <Link to={data?.githubLink}>
               <Typo color="darkblue">
-                {id === "51" ? "Notion Link" : "Github Link"}
+                {id === "51" || data?.part === "BE"
+                  ? "Notion Link"
+                  : "Github Link"}
               </Typo>
             </Link>
           </Styled.AssignmentLink>

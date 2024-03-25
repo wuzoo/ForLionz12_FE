@@ -95,7 +95,9 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
             )}
             <Link to={data?.githubLink} target="_blank">
               <Typo color="darkblue">
-                {clickedId === 51 ? "Notion Link" : "Github Link"}
+                {clickedId === 51 || part === "BE"
+                  ? "Notion Link"
+                  : "Github Link"}
               </Typo>
             </Link>
           </Styled.AssignmentLink>
