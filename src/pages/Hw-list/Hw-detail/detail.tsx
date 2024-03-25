@@ -78,7 +78,7 @@ function Detail() {
           `}
         >
           <Styled.AssignmentLink>
-            {id === "51" ? (
+            {id === "51" || data?.part === "BE" ? (
               <NotionLogo
                 width={40}
                 height={40}
