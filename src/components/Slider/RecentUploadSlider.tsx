@@ -50,6 +50,7 @@ export default function RecentUploadSlider({
         slidesToScroll={1}
         initialSlide={-0.4}
         arrows={false}
+        isMainSlider={false}
       >
         {children}
       </StyledSlider>
