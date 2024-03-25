@@ -191,6 +191,7 @@ export const GlobalStyle = css`
   }
   .dots_custom ul {
     display: flex;
+    align-items: center;
     position: relative;
     top: -20px;
     gap: 10px;
@@ -199,7 +200,7 @@ export const GlobalStyle = css`
   }
   .dots_custom li button {
     border: none;
-    background: ${theme.color.darkgray};
+    background: ${theme.color.superlightgray};
     color: transparent;
     cursor: pointer;
     display: block;
@@ -209,6 +210,8 @@ export const GlobalStyle = css`
     padding: 0;
   }
   .dots_custom li.slick-active button {
-    background: ${theme.color.black};
+    background: ${theme.color.darkgray};
+    width: 10px;
+    height: 10px;
   }
 `;
