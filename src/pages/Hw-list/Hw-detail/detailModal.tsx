@@ -65,7 +65,9 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
           </Styled.Wrapper>
           <Styled.TagWrapper>
             {tags.map((item) => (
-              <Tag key={item}>{item}</Tag>
+              <Tag type="other" key={item}>
+                {item}
+              </Tag>
             ))}
           </Styled.TagWrapper>
         </Styled.MainWrapper>

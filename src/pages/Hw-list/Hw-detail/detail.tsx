@@ -66,7 +66,9 @@ function Detail() {
         </div>
         <Styled.TagWrapper>
           {data?.tags.map((item) => (
-            <Tag key={item}>{item}</Tag>
+            <Tag type="other" key={item}>
+              {item}
+            </Tag>
           ))}
         </Styled.TagWrapper>
         <div

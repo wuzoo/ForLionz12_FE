@@ -96,7 +96,7 @@ function HwList() {
             </Typo>
           </div>
         )}
-        <FullScreenSlider>
+        <FullScreenSlider isMain={false}>
           {myAssignments?.map((item, index) => (
             <HwSliderCard
               key={item.id}
