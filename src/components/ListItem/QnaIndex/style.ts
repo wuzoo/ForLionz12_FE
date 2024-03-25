@@ -9,6 +9,10 @@ export const Container = styled.div`
 
 export const Date = styled.p``;
 
+export const SpaceBetweenWrapper = styled.div`
+  ${(props) => props.theme.flexRow("space-between", "center", 24)}
+`;
+
 export const Writer = styled.p`
   padding: 3px 0px;
   margin-top: 4px;
@@ -36,4 +40,8 @@ export const BottomRow = styled.div`
 export const CommentCnt = styled.p`
   white-space: nowrap;
   ${(props) => props.theme.flexRow("", "center")}
+`;
+
+export const LikeCnt = styled.p`
+  ${(props) => props.theme.flexRow("", "center", 6)}
 `;

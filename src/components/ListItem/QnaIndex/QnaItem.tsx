@@ -6,6 +6,7 @@ import { getFormedDate } from "../../../utils/date";
 import { theme } from "../../../styles/theme/theme";
 import Tag from "../../Tag/Tag";
 import EllipsisText from "../../Ellipsis/EllipsisText";
+import Likes from "../../../assets/icons/likes/Like.svg?react";
 
 interface IItem {
   title: string;
@@ -16,6 +17,7 @@ interface IItem {
   tags: string[];
   commentCnt: number;
   isDark: boolean;
+  likes: number;
 }
 
 function QnaItem({
@@ -27,6 +29,7 @@ function QnaItem({
   tags,
   commentCnt,
   isDark,
+  likes,
 }: IItem) {
   return (
     <Styled.Container
@@ -38,14 +41,10 @@ function QnaItem({
     >
       <div
         css={css`
-          ${theme.flexRow("space-between", "center")}
+          ${theme.flexRow("space-between", "end")}
         `}
       >
-        <div
-          css={css`
-            ${theme.flexRow("space-between", "center", 24)}
-          `}
-        >
+        <Styled.SpaceBetweenWrapper>
           <User url={url} size="60" />
           <div>
             <EllipsisText color={isDark ? "white" : "black"} lineHeight={1.2}>
@@ -57,18 +56,30 @@ function QnaItem({
               </Typo>
             </Styled.Writer>
           </div>
+        </Styled.SpaceBetweenWrapper>
+        <div
+          css={css`
+            ${theme.flexColumn("", "end", 4)}
+          `}
+        >
+          <Styled.CommentCnt>
+            <Typo color="darkblue" fontSize="18">
+              {commentCnt}&nbsp;
+            </Typo>
+            <Typo fontSize="16">개의 댓글</Typo>
+          </Styled.CommentCnt>
+          <Styled.LikeCnt>
+            <Likes fill={theme.color.pink} width={16} />
+            <Typo>{likes}</Typo>
+          </Styled.LikeCnt>
         </div>
-        <Styled.CommentCnt>
-          <Typo color="darkblue" fontSize="18">
-            {commentCnt}&nbsp;
-          </Typo>
-          <Typo fontSize="16">개의 댓글</Typo>
-        </Styled.CommentCnt>
       </div>
       <Styled.BottomRow>
         <Styled.TagWrapper>
           {tags.map((item) => (
-            <Tag key={item}>{item}</Tag>
+            <Tag type="other" key={item}>
+              {item}
+            </Tag>
           ))}
         </Styled.TagWrapper>
         <Styled.Date>
