@@ -1,6 +1,20 @@
 import styled from "@emotion/styled";
 export * from "../SliderCard/style";
 
+export const CardWrapper = styled.div`
+  ${(props) => props.theme.flexColumn("space-between", "center")}
+  padding-bottom: 36px;
+  position: relative;
+  border-radius: 60px;
+  overflow: hidden;
+  margin: 0px 6rem;
+`;
+
+export const AlignWrapper = styled.div`
+  ${(props) => props.theme.flexColumn("", "", 5)}
+  z-index: 10;
+`;
+
 export const Picture = styled.img`
   position: absolute;
   object-fit: contain;
