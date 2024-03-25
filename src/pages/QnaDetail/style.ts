@@ -40,7 +40,10 @@ export const EditDeleteBtnWrapper = styled.div`
 
 export const NameAndDate = styled.p`
   padding-left: 14px;
-  ${(props) => props.theme.flexRow("", "center", 20)}
+  ${(props) => props.theme.flexRow("space-between", "center", 20)}
+  span {
+    white-space: nowrap;
+  }
 `;
 
 export const CommentInput = styled.textarea`
