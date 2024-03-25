@@ -10,4 +10,5 @@ export interface ISlider {
   initialSlide?: number;
   arrows?: boolean;
   autoplaySpeed?: number;
+  isMainSlider: boolean;
 }

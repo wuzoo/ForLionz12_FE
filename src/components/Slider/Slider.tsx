@@ -5,6 +5,7 @@ import { ISlider } from "./types";
 import { Next, Prev } from "./components/Arrow";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/IsDark/IsDark";
+import { css } from "@emotion/react";
 
 export default function MySlider({
   children,
@@ -17,8 +18,10 @@ export default function MySlider({
   speed,
   arrows,
   autoplaySpeed,
+  isMainSlider,
 }: ISlider) {
   const { isDark } = useContext(ThemeContext);
+
   const setting: Settings = {
     dots: dots,
     infinite: infinite,
@@ -29,10 +32,31 @@ export default function MySlider({
     slidesToScroll: slidesToScroll || 1,
     initialSlide: initialSlide || 0,
     autoplaySpeed: autoplaySpeed || 5000,
-    prevArrow: <Prev isDark={isDark} onClick={Slider.prototype.slickPrev} />,
-    nextArrow: <Next isDark={isDark} onClick={Slider.prototype.slickNext} />,
+    pauseOnHover: true,
+
+    prevArrow: (
+      <Prev
+        isMain={isMainSlider}
+        isDark={isDark}
+        onClick={Slider.prototype.slickPrev}
+      />
+    ),
+    nextArrow: (
+      <Next
+        isMain={isMainSlider}
+        isDark={isDark}
+        onClick={Slider.prototype.slickNext}
+      />
+    ),
     appendDots: (dots: any) => (
-      <div>
+      <div
+        css={css`
+          position: ${isMainSlider && "absolute"};
+          top: 0px;
+          justify-content: ${isMainSlider && "end"};
+          padding-right: ${isMainSlider && "70px"};
+        `}
+      >
         <ul>{dots}</ul>
       </div>
     ),

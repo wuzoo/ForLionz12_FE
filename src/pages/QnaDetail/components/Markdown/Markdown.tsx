@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { theme } from "../../../styles/theme/theme";
+import { theme } from "../../../../styles/theme/theme";
 
 const MDImg = styled.img`
   max-width: 100%;

@@ -1,7 +1,7 @@
 import Profile from "../../Profile/Profile";
 import * as Styled from "./style";
 import Typo from "../../Typo/Typo";
-import chat from "./assets/chat.svg";
+import Chat from "../../../assets/icons/comments/chat.svg?react";
 import { getFormedDate } from "../../../utils/date";
 import { useChildComments } from "../../../hooks";
 import { css } from "@emotion/react";
@@ -115,7 +115,7 @@ function ListItem({
         </Styled.Comment>
 
         <Styled.Child onClick={() => setIsChildClicked((prev) => !prev)}>
-          <img width="18" src={chat} />
+          <Chat width={18} />
           <Typo color="darkblue" weight="600">
             {data?.length ? `${data?.length}개의 답글` : "댓글 달기"}
           </Typo>

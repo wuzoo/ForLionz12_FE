@@ -1,6 +1,6 @@
 export const TEXT: { [key: string]: string } = {
   LOGIN: "LIKELION\nINHA UNIV 12기와\n함께하기", //
-  HOME_MAIN_TEXT: "Growl\nTo Growth\nWelcome", //
+  HOME_MAIN_TEXT: "Growl To Growth\nWelcome", //
   HOME_GREETING: "님 반갑습니다", //
   CONTACT: "사자들의 정보를 볼 수 있어요.",
   NOTIFICATION: "어떤 일이 기다리고 있을까요 ?", //

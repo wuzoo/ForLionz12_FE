@@ -111,6 +111,7 @@ function Qna() {
               name={item.name}
               tags={item.childTags}
               commentCnt={item.commentCount}
+              likes={item.likes}
             />
           ))
         )}

@@ -9,11 +9,12 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { css } from "@emotion/react";
 import { ERROR } from "../../constants/message";
-import Markdown from "./components/Markdown";
+import Markdown from "./components/Markdown/Markdown";
 import Tag from "../../components/Tag/Tag";
 import { ThemeContext } from "../../context/IsDark/IsDark";
 import { URL_MAP } from "../../constants/url";
 import CustomInput from "../../components/Input/Input";
+import LikePost from "./components/LikePost/LikePost";
 
 function QnaDetail() {
   const { id } = useParams();
@@ -33,6 +34,10 @@ function QnaDetail() {
 
   if (error === "rejected") throw new Error(ERROR.ID_QNA);
   if (!data) return;
+
+  const handleLikePost = async () => {
+    await axios.post(`${import.meta.env.VITE_QUESTION}/like/${id}`);
+  };
 
   const handleDelete = async () => {
     const ok = window.confirm("삭제하시겠습니까 ?");
@@ -106,10 +111,16 @@ function QnaDetail() {
                 <Typo fontSize="14" color="darkgray">
                   작성일: {getFormedDate(data?.createdAt)}
                 </Typo>
+                <LikePost
+                  isDark={isDark}
+                  onPost={handleLikePost}
+                  liked={data.liked}
+                  likes={data?.likes}
+                />
               </Styled.NameAndDate>
               <Styled.TagWrapper>
                 {data?.childTags.map((tag) => (
-                  <Tag>{tag}</Tag>
+                  <Tag type="other">{tag}</Tag>
                 ))}
               </Styled.TagWrapper>
             </div>
