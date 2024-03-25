@@ -29,6 +29,8 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
 
   const { content, title, createdAt, expireAt, tags, part, id } = data;
 
+  console.log(data);
+
   return (
     <>
       <div
@@ -78,7 +80,7 @@ function Hwdetail({ clickedId, isDark }: IHwDetail) {
         >
           <Deadline isModal={true} expireAt={expireAt} />
           <Styled.AssignmentLink>
-            {clickedId === 51 ? (
+            {clickedId === 51 || part === "BE" ? (
               <NotionLogo
                 width={40}
                 height={40}
