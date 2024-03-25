@@ -6,4 +6,5 @@ export interface ITypo {
   weight?: string | "default";
   onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
   children: ReactNode;
+  isItalic?: boolean;
 }

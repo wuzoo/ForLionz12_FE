@@ -8,6 +8,7 @@ import { theme } from "../../styles/theme/theme";
 const StyledTypo = styled.span<ITypo>`
   font-size: ${(props) => props.fontSize || "18"}px;
   font-family: ${(props) => props.weight};
+  font-style: ${(props) => props.isItalic && "italic"};
 
   transition: all 0.2s ease-in-out;
 `;
