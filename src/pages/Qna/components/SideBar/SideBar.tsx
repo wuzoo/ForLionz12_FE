@@ -13,7 +13,7 @@ interface ISideBar {
 }
 
 function SideBar({ setCategory, currentCategory, tags }: ISideBar) {
-  const ref = useResponsivebar();
+  const ref = useResponsivebar("sidebar", "78vh", "3%");
 
   return (
     <Styled.Wrapper
