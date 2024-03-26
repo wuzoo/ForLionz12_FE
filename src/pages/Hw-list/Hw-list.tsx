@@ -30,8 +30,6 @@ function HwList() {
   const filteredPartData = useFilteredAssignment(selectedPart);
   const { part, id } = useLocalStorage(["part", "id"]);
 
-  console.log(part, id);
-
   const ifStaff_partAll = part !== "STAFF" ? part : "ALL";
   const { error: myPartError, data: myAssignments } =
     usePartAssignment(ifStaff_partAll);
