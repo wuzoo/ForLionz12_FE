@@ -22,8 +22,6 @@ function Home() {
   const { data: allQna } = useAllQna();
   const recentSortData = noticesData?.sort((a, b) => compare(a, b));
 
-  console.log(allQna);
-
   if (error === "rejected") throw new Error(ERROR.ALL_NOTICE);
 
   return (
@@ -72,15 +70,17 @@ function Home() {
               </Typo>
             </Styled.TrendingTitle>
             <Styled.TrendingList id="trend_list">
-              {allQna?.map((data) => (
-                <TrendingCard
-                  id={data?.questionId}
-                  text={data?.title}
-                  createdAt={data.createdAt.slice(0, 10)}
-                  likes={data?.likes}
-                  comments={data?.commentCount}
-                />
-              ))}
+              {allQna
+                ?.sort((a, b) => b.likes - a.likes)
+                .map((data) => (
+                  <TrendingCard
+                    id={data?.questionId}
+                    text={data?.title}
+                    createdAt={data.createdAt.slice(0, 10)}
+                    likes={data?.likes}
+                    comments={data?.commentCount}
+                  />
+                ))}
             </Styled.TrendingList>
           </div>
         </Styled.ContentWrapper>
